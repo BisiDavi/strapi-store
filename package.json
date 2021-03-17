@@ -4,8 +4,10 @@
     },
     "scripts": {
         "build:frontend": "cd ./frontend && yarn build",
+        "build:backend": "cd ./backend && yarn build",
         "frontend": "cd ./frontend && yarn start",
         "backend": "cd ./backend && yarn start",
-        "start": "concurrently \"yarn frontend \" \"yarn backend \""
+        "start": "NODE_ENV=production concurrently \"yarn frontend \" \"yarn backend \"",
+        "heroku-postbuild": "concurrently \"yarn build:frontend\" \"yarn build:backend \""
     }
 }
