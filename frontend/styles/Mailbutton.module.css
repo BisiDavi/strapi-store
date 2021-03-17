@@ -1,0 +1,56 @@
+.button {
+    color: pink;
+    background-color: black;
+    border: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.mailButton {
+    display: block;
+    background-color: rgb(8, 2, 2);
+    border-radius: 0px 0px 2px 2px;
+    cursor: pointer;
+    left: -102px;
+    top: 45%;
+    overflow-wrap: anywhere;
+    max-width: 100vh;
+    padding: 8px 16px;
+    position: fixed;
+    transform: rotate(-90deg);
+    transform-origin: center top 0px;
+    transition: padding-top 0.2s ease-in-out 0s;
+    z-index: 10000;
+}
+
+.mailButton .button:focus {
+    background-color: black;
+    box-shadow: none;
+    font-weight: bold;
+}
+
+.mailButton .button:hover,
+.mailButton .button:active {
+    background-color: black !important;
+    opacity: 0.6;
+}
+
+.btnStyle {
+    display: grid;
+    grid-template-columns: inherit;
+    gap: 8px;
+    grid-row: span 1;
+}
+
+@media (max-width: 768px) {
+    .btnStyle {
+        margin: 4px;
+        height: 20px;
+    }
+    .mailButton {
+        padding: 8px 12px;
+    }
+    .button {
+        font-size: 13px;
+    }
+}

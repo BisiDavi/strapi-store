@@ -1,0 +1,12 @@
+.pageModal {
+    color: white;
+    background-color: black;
+}
+
+@media (max-width: 768px) {
+    .pageModal {
+        height: 370px;
+        width: 90%;
+        margin: auto;
+    }
+}

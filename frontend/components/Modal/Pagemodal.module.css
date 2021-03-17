@@ -1,0 +1,22 @@
+.modalHeader button {
+    width: 40px;
+    color: white;
+    opacity: 1;
+    font-size: 30px;
+    padding: 0px !important;
+    margin: 1px 0px !important;
+    border-radius: 50%;
+    height: 40px;
+    background-color: rgb(107 103 103 / 40%);
+}
+
+.modalHeader button span:hover,
+.modalHeader button:hover {
+    color: rgb(255, 166, 202);
+}
+
+@media (max-width: 768px) {
+    .modalHeader h1 {
+        font-size: 20px;
+    }
+}

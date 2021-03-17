@@ -1,0 +1,24 @@
+.pageslider {
+    height: 100%;
+    width: 100;
+}
+.pageslider button {
+    background: black;
+    height: 30px;
+    width: 30px;
+    margin: 0px 40px;
+    border-radius: 50%;
+    border: none;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.pageslider ul {
+    width: 70px;
+    background: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    bottom: 15px;
+    display: flex;
+    border-radius: 50px;
+    left: 45%;
+}
