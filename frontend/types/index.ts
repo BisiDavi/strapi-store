@@ -7,10 +7,10 @@ export interface PagecontainerProps {
 export interface ButtonProps {
     linkTo?: string;
     text: string;
-    bgColor: string;
-    width: string;
-    height: string;
-    styles: {};
+    bgColor?: string;
+    width?: string;
+    height?: string;
+    styles?: {};
     asLink?: boolean;
 }
 

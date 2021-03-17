@@ -1,13 +1,13 @@
 {
     "dependencies": {
-        "concurrency": "^0.1.4"
+        "concurrently": "^6.0.0"
     },
     "scripts": {
         "build:frontend": "cd ./frontend && yarn build",
         "build:backend": "cd ./backend && yarn build",
         "frontend": "cd ./frontend && yarn start",
         "backend": "cd ./backend && yarn start",
-        "start": "NODE_ENV=production yarn concurrency \"yarn frontend \" \"yarn backend \"",
-        "heroku-postbuild": "yarn concurrency \"yarn build:frontend\" \"yarn build:backend \""
+        "start": "NODE_ENV=production yarn concurrently \"yarn frontend \" \"yarn backend \"",
+        "heroku-postbuild": "yarn concurrently \"yarn build:backend\" \"yarn build:frontend \""
     }
 }
