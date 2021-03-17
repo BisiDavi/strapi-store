@@ -1,0 +1,11 @@
+{
+    "dependencies": {
+        "concurrency": "^0.1.4"
+    },
+    "scripts": {
+        "build:frontend": "cd ./frontend && yarn build",
+        "frontend": "cd ./frontend && yarn start",
+        "backend": "cd ./backend && yarn start",
+        "start": "concurrently \"yarn frontend \" \"yarn backend \""
+    }
+}
