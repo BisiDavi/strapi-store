@@ -3,11 +3,7 @@
         "concurrently": "^6.0.0"
     },
     "scripts": {
-        "build:frontend": "cd ./frontend && yarn build",
-        "build:backend": "cd ./backend && yarn build",
-        "frontend": "cd ./frontend && yarn start",
-        "backend": "cd ./backend && yarn start",
-        "start": "NODE_ENV=production yarn concurrently \"yarn frontend \" \"yarn backend \"",
-        "heroku-postbuild": "yarn concurrently \"yarn build:backend\" \"yarn build:frontend \""
+        "heroku-prebuild": "cd backend && yarn install && yarn run build",
+        "start": "cd backend && yarn start"
     }
 }
