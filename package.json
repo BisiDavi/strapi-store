@@ -7,7 +7,7 @@
         "build:backend": "cd ./backend && yarn build",
         "frontend": "cd ./frontend && yarn start",
         "backend": "cd ./backend && yarn start",
-        "start": "NODE_ENV=production concurrency \"yarn frontend \" \"yarn backend \"",
-        "heroku-postbuild": "concurrency \"yarn build:frontend\" \"yarn build:backend \""
+        "start": "NODE_ENV=production yarn concurrency \"yarn frontend \" \"yarn backend \"",
+        "heroku-postbuild": "yarn concurrency \"yarn build:frontend\" \"yarn build:backend \""
     }
 }
