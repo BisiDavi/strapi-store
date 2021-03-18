@@ -20,7 +20,7 @@ const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
         description
         title
         price
-        productTag
+        slug
         id
         image {
             responsiveImage {
@@ -81,7 +81,7 @@ const Home: NextPage<HomeProps> = ({ data }): JSX.Element => {
 export async function getStaticProps() {
     const data = await request({
         query: HOMEPAGE_QUERY,
-        variables: { limit: 10 },
+        variables: { limit: 8 },
     });
 
     return {

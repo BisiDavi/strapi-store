@@ -6,7 +6,7 @@ import { ProductProps } from "../../types";
 const Product: FC<ProductProps> = ({ product }): JSX.Element => {
     return (
         <div className="productView">
-            <Link href={`/products/${product.title}`} passHref>
+            <Link href={`/products/${product.slug}`} passHref>
                 <a>
                     <div className="front-view">
                         <Image data={product.image.responsiveImage} />
