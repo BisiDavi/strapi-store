@@ -4,14 +4,18 @@ import { NextPage } from "next";
 import { Pagelayout } from "../../container";
 import { Image } from "react-datocms";
 import { Loading, ProductDetail } from "../../components";
-import { PRODUCTPAGE_QUERY, request } from "../../lib";
+import { PRODUCTPAGE_QUERY, PRODUCT_SEO_QUERY, request } from "../../lib";
 import ErrorPage from "next/error";
 
 interface ProductpageProps {
     product: any;
+    seoData: {};
 }
 
-const ProductPage: NextPage<ProductpageProps> = ({ product }): JSX.Element => {
+const ProductPage: NextPage<ProductpageProps> = ({
+    seoData,
+    product,
+}): JSX.Element => {
     const router = useRouter();
     if (!router.isFallback && !product?.slug) {
         return <ErrorPage statusCode={404} />;
@@ -27,7 +31,7 @@ const ProductPage: NextPage<ProductpageProps> = ({ product }): JSX.Element => {
     console.log("slug product", product);
 
     return (
-        <Pagelayout title={product.title} product>
+        <Pagelayout metaTags={seoData} title={product.title} product>
             <ProductDetail product={product} />
             <h1>Hello, I am product {product.title}</h1>
             <Image data={product.image.responsiveImage} />
@@ -40,11 +44,15 @@ export async function getStaticProps({ params }) {
         query: PRODUCTPAGE_QUERY,
         variables: { slug: params.slug },
     });
+    const seoData = await request({
+        query: PRODUCT_SEO_QUERY,
+    });
 
     const { allProducts } = productArr;
     return {
         props: {
             product: allProducts[0],
+            seoData,
         },
     };
 }
@@ -53,6 +61,7 @@ export async function getStaticPaths() {
     const products = await request({
         query: PRODUCTPAGE_QUERY,
     });
+
     const { allProducts } = products;
     return {
         paths: allProducts?.map((product) => `/products/${product.slug}`) || [],

@@ -4,6 +4,7 @@ export interface PagecontainerProps {
     children: any;
     title: string | string[];
     product?: boolean;
+    metaTags?: any;
 }
 
 export interface ButtonProps {

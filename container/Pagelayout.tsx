@@ -6,6 +6,7 @@ import { Header, Footer, MailButton, Mailinglist } from "../components";
 const Pagelayout: FC<PagecontainerProps> = ({
     title,
     children,
+    metaTags,
     product,
 }): JSX.Element => {
     const [promoDisplay, setPromoDisplay] = useState(true);
@@ -18,6 +19,7 @@ const Pagelayout: FC<PagecontainerProps> = ({
         <div>
             <Head>
                 <title>{pageTitle}</title>
+                {metaTags}
             </Head>
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
             <MailButton showMail={() => setMailModal(true)} />

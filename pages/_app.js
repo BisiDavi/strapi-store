@@ -12,10 +12,11 @@ Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps, data }) => {
     return (
         <>
             <Head>
+                {renderMetaTags(data.site.favicon)}
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link
                     href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500&display=swap"
@@ -41,6 +42,11 @@ export async function getStaticProps() {
     const data = await request({
         query: SITE_FAVICON_QUERY,
     });
+    return {
+        props: {
+            data,
+        },
+    };
 }
 
 export default MyApp;
