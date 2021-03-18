@@ -41,9 +41,10 @@ const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
 }`;
 
 const Home: NextPage<HomeProps> = ({ data }): JSX.Element => {
-    console.log("products", data);
+    console.log("data", data);
     const [loader, setLoader] = useState(true);
-
+    const { allProducts } = data;
+    console.log("allProducts", allProducts);
     useEffect(() => {
         const startLoader = setTimeout(() => setLoader(false), 1000);
         return () => {
@@ -60,7 +61,7 @@ const Home: NextPage<HomeProps> = ({ data }): JSX.Element => {
                     <div className="homepage">
                         <HomepageSlider />
                         <Collections />
-                        <ProductsList products={data} />
+                        <ProductsList products={allProducts} />
                         <Newsletter />
                         <SelfiesBanner />
                         <style jsx>
