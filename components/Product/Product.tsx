@@ -1,22 +1,15 @@
 import React, { FC } from "react";
-import Image from "next/image";
+import { Image } from "react-datocms";
 import Link from "next/link";
 import { ProductProps } from "../../types";
-import { getStrapiMedia } from "../../utils/medias";
 
 const Product: FC<ProductProps> = ({ product }): JSX.Element => {
     return (
         <div className="productView">
-            <Link href={`/products/${product.slug}`} passHref>
+            <Link href={`/products/${product.title}`} passHref>
                 <a>
                     <div className="front-view">
-                        <Image
-                            src={getStrapiMedia(product.image.url)}
-                            alt={product.title}
-                            height={300}
-                            width={300}
-                            layout="responsive"
-                        />
+                        <Image data={product.image.responsiveImage} />
                     </div>
                     <div className="back-view">
                         <h1>{product.title}</h1>

@@ -1,3 +1,5 @@
+import { ResponsiveImageType } from "react-datocms";
+
 export interface PagecontainerProps {
     children: any;
     title: string | string[];
@@ -24,10 +26,12 @@ export interface CollectionViewProps {
 }
 
 export interface IProduct {
+    id: string;
     title: string;
     price: number;
     image: {
         url: string;
+        responsiveImage: ResponsiveImageType;
     };
     slug?: string;
 }

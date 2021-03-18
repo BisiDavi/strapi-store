@@ -1,16 +1,17 @@
 import React, { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { IProduct } from "../../types";
 import Product from "./Product";
 
 interface productsProps {
-    products: [];
+    products: IProduct[];
 }
 
 const ProductsList: FC<productsProps> = ({ products }): JSX.Element => {
     return (
         <div className="products">
             {products.map((product) => (
-                <Product key={uuidv4()} product={product} />
+                <Product key={product.id} product={product} />
             ))}
             <style jsx>{`
                 .products {

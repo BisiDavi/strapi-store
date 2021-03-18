@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import { Pagelayout } from "../container";
 import { request } from "../lib/datocms";
-import { Image } from "react-datocms";
 import {
     SelfiesBanner,
     Loading,
