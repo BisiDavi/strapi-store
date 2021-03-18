@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import { Pagelayout } from "../container";
 import { request } from "../lib/datocms";
+import { Image } from "react-datocms";
 import {
     SelfiesBanner,
     Loading,
@@ -16,9 +17,27 @@ interface HomeProps {
 }
 
 const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
-    allProducts(first:$limit){
+    allProducts(first:$limit) {
+        description
         title
-    }
+        price
+        productTag
+        id
+        image {
+        responsiveImage {
+            srcSet
+            webpSrcSet
+            sizes
+            src
+            width
+            height
+            aspectRatio
+            alt
+            title
+            base64
+            bgColor
+        }
+        }
 }`;
 
 const Home: NextPage<HomeProps> = ({ data }): JSX.Element => {

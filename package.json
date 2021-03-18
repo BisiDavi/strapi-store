@@ -20,6 +20,7 @@
     "react": "17.0.1",
     "react-bootstrap": "^1.5.2",
     "react-carousel": "^4.3.0",
+    "react-datocms": "^1.5.5",
     "react-dom": "17.0.1",
     "react-hook-form": "^6.15.4",
     "react-instantsearch-dom": "^6.10.3",
