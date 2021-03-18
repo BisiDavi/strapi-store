@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import { Pagelayout } from "../container";
-import { getProducts } from "../utils/api";
+import { request } from "../lib/datocms";
 import {
     SelfiesBanner,
     Loading,
@@ -12,11 +12,17 @@ import {
 } from "../components";
 
 interface HomeProps {
-    products: [];
+    data: any;
 }
 
-const Home: NextPage<HomeProps> = ({ products }): JSX.Element => {
-    console.log("products", products);
+const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
+    allProducts(first:$limit){
+        title
+    }
+}`;
+
+const Home: NextPage<HomeProps> = ({ data }): JSX.Element => {
+    console.log("products", data);
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
@@ -35,7 +41,7 @@ const Home: NextPage<HomeProps> = ({ products }): JSX.Element => {
                     <div className="homepage">
                         <HomepageSlider />
                         <Collections />
-                        <ProductsList products={products} />
+                        {/* <ProductsList products={products} /> */}
                         <Newsletter />
                         <SelfiesBanner />
                         <style jsx>
@@ -53,10 +59,14 @@ const Home: NextPage<HomeProps> = ({ products }): JSX.Element => {
 };
 
 export async function getStaticProps() {
-    const products = await getProducts();
+    const data = await request({
+        query: HOMEPAGE_QUERY,
+        variables: { limit: 10 },
+    });
+
     return {
         props: {
-            products,
+            data,
         },
     };
 }
