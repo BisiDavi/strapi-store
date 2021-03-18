@@ -2,7 +2,8 @@ import React from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { Pagelayout } from "../../container";
-import { getProducts, getProduct } from "../../utils/api";
+import { Image } from "react-datocms";
+import { request } from "../../lib/datocms";
 import { Loading, ProductDetail } from "../../components";
 
 interface ProductpageProps {
@@ -31,27 +32,17 @@ const ProductPage: NextPage<ProductpageProps> = ({ product }): JSX.Element => {
     );
 };
 
-export default ProductPage;
+export async function getStaticProps() {
+    const data = await request({
+        query: HOMEPAGE_QUERY,
+        variables: { limit: 10 },
+    });
 
-export async function getStaticProps({ params }) {
-    const product = await getProduct(params.slug);
     return {
         props: {
-            product,
+            data,
         },
     };
 }
 
-export async function getStaticPaths() {
-    const products = await getProducts();
-    return {
-        paths: products.map((_product) => {
-            return {
-                params: {
-                    slug: _product.slug,
-                },
-            };
-        }),
-        fallback: true,
-    };
-}
+export default ProductPage;
