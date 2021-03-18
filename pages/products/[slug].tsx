@@ -7,14 +7,34 @@ import { request } from "../../lib/datocms";
 import { Loading, ProductDetail } from "../../components";
 
 interface ProductpageProps {
-    product: {
-        title: string;
-        price: number;
-        image: {};
-    };
+    data: any;
 }
 
-const ProductPage: NextPage<ProductpageProps> = ({ product }): JSX.Element => {
+const PRODUCTPAGE_QUERY = `query Homepage($limit:IntType){
+    allProducts(first:$limit) {
+        description
+        title
+        price
+        productTag
+        id
+        image {
+        responsiveImage {
+            srcSet
+            webpSrcSet
+            sizes
+            src
+            width
+            height
+            aspectRatio
+            alt
+            title
+            base64
+            bgColor
+        }
+        }
+}`;
+
+const ProductPage: NextPage<ProductpageProps> = ({ data }): JSX.Element => {
     const router = useRouter();
     if (router.isFallback) {
         return (
@@ -23,19 +43,20 @@ const ProductPage: NextPage<ProductpageProps> = ({ product }): JSX.Element => {
             </div>
         );
     }
-    console.log("slug product", product);
+    console.log("slug product", data);
+
     return (
-        <Pagelayout title={product.title} product>
-            <ProductDetail product={product} />
-            <h1>Hello, I am product {product.title}</h1>
+        <Pagelayout title={data.title} product>
+            {/* <ProductDetail product={product} /> */}
+            <h1>Hello, I am product {data.title}</h1>
+            <Image data={data.image.responsiveImage} />
         </Pagelayout>
     );
 };
 
 export async function getStaticProps() {
     const data = await request({
-        query: HOMEPAGE_QUERY,
-        variables: { limit: 10 },
+        query: PRODUCTPAGE_QUERY,
     });
 
     return {

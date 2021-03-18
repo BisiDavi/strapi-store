@@ -37,7 +37,7 @@ const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
             base64
             bgColor
         }
-        }
+    }
 }`;
 
 const Home: NextPage<HomeProps> = ({ data }): JSX.Element => {
@@ -60,7 +60,7 @@ const Home: NextPage<HomeProps> = ({ data }): JSX.Element => {
                     <div className="homepage">
                         <HomepageSlider />
                         <Collections />
-                        {/* <ProductsList products={products} /> */}
+                        <ProductsList products={data} />
                         <Newsletter />
                         <SelfiesBanner />
                         <style jsx>

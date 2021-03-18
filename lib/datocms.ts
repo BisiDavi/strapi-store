@@ -2,7 +2,7 @@ import { GraphQLClient } from "graphql-request";
 
 interface requestProps {
     query: any;
-    variables: {};
+    variables?: {};
     preview?: any;
 }
 
