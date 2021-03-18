@@ -1,40 +1,17 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import ErrorPage from "next/error";
 import { Pagelayout } from "../../container";
 import { Image } from "react-datocms";
 import { request } from "../../lib/datocms";
 import { Loading, ProductDetail } from "../../components";
+import { PRODUCTPAGE_QUERY } from "../../api";
+import ErrorPage from "next/error";
 
 interface ProductpageProps {
     product: any;
 }
 
-const PRODUCTPAGE_QUERY = `query Productpage($limit:IntType){
-    allProducts(first:$limit) {
-        description
-        title
-        price
-        slug
-        id
-        image {
-            responsiveImage {
-                srcSet
-                webpSrcSet
-                sizes
-                src
-                width
-                height
-                aspectRatio
-                alt
-                title
-                base64
-                bgColor
-            }
-        }
-    }
-}`;
 const ProductPage: NextPage<ProductpageProps> = ({ product }): JSX.Element => {
     const router = useRouter();
     if (!router.isFallback && !product?.slug) {
@@ -47,6 +24,7 @@ const ProductPage: NextPage<ProductpageProps> = ({ product }): JSX.Element => {
             </div>
         );
     }
+
     console.log("slug product", product);
 
     return (
@@ -58,15 +36,16 @@ const ProductPage: NextPage<ProductpageProps> = ({ product }): JSX.Element => {
     );
 };
 
-export async function getStaticProps({ params, preview = false }) {
-    const product = await request({
+export async function getStaticProps({ params }) {
+    const productArr = await request({
         query: PRODUCTPAGE_QUERY,
-        variables: { limit: 10 },
+        variables: { slug: params.slug },
     });
 
+    const { allProducts } = productArr;
     return {
         props: {
-            product,
+            product: allProducts[0],
         },
     };
 }

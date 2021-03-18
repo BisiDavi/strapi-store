@@ -10,41 +10,15 @@ import {
     ProductsList,
     Newsletter,
 } from "../components";
+import { HOMEPAGE_QUERY } from "../api";
 
 interface HomeProps {
     data: any;
 }
 
-const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
-    allProducts(first:$limit) {
-        description
-        title
-        price
-        slug
-        id
-        image {
-            responsiveImage {
-                srcSet
-                webpSrcSet
-                sizes
-                src
-                width
-                height
-                aspectRatio
-                alt
-                title
-                base64
-                bgColor
-            }
-        }
-    }
-}`;
-
 const Home: NextPage<HomeProps> = ({ data }): JSX.Element => {
-    console.log("data", data);
     const [loader, setLoader] = useState(true);
     const { allProducts } = data;
-    console.log("allProducts", allProducts);
     useEffect(() => {
         const startLoader = setTimeout(() => setLoader(false), 1000);
         return () => {
