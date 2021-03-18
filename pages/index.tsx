@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import { Pagelayout } from "../container";
-import { request } from "../lib/datocms";
 import {
     SelfiesBanner,
     Loading,
@@ -10,7 +9,7 @@ import {
     ProductsList,
     Newsletter,
 } from "../components";
-import { HOMEPAGE_QUERY } from "../api";
+import { HOMEPAGE_QUERY, request } from "../lib";
 
 interface HomeProps {
     data: any;
