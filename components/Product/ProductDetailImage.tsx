@@ -1,14 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
-import { getStrapiMedia } from "../../utils/medias";
 
 const ProductDetailImage = ({ image }): JSX.Element => {
     return (
         <div className="product">
             <span className="mainImage">
                 <Image
-                    src={getStrapiMedia(image.url)}
+                    src={""}
                     height={500}
                     key={uuidv4()}
                     width={500}
