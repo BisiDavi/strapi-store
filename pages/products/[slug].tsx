@@ -77,16 +77,7 @@ export async function getStaticPaths() {
     });
     const { allProducts } = products;
     return {
-        paths:
-            [
-                allProducts?.map((product) => {
-                    params: {
-                        slug: {
-                            `/products/${product.slug}`;
-                        }
-                    }
-                }),
-            ] || [],
+        paths: allProducts?.map((product) => `/products/${product.slug}`) || [],
         fallback: true,
     };
 }
