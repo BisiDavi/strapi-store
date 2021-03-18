@@ -23,18 +23,19 @@ const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
         productTag
         id
         image {
-        responsiveImage {
-            srcSet
-            webpSrcSet
-            sizes
-            src
-            width
-            height
-            aspectRatio
-            alt
-            title
-            base64
-            bgColor
+            responsiveImage {
+                srcSet
+                webpSrcSet
+                sizes
+                src
+                width
+                height
+                aspectRatio
+                alt
+                title
+                base64
+                bgColor
+            }
         }
     }
 }`;
