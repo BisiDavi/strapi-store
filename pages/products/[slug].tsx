@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import { Pagelayout } from "../../container";
 import { Image } from "react-datocms";
 import { Loading, ProductDetail } from "../../components";
-import { PRODUCTPAGE_QUERY, PRODUCT_SEO_QUERY, request } from "../../lib";
+import { PRODUCTPAGE_QUERY, SEO_QUERY, request } from "../../lib";
 import ErrorPage from "next/error";
 
 interface ProductpageProps {
@@ -45,7 +45,7 @@ export async function getStaticProps({ params }) {
         variables: { slug: params.slug },
     });
     const seoData = await request({
-        query: PRODUCT_SEO_QUERY,
+        query: SEO_QUERY,
     });
 
     const { allProducts } = productArr;

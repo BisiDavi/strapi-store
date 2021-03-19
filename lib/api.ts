@@ -6,7 +6,7 @@ export const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
         slug
         id
         image {
-            responsiveImage(imgixParams: {h: 400}) {
+            responsiveImage(imgixParams: {h: 300}) {
                 srcSet
                 webpSrcSet
                 sizes
@@ -31,7 +31,7 @@ export const PRODUCTPAGE_QUERY = `query Productpage($slug: String) {
       slug
       id
       image {
-        responsiveImage {
+        responsiveImage(imgixParams: {h: 400}) {
           srcSet
           webpSrcSet
           sizes
@@ -48,7 +48,7 @@ export const PRODUCTPAGE_QUERY = `query Productpage($slug: String) {
     }
   }`;
 
-export const SITE_FAVICON_QUERY = `
+export const SEO_QUERY = `
   {
     site: _site {
       favicon: faviconMetaTags {
@@ -57,14 +57,12 @@ export const SITE_FAVICON_QUERY = `
         tag
       }
     }
-  `;
-
-export const PRODUCT_SEO_QUERY = `
-product {
+  
+  product {
     seo: _seoMetaTags {
       attributes
       content
       tag
     }
-  }
+  } 
 }`;

@@ -9,12 +9,11 @@ import {
     ProductsList,
     Newsletter,
 } from "../components";
-import { HOMEPAGE_QUERY, PRODUCT_SEO_QUERY, request } from "../lib";
-import { renderMetaTags } from "react-datocms";
+import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 
 interface HomeProps {
     data: any;
-    seoData: any;
+    seoData: {};
 }
 
 const Home: NextPage<HomeProps> = ({ data, seoData }): JSX.Element => {
@@ -32,10 +31,7 @@ const Home: NextPage<HomeProps> = ({ data, seoData }): JSX.Element => {
             {loader ? (
                 <Loading />
             ) : (
-                <Pagelayout
-                    metaTags={renderMetaTags(seoData.product.seo)}
-                    title="Welcome"
-                >
+                <Pagelayout metaTags={seoData} title="Welcome">
                     <div className="homepage">
                         <HomepageSlider />
                         <Collections />
@@ -62,9 +58,8 @@ export async function getStaticProps() {
         variables: { limit: 8 },
     });
     const seoData = await request({
-        query: PRODUCT_SEO_QUERY,
+        query: SEO_QUERY,
     });
-
     return {
         props: {
             data,
