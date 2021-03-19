@@ -6,7 +6,7 @@ export const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
         slug
         id
         image {
-            responsiveImage(imgixParams: {h: 300}) {
+            responsiveImage(imgixParams: {h: "400", w:"400",  fit: max,}) {
                 srcSet
                 webpSrcSet
                 sizes
