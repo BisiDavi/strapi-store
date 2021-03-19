@@ -16,6 +16,8 @@ Icon
 
 # Thumbnails
 ._*
+
+# next folder
 .next
 
 # Files that might appear in the root of a volume
