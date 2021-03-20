@@ -14,8 +14,8 @@ const HomepageSlider: FC = (): JSX.Element => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 1000,
-        autoplaySpeed: 2000,
+        speed: 1500,
+        autoplaySpeed: 2500,
     };
     const play = () => {
         sliderRef.current.slickPlay();
@@ -27,6 +27,8 @@ const HomepageSlider: FC = (): JSX.Element => {
         setSliderState(true);
     };
 
+    const sliderArr = ["slider", "slider2"];
+
     return (
         <div className="homepageSlider">
             <Slider
@@ -34,23 +36,37 @@ const HomepageSlider: FC = (): JSX.Element => {
                 {...settings}
                 ref={sliderRef}
             >
-                <div className="content">
-                    <Image
-                        src="/slider.webp"
-                        className="sliderImg"
-                        width={1000}
-                        height={400}
-                        layout="responsive"
-                    />
-                </div>
-                <div className="content">
-                    <Image
-                        src="/slider2.webp"
-                        className="sliderImg"
-                        width={1000}
-                        height={400}
-                        layout="responsive"
-                    />
+                {sliderArr.map((slider) => (
+                    <div className="content">
+                        <Image
+                            src={`/${slider}.webp`}
+                            className="sliderImg"
+                            width={1000}
+                            height={400}
+                            layout="responsive"
+                        />
+                    </div>
+                ))}
+
+                <div className="content slider">
+                    <div className="slider-img">
+                        <Image
+                            src="/slider3.webp"
+                            className="sliderImg"
+                            width={1000}
+                            height={400}
+                            layout="responsive"
+                        />
+                    </div>
+                    <div className="gif">
+                        <Image
+                            src="/bannerGif.gif"
+                            className="sliderImg"
+                            width={400}
+                            height={400}
+                            layout="responsive"
+                        />
+                    </div>
                 </div>
             </Slider>
 
@@ -87,6 +103,21 @@ const HomepageSlider: FC = (): JSX.Element => {
                     align-item: center;
                     background-color: #ffa5c8;
                 }
+                .content.slider {
+                    position: relative;
+                }
+                .slider-img {
+                    position: relative;
+                }
+                .gif {
+                    height: 400px;
+                    width: 400px;
+                    position: absolute;
+                    top: 260px;
+                    left: 140px;
+                    border: 16px solid white;
+                    z-index: 1000;
+                }
                 .slider-control {
                     background: rgba(0, 0, 0, 0.3);
                     margin: auto;
@@ -111,7 +142,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                 }
                 .slider-control button {
                     background: transparent;
-                    margin: 6px 8px;
+                    margin: 0px 8px;
                     color: #ffa5c8;
                     border: none;
                     font-size: 25px;
