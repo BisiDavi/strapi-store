@@ -36,7 +36,7 @@ const HomepageSlider: FC = (): JSX.Element => {
             >
                 <div className="content">
                     <Image
-                        src="/slider1.png"
+                        src="/slider.webp"
                         className="sliderImg"
                         width={1000}
                         height={400}
@@ -45,7 +45,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                 </div>
                 <div className="content">
                     <Image
-                        src="/slider2.png"
+                        src="/slider2.webp"
                         className="sliderImg"
                         width={1000}
                         height={400}
@@ -115,7 +115,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                     color: #ffa5c8;
                     border: none;
                     font-size: 25px;
-                    cursor:pointer;
+                    cursor: pointer;
                 }
                 .slider-control button:focus {
                     outline: none;
