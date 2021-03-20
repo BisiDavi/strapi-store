@@ -22,3 +22,20 @@
     border-radius: 50px;
     left: 43%;
 }
+
+@media (max-width: 768px) {
+    .pageslider ul li button {
+        height: 15px !important;
+        padding: 0px;
+        width: 15px !important;
+    }
+    .pageslider ul li {
+        height: 10px;
+        width: 10px;
+    }
+    .pageslider ul {
+        height: 20px;
+        bottom: 0px;
+        width: 70px;
+    }
+}

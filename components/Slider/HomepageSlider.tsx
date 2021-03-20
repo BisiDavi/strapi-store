@@ -164,15 +164,29 @@ const HomepageSlider: FC = (): JSX.Element => {
                     }
                     .slider-control {
                         margin-right: 25%;
-                        height: 20px;
-                        background-color: yellow;
+                        height: 25px;
                         padding: 0px;
-                        width: 20px;
-                        margin-bottom: 10px;
+                        width: 25px;
+                        margin-bottom: -10px;
+                        position: relative;
                     }
                     .slider-control button {
                         height: 20px;
                         width: 20px;
+                    }
+                    .btnGrp .slider-control button {
+                        top: 1px;
+                        margin: 0px;
+                        left: 3px;
+                        padding: 0px;
+                        position: absolute;
+                    }
+                    .btnGrp .slider-control button i {
+                        font-size: 20px;
+                        position: absolute;
+                        top: 2px;
+                        left: -1px;
+                        z-index: 1000;
                     }
                 }
             `}</style>

@@ -5,11 +5,8 @@ const AlertBanner = ({ displayHandler }) => {
         <div className="alertBanner">
             <h3>
                 DUE TO <b>COVID 19</b> PLEASE BE ADVISED THERE MAY BE DELAY IN
-                SHIPMENT.
-                <br />
-                WE APOLOGISE FOR ANY INCONVENIENCE.
-                <br />
-                FOR FURTHER ASSISTANCE PLEASE CALL{" "}
+                SHIPMENT. WE APOLOGISE FOR ANY INCONVENIENCE. FOR FURTHER
+                ASSISTANCE PLEASE CALL{" "}
             </h3>
             <button className="cancel" onClick={displayHandler}>
                 <i className="fas fa-times-circle"></i>
@@ -42,7 +39,15 @@ const AlertBanner = ({ displayHandler }) => {
                     }
                     @media (max-width: 768px) {
                         h3 {
-                            font-size: 0.6em;
+                            font-size: 3.5vw;
+                            padding: 5px 15px;
+                        }
+                        button.cancel i {
+                            font-size: 15px;
+                        }
+                        button.cancel {
+                            margin-top: 5px;
+                            right: 8px;
                         }
                     }
                 `}

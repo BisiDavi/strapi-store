@@ -28,6 +28,7 @@ a {
     background-color: transparent;
     width: 10px;
 }
+
 .pageslider ul li button::before {
     background-color: #ffa6ca;
     border-radius: 50%;
@@ -39,4 +40,17 @@ a {
 
 li {
     list-style: none;
+}
+
+@media (max-width: 768px) {
+    .pageslider ul li button::before {
+        background-color: #ffa6ca;
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+        margin-top: -5px;
+        font-size: 0px;
+        color: #ffa6ca;
+        opacity: 1;
+    }
 }
