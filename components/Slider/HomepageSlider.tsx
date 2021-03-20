@@ -154,6 +154,27 @@ const HomepageSlider: FC = (): JSX.Element => {
                 .slider-control button:hover {
                     opacity: 0.5;
                 }
+                @media (max-width: 768px) {
+                    .gif {
+                        top: 27%;
+                        left: 10%;
+                        width: 90px;
+                        border: 5px solid white;
+                        height: 90px;
+                    }
+                    .slider-control {
+                        margin-right: 25%;
+                        height: 20px;
+                        background-color: yellow;
+                        padding: 0px;
+                        width: 20px;
+                        margin-bottom: 10px;
+                    }
+                    .slider-control button {
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
             `}</style>
         </div>
     );

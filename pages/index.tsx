@@ -20,7 +20,7 @@ const Home: NextPage<HomeProps> = ({ data, seoData }): JSX.Element => {
     const [loader, setLoader] = useState(true);
     const { allProducts } = data;
     useEffect(() => {
-        const startLoader = setTimeout(() => setLoader(false), 1000);
+        const startLoader = setTimeout(() => setLoader(false), 2000);
         return () => {
             clearTimeout(startLoader);
         };
