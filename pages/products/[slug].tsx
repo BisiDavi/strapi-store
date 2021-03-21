@@ -9,7 +9,7 @@ import ErrorPage from "next/error";
 
 interface ProductpageProps {
     product: any;
-    seoData: {};
+    seoData: {}; 
 }
 
 const ProductPage: NextPage<ProductpageProps> = ({
@@ -27,8 +27,6 @@ const ProductPage: NextPage<ProductpageProps> = ({
             </div>
         );
     }
-
-    console.log("slug product", product);
 
     return (
         <Pagelayout metaTags={seoData} title={product.title} product>

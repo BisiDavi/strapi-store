@@ -18,12 +18,13 @@ const AlertBanner = ({ displayHandler }) => {
                     }
                     h3 {
                         color: white;
-                        font-size: 0.8em;
+                        font-size: 1vw;
                         text-transform: capitalize;
                         background-color: #ca3862;
                         text-align: center;
                         width: 100%;
                         margin-bottom: 0;
+                        padding: 10px;
                         font-family: "raleway";
                     }
                     button {
