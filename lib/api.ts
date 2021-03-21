@@ -66,3 +66,13 @@ export const SEO_QUERY = `
     }
   } 
 }`;
+
+
+export const SLIDER_BANNER = `query GetSliderBanner {
+  allSliders {
+    sliderBanner {
+      url
+    }
+  }
+}
+`

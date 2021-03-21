@@ -1,6 +1,7 @@
 import React, { useRef, useState, FC } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
+import { v4 as uuidv4 } from "uuid";
 import style from "../../styles/HomepageSlider.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -37,7 +38,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                 ref={sliderRef}
             >
                 {sliderArr.map((slider) => (
-                    <div className="content">
+                    <div key={uuidv4()} className="content">
                         <Image
                             src={`/${slider}.webp`}
                             className="sliderImg"
