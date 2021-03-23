@@ -1,0 +1,16 @@
+.productslider {
+    margin: 20px;
+}
+
+.productImage {
+    height: 400px;
+}
+
+.productslider button {
+    margin: 0px 20px;
+}
+
+.productslider button::before {
+    font-size: 30px;
+    color: black;
+}

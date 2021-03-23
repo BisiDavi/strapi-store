@@ -4,17 +4,25 @@ import { NextPage } from "next";
 import { Pagelayout } from "../../container";
 import { Image } from "react-datocms";
 import { Loading, ProductDetail } from "../../components";
-import { PRODUCTPAGE_QUERY, SEO_QUERY, request } from "../../lib";
+import {
+    PRODUCTPAGE_QUERY,
+    SEO_QUERY,
+    request,
+    HOMEPAGE_QUERY,
+} from "../../lib";
 import ErrorPage from "next/error";
+import ProductSlider from "../../components/Slider/ProductSlider";
 
 interface ProductpageProps {
     product: any;
-    seoData: {}; 
+    seoData: {};
+    otherProducts: any;
 }
 
 const ProductPage: NextPage<ProductpageProps> = ({
     seoData,
     product,
+    otherProducts,
 }): JSX.Element => {
     const router = useRouter();
     if (!router.isFallback && !product?.slug) {
@@ -27,29 +35,35 @@ const ProductPage: NextPage<ProductpageProps> = ({
             </div>
         );
     }
+    const other_Products = otherProducts.allProducts;
+    console.log("otherProducts products", other_Products);
 
     return (
         <Pagelayout metaTags={seoData} title={product.title} product>
             <ProductDetail product={product} />
-            <h1>Hello, I am product {product.title}</h1>
-            <Image data={product.image.responsiveImage} />
+            <ProductSlider products={other_Products} />
         </Pagelayout>
     );
 };
 
 export async function getStaticProps({ params }) {
-    const productArr = await request({
+    const getproduct = await request({
         query: PRODUCTPAGE_QUERY,
         variables: { slug: params.slug },
+    });
+    const otherProducts = await request({
+        query: HOMEPAGE_QUERY,
+        variables: { limit: 8 },
     });
     const seoData = await request({
         query: SEO_QUERY,
     });
 
-    const { allProducts } = productArr;
+    const { allProducts } = getproduct;
     return {
         props: {
             product: allProducts[0],
+            otherProducts,
             seoData,
         },
     };

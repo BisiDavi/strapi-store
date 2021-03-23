@@ -6,6 +6,7 @@ export const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
     slug
     id
     image {
+      url
       responsiveImage(imgixParams: {h: "400", w:"400",  fit: max,}) {
           srcSet
           webpSrcSet
@@ -67,7 +68,6 @@ export const SEO_QUERY = `
   } 
 }`;
 
-
 export const SLIDER_BANNER = `query GetSliderBanner {
   allSliders {
     sliderBanner {
@@ -75,4 +75,4 @@ export const SLIDER_BANNER = `query GetSliderBanner {
     }
   }
 }
-`
+`;
