@@ -2,14 +2,18 @@ import React, { FC } from "react";
 import { Image } from "react-datocms";
 import Link from "next/link";
 import { ProductProps } from "../../types";
+import styles from "../../styles/Product.module.css";
 
 const Product: FC<ProductProps> = ({ product }): JSX.Element => {
     return (
-        <div className="productView">
+        <div className={styles.productView}>
             <Link href={`/products/${product.slug}`} passHref>
                 <a>
                     <div className="front-view">
-                        <Image data={product.image.responsiveImage} />
+                        <Image
+                            className={styles.product}
+                            data={product.image.responsiveImage}
+                        />
                     </div>
                     <div className="back-view">
                         <h1>{product.title}</h1>
@@ -18,14 +22,6 @@ const Product: FC<ProductProps> = ({ product }): JSX.Element => {
                 </a>
             </Link>
             <style jsx>{`
-                .productView {
-                    display: flex;
-                    flex-direction: column;
-                    margin: auto;
-                    width: 100%;
-                    position: relative;
-                }
-
                 .back-view {
                     display: none;
                 }

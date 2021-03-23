@@ -2,6 +2,7 @@ import React, { useRef, useState, FC } from "react";
 import Slider from "react-slick";
 import { Image } from "react-datocms";
 import { v4 as uuidv4 } from "uuid";
+import Link from "next/link";
 import style from "../../styles/ProductSlider.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -53,7 +54,7 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                     height: 100%;
                     width: 100%;
                     position: relative;
-                    background-color: #f0e6e6;
+                    background-color: #f6f6f6;
                     padding: 10px;
                     display:flex;
                     flex-direction:column;

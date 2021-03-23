@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
+import WhatsAppWidget from "react-whatsapp-widget";
 import { Pagelayout } from "../container";
 import {
     SelfiesBanner,
@@ -10,6 +11,7 @@ import {
     Newsletter,
 } from "../components";
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
+import "react-whatsapp-widget/dist/index.css";
 
 interface HomeProps {
     data: any;
@@ -38,6 +40,13 @@ const Home: NextPage<HomeProps> = ({ data, seoData }): JSX.Element => {
                         <ProductsList products={allProducts} />
                         <Newsletter />
                         <SelfiesBanner />
+                        <div className="chat">
+                            <WhatsAppWidget
+                                phoneNumber="2347031653411"
+                                textReplyTime="Typically replies within a day"
+                                companyName="JenJen's Luxury Wig"
+                            />
+                        </div>
                         <style jsx>
                             {`
                                 .homepage {
