@@ -42,7 +42,7 @@ const Home: NextPage<HomeProps> = ({ data, seoData }): JSX.Element => {
                         <SelfiesBanner />
                         <div className="chat">
                             <WhatsAppWidget
-                                phoneNumber="2347031653411"
+                                phoneNumber="12674038663"
                                 textReplyTime="Typically replies within a day"
                                 companyName="JenJen's Luxury Wig"
                             />
@@ -55,8 +55,8 @@ const Home: NextPage<HomeProps> = ({ data, seoData }): JSX.Element => {
                                 .chat {
                                     position: fixed;
                                     z-index: 1000;
-                                    bottom: 35px;
-                                    right: -30px;
+                                    bottom: 30px;
+                                    right: -20px;
                                 }
                             `}
                         </style>

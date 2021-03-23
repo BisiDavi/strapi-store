@@ -11,3 +11,12 @@
 .submenu li {
     font-size: 18px;
 }
+
+@media (max-width: 768px) {
+    .menus li {
+        font-size: 4.5vw;
+    }
+    .submenu li {
+        font-size: 3vw;
+    }
+}

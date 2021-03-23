@@ -40,7 +40,7 @@ const Sidebar: FC<sidebarProps> = ({ onClose, btnClassName }): JSX.Element => {
                 ))}
                 <style jsx>{`
                     .menulist {
-                        margin: 10px 20px;
+                        margin: 10px 5px;
                     }
 
                     li {
@@ -79,7 +79,7 @@ const Sidebar: FC<sidebarProps> = ({ onClose, btnClassName }): JSX.Element => {
                     display: flex;
                 }
                 .overlay {
-                    background-color: rgba(0, 0, 0, 0.5);
+                    background-color: rgba(0, 0, 0, 0.7);
                     height: inherit;
                     width: 90vw;
                 }
