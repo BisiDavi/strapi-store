@@ -15,8 +15,9 @@
 @media (max-width: 768px) {
     .menus li {
         font-size: 4.5vw;
+        font-weight: 1000;
     }
     .submenu li {
-        font-size: 3vw;
+        font-size: 4vw;
     }
 }

@@ -10,6 +10,7 @@ interface ProductDetailProps {
         image: {
             responsiveImage: ResponsiveImageType;
         };
+        description: string;
     };
 }
 
@@ -25,6 +26,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
             <div className="product_column_1">
                 <h1>{product.title}</h1>
                 <h4>${product.price}</h4>
+                <p>{product.description}</p>
                 <p>
                     Tax included. <span>Shipping</span> calculated at checkout.
                 </p>
@@ -36,9 +38,16 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                 />
             </div>
             <style jsx>{`
-                .product {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
+                @media (min-width: 600px) {
+                    .product {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                    }
+                }
+                @media (max-width: 599px) {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
                 }
             `}</style>
         </div>

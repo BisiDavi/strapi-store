@@ -1,4 +1,12 @@
-.product {
-    height: 600px;
-    width: 70%;
+@media (min-width: 1800px) {
+    .product {
+        height: 600px;
+        width: 70%;
+    }
+}
+@media (max-width: 480px) {
+    .product {
+        width: 100%;
+        height: 400px;
+    }
 }

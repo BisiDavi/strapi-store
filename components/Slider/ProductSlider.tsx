@@ -13,13 +13,40 @@ interface ProductSliderProps {
 
 const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         slidesToShow: 4,
+        adaptiveHeight: true,
         slidesToScroll: 1,
         autoplay: true,
         speed: 3000,
         autoplaySpeed: 3000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
     };
 
     console.log("otherProducts", products);
@@ -38,7 +65,7 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                         </Link>
                         <div className="product-info">
                             <h4>{slider.title}</h4>
-                            <h6>{slider.price}</h6>
+                            <h6>${slider.price}</h6>
                             <p>{slider.description}</p>
                         </div>
                     </div>
