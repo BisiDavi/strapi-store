@@ -80,6 +80,8 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                 h1{
                     text-align:center;
                     color:#ffa6ca;
+                    font-weight:1000;
+                    font-size:2.5vw;
                 }
                 
                 .product-info p {
@@ -98,6 +100,11 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                 .product-info h6 {
                     font-size: 20px;
                     font-weight: bold;
+                }
+                @media(max-width:768px){
+                    h1{
+                        font-size:7vw;
+                    }
                 }
              }
             `}</style>
