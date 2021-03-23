@@ -52,6 +52,12 @@ const Home: NextPage<HomeProps> = ({ data, seoData }): JSX.Element => {
                                 .homepage {
                                     position: relative;
                                 }
+                                .chat {
+                                    position: fixed;
+                                    z-index: 1000;
+                                    bottom: 35px;
+                                    right: -30px;
+                                }
                             `}
                         </style>
                     </div>
