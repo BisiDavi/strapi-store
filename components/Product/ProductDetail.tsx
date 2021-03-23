@@ -38,6 +38,11 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                 />
             </div>
             <style jsx>{`
+                .product_column_1 {
+                    justify-content: center;
+                    display: flex;
+                    flex-direction: column;
+                }
                 @media (min-width: 600px) {
                     .product {
                         display: grid;

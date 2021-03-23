@@ -52,55 +52,45 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
     console.log("otherProducts", products);
 
     return (
-        <div className="ProductSlider">
+        <div className={style.slider}>
             <h1>You may also like</h1>
             <Slider className={style.productslider} {...settings}>
                 {products.map((slider) => (
-                    <div key={uuidv4()} className="product">
-                        <Link href={`/products/${slider.slug}`} passHref>
+                    <Link
+                        key={uuidv4()}
+                        href={`/products/${slider.slug}`}
+                        passHref
+                    >
+                        <div className={style.product}>
                             <Image
                                 className={style.productImage}
                                 data={slider.image.responsiveImage}
                             />
-                        </Link>
-                        <div className="product-info">
-                            <h4>{slider.title}</h4>
-                            <h6>${slider.price}</h6>
-                            <p>{slider.description}</p>
+                            <div className="product-info">
+                                <h4>{slider.title}</h4>
+                                <h6>${slider.price}</h6>
+                                <p>{slider.description}</p>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </Slider>
 
             <style jsx>{`
                 h1{
                     text-align:center;
-                    color:pink
+                    color:#ffa6ca;
                 }
-                .ProductSlider {
-                    height: 100%;
-                    width: 100%;
-                    position: relative;
-                    background-color: #f6f6f6;
-                    padding: 10px;
-                    display:flex;
-                    flex-direction:column;
-                }
-                .product {
-                    color: white;
-                    width: 100%;
-                    background-color:white;
-                    height: 500px;
-                    display: flex;
-                    margin: 0px 20px;
-                    border-radius: 5px;
-                    border: 5px solid white;
-                    flex-direction:column;
-                    justify-product: center;
-                    align-item: center;
+                
+                .product-info p {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .product-info {
                     color: black;
+                    display:flex;
+                    flex-direction:column;
                 }
                 .product-info h4 {
                     font-size: 25px;
