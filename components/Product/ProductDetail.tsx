@@ -1,7 +1,9 @@
 import React, { FC } from "react";
-import { Button } from "../Button";
+import { Button, DropdownButton } from "../Button";
 import { Image, ResponsiveImageType } from "react-datocms";
 import styles from "../../styles/ProductDetail.module.css";
+import Link from "next/link";
+import { Select } from "../Form";
 
 interface ProductDetailProps {
     product: {
@@ -15,6 +17,10 @@ interface ProductDetailProps {
 }
 
 const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
+    const rushOrderDropdown = {
+        title: "--Choose Rush Order--",
+        options: ["--Choose Rush Order--", "Rush My Orders (+$55.00)"],
+    };
     return (
         <div className="product">
             <div className="product-image">
@@ -23,19 +29,36 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     data={product.image.responsiveImage}
                 />
             </div>
-            <div className="product_column_1">
+            <div className="product_column_1 flex-column">
                 <h1>{product.title}</h1>
                 <h4>${product.price}</h4>
                 <p>{product.description}</p>
                 <p>
-                    Tax included. <span>Shipping</span> calculated at checkout.
+                    Tax included.{" "}
+                    <Link href="/policy/delivery-policy" passHref>
+                        <a>Shipping</a>
+                    </Link>{" "}
+                    calculated at checkout.
                 </p>
-                <Button
-                    bgColor="black"
-                    width="200px"
-                    height="40px"
-                    text="Add to cart"
-                />
+                <span className={styles.btnGrp}>
+                    <Button
+                        width="200px"
+                        btnClassName={styles.addToCart}
+                        height="40px"
+                        bgColor="transparent"
+                        color="black"
+                        text="Add to cart"
+                    />
+                    <Button
+                        text="Buy Now"
+                        btnClassName={styles.buyNow}
+                        width="200px"
+                        height="40px"
+                        bgColor="black"
+                        color="white"
+                    />
+                    <Select content={rushOrderDropdown} />
+                </span>
             </div>
             <style jsx>{`
                 .product_column_1 {

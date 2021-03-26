@@ -24,25 +24,29 @@ const Sidebar: FC<sidebarProps> = ({ onClose, btnClassName }): JSX.Element => {
     const submenus = [
         { name: "Log in", link: "#login" },
         { name: "Create Account", link: "#create-account" },
-        { name: "Privacy Policy", link: "/privacy-policy" },
-        { name: "Refund Policy", link: "/refund-policy" },
-        { name: "Delivery Policy", link: "/delivery-policy" },
-        { name: "Terms and Condition", link: "/terms-and-conditions" },
+        { name: "Privacy Policy", link: "/policy/privacy-policy" },
+        { name: "Refund Policy", link: "/policy/refund-policy" },
+        { name: "Delivery Policy", link: "/policy/delivery-policy" },
+        { name: "Terms and Condition", link: "/policy/terms-and-conditions" },
     ];
 
     const displayMenu: FC<menuProps[]> = (menus): JSX.Element => {
         return (
             <ul className="menulist">
                 {menus.map((menu) => (
-                    <Link key={uuidv4()} href={menu.link}>
-                        <li>{menu.name}</li>
-                    </Link>
+                    <li key={uuidv4()}>
+                        <Link href={menu.link} passHref>
+                            <a>{menu.name}</a>
+                        </Link>
+                    </li>
                 ))}
                 <style jsx>{`
                     .menulist {
                         margin: 10px 5px;
                     }
-
+                    a:hover {
+                        text-decoration: none;
+                    }
                     li {
                         margin: 15px 0px;
                     }

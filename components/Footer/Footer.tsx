@@ -6,10 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 const Footer = () => {
     const footerLinks = [
         { name: "Search", link: "#link" },
-        { name: "Privacy Policy", link: "#link" },
-        { name: "Refund Policy", link: "#link" },
-        { name: "Shipping Policy", link: "#link" },
-        { name: "Terms of Service", link: "#link" },
+        { name: "Privacy Policy", link: "/policy/privacy-policy" },
+        { name: "Refund Policy", link: "/policy/refund-policy" },
+        { name: "Delivery Policy", link: "/policy/delivery-policy" },
+        { name: "Terms and Condition", link: "/policy/terms-and-conditions" },
     ];
 
     const socialLinks = [

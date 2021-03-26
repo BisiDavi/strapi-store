@@ -2,36 +2,31 @@ import React from "react";
 import Link from "next/link";
 import { ButtonProps } from "../../types";
 
-const Button = ({
-    asLink,
-    text,
-    linkTo,
-    bgColor,
-    width,
-    styles,
-    height,
-}: ButtonProps) => {
+const Button = (props: ButtonProps) => {
     return (
-        <div>
-            {asLink ? (
-                <Link href={linkTo} passHref>
-                    <button style={styles}>{text}</button>
+        <>
+            {props.asLink ? (
+                <Link href={props.linkTo} passHref>
+                    <button className={props.btnClassName} style={props.styles}>
+                        {props.text}
+                    </button>
                 </Link>
             ) : (
-                <button style={styles}>{text}</button>
+                <button className={props.btnClassName} style={props.styles}>
+                    {props.text}
+                </button>
             )}
             <style jsx>
                 {`
-                    background: ${bgColor};
-                    height: ${height};
-                    width: ${width};
-                    color: white;
+                    background: ${props.bgColor};
+                    height: ${props.height};
+                    width: ${props.width};
+                    color: ${props.color};
                     text-align: center;
                     font-family: "raleway";
-                    border: none;
                 `}
             </style>
-        </div>
+        </>
     );
 };
 

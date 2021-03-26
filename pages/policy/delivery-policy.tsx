@@ -1,20 +1,21 @@
 import React, { FC } from "react";
 import { Pagelayout } from "../../container";
+import { v4 as uuidv4 } from "uuid";
 import policy from "../../json/deliveryPolicy.json";
 
 export const displayList = (deliveryArr) => (
     <ul>
         {deliveryArr.map((link) => (
-            <li>{link}</li>
+            <li key={uuidv4()}>{link}</li>
         ))}
     </ul>
 );
 
-const DeliveryPolicy:FC = () => {
+const DeliveryPolicy: FC = () => {
     return (
         <Pagelayout title="Delivery Policy">
-            <h1>Delivery</h1>
-            <div className="content">
+            <h1 className="text-center">Our Delivery Policies</h1>
+            <div className="content px-5">
                 <div className="standard-delivery">
                     <h1>US Standard Delivery</h1>
                     {displayList(policy.ukStandardDelivery)}

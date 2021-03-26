@@ -22,10 +22,11 @@ const Pagelayout: FC<PagecontainerProps> = ({
         <div>
             <Head>
                 <title>{pageTitle}</title>
-                {renderMetaTags(
-                    metaTags.product.seo.concat(metaTags.site.favicon)
-                )}
-                \
+                {metaTags
+                    ? renderMetaTags(
+                          metaTags.product.seo.concat(metaTags.site.favicon)
+                      )
+                    : null}
             </Head>
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
             <MailButton showMail={() => setMailModal(true)} />

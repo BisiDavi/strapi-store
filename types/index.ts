@@ -7,6 +7,13 @@ export interface PagecontainerProps {
     metaTags?: any;
 }
 
+export interface DropdownButtonProps {
+    content: {
+        title: string;
+        items: string[];
+    };
+}
+
 export interface ButtonProps {
     linkTo?: string;
     text: string;
@@ -14,7 +21,9 @@ export interface ButtonProps {
     width?: string;
     height?: string;
     styles?: {};
+    color?: string;
     asLink?: boolean;
+    btnClassName?: string;
 }
 
 export interface HamburgerProps {

@@ -3,8 +3,8 @@
 }
 @media (min-width: 1800px) {
     .product {
-        height: 600px;
-        width: 70%;
+        height: 90%;
+        width: 90%;
     }
 }
 @media (max-width: 480px) {
@@ -12,4 +12,51 @@
         width: 100%;
         height: 100%;
     }
+}
+.addToCart {
+    color: black;
+    border: 2px solid black;
+}
+
+.buyNow {
+    color: white;
+}
+
+.btnGrp {
+    display: flex;
+    flex-direction: column;
+}
+
+.btnGrp button,
+.btnGrp form {
+    margin: 8px 0px;
+    border-radius: 0px;
+    width: 400px;
+    height: 60px;
+}
+
+.btnGrp form {
+    border: 1px solid black;
+    height: 80px;
+}
+
+.btnGrp form select {
+    width: 50%;
+}
+
+.btnGrp form div {
+    display: flex;
+    align-items: center;
+    height: inherit;
+    justify-content: center;
+}
+
+.btnGrp form select {
+    border-radius: 0px;
+}
+
+.btnGrp form label {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0px 10px;
 }

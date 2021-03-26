@@ -4,8 +4,8 @@ import { Pagelayout } from "../../container";
 const TermsAndCondition = () => {
     return (
         <Pagelayout title="Terms and Condition">
-            <h1>Terms and Condition Page</h1>
-            <div className="content">
+            <h1 className="text-center">Our Terms and Conditions </h1>
+            <div className="content my-5 px-5">
                 <h3>General</h3>
                 <p>
                     Access to the website www.Jenjenluxurywigs.com and the
