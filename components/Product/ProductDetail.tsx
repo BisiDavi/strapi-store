@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { Button, DropdownButton } from "../Button";
+import { Button } from "../Button";
 import { Image, ResponsiveImageType } from "react-datocms";
-import styles from "../../styles/ProductDetail.module.css";
 import Link from "next/link";
 import { Select } from "../Form";
+import styles from "../../styles/ProductDetail.module.css";
 
 interface ProductDetailProps {
     product: {
@@ -41,6 +41,8 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     calculated at checkout.
                 </p>
                 <span className={styles.btnGrp}>
+                    <Select content={rushOrderDropdown} />
+
                     <Button
                         width="200px"
                         btnClassName={styles.addToCart}
@@ -49,6 +51,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         color="black"
                         text="Add to cart"
                     />
+
                     <Button
                         text="Buy Now"
                         btnClassName={styles.buyNow}
@@ -57,7 +60,6 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         bgColor="black"
                         color="white"
                     />
-                    <Select content={rushOrderDropdown} />
                 </span>
             </div>
             <style jsx>{`

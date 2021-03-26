@@ -27,27 +27,37 @@
     flex-direction: column;
 }
 
-.btnGrp button,
+.btnGrp button {
+    margin: 8px 0px;
+    border-radius: 0px;
+    width: 400px;
+    font-size: 20px;
+    height: 60px;
+}
+.addToCart:hover {
+    background: black;
+    color: white;
+    font-weight: bold;
+}
+
 .btnGrp form {
     margin: 8px 0px;
     border-radius: 0px;
     width: 400px;
-    height: 60px;
-}
-
-.btnGrp form {
-    border: 1px solid black;
-    height: 80px;
+    background-color: #f7f7f7;
+    border: 1px solid #d1d1d1;
+    padding: 20px;
 }
 
 .btnGrp form select {
     width: 50%;
+    border: 2px solid black;
 }
 
 .btnGrp form div {
-    display: flex;
     align-items: center;
     height: inherit;
+    margin-bottom: 0px;
     justify-content: center;
 }
 
