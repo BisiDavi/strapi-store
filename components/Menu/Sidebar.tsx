@@ -24,10 +24,10 @@ const Sidebar: FC<sidebarProps> = ({ onClose, btnClassName }): JSX.Element => {
     const submenus = [
         { name: "Log in", link: "#login" },
         { name: "Create Account", link: "#create-account" },
-        { name: "Privacy Policy", link: "#privacy-policy" },
-        { name: "Refund Policy", link: "#refund-policy" },
-        { name: "Shipping Policy", link: "#shipping-policy" },
-        { name: "Terms of Service", link: "#terms-of-service" },
+        { name: "Privacy Policy", link: "/privacy-policy" },
+        { name: "Refund Policy", link: "/refund-policy" },
+        { name: "Delivery Policy", link: "/delivery-policy" },
+        { name: "Terms and Condition", link: "/terms-and-conditions" },
     ];
 
     const displayMenu: FC<menuProps[]> = (menus): JSX.Element => {

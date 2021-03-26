@@ -1,0 +1,41 @@
+{
+    "ukStandardDelivery": [
+        "Construction of your unit starts 48 hours after purchase. Your orders cannot be changed after that; all sales are final.",
+        "Standard Delivery is available Monday to Friday and takes 3-5 working days from the moment your order has been paid for in full. Normal service takes 5-10 working days for the wig to be made. Express service takes 3-5 working days for the wig to be made. ",
+        "Deliveries are carried out Monday to Saturday (excluding Sunday and Public Holidays).",
+        "Standard Delivery is $6.50.",
+        "Deliveries are tracked and you will receive a tracking order via email once your order has been dispatched.",
+        "A signature may be required on receipt.",
+        "If you are unavailable to take delivery of your parcel, the courier will leave a delivery card."
+    ],
+    "ukExpressDelivery": [
+        "Express Delivery is available Monday to Thursday for orders placed before 3pm.",
+        "Express Delivery is excluded on weekends and public holidays",
+        "Express Delivery is shipped out the Next working Day once your order has been processed/made depending on the, service you opted for. Delivery costs $8.50.",
+        "Deliveries are tracked and you will receive a tracking order via email once your order has, been dispatched.",
+        "Express Delivery is guaranteed before 1pm and a signature will be required upon receipt.",
+        "If you are unavailable to take delivery of your parcel, the courier will leave a delivery card."
+    ],
+    "internationalDelivery": [
+        "International Delivery is available Monday to Friday and takes 5-7 working days from the moment your order has been paid for in full. Orders must be placed before 6pm.",
+        "International Delivery costs $20.00",
+        "Deliveries are tracked and you will receive a tracking number via email once your order has been dispatched.",
+        "Our couriers deliver during normal business hours and. A signature may be required upon receipt.",
+        "Any custom charges on orders placed must be paid for by the recipient. CB Wigs are not responsible for these charges and have no control over the costs, as customs policies and import duties vary from country to country.",
+        "If you are unavailable to take delivery of your parcel, the courier will leave a delivery card.",
+        "Please note that orders will not be delivered on any public holiday dates in your country. On these occasions delivery should be expected to arrive the next working day."
+    ],
+    "dhlExpress": [
+        "DHL Express is available Monday to Friday and takes 3-5 working days from the moment your order has been paid for in full. Under Normal services which takes 5-10 working days. For the wig to be made. Under express services which takes 3-5 working days. For the wig to be made.",
+        "Deliveries are tracked and you will receive a tracking number via email once your order has been dispatched.",
+        "Our couriers deliver during normal business hours and. A signature may be required upon receipt.",
+        "International Delivery costs $30.00",
+        "Any custom charges on orders placed must be paid for by the recipient. CB Wigs are not responsible for these charges and have no control over the costs, as customs policies and import duties vary from country to country.",
+        "If you are unavailable to take delivery of your parcel, the courier will leave a delivery card.",
+        "Please note that orders will not be delivered on any public holiday dates in your country. On these occasions delivery should be expected to arrive the next working day."
+    ],
+    "undeliveredOrder": [
+        "You will be able to follow your order with the tracking number that is provided via email once your goods have been dispatched. If the estimated delivery time has passed and you still have not received your order please email us on info@chrissybales.com",
+        "*We aim to meet the delivery times stated however during busy periods (including sales) deliveries may take longer than usual. Chrissybales cannot be held responsible for any lost or stolen parcels as a result of delivery instructions provided to the courier."
+    ]
+}
