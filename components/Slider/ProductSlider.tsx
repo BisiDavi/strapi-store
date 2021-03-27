@@ -1,4 +1,4 @@
-import React, { useRef, useState, FC } from "react";
+import React, { FC } from "react";
 import Slider from "react-slick";
 import { Image } from "react-datocms";
 import { v4 as uuidv4 } from "uuid";
@@ -67,8 +67,10 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                                 data={slider.image.responsiveImage}
                             />
                             <div className="product-info">
-                                <h4>{slider.title}</h4>
-                                <h6>${slider.price}</h6>
+                                <div className="title">
+                                    <h4>{slider.title}</h4>
+                                    <h6>${slider.price}</h6>
+                                </div>
                                 <p>{slider.description}</p>
                             </div>
                         </div>
@@ -83,7 +85,12 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                     font-weight:1000;
                     font-size:2.5vw;
                 }
-                
+                .title{
+                    display:flex;
+                    align-items:center;
+                    justify-content:space-between;
+                    margin:20px 0px;
+                }
                 .product-info p {
                     white-space: nowrap;
                     overflow: hidden;

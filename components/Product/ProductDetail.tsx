@@ -50,10 +50,12 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                 />
             </div>
             <div className="product_column_1 flex-column">
-                <h1>{product.title}</h1>
-                <h4>${product.price}</h4>
-                <p>{product.description}</p>
-                <p>
+                <span className="info">
+                    <h1>{product.title}</h1>
+                    <h4>${product.price}</h4>
+                </span>
+                <p className="description">{product.description}</p>
+                <p className="tax">
                     Tax included.{" "}
                     <Link href="/policy/delivery-policy" passHref>
                         <a>Shipping</a>
@@ -90,6 +92,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     display: flex;
                     flex-direction: column;
                 }
+
                 .product p {
                     font-size: 25px;
                 }
@@ -107,9 +110,34 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     }
                 }
                 @media (max-width: 599px) {
-                    display: flex;
-                    flex-direction: column;
-                    width: 100%;
+                    .product {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                    }
+                    .product_column_1 .info {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        width: 100%;
+                        flex-direction: row;
+                    }
+                    .product_column_1 .info h1,
+                    .product_column_1 .info h4 {
+                        width: unset;
+                        font-size: 25px;
+                    }
+                    .product p {
+                        font-size: 20px;
+                        padding: 10px;
+                    }
+                    .product .tax {
+                        font-size: 15px;
+                        text-align: center;
+                    }
+                    .tax a {
+                        color: red;
+                    }
                 }
             `}</style>
         </div>
