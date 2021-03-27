@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { CSSProperties, FC } from "react";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 import { Hamburger } from "../Button";
@@ -35,13 +35,18 @@ const Sidebar: FC<sidebarProps> = ({
     btnClassName,
     right,
 }): JSX.Element => {
+    const cartStyles: CSSProperties = right && {
+        overflowY: "scroll",
+        overflowX: "hidden",
+        marginRight: "15px",
+    };
     return (
         <div className="Sidebar">
             <div className="sidebar-wrapper">
                 {right ? (
                     <>
                         <div className="overlay" onClick={onClose}></div>
-                        <div className="drawer">
+                        <div className="drawer" style={cartStyles}>
                             <Hamburger
                                 btnClick={onClose}
                                 className={btnClassName}

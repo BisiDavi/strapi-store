@@ -74,6 +74,50 @@ const CartSidebar: FC<sidebarProps> = ({
                             justify-content: space-evenly;
                             align-items: center;
                         }
+                        .subtotal {
+                            text-align: center;
+                            display: flex;
+                            align-items: center;
+                            margin: 15px 0px;
+                            justify-content: space-evenly;
+                        }
+                        .subtotal h3 {
+                            font-size: 25px;
+                        }
+                        .subtotal p {
+                            font-size: 20px;
+                            margin: 0px;
+                        }
+                        form {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        form label {
+                            font-size: 14px;
+                            font-weight: bold;
+                            margin: 20px 10px;
+                            text-align: center;
+                        }
+                        textarea {
+                            overflow: auto;
+                            resize: vertical;
+                            height: 100px;
+                        }
+                        .seller-instruction {
+                            color: black;
+                            margin: auto;
+                            display: flex;
+                        }
+                        p {
+                            color: black;
+                            text-align: center;
+                        }
+                        p span {
+                            color: pink;
+                            margin: 0px 5px;
+                            text-decoration: underline;
+                        }
+
                         .controls button {
                             height: 50px;
                             width: 50px;
@@ -82,7 +126,7 @@ const CartSidebar: FC<sidebarProps> = ({
                             font-size: 30px;
                         }
                         .price {
-                            font-size: 40px;
+                            font-size: 25px;
                             color: black;
                         }
                         .controls {
@@ -112,6 +156,7 @@ const CartSidebar: FC<sidebarProps> = ({
 
                         .text h1 {
                             color: black;
+                            font-size: 25px;
                             font-weight: bold;
                         }
                     `}</style>

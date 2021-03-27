@@ -82,6 +82,16 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     display: flex;
                     flex-direction: column;
                 }
+                .product p {
+                    font-size: 25px;
+                }
+                .product h1 {
+                    font-weight: bold;
+                }
+                .product h4 {
+                    font-size: 35px;
+                    font-weight: bold;
+                }
                 @media (min-width: 600px) {
                     .product {
                         display: grid;
