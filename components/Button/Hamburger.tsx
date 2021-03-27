@@ -5,6 +5,7 @@ const Hamburger = ({ btnClick, className, right }: HamburgerProps) => {
     const btnStyle: CSSProperties = right && {
         position: "absolute",
         right: "0px",
+        zIndex: 100,
     };
     return (
         <button

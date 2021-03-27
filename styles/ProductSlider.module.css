@@ -35,3 +35,12 @@
     font-size: 30px;
     color: black;
 }
+
+@media (max-width: 500px) {
+    .product {
+        width: 100%;
+    }
+    .productImage {
+        margin-left: -5px;
+    }
+}
