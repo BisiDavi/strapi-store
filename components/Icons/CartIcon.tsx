@@ -1,8 +1,8 @@
 import React from "react";
 
-const CartIcon = ({ count }) => {
+const CartIcon = ({ count, cartClick }) => {
     return (
-        <div className="cartIcon">
+        <div onClick={cartClick} className="cartIcon">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"

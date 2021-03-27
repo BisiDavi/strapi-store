@@ -19,6 +19,7 @@ export interface ButtonProps {
     text: string;
     bgColor?: string;
     width?: string;
+    btnClick?: () => void;
     height?: string;
     styles?: {};
     color?: string;
@@ -48,4 +49,15 @@ export interface IProduct {
 
 export interface ProductProps {
     product: IProduct;
+}
+
+export interface menuProps {
+    name: string;
+    link: string;
+}
+
+export interface sidebarProps {
+    onClose: () => void;
+    btnClassName: string;
+    right?: boolean;
 }

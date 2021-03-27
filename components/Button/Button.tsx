@@ -7,7 +7,11 @@ const Button = (props: ButtonProps) => {
         <>
             {props.asLink ? (
                 <Link href={props.linkTo} passHref>
-                    <button className={props.btnClassName} style={props.styles}>
+                    <button
+                        onClick={props.btnClick}
+                        className={props.btnClassName}
+                        style={props.styles}
+                    >
                         {props.text}
                     </button>
                 </Link>

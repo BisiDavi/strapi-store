@@ -1,4 +1,4 @@
-export { default as Nav } from "./Menu/Menu";
+export { default as Nav } from "./Menu/Nav";
 
 export { default as AlertBanner } from "./Banner/AlertBanner";
 export { default as HomeBanner } from "./Banner/HomeBanner";

@@ -21,6 +21,9 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
         title: "--Choose Rush Order--",
         options: ["--Choose Rush Order--", "Rush My Orders (+$55.00)"],
     };
+    const addToCartHandler = () => {
+        console.log("I was clicked");
+    };
     return (
         <div className="product">
             <div className="product-image">
@@ -49,6 +52,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         height="40px"
                         bgColor="transparent"
                         color="black"
+                        btnClick={addToCartHandler}
                         text="Add to cart"
                     />
 

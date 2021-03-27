@@ -1,27 +1,35 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CartIcon } from "../.";
+import { CartIcon } from "..";
 import { Hamburger } from "../Button";
-import Sidebar from "./Sidebar";
+import { useCart } from "../../hooks";
+import { CartSidebar, MenuSidebar } from ".";
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
-
-    const btnClassName = btnState ? "menu opened" : "menu";
+    const { cart, displayCart, hideCart } = useCart();
+    const sidebarState = (menuState) => (menuState ? "menu opened" : "menu");
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
     const displaySidebar = () =>
         btnState && (
-            <Sidebar onClose={onCloseHandler} btnClassName={btnClassName} />
+            <MenuSidebar
+                onClose={onCloseHandler}
+                btnClassName={sidebarState(btnState)}
+            />
         );
 
+    const displayCartSidebar = () =>
+        cart && (
+            <CartSidebar onClose={hideCart} btnClassName={sidebarState(cart)} />
+        );
     return (
         <nav className="nav-menu">
             <span className="hamburger">
                 <Hamburger
                     btnClick={hamburgerHandler}
-                    className={btnClassName}
+                    className={sidebarState(btnState)}
                 />
                 {displaySidebar()}
             </span>
@@ -38,8 +46,9 @@ const Nav = () => {
                 </Link>
             </span>
             <span className="cart">
-                <CartIcon count={0} />
+                <CartIcon cartClick={displayCart} count={0} />
             </span>
+            {displayCartSidebar()}
             <style jsx>
                 {`
                     .image {

@@ -4,7 +4,8 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css"; //styles of nprogress
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
-
+import { Provider } from "react-redux";
+import store from "../store/store";
 //Binding events.
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -31,7 +32,10 @@ const MyApp = ({ Component, pageProps }) => {
                 />
                 {/* {renderMetaTags(data.allProducts.seo.concat(data.site.favicon))} */}
             </Head>
-            <Component {...pageProps} />
+
+            <Provider store={store}>
+                <Component {...pageProps} />
+            </Provider>
         </>
     );
 };

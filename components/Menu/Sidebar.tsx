@@ -3,69 +3,65 @@ import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../../styles/Sidebar.module.css";
 import { Hamburger } from "../Button";
+import { menuProps, sidebarProps } from "../../types";
 
-interface menuProps {
-    name: string;
-    link: string;
-}
+export const displayMenu: FC<menuProps[]> = (menus) => {
+    return (
+        <ul className="menulist">
+            {menus.map((menu) => (
+                <li key={uuidv4()}>
+                    <Link href={menu.link} passHref>
+                        <a>{menu.name}</a>
+                    </Link>
+                </li>
+            ))}
+            <style jsx>{`
+                .menulist {
+                    margin: 10px 5px;
+                }
+                a:hover {
+                    text-decoration: none;
+                }
+                li {
+                    margin: 15px 0px;
+                }
+            `}</style>
+        </ul>
+    );
+};
 
-interface sidebarProps {
-    onClose: () => void;
-    btnClassName: string;
-}
-
-const Sidebar: FC<sidebarProps> = ({ onClose, btnClassName }): JSX.Element => {
-    const menus = [
-        { name: "All Products", link: "#all-products" },
-        { name: "Provide Your Own Bundles", link: "#provide-your-own-bundles" },
-        { name: "Signature Style Wigs", link: "#signature-style-wigs" },
-    ];
-
-    const submenus = [
-        { name: "Log in", link: "#login" },
-        { name: "Create Account", link: "#create-account" },
-        { name: "Privacy Policy", link: "/policy/privacy-policy" },
-        { name: "Refund Policy", link: "/policy/refund-policy" },
-        { name: "Delivery Policy", link: "/policy/delivery-policy" },
-        { name: "Terms and Condition", link: "/policy/terms-and-conditions" },
-    ];
-
-    const displayMenu: FC<menuProps[]> = (menus): JSX.Element => {
-        return (
-            <ul className="menulist">
-                {menus.map((menu) => (
-                    <li key={uuidv4()}>
-                        <Link href={menu.link} passHref>
-                            <a>{menu.name}</a>
-                        </Link>
-                    </li>
-                ))}
-                <style jsx>{`
-                    .menulist {
-                        margin: 10px 5px;
-                    }
-                    a:hover {
-                        text-decoration: none;
-                    }
-                    li {
-                        margin: 15px 0px;
-                    }
-                `}</style>
-            </ul>
-        );
-    };
-
+const Sidebar: FC<sidebarProps> = ({
+    children,
+    onClose,
+    btnClassName,
+    right,
+}): JSX.Element => {
     return (
         <div className="Sidebar">
             <div className="sidebar-wrapper">
-                <div className="drawer">
-                    <Hamburger btnClick={onClose} className={btnClassName} />
-                    <div className={styles.menus}>{displayMenu(menus)}</div>
-                    <div className={styles.submenu}>
-                        {displayMenu(submenus)}
-                    </div>
-                </div>
-                <div className="overlay" onClick={onClose}></div>
+                {right ? (
+                    <>
+                        <div className="overlay" onClick={onClose}></div>
+                        <div className="drawer">
+                            <Hamburger
+                                btnClick={onClose}
+                                className={btnClassName}
+                            />
+                            {children}
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="drawer">
+                            <Hamburger
+                                btnClick={onClose}
+                                className={btnClassName}
+                            />
+                            {children}
+                        </div>
+                        <div className="overlay" onClick={onClose}></div>
+                    </>
+                )}
             </div>
             <style jsx>{`
                 .Sidebar {
