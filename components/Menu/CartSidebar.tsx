@@ -19,7 +19,7 @@ const CartSidebar: FC<sidebarProps> = ({
     return (
         <Sidebar onClose={onClose} btnClassName={btnClassName} right>
             {isCartEmpty ? (
-                <div className="content">
+                <div className={`content ${styles.sidebarContent}`}>
                     {products.map((product, index) => (
                         <div key={index} className={styles.productProfile}>
                             <Image

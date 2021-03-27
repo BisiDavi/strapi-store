@@ -104,6 +104,7 @@ const Sidebar: FC<sidebarProps> = ({
                 @media (max-width: 768px) {
                     .drawer {
                         width: 100vw;
+                        margin-right: 0px !important;
                     }
                     .overlay {
                         width: 50vw;
