@@ -8,7 +8,7 @@
     flex-direction: column;
 }
 .product {
-    width: 90%;
+    width: 100%;
     background-color: white;
     height: 550px;
     display: flex;
@@ -18,6 +18,9 @@
     border: 10px solid white;
     flex-direction: column;
 }
+.productslider div {
+    margin: 5px;
+}
 .productslider {
     margin: 20px;
 }
@@ -25,22 +28,15 @@
 .productImage {
     height: 100%;
     width: 100%;
+    margin: 0px !important;
 }
 
 .productslider button {
     margin: 0px 20px;
+    z-index: 1;
 }
 
 .productslider button::before {
     font-size: 30px;
     color: black;
-}
-
-@media (max-width: 500px) {
-    .product {
-        width: 100%;
-    }
-    .productImage {
-        margin-left: -5px;
-    }
 }
