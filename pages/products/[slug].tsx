@@ -2,7 +2,6 @@ import React from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { Pagelayout } from "../../container";
-import { Image } from "react-datocms";
 import { Loading, ProductDetail } from "../../components";
 import {
     PRODUCTPAGE_QUERY,

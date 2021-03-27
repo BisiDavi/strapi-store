@@ -34,6 +34,7 @@ const CartIcon = ({ count, cartClick }) => {
                     .cartIcon {
                         height: 100%;
                         width: 25px;
+                        cursor: pointer;
                     }
                 `}
             </style>

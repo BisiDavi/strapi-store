@@ -1,9 +1,13 @@
 import React, { FC } from "react";
-import { Button } from "../Button";
-import { Image, ResponsiveImageType } from "react-datocms";
 import Link from "next/link";
+import { Image, ResponsiveImageType } from "react-datocms";
+import { useDispatch } from "react-redux";
+import { Button } from "../Button";
 import { Select } from "../Form";
 import styles from "../../styles/ProductDetail.module.css";
+import { AddToCartAction } from "../../store/actions/CartActions";
+import { useCart } from "../../hooks";
+import { displayCartSidebar } from "../../utils/menu";
 
 interface ProductDetailProps {
     product: {
@@ -17,12 +21,18 @@ interface ProductDetailProps {
 }
 
 const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
+    const dispatch = useDispatch();
+    const { cart, displayCart, hideCart } = useCart();
     const rushOrderDropdown = {
         title: "--Choose Rush Order--",
         options: ["--Choose Rush Order--", "Rush My Orders (+$55.00)"],
     };
     const addToCartHandler = () => {
+        const { image, title, price } = product;
+        displayCart();
         console.log("I was clicked");
+        console.log("product", product);
+        dispatch(AddToCartAction({ image, title, price }));
     };
     return (
         <div className="product">
@@ -55,7 +65,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         btnClick={addToCartHandler}
                         text="Add to cart"
                     />
-
+                    {displayCartSidebar(cart, hideCart)}
                     <Button
                         text="Buy Now"
                         btnClassName={styles.buyNow}

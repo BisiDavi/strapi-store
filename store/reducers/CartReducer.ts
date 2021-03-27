@@ -5,7 +5,7 @@ import {
 } from "../constants";
 
 export const CartReducer = (
-    state = { showCart: false, loading: false },
+    state = { showCart: false, loading: false, products: [] },
     action
 ) => {
     const { type, payload } = action;
@@ -14,7 +14,11 @@ export const CartReducer = (
         case ADD_TO_CART_REQUEST:
             return { ...state, loading: true };
         case ADD_TO_CART_SUCCESS:
-            return { ...state, showCart: true, product: payload };
+            return {
+                ...state,
+                showCart: true,
+                products: [...state.products, payload],
+            };
         case ADD_TO_CART_ERROR:
             return { ...state, error: payload };
         default:

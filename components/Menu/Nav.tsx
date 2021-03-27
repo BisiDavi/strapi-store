@@ -4,26 +4,18 @@ import Link from "next/link";
 import { CartIcon } from "..";
 import { Hamburger } from "../Button";
 import { useCart } from "../../hooks";
-import { CartSidebar, MenuSidebar } from ".";
+import {
+    displayCartSidebar,
+    displayMenuSidebar,
+    sidebarState,
+} from "../../utils/menu";
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
     const { cart, displayCart, hideCart } = useCart();
-    const sidebarState = (menuState) => (menuState ? "menu opened" : "menu");
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
-    const displaySidebar = () =>
-        btnState && (
-            <MenuSidebar
-                onClose={onCloseHandler}
-                btnClassName={sidebarState(btnState)}
-            />
-        );
 
-    const displayCartSidebar = () =>
-        cart && (
-            <CartSidebar onClose={hideCart} btnClassName={sidebarState(cart)} />
-        );
     return (
         <nav className="nav-menu">
             <span className="hamburger">
@@ -31,7 +23,7 @@ const Nav = () => {
                     btnClick={hamburgerHandler}
                     className={sidebarState(btnState)}
                 />
-                {displaySidebar()}
+                {displayMenuSidebar(btnState, onCloseHandler)}
             </span>
             <span className="image">
                 <Link href="/" passHref>
@@ -48,7 +40,7 @@ const Nav = () => {
             <span className="cart">
                 <CartIcon cartClick={displayCart} count={0} />
             </span>
-            {displayCartSidebar()}
+            {displayCartSidebar(cart, hideCart)}
             <style jsx>
                 {`
                     .image {

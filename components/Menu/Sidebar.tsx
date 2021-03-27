@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
-import styles from "../../styles/Sidebar.module.css";
 import { Hamburger } from "../Button";
 import { menuProps, sidebarProps } from "../../types";
 

@@ -16,7 +16,11 @@ const Button = (props: ButtonProps) => {
                     </button>
                 </Link>
             ) : (
-                <button className={props.btnClassName} style={props.styles}>
+                <button
+                    onClick={props.btnClick}
+                    className={props.btnClassName}
+                    style={props.styles}
+                >
                     {props.text}
                 </button>
             )}
