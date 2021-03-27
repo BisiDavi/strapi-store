@@ -34,7 +34,7 @@ const RefundPolicy = () => {
                     </p>
                 </div>
                 <div className="cancellation">
-                    <h1>Cancellations</h1>
+                    <h4>Cancellations</h4>
                     <p>
                         Orders may be cancelled provided that they have not yet
                         been dispatched. If you would like to cancel your order

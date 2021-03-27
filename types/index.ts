@@ -30,6 +30,7 @@ export interface ButtonProps {
 export interface HamburgerProps {
     className: string;
     btnClick: () => void;
+    right?: boolean;
 }
 
 export interface CollectionViewProps {

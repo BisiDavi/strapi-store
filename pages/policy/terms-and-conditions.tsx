@@ -5,7 +5,7 @@ const TermsAndCondition = () => {
     return (
         <Pagelayout title="Terms and Condition">
             <h1 className="text-center">Our Terms and Conditions </h1>
-            <div className="content my-5 px-5">
+            <div className="content my-lg-5 px-lg-5 px-3 my-3">
                 <h3>General</h3>
                 <p>
                     Access to the website www.Jenjenluxurywigs.com and the
@@ -159,6 +159,28 @@ const TermsAndCondition = () => {
                     Director of Jenjen Luxury wigs .
                 </p>
             </div>
+            <style jsx>
+                {`  
+                        h1{
+                            font-weight:bold;
+                        }
+                        .content h3 {
+                            font-weight: bold;
+                        }
+                        
+                        @media(max-width:768px){
+                            .content h3 {
+                                font-size: 23px;
+                            }
+                            h1.text-center {
+                                font-size: 25px;
+                            }
+                            .content h3 {
+                                font-size: 20px;
+                            }
+                    
+                    `}
+            </style>
         </Pagelayout>
     );
 };

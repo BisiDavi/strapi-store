@@ -1,9 +1,18 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { HamburgerProps } from "../../types";
 
-const Hamburger = ({ btnClick, className }: HamburgerProps) => {
+const Hamburger = ({ btnClick, className, right }: HamburgerProps) => {
+    const btnStyle: CSSProperties = right && {
+        position: "absolute",
+        right: "0px",
+    };
     return (
-        <button className={className} onClick={btnClick} aria-label="Main Menu">
+        <button
+            style={btnStyle}
+            className={className}
+            onClick={btnClick}
+            aria-label="Main Menu"
+        >
             <svg width="100" height="100" viewBox="0 0 100 100">
                 <path
                     className="line line1"

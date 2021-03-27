@@ -50,6 +50,7 @@ const Sidebar: FC<sidebarProps> = ({
                             <Hamburger
                                 btnClick={onClose}
                                 className={btnClassName}
+                                right={right}
                             />
                             {children}
                         </div>
