@@ -6,7 +6,6 @@ import Sidebar from "./Sidebar";
 import { useCounter } from "../../hooks";
 import { Button } from "..";
 import styles from "../../styles/CartSidebar.module.css";
-import { Products } from "../Product";
 
 const CartSidebar: FC<sidebarProps> = ({
     onClose,
@@ -21,8 +20,8 @@ const CartSidebar: FC<sidebarProps> = ({
         <Sidebar onClose={onClose} btnClassName={btnClassName} right>
             {isCartEmpty ? (
                 <div className="content">
-                    {products.map((product) => (
-                        <div className="product-profile">
+                    {products.map((product, index) => (
+                        <div key={index} className={styles.productProfile}>
                             <Image
                                 data={product.image.responsiveImage}
                                 className={styles.productImg}
@@ -34,11 +33,19 @@ const CartSidebar: FC<sidebarProps> = ({
                                 </div>
                                 <div className="calculator">
                                     <div className="controls">
-                                        <button onClick={decrementCounter}>
+                                        <button
+                                            onClick={() =>
+                                                decrementCounter(index)
+                                            }
+                                        >
                                             -
                                         </button>
                                         <span>{counter}</span>
-                                        <button onClick={incrementCounter}>
+                                        <button
+                                            onClick={() =>
+                                                incrementCounter(index)
+                                            }
+                                        >
                                             +
                                         </button>
                                     </div>
@@ -65,6 +72,7 @@ const CartSidebar: FC<sidebarProps> = ({
                         text="Checkout"
                         bgColor="black"
                         color="white"
+                        btnClassName={styles.checkout}
                         width="30%"
                         height="50px"
                     />
@@ -107,6 +115,10 @@ const CartSidebar: FC<sidebarProps> = ({
                             color: black;
                             margin: auto;
                             display: flex;
+                            border: 1px solid #d1d1d1;
+                            justify-content: center;
+                            padding: 0px 0px 35px 0px;
+                            background-color: #f7f7f7;
                         }
                         p {
                             color: black;

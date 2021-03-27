@@ -4,3 +4,12 @@
     display: flex;
     margin: auto;
 }
+
+.productProfile button.checkout {
+    width: 100%;
+    color: white;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0px 0px 40px 0px;
+}

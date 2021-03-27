@@ -8,6 +8,8 @@ import styles from "../../styles/ProductDetail.module.css";
 import { AddToCartAction } from "../../store/actions/CartActions";
 import { useCart } from "../../hooks";
 import { displayCartSidebar } from "../../utils/menu";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ProductDetailProps {
     product: {
@@ -30,8 +32,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
     const addToCartHandler = () => {
         const { image, title, price } = product;
         displayCart();
-        console.log("I was clicked");
-        console.log("product", product);
+        toast.success("Product added to Cart");
         dispatch(AddToCartAction({ image, title, price }));
     };
     return (
@@ -40,6 +41,12 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                 <Image
                     className={styles.product}
                     data={product.image.responsiveImage}
+                />
+                <ToastContainer
+                    position="top-left"
+                    closeOnClick
+                    draggable
+                    pauseOnHover
                 />
             </div>
             <div className="product_column_1 flex-column">
@@ -53,6 +60,8 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     </Link>{" "}
                     calculated at checkout.
                 </p>
+                {displayCartSidebar(cart, hideCart)}
+
                 <span className={styles.btnGrp}>
                     <Select content={rushOrderDropdown} />
 
@@ -65,7 +74,6 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         btnClick={addToCartHandler}
                         text="Add to cart"
                     />
-                    {displayCartSidebar(cart, hideCart)}
                     <Button
                         text="Buy Now"
                         btnClassName={styles.buyNow}
