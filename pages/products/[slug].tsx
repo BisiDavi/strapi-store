@@ -35,8 +35,7 @@ const ProductPage: NextPage<ProductpageProps> = ({
         );
     }
     const other_Products = otherProducts.allProducts;
-    console.log("otherProducts products", other_Products);
-
+    console.log("product", product);
     return (
         <Pagelayout metaTags={seoData} title={product.title} product>
             <ProductDetail product={product} />

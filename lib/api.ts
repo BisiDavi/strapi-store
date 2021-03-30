@@ -57,20 +57,27 @@ export const SEO_QUERY = `
         content
         tag
       }
+      globalSeo {
+        siteName
+        titleSuffix
+      }
     }
-  
-  product {
-    seo: _seoMetaTags {
-      attributes
-      content
-      tag
+    product {
+      seo: _seoMetaTags {
+        attributes
+        content
+        tag
+      }
     }
-  } 
 }`;
 
-export const SLIDER_BANNER = `query GetSliderBanner {
-  allSliders {
-    sliderBanner {
+export const HOMEPAGE_SEO_QUERY = `{
+  site:_site {
+    globalSeo {      
+      siteName
+      titleSuffix  
+    }
+    favicon {      
       url
     }
   }

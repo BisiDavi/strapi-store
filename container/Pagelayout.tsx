@@ -17,7 +17,6 @@ const Pagelayout: FC<PagecontainerProps> = ({
     const pageTitle = product
         ? title
         : `Jenjen's Luxury hair & beauty | ${title}`;
-    console.log("meta tags", metaTags);
     return (
         <div>
             <Head>

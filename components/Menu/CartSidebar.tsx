@@ -1,58 +1,41 @@
 import React, { FC } from "react";
-import { Image } from "react-datocms";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { sidebarProps } from "../../types";
 import Sidebar from "./Sidebar";
-import { useCounter } from "../../hooks";
 import { Button } from "..";
 import styles from "../../styles/CartSidebar.module.css";
+import ShowSidebarCart from "../Cart/ShowSidebarCart";
+import {
+    DecrementCounterAction,
+    IncrementCounterAction,
+} from "../../store/actions/counterActions";
 
 const CartSidebar: FC<sidebarProps> = ({
     onClose,
     btnClassName,
 }): JSX.Element => {
-    const { counter, incrementCounter, decrementCounter } = useCounter();
+    const dispatch = useDispatch();
     const cartState = useSelector((state) => state.cart);
-    console.log("cartState", cartState);
-    const { products } = cartState;
+    const { products, count, amount } = cartState;
     const isCartEmpty = products.length > 0;
+
+    const increaseCount = (index) => {
+        dispatch(IncrementCounterAction({ products, index }));
+    };
+    const decreaseCount = (index) => {
+        dispatch(DecrementCounterAction({ products, index }));
+    };
     return (
         <Sidebar onClose={onClose} btnClassName={btnClassName} right>
             {isCartEmpty ? (
                 <div className={`content ${styles.sidebarContent}`}>
                     {products.map((product, index) => (
-                        <div key={index} className={styles.productProfile}>
-                            <Image
-                                data={product.image.responsiveImage}
-                                className={styles.productImg}
-                            />
-                            <div className="product-info">
-                                <div className="text">
-                                    <h1>{product.title}</h1>
-                                    {/* <h3>Size: {product.size}</h3> */}
-                                </div>
-                                <div className="calculator">
-                                    <div className="controls">
-                                        <button
-                                            onClick={() =>
-                                                decrementCounter(index)
-                                            }
-                                        >
-                                            -
-                                        </button>
-                                        <span>{counter}</span>
-                                        <button
-                                            onClick={() =>
-                                                incrementCounter(index)
-                                            }
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                    <div className="price">{product.price}</div>
-                                </div>
-                            </div>
-                        </div>
+                        <ShowSidebarCart
+                            key={index}
+                            product={product}                            
+                            increment={() => increaseCount(index)}
+                            decrement={() => decreaseCount(index)}
+                        />
                     ))}
                     <div className="seller-instruction">
                         <form>
@@ -77,11 +60,6 @@ const CartSidebar: FC<sidebarProps> = ({
                         height="50px"
                     />
                     <style jsx>{`
-                        .controls {
-                            display: flex;
-                            justify-content: space-evenly;
-                            align-items: center;
-                        }
                         .subtotal {
                             text-align: center;
                             display: flex;
@@ -128,48 +106,6 @@ const CartSidebar: FC<sidebarProps> = ({
                             color: pink;
                             margin: 0px 5px;
                             text-decoration: underline;
-                        }
-
-                        .controls button {
-                            height: 50px;
-                            width: 50px;
-                            border: none;
-                            font-weight: bold;
-                            font-size: 30px;
-                        }
-                        .price {
-                            font-size: 25px;
-                            color: black;
-                        }
-                        .controls {
-                            width: 100%;
-                        }
-
-                        .calculator {
-                            width: 100%;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                        }
-
-                        .product-info {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                            width: 100%;
-                        }
-
-                        .controls span {
-                            font-size: 30px;
-                            color: black;
-                        }
-
-                        .text h1 {
-                            color: black;
-                            font-size: 25px;
-                            font-weight: bold;
                         }
                     `}</style>
                 </div>

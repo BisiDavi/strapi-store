@@ -48,9 +48,6 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
             },
         ],
     };
-
-    console.log("otherProducts", products);
-
     return (
         <div className={style.slider}>
             <h1>You may also like</h1>
