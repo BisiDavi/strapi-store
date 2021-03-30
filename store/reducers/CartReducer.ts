@@ -6,7 +6,7 @@ import {
     DECREASE_COUNT,
     INCREASE_COUNT,
 } from "../constants";
-import { CartCounter, ProductAmount } from "./CounterReducer";
+import { CartCounter, deleteProduct, ProductAmount } from "../utils/cart";
 
 export const CartReducer = (
     state = {
@@ -17,6 +17,14 @@ export const CartReducer = (
     action
 ) => {
     const { type, payload } = action;
+
+    const updateProduct = (count, amount) => {
+        state.products[payload.index] = {
+            ...state.products[payload.index],
+            count: count,
+            amount: amount,
+        };
+    };
 
     switch (type) {
         case ADD_TO_CART_REQUEST:
@@ -40,6 +48,9 @@ export const CartReducer = (
                 count: increaseQuantity,
                 amount: increaseAmount,
             };
+
+            updateProduct(increaseQuantity, increaseAmount);
+
             return {
                 ...state,
                 products: [...state.products],
@@ -51,11 +62,10 @@ export const CartReducer = (
             );
             const decreaseAmount = ProductAmount(payload, decreaseQuantity);
 
-            state.products[payload.index] = {
-                ...state.products[payload.index],
-                count: decreaseQuantity,
-                amount: decreaseAmount,
-            };
+            updateProduct(decreaseQuantity, decreaseAmount);
+
+            state.products[payload.index].count === 0 &&
+                deleteProduct(state, payload);
             return {
                 ...state,
                 products: [...state.products],

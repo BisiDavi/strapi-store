@@ -9,6 +9,7 @@ import {
     DecrementCounterAction,
     IncrementCounterAction,
 } from "../../store/actions/counterActions";
+import Link from "next/link";
 
 const CartSidebar: FC<sidebarProps> = ({
     onClose,
@@ -16,7 +17,7 @@ const CartSidebar: FC<sidebarProps> = ({
 }): JSX.Element => {
     const dispatch = useDispatch();
     const cartState = useSelector((state) => state.cart);
-    const { products, count, amount } = cartState;
+    const { products } = cartState;
     const isCartEmpty = products.length > 0;
 
     const increaseCount = (index) => {
@@ -25,6 +26,13 @@ const CartSidebar: FC<sidebarProps> = ({
     const decreaseCount = (index) => {
         dispatch(DecrementCounterAction({ products, index }));
     };
+    const getTotalAmount = () => {
+        let totalAmount = 0;
+        products.map((product) => (totalAmount += product.amount));
+        console.log("total amount", totalAmount);
+        return totalAmount;
+    };
+
     return (
         <Sidebar onClose={onClose} btnClassName={btnClassName} right>
             {isCartEmpty ? (
@@ -32,7 +40,7 @@ const CartSidebar: FC<sidebarProps> = ({
                     {products.map((product, index) => (
                         <ShowSidebarCart
                             key={index}
-                            product={product}                            
+                            product={product}
                             increment={() => increaseCount(index)}
                             decrement={() => decreaseCount(index)}
                         />
@@ -45,19 +53,26 @@ const CartSidebar: FC<sidebarProps> = ({
                     </div>
                     <div className="subtotal">
                         <h3>Subtotal</h3>
-                        <p>$price</p>
+                        <p>${getTotalAmount()}</p>
                     </div>
                     <p>
-                        Tax included. <span>Shipping</span>calculated at
-                        checkout.
+                        Tax included.{" "}
+                        <span>
+                            <Link href="/policy/delivery-policy" passHref>
+                                <a>Shipping</a>
+                            </Link>
+                        </span>
+                        calculated at checkout.
                     </p>
                     <Button
-                        text="Checkout"
+                        text="Proceed"
                         bgColor="black"
                         color="white"
                         btnClassName={styles.checkout}
                         width="30%"
                         height="50px"
+                        linkTo="/cart"
+                        asLink
                     />
                     <style jsx>{`
                         .subtotal {
