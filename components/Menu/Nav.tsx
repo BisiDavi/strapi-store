@@ -12,10 +12,9 @@ import {
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
-    const { cart, displayCart, hideCart } = useCart();
+    const { cart, displayCart, hideCart, cartCount } = useCart();
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
-
     return (
         <nav className="nav-menu">
             <span className="hamburger">
@@ -38,7 +37,7 @@ const Nav = () => {
                 </Link>
             </span>
             <span className="cart">
-                <CartIcon cartClick={displayCart} count={0} />
+                <CartIcon cartClick={displayCart} count={cartCount} />
             </span>
             {displayCartSidebar(cart, hideCart)}
             <style jsx>
@@ -53,6 +52,10 @@ const Nav = () => {
                         padding: 0px 120px 0px 20px;
                         align-items: center;
                         width: 100%;
+                        -webkit-box-shadow: 0px 1px 10px 0px rgb(0 0 0 / 69%);
+                        -moz-box-shadow: 0px 15px 17px 0px rgba(0, 0, 0, 0.69);
+                        box-shadow: 0px 1px 10px 0px rgb(0 0 0 / 69%);
+                        margin-bottom: 15px;
                     }
                     @media (max-width: 768px) {
                         .image {

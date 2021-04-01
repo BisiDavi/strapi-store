@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import { useSelector } from "react-redux";
+import { ProductpageProps } from "../../types";
 import { Pagelayout } from "../../container";
 import { Loading, ProductDetail } from "../../components";
 import {
@@ -11,12 +13,7 @@ import {
 } from "../../lib";
 import ErrorPage from "next/error";
 import ProductSlider from "../../components/Slider/ProductSlider";
-
-interface ProductpageProps {
-    product: any;
-    seoData: {};
-    otherProducts: any;
-}
+import PersistCart from "../../utils/persistCart";
 
 const ProductPage: NextPage<ProductpageProps> = ({
     seoData,
@@ -24,6 +21,12 @@ const ProductPage: NextPage<ProductpageProps> = ({
     otherProducts,
 }): JSX.Element => {
     const router = useRouter();
+    const cartState = useSelector((state) => state.cart);
+
+    useEffect(() => {
+        PersistCart();
+    }, [cartState]);
+
     if (!router.isFallback && !product?.slug) {
         return <ErrorPage statusCode={404} />;
     }

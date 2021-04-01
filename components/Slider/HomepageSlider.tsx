@@ -28,7 +28,7 @@ const HomepageSlider: FC = (): JSX.Element => {
         setSliderState(true);
     };
 
-    const sliderArr = ["slider", "slider2"];
+    const sliderArr = ["/slider.webp", "/slider2.webp"];
 
     return (
         <div className="homepageSlider">
@@ -40,10 +40,10 @@ const HomepageSlider: FC = (): JSX.Element => {
                 {sliderArr.map((slider) => (
                     <div key={uuidv4()} className="content">
                         <Image
-                            src={`/${slider}.webp`}
+                            src={slider}
                             className="sliderImg"
                             width={1000}
-                            height={400}
+                            height={600}
                             layout="responsive"
                         />
                     </div>
@@ -55,7 +55,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                             src="/slider3.webp"
                             className="sliderImg"
                             width={1000}
-                            height={400}
+                            height={600}
                             layout="responsive"
                         />
                     </div>

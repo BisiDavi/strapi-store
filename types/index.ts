@@ -62,3 +62,13 @@ export interface sidebarProps {
     btnClassName: string;
     right?: boolean;
 }
+
+export interface CartSidebarProps extends sidebarProps {
+    pushRight?: boolean;
+}
+
+export interface ProductpageProps {
+    product: any;
+    seoData: {};
+    otherProducts: any;
+}

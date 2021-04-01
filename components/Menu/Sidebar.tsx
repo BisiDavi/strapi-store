@@ -46,14 +46,14 @@ const Sidebar: FC<sidebarProps> = ({
                 {right ? (
                     <>
                         <div className="overlay" onClick={onClose}></div>
-                        <div className="drawer" style={cartStyles}>
+                        <span className="drawer" style={cartStyles}>
                             <Hamburger
                                 btnClick={onClose}
                                 className={btnClassName}
                                 right={right}
                             />
                             {children}
-                        </div>
+                        </span>
                     </>
                 ) : (
                     <>
