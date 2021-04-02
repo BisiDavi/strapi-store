@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import { useSelector } from "react-redux";
 import { ProductpageProps } from "../../types";
 import { Pagelayout } from "../../container";
 import { Loading, ProductDetail } from "../../components";
@@ -20,12 +20,13 @@ const ProductPage: NextPage<ProductpageProps> = ({
     product,
     otherProducts,
 }): JSX.Element => {
-    const router = useRouter();
     const cartState = useSelector((state) => state.cart);
-
+    const { products } = cartState;
     useEffect(() => {
-        PersistCart();
+        PersistCart(products);
     }, [cartState]);
+    
+    const router = useRouter();
 
     if (!router.isFallback && !product?.slug) {
         return <ErrorPage statusCode={404} />;

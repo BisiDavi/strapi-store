@@ -55,7 +55,7 @@ const Nav = () => {
                         -webkit-box-shadow: 0px 1px 10px 0px rgb(0 0 0 / 69%);
                         -moz-box-shadow: 0px 15px 17px 0px rgba(0, 0, 0, 0.69);
                         box-shadow: 0px 1px 10px 0px rgb(0 0 0 / 69%);
-                        margin-bottom: 15px;
+                        margin-bottom: 5px;
                     }
                     @media (max-width: 768px) {
                         .image {
