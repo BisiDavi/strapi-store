@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { CartIcon } from "..";
 import { Hamburger } from "../Button";
 import { useCart } from "../../hooks";
@@ -9,6 +7,7 @@ import {
     displayMenuSidebar,
     sidebarState,
 } from "../../utils/menu";
+import Logo from "../Icons/Logo";
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
@@ -24,18 +23,7 @@ const Nav = () => {
                 />
                 {displayMenuSidebar(btnState, onCloseHandler)}
             </span>
-            <span className="image">
-                <Link href="/" passHref>
-                    <a>
-                        <Image
-                            src="/logo.jpg"
-                            height={100}
-                            width={100}
-                            layout="responsive"
-                        />
-                    </a>
-                </Link>
-            </span>
+            <Logo />
             <span className="cart">
                 <CartIcon cartClick={displayCart} count={cartCount} />
             </span>

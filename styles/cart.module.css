@@ -1,0 +1,20 @@
+.table td {
+    vertical-align: middle;
+    height: 50px;
+    font-size: 20px;
+}
+
+.productImage {
+    width: 100px;
+    height: 100px;
+}
+
+.title {
+    color: #ffa6ca;
+    font: 700 normal 20px/22px "cocogooselight";
+}
+
+.title svg {
+    font-size: 30px;
+    cursor: pointer;
+}

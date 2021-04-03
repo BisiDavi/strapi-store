@@ -43,7 +43,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                             src={slider}
                             className="sliderImg"
                             width={1000}
-                            height={600}
+                            height={450}
                             layout="responsive"
                         />
                     </div>
@@ -55,7 +55,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                             src="/slider3.webp"
                             className="sliderImg"
                             width={1000}
-                            height={600}
+                            height={450}
                             layout="responsive"
                         />
                     </div>

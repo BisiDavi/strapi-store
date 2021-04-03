@@ -4,6 +4,7 @@ import {
     ADD_TO_CART_SUCCESS,
     COUNT_ERROR,
     DECREASE_COUNT,
+    DELETE_PRODUCT,
     INCREASE_COUNT,
 } from "../constants";
 import { CartCounter, deleteProduct, ProductAmount } from "../utils/cart";
@@ -66,6 +67,12 @@ export const CartReducer = (
 
             state.products[payload.index].count === 0 &&
                 deleteProduct(state, payload);
+            return {
+                ...state,
+                products: [...state.products],
+            };
+        case DELETE_PRODUCT:
+            deleteProduct(state, payload);
             return {
                 ...state,
                 products: [...state.products],

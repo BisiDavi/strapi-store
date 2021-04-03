@@ -1,0 +1,17 @@
+span.wifi svg {
+    font-size: 100px;
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+    color: #e76298;
+    fill: #e76298;
+}
+
+span.retry svg {
+    font-size: 60px;
+    color: white;
+    fill: green;
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+}

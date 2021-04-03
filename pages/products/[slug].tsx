@@ -25,7 +25,7 @@ const ProductPage: NextPage<ProductpageProps> = ({
     useEffect(() => {
         PersistCart(products);
     }, [cartState]);
-    
+
     const router = useRouter();
 
     if (!router.isFallback && !product?.slug) {
@@ -62,6 +62,12 @@ export async function getStaticProps({ params }) {
     });
 
     const { allProducts } = getproduct;
+
+    if (!getproduct) {
+        return {
+            notFound: true,
+        };
+    }
     return {
         props: {
             product: allProducts[0],
