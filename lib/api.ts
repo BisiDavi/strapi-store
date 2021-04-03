@@ -83,3 +83,29 @@ export const HOMEPAGE_SEO_QUERY = `{
   }
 }
 `;
+
+export const FETCH_ALL_PRODUCT_QUERY = `query FetchAllProduct{
+  allProducts {
+    description
+    title
+    price
+    slug
+    id
+    image {
+      url
+      responsiveImage(imgixParams: {h: "400", w:"400",  fit: max,}) {
+          srcSet
+          webpSrcSet
+          sizes
+          src
+          width
+          height
+          aspectRatio
+          alt
+          title
+          base64
+          bgColor
+      }
+    }
+  }
+}`;

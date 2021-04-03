@@ -22,3 +22,5 @@ export { default as Header } from "./Header/Header";
 export { default as ProductDetail } from "./Product/ProductDetail";
 export { default as ProductsList } from "./Product/ProductsList";
 export { default as Collections } from "./Product/Collections";
+
+export { default as CatalogTab } from "./Tab/CatalogTab";

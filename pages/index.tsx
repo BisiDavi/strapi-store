@@ -8,6 +8,7 @@ import {
     Collections,
     ProductsList,
     Newsletter,
+    CatalogTab,
 } from "../components";
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 
@@ -33,6 +34,7 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
                 <Pagelayout metaTags={seoData} title="Welcome">
                     <div className="homepage position-relative">
                         <HomepageSlider />
+                        <CatalogTab />
                         <Collections />
                         <ProductsList products={allProducts} />
                         <Newsletter />
