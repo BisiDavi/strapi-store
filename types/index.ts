@@ -72,3 +72,14 @@ export interface ProductpageProps {
     seoData: {};
     otherProducts: any;
 }
+
+export interface AllWigsProps {
+    products: {
+        allProducts: [];
+    };
+}
+
+export interface HomeProps {
+    productData: any;
+    seoData: {};
+}

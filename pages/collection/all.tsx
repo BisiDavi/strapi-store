@@ -3,12 +3,7 @@ import { NextPage } from "next";
 import { ProductsList } from "../../components";
 import { Pagelayout } from "../../container";
 import { FETCH_ALL_PRODUCT_QUERY, request } from "../../lib";
-
-interface AllWigsProps {
-    products: {
-        allProducts: [];
-    };
-}
+import { AllWigsProps } from "../../types";
 
 const AllWigs: NextPage<AllWigsProps> = ({ products }): JSX.Element => {
     const { allProducts } = products;
