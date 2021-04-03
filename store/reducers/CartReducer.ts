@@ -27,28 +27,42 @@ export const CartReducer = (
         };
     };
 
+    const doesProductExist = () => {
+        const existingProduct = state.products.find(
+            (product) => product.title === payload.title
+        );
+        return existingProduct;
+    };
+
     switch (type) {
         case ADD_TO_CART_REQUEST:
             return { ...state, loading: true };
         case ADD_TO_CART_SUCCESS:
+            const existingProduct = doesProductExist();
+            console.log("existingProduct", existingProduct);
             let payloadObj = { ...payload, count: 1, amount: payload.price };
-            return {
-                ...state,
-                showCart: true,
-                products: [...state.products, payloadObj],
-            };
+            if (existingProduct === undefined) {
+                return {
+                    ...state,
+                    showCart: true,
+                    products: [...state.products, payloadObj],
+                };
+            } else {
+                existingProduct.count += 1;
+                existingProduct.amount =
+                    existingProduct.count * existingProduct.price;
+                return {
+                    ...state,
+                    showCart: true,
+                    products: [...state.products],
+                };
+            }
         case INCREASE_COUNT:
             const increaseQuantity = CartCounter(
                 state.products[payload.index].count,
                 "increase"
             );
             const increaseAmount = ProductAmount(payload, increaseQuantity);
-
-            state.products[payload.index] = {
-                ...state.products[payload.index],
-                count: increaseQuantity,
-                amount: increaseAmount,
-            };
 
             updateProduct(increaseQuantity, increaseAmount);
 

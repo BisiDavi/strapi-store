@@ -7,6 +7,7 @@ import { Pagelayout } from "../container";
 import { useCart } from "../hooks";
 import styles from "../styles/cart.module.css";
 import { DeleteProductAction } from "../store/actions/counterActions";
+import { Button } from "../components";
 
 const Cart = () => {
     const { cartCount } = useCart();
@@ -34,8 +35,9 @@ const Cart = () => {
                         <tbody>
                             {products.map((product, index) => (
                                 <tr key={index}>
-                                    <td className={styles.productImage}>
+                                    <td>
                                         <Image
+                                            className={styles.productImage}
                                             data={product.image.responsiveImage}
                                         />
                                     </td>
@@ -48,13 +50,40 @@ const Cart = () => {
                                     <td>${product.price}</td>
                                     <td>
                                         <input
-                                            value={product.count}
+                                            defaultValue={product.count}
                                             type="number"
                                         />
                                     </td>
                                     <td>${product.amount}</td>
                                 </tr>
                             ))}
+                            <tr>
+                                <td>
+                                    <p>Special instructons for seller</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <div className="subtotal">
+                                        <h3>Subtotal</h3>
+                                        <p>$</p>
+                                        <p>
+                                            Tax included. Shipping calculated at
+                                            checkout.
+                                        </p>
+                                    </div>
+
+                                    <Button
+                                        color="white"
+                                        btnClassName={styles.checkout}
+                                        linkTo="/checkout"
+                                        bgColor="black"
+                                        text="Check out"
+                                        asLink
+                                    />
+                                </td>
+                            </tr>
                         </tbody>
                     </Table>
                 </Row>

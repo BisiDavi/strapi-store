@@ -28,8 +28,8 @@ export default function deleteUserHandler(req, res) {
             return new Buffer(data, "base64").toString("utf-8");
         }
 
-        function parseSignedRequest(signedRequest) {
-            var encoded_data = signedRequest.split(".", 2);
+        function parseSignedRequest() {
+            var encoded_data = req.body.signedRequest.split(".", 2);
             // decode the data
             var sig = encoded_data[0];
             var json = base64decode(encoded_data[1]);
@@ -58,5 +58,8 @@ export default function deleteUserHandler(req, res) {
             }
             return data;
         }
+        res.json({
+            data,
+        });
     }
 }
