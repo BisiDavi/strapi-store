@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagelayout } from "../../container";
+import { Pagelayout } from "../container";
 
 const Checkout = () => {
     return (

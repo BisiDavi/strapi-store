@@ -10,6 +10,7 @@ import {
     IncrementCounterAction,
 } from "../../store/actions/counterActions";
 import Link from "next/link";
+import { EmptyCart } from "../Cart";
 
 const CartSidebar: FC<CartSidebarProps> = ({
     onClose,
@@ -127,29 +128,7 @@ const CartSidebar: FC<CartSidebarProps> = ({
                         `}</style>
                     </div>
                 ) : (
-                    <div className="cart-empty">
-                        <img height="70px" width="70px" src="/cartIcon.svg" />
-                        <h1>
-                            Dear customer, your cart is empty, please add a
-                            product to your cart, thank you
-                        </h1>
-                        <style jsx>
-                            {`
-                                .cart-empty {
-                                    display: flex;
-                                    flex-direction: column;
-                                    align-items: center;
-                                    padding: 20px;
-                                }
-                                .cart-empty img {
-                                    margin: 20px 0px;
-                                }
-                                .cart-empty h1 {
-                                    font-size: 25px;
-                                }
-                            `}
-                        </style>
-                    </div>
+                    <EmptyCart />
                 )}
             </Sidebar>
         </div>

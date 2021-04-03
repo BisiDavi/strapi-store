@@ -10,6 +10,7 @@ import { useCart } from "../../hooks";
 import { displayCartSidebar } from "../../utils/menu";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 interface ProductDetailProps {
     product: {
@@ -24,6 +25,7 @@ interface ProductDetailProps {
 
 const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const { cart, displayCart, hideCart } = useCart();
     const rushOrderDropdown = {
         title: "--Choose Rush Order--",
@@ -34,6 +36,14 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
         displayCart();
         toast.success("Product added to Cart");
         dispatch(AddToCartAction({ image, title, price }));
+    };
+    const buyProductHandler = () => {
+        const { image, title, price } = product;
+        toast.success(
+            `Thanks, for your interest in ${title}, now redirecting you to checkout`
+        );
+        dispatch(AddToCartAction({ image, title, price }));
+        router.push("/checkout");
     };
     return (
         <div className="product">
@@ -81,6 +91,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         btnClassName={styles.buyNow}
                         width="200px"
                         height="40px"
+                        btnClick={buyProductHandler}
                         bgColor="black"
                         color="white"
                     />
