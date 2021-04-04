@@ -1,7 +1,12 @@
 import React from "react";
 import Link from "next/link";
+import { useScrollbarState } from "../../hooks";
 
 const CatalogTab = () => {
+    const scrolled = useScrollbarState();
+    const tabPosition = scrolled
+        ? { position: "fixed", top: 0 }
+        : { position: "relative", top: "unset" };
     const tabLinks = [
         { name: "Home", link: "/" },
         { name: "Catalog", link: "/collection/all" },
@@ -29,10 +34,13 @@ const CatalogTab = () => {
             <style jsx>
                 {`
                     .catalogTab {
+                        position: ${tabPosition.position};
+                        top: ${tabPosition.top};
                         background-color: black;
                         height: 45px;
                         width: 100%;
                         display: flex;
+                        z-index: 1000;
                         align-items: center;
                         margin: auto;
                         justify-content: center;

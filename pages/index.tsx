@@ -8,11 +8,10 @@ import {
     Collections,
     ProductsList,
     Newsletter,
-    CatalogTab,
+    
 } from "../components";
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
-import getInstagramPictures from "../components/Slider/InstagramSlider";
 
 const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     const [loader, setLoader] = useState(true);
@@ -32,7 +31,7 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
                 <Pagelayout metaTags={seoData} title="Welcome">
                     <div className="homepage position-relative">
                         <HomepageSlider />
-                        <CatalogTab />
+                        
                         <Collections />
                         <ProductsList products={allProducts} />
                         <Newsletter />

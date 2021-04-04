@@ -1,7 +1,13 @@
 import React, { FC, useState } from "react";
 import Head from "next/head";
 import { PagecontainerProps } from "../types";
-import { Header, Footer, MailButton, Mailinglist } from "../components";
+import {
+    Header,
+    Footer,
+    MailButton,
+    Mailinglist,
+    CatalogTab,
+} from "../components";
 import { renderMetaTags } from "react-datocms";
 import Whatsappchat from "../components/ChatWidget/Whatsappchat";
 
@@ -28,6 +34,7 @@ const Pagelayout: FC<PagecontainerProps> = ({
                     : null}
             </Head>
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
+            <CatalogTab />
             <MailButton showMail={() => setMailModal(true)} />
             <Mailinglist show={mailModal} onHide={() => setMailModal(false)} />
             {children}
