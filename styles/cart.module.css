@@ -91,3 +91,8 @@ span.emptycart a:hover {
     background-color: black;
     border: none;
 }
+
+.table thead th {
+    text-align: center;
+    font-size: 22px;
+}

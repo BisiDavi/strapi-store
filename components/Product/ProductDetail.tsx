@@ -9,8 +9,8 @@ import { AddToCartAction } from "../../store/actions/CartActions";
 import { useCart } from "../../hooks";
 import { displayCartSidebar } from "../../utils/menu";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ProductDetailProps {
     product: {
@@ -53,7 +53,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     data={product.image.responsiveImage}
                 />
                 <ToastContainer
-                    position="top-left"
+                    position="top-left"                    
                     closeOnClick
                     draggable
                     pauseOnHover

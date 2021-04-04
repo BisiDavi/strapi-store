@@ -6,10 +6,10 @@ import { FcFullTrash } from "react-icons/fc";
 import Link from "next/link";
 import { Pagelayout } from "../container";
 import { useCart } from "../hooks";
-import styles from "../styles/cart.module.css";
 import { DeleteProductAction } from "../store/actions/counterActions";
 import { Button } from "../components";
 import { EmptyCart } from "../components/Cart";
+import styles from "../styles/cart.module.css";
 
 const Cart = () => {
     const { cartCount } = useCart();
