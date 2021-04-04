@@ -1,6 +1,6 @@
 .pageModal {
     color: white;
-    background-color: black;
+    background-color: black !important;
 }
 
 @media (max-width: 768px) {

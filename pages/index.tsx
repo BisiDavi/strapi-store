@@ -19,7 +19,6 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
             <Pagelayout metaTags={seoData} title="Welcome">
                 <div className="homepage position-relative">
                     <HomepageSlider />
-
                     <Collections />
                     <ProductsList products={allProducts} />
                     <Newsletter />
