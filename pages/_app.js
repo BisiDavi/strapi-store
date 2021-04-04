@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Router from "next/router";
 import { Provider } from "react-redux";
+import NProgress from "nprogress";
 import store from "../store/store";
 import { Loading } from "../components";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "nprogress/nprogress.css";
 import "../styles/globals.css";
 
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 const MyApp = ({ Component, pageProps }) => {
     const [loading, setLoading] = useState(false);
     useEffect(() => {
