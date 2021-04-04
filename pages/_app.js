@@ -43,7 +43,6 @@ const MyApp = ({ Component, pageProps }) => {
                     integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
                     crossOrigin="anonymous"
                 />
-                {/* {renderMetaTags(data.allProducts.seo.concat(data.site.favicon))} */}
             </Head>
 
             {loading && <Loading />}

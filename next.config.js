@@ -1,7 +1,7 @@
 const withPurgeCss = require("next-purgecss");
 
 const config = withPurgeCss({
-    purgeCssPaths: ["pages/**/*", "components/**/*", "styles/**"],
+    purgeCssPaths: ["pages/**/*", "components/**/*"],
     purgeCss: {
         whitelist: () => ["player"],
         whitelistPatterns: () => [/Toastify/, /.*nprogress.*/],
