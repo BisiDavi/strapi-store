@@ -9,12 +9,14 @@ const Loading = () => {
             <Head>
                 <title>Welcome | Jenjen's Luxury hair & beauty</title>
             </Head>
-            <Image
-                className={styles.logo}
-                src="/logo.jpg"
-                height={150}
-                width={150}
-            />
+            <span className={styles.logoContainer}>
+                <Image
+                    className={styles.logo}
+                    src="/logo.jpg"
+                    height={150}
+                    width={150}
+                />
+            </span>
         </div>
     );
 };

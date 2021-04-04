@@ -1,44 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NextPage } from "next";
 import { Pagelayout } from "../container";
 import {
     SelfiesBanner,
-    Loading,
     HomepageSlider,
     Collections,
     ProductsList,
     Newsletter,
-    
 } from "../components";
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
 
 const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
-    const [loader, setLoader] = useState(true);
     const { allProducts } = productData;
-    useEffect(() => {
-        const startLoader = setTimeout(() => setLoader(false), 2000);
-        return () => {
-            clearTimeout(startLoader);
-        };
-    }, []);
-  
+
     return (
         <>
-            {loader ? (
-                <Loading />
-            ) : (
-                <Pagelayout metaTags={seoData} title="Welcome">
-                    <div className="homepage position-relative">
-                        <HomepageSlider />
-                        
-                        <Collections />
-                        <ProductsList products={allProducts} />
-                        <Newsletter />
-                        <SelfiesBanner />
-                    </div>
-                </Pagelayout>
-            )}
+            <Pagelayout metaTags={seoData} title="Welcome">
+                <div className="homepage position-relative">
+                    <HomepageSlider />
+
+                    <Collections />
+                    <ProductsList products={allProducts} />
+                    <Newsletter />
+                    <SelfiesBanner />
+                </div>
+            </Pagelayout>
         </>
     );
 };

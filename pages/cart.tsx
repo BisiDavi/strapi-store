@@ -22,11 +22,12 @@ const Cart = () => {
     const deleteCount = (index) => {
         dispatch(DeleteProductAction({ products, index }));
     };
+    console.log("products length", products.length);
     return (
         <Pagelayout title={`(${cartCount}) Your Shopping Cart`}>
             <Container>
                 <Row>
-                    {products.lenth === 0 ? (
+                    {products.length !== 0 ? (
                         <Table className={styles.table} hover>
                             <thead>
                                 <tr>

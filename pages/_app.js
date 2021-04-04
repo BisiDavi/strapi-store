@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Router from "next/router";
-import NProgress from "nprogress";
 import { Provider } from "react-redux";
 import store from "../store/store";
-import "nprogress/nprogress.css"; //styles of nprogress
+import { Loading } from "../components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
-//Binding events.
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", () => NProgress.done());
-Router.events.on("routeChangeError", () => NProgress.done());
 
 const MyApp = ({ Component, pageProps }) => {
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        const start = () => {
+            setLoading(true);
+        };
+        const end = () => {
+            setLoading(false);
+        };
+        Router.events.on("routeChangeStart", start);
+        Router.events.on("routeChangeComplete", end);
+        Router.events.on("routeChangeError", end);
+        return () => {
+            Router.events.on("routeChangeStart", start);
+            Router.events.on("routeChangeComplete", end);
+            Router.events.on("routeChangeError", end);
+        };
+    }, []);
     return (
         <>
             <Head>
@@ -33,6 +45,8 @@ const MyApp = ({ Component, pageProps }) => {
                 />
                 {/* {renderMetaTags(data.allProducts.seo.concat(data.site.favicon))} */}
             </Head>
+
+            {loading && <Loading />}
 
             <Provider store={store}>
                 <Component {...pageProps} />
