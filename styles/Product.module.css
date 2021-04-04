@@ -18,7 +18,7 @@
     top: 0;
     justify-content: center;
     margin: auto;
-    z-index: 1000;
+    z-index: 100;
     font-weight: bold;
     flex-direction: column;
     background-color: rgb(255 255 255 / 80%);

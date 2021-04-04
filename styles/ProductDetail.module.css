@@ -9,6 +9,7 @@
 
 .buyNow {
     color: white;
+    border: none;
 }
 
 .btnGrp {
@@ -82,6 +83,14 @@
     .btnGrp form label {
         font-size: 16px;
         margin: 15px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .btnGrp .addToCart,
+    .btnGrp .buyNow {
+        width: 250px;
+        margin: 10px auto;
     }
 }
 

@@ -9,7 +9,16 @@ const AllWigs: NextPage<AllWigsProps> = ({ products }): JSX.Element => {
     const { allProducts } = products;
     return (
         <Pagelayout title="Get awesome wigs at an affordable price">
-            <ProductsList products={allProducts} />
+            <div className="allproducts">
+                <ProductsList products={allProducts} />
+                <style jsx>
+                    {`
+                        .allproducts {
+                            margin: 20px;
+                        }
+                    `}
+                </style>
+            </div>
         </Pagelayout>
     );
 };

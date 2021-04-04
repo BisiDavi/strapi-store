@@ -23,6 +23,7 @@ const Cart = () => {
         dispatch(DeleteProductAction({ products, index }));
     };
     console.log("products length", products.length);
+    const tableTitle = ["Product", "Name", "Price", "Quantity", "Total"];
     return (
         <Pagelayout title={`(${cartCount}) Your Shopping Cart`}>
             <Container>

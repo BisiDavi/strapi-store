@@ -22,7 +22,8 @@
     margin: 5px;
 }
 .productslider {
-    margin: 20px;
+    margin: 0 auto;
+    width: 95%;
 }
 
 .productImage {
@@ -32,11 +33,20 @@
 }
 
 .productslider button {
-    margin: 0px 20px;
+    margin: 0px -10px;
     z-index: 1;
 }
 
 .productslider button::before {
     font-size: 30px;
     color: black;
+}
+
+@media (max-width: 768px) {
+    .productslider {
+        width: 100%;
+    }
+    .productslider button {
+        margin: 0px 40px;
+    }
 }

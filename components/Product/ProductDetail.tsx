@@ -4,13 +4,13 @@ import { Image, ResponsiveImageType } from "react-datocms";
 import { useDispatch } from "react-redux";
 import { Button } from "../Button";
 import { Select } from "../Form";
-import styles from "../../styles/ProductDetail.module.css";
 import { AddToCartAction } from "../../store/actions/CartActions";
 import { useCart } from "../../hooks";
 import { displayCartSidebar } from "../../utils/menu";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import "react-toastify/dist/ReactToastify.css";
+import styles from "../../styles/ProductDetail.module.css";
 
 interface ProductDetailProps {
     product: {
@@ -53,7 +53,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     data={product.image.responsiveImage}
                 />
                 <ToastContainer
-                    position="top-left"                    
+                    position="top-left"
                     closeOnClick
                     draggable
                     pauseOnHover
