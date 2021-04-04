@@ -31,7 +31,6 @@ const CartSidebar: FC<CartSidebarProps> = ({
     const getTotalAmount = () => {
         let totalAmount = 0;
         products.map((product) => (totalAmount += product.amount));
-        console.log("total amount", totalAmount);
         return totalAmount;
     };
     const cartStyles = pushRight && { marginRight: "0px !important" };

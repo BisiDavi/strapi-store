@@ -7,7 +7,6 @@ import {
 } from "../constants";
 
 export const IncrementCounterAction = (product) => (dispatch) => {
-    console.log("payload", product);
     try {
         dispatch({
             type: INCREASE_COUNT,

@@ -40,7 +40,7 @@ const CatalogTab = () => {
                         height: 45px;
                         width: 100%;
                         display: flex;
-                        z-index: 1000;
+                        z-index: 10000;
                         align-items: center;
                         margin: auto;
                         justify-content: center;

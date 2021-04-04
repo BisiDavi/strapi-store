@@ -5,10 +5,8 @@ const Select = ({ content }) => {
     const [selectedOption, setSelectedOption] = useState("");
     const { title, options } = content;
     const optionHandler = (e) => {
-        console.log("selected", selectedOption);
         setSelectedOption(e.target.value);
     };
-    console.log("selected", selectedOption);
 
     return (
         <Form>

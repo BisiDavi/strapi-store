@@ -4,15 +4,11 @@ const useCounter = () => {
     const [counter, setCounter] = useState(1);
 
     const incrementCounter = (index) => {
-        console.log("index", index);
         setCounter(counter + 1);
-        console.log("counter", counter);
     };
 
     const decrementCounter = (index) => {
-        console.log("index", index);
         counter > 0 && setCounter(counter - 1);
-        console.log("counter", counter);
     };
 
     return { counter, incrementCounter, decrementCounter };

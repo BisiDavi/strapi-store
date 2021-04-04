@@ -80,6 +80,7 @@ const Footer = () => {
                         margin: 0px 10px;
                         color: #5c5c5c;
                         font-weight: 700;
+                        font-size: 18px;
                     }
                     .copyright i {
                         font-weight: 100 !important;

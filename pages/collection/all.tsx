@@ -7,7 +7,6 @@ import { AllWigsProps } from "../../types";
 
 const AllWigs: NextPage<AllWigsProps> = ({ products }): JSX.Element => {
     const { allProducts } = products;
-    console.log("all_products, all wigs", allProducts);
     return (
         <Pagelayout title="Get awesome wigs at an affordable price">
             <ProductsList products={allProducts} />

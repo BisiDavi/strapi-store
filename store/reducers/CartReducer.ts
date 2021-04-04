@@ -39,7 +39,6 @@ export const CartReducer = (
             return { ...state, loading: true };
         case ADD_TO_CART_SUCCESS:
             const existingProduct = doesProductExist();
-            console.log("existingProduct", existingProduct);
             let payloadObj = { ...payload, count: 1, amount: payload.price };
             if (existingProduct === undefined) {
                 return {
