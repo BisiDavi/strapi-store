@@ -13,7 +13,7 @@ import Logo from "../Icons/Logo";
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
-    const { cart, displayCart, hideCart } = useCart();
+    const { showCart, displayCart, hideCart } = useCart();
     const { products } = useSelector((state) => state.cart);
 
     const hamburgerHandler = () => setBtnstate(true);
@@ -30,9 +30,9 @@ const Nav = () => {
             </span>
             <Logo />
             <span className="cart">
-                <CartIcon cartClick={displayCart} count={productCount} />
+                <CartIcon cartClick={showCart} count={productCount} />
             </span>
-            {displayCartSidebar(cart, hideCart)}
+            {displayCartSidebar(displayCart, hideCart)}
             <style jsx>
                 {`
                     .image {

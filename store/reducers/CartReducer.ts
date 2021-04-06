@@ -1,4 +1,4 @@
-import { GetLocalStorageProducts } from "../../utils";
+import { useLocalStorage } from "../../hooks";
 import {
     ADD_CART_FROM_STORAGE,
     ADD_TO_CART_ERROR,
@@ -97,6 +97,7 @@ export const CartReducer = (
             };
 
         case ADD_CART_FROM_STORAGE:
+            const { GetLocalStorageProducts } = useLocalStorage();
             const cart = JSON.parse(GetLocalStorageProducts());
             state.products = cart;
             return { ...state, products: [...state.products] };

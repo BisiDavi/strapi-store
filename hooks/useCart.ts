@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react";
-import { GetLocalStorageProducts } from "../utils";
+import { useLocalStorage } from "../hooks";
 import { useSelector, useDispatch } from "react-redux";
 import { AddCartFromStorage } from "../store/actions/CartActions";
 
 const useCart = () => {
-    const [cart, setCart] = useState(false);
+    const [displayCart, setDisplayCart] = useState(false);
     const [countProducts, setCountProducts] = useState([]);
     const { products } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
+    const { GetLocalStorageProducts } = useLocalStorage();
 
     useEffect(() => {
         const localStorageProduct = JSON.parse(GetLocalStorageProducts());
-        setCountProducts(localStorageProduct);
+        if (localStorageProduct.length !== 0) {
+            setCountProducts(localStorageProduct);
+        }
     }, []);
 
-    let localStorageProductCount = countProducts.length;
+    let localStorageProductCount =
+        countProducts !== null ? countProducts.length : 0;
     let productCount = products.length;
 
     const addtoCartFromStorage = () => {
@@ -22,11 +26,11 @@ const useCart = () => {
             dispatch(AddCartFromStorage());
         }
     };
-    const displayCart = () => setCart(true);
-    const hideCart = () => setCart(false);
+    const showCart = () => setDisplayCart(true);
+    const hideCart = () => setDisplayCart(false);
 
     return {
-        cart,
+        showCart,
         displayCart,
         hideCart,
         products,

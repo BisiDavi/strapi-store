@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NextPage } from "next";
 import { Pagelayout } from "../container";
 import {
@@ -10,12 +10,13 @@ import {
 } from "../components";
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
-import { useCart } from "../hooks";
+import { useCart, useLocalStorage } from "../hooks";
 
 const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     const { allProducts } = productData;
-    const { addtoCartFromStorage } = useCart();
-
+    const { addtoCartFromStorage, products } = useCart();
+    const { SetCartStorage } = useLocalStorage();
+    useEffect(() => SetCartStorage(products));
     addtoCartFromStorage();
 
     return (
