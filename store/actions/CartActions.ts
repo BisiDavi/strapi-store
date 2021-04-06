@@ -1,4 +1,5 @@
 import {
+    ADD_CART_FROM_STORAGE,
     ADD_TO_CART_ERROR,
     ADD_TO_CART_REQUEST,
     ADD_TO_CART_SUCCESS,
@@ -18,6 +19,18 @@ export const AddToCartAction = (product) => (dispatch) => {
         dispatch({
             type: ADD_TO_CART_ERROR,
             error,
+        });
+    }
+};
+
+export const AddCartFromStorage = () => (dispatch) => {
+    try {
+        dispatch({
+            type: ADD_CART_FROM_STORAGE,
+        });
+    } catch (error) {
+        dispatch({
+            type: ADD_TO_CART_ERROR,
         });
     }
 };

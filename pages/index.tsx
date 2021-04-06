@@ -10,9 +10,13 @@ import {
 } from "../components";
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
+import { useCart } from "../hooks";
 
 const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     const { allProducts } = productData;
+    const { addtoCartFromStorage } = useCart();
+
+    addtoCartFromStorage();
 
     return (
         <>

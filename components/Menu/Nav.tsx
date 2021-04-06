@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+
 import { CartIcon } from "..";
 import { Hamburger } from "../Button";
 import { useCart } from "../../hooks";
@@ -11,9 +13,12 @@ import Logo from "../Icons/Logo";
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
-    const { cart, displayCart, hideCart, cartCount } = useCart();
+    const { cart, displayCart, hideCart } = useCart();
+    const { products } = useSelector((state) => state.cart);
+
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
+    const productCount = products.length;
     return (
         <nav className="nav-menu">
             <span className="hamburger">
@@ -25,7 +30,7 @@ const Nav = () => {
             </span>
             <Logo />
             <span className="cart">
-                <CartIcon cartClick={displayCart} count={cartCount} />
+                <CartIcon cartClick={displayCart} count={productCount} />
             </span>
             {displayCartSidebar(cart, hideCart)}
             <style jsx>

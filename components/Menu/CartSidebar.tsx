@@ -1,52 +1,29 @@
 import React, { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { CartSidebarProps } from "../../types";
 import Sidebar from "./Sidebar";
 import { Button } from "..";
-import styles from "../../styles/CartSidebar.module.css";
 import ShowSidebarCart from "../Cart/ShowSidebarCart";
-import {
-    DecrementCounterAction,
-    IncrementCounterAction,
-} from "../../store/actions/counterActions";
 import Link from "next/link";
 import { EmptyCart } from "../Cart";
+import { getTotalAmount } from "../../utils";
+import styles from "../../styles/CartSidebar.module.css";
+import { useCart } from "../../hooks";
 
 const CartSidebar: FC<CartSidebarProps> = ({
     onClose,
     btnClassName,
     pushRight,
 }): JSX.Element => {
-    const dispatch = useDispatch();
-    const cartState = useSelector((state) => state.cart);
-    const { products } = cartState;
-    const isCartEmpty = products.length > 0;
+    const { products } = useCart();
+    console.log("products", products);
 
-    const increaseCount = (index) => {
-        dispatch(IncrementCounterAction({ products, index }));
-    };
-    const decreaseCount = (index) => {
-        dispatch(DecrementCounterAction({ products, index }));
-    };
-    const getTotalAmount = () => {
-        let totalAmount = 0;
-        products.map((product) => (totalAmount += product.amount));
-        return totalAmount;
-    };
     const cartStyles = pushRight && { marginRight: "0px !important" };
     return (
         <div style={cartStyles} className="div">
             <Sidebar onClose={onClose} btnClassName={btnClassName} right>
-                {isCartEmpty ? (
+                {products.length > 0 ? (
                     <div className={`content ${styles.sidebarContent}`}>
-                        {products.map((product, index) => (
-                            <ShowSidebarCart
-                                key={index}
-                                product={product}
-                                increment={() => increaseCount(index)}
-                                decrement={() => decreaseCount(index)}
-                            />
-                        ))}
+                        <ShowSidebarCart products={products} />
                         <div className="seller-instruction">
                             <form>
                                 <label>Special Instructions for seller</label>
@@ -55,7 +32,7 @@ const CartSidebar: FC<CartSidebarProps> = ({
                         </div>
                         <div className="subtotal">
                             <h3>Subtotal</h3>
-                            <p>${getTotalAmount()}</p>
+                            <p>${getTotalAmount(products)}</p>
                         </div>
                         <p>
                             Tax included.{" "}

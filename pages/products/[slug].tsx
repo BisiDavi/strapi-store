@@ -13,7 +13,7 @@ import {
 } from "../../lib";
 import ErrorPage from "next/error";
 import ProductSlider from "../../components/Slider/ProductSlider";
-import PersistCart from "../../utils/persistCart";
+import { SetCartStorage } from "../../utils";
 
 const ProductPage: NextPage<ProductpageProps> = ({
     seoData,
@@ -23,7 +23,7 @@ const ProductPage: NextPage<ProductpageProps> = ({
     const cartState = useSelector((state) => state.cart);
     const { products } = cartState;
     useEffect(() => {
-        PersistCart(products);
+        SetCartStorage(products);
     }, [cartState]);
 
     const router = useRouter();

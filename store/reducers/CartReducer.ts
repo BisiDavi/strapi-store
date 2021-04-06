@@ -1,4 +1,6 @@
+import { GetLocalStorageProducts } from "../../utils";
 import {
+    ADD_CART_FROM_STORAGE,
     ADD_TO_CART_ERROR,
     ADD_TO_CART_REQUEST,
     ADD_TO_CART_SUCCESS,
@@ -56,6 +58,7 @@ export const CartReducer = (
                     products: [...state.products],
                 };
             }
+
         case INCREASE_COUNT:
             const increaseQuantity = CartCounter(
                 state.products[payload.index].count,
@@ -69,6 +72,7 @@ export const CartReducer = (
                 ...state,
                 products: [...state.products],
             };
+
         case DECREASE_COUNT:
             const decreaseQuantity = CartCounter(
                 state.products[payload.index].count,
@@ -84,16 +88,25 @@ export const CartReducer = (
                 ...state,
                 products: [...state.products],
             };
+
         case DELETE_PRODUCT:
             deleteProduct(state, payload);
             return {
                 ...state,
                 products: [...state.products],
             };
+
+        case ADD_CART_FROM_STORAGE:
+            const cart = JSON.parse(GetLocalStorageProducts());
+            state.products = cart;
+            return { ...state, products: [...state.products] };
+
         case ADD_TO_CART_ERROR:
             return { ...state, error: payload };
+
         case COUNT_ERROR:
             return { ...state, error: payload };
+
         default:
             return state;
     }

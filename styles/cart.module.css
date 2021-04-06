@@ -1,18 +1,42 @@
-.table td {
-    vertical-align: middle;
-    height: 50px;
-    font-size: 20px;
-    width: 200px;
-    text-align: center;
+.cartTable {
+    width: 100%;
+    margin-bottom: 20px;
 }
-
 .productImage {
     height: 250px;
+    margin: 10px;
+}
+
+.cartItem {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    place-items: center;
+    font-size: 20px;
+}
+
+.title,
+.cartItem {
+    border-bottom: 1px solid gray;
+}
+
+.cartItem input {
+    width: 100px;
 }
 
 .title {
     color: #ffa6ca;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     font: 700 normal 20px/22px "Karla";
+    text-align: center;
+    margin: 20px 0px 0px 0px;
+}
+
+.name {
+    color: #ffa6ca;
+    font: 700 normal 20px/22px "Karla";
+    text-align: center;
+    font-size: 35px;
 }
 
 .title svg {
@@ -29,11 +53,7 @@
     border: none;
 }
 
-.table td h3 {
-    text-align: center;
-}
-
-.table textarea {
+.cartTable textarea {
     height: 150px;
     width: 500px;
     display: flex;
@@ -44,6 +64,10 @@
 .textareaRow p {
     cursor: pointer;
     text-align: left;
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-style: italic;
 }
 
 .textareaRow p:hover {
@@ -92,7 +116,23 @@ span.emptycart a:hover {
     border: none;
 }
 
-.table thead th {
-    text-align: center;
-    font-size: 22px;
+.subtotal h2 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.subtotal a button {
+    font-size: 25px;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+}
+
+.name svg {
+    cursor: pointer;
+}
+
+.calculator {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
