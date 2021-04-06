@@ -5,22 +5,18 @@ import CollectionView from "./CollectionView";
 const Collections = () => {
     const collections = [
         {
-            img: "/customwig_temp.webp",
+            img: "/customwig.webp",
             name: "Customize Your Own Unit!",
             text: "Buy your custom wig, at an affordable rate",
         },
         {
-            img: "/stylewig_temp.webp",
+            img: "/stylewig.webp",
             name: "Signature Style Wigs",
             text: "Get awesome signature wigs.",
         },
+
         {
-            img: "/bundle_temp.png",
-            name: "Provide your own wig bundle",
-            text: "Do you want a wig bundle?",
-        },
-        {
-            img: "/shipCollection_temp.webp",
+            img: "/shipWig.webp",
             name: "Ready to Ship wigs",
             text: "Oh yes, All wigs are available for shipping.",
         },
@@ -30,13 +26,15 @@ const Collections = () => {
             {collections.map((collection) => (
                 <CollectionView key={uuidv4()} collection={collection} />
             ))}
-
             <style jsx>
                 {`
                     .collections {
                         display: grid;
-                        grid-template-columns: repeat(4, 1fr);
-                        grid-gap: 25px;
+                        grid-template-columns: repeat(
+                            auto-fill,
+                            minmax(450px, 1fr)
+                        );
+                        grid-gap: 35px;
                         margin: 50px 30px;
                     }
                     @media (max-width: 768px) {
