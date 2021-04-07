@@ -34,6 +34,9 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     console.log("url", url);
     const getToken = async () => {
         await fetch(`/api/instagram/${authCode}`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
             method: "POST",
         })
             .then((response) => console.log("response", response))
