@@ -2,7 +2,7 @@ import axios from "axios";
 import Cors from "cors";
 
 const cors = Cors({
-    methods: ["POST", "HEAD"],
+    methods: ["POST", "HEAD", "OPTIONS"],
 });
 
 function runMiddleware(req, res, fn) {
