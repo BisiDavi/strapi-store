@@ -23,7 +23,6 @@ const ProductPage: NextPage<ProductpageProps> = ({
     const { addtoCartFromStorage, products, cartState } = useCart();
     const { SetCartStorage } = useLocalStorage();
     useEffect(() => SetCartStorage(products), [cartState]);
-    addtoCartFromStorage();
 
     const router = useRouter();
 
