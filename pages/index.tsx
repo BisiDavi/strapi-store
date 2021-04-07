@@ -15,12 +15,7 @@ import { HomeProps } from "../types";
 import { GetInstagramAuthCode } from "../utils";
 import axios from "axios";
 
-const Home: NextPage<HomeProps> = ({
-    productData,
-    seoData,
-    query,
-}): JSX.Element => {
-    console.log("query", query);
+const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     const { allProducts } = productData;
     const [authToken, setAuthToken] = useState(null);
 
@@ -39,10 +34,11 @@ const Home: NextPage<HomeProps> = ({
     console.log("url", url);
     const getToken = async () => {
         await axios
-            .post(url, {
+            .post(`/api/instagram/${authCode}`, {
                 headers: {
                     "Access-Control-Allow-Origin": "*",
                     crossorigin: true,
+                    withCredentials: true,
                 },
             })
             .then((response) => console.log("response", response))
@@ -65,7 +61,8 @@ const Home: NextPage<HomeProps> = ({
     );
 };
 
-export async function getStaticProps() {
+export async function getStaticProps(ctx) {
+    console.log("ctx", ctx);
     const graphqlRequest = await request({
         query: HOMEPAGE_QUERY,
         variables: { limit: 8 },
