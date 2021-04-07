@@ -14,6 +14,7 @@ import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
 import { GetInstagramAuthCode } from "../utils";
 import axios from "axios";
+import useSWR from "swr";
 
 const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     const { allProducts } = productData;
@@ -32,17 +33,13 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     const authCode = authToken !== null && authToken;
     const url = `${process.env.NEXT_PUBLIC_TOKEN_BASE_URL}/oauth/access_token/client_id=${process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID}/client_secret=${process.env.NEXT_PUBLIC_CLIENT_SECRET}/grant_type=authorization_code/redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}/code=${authCode}`;
     console.log("url", url);
-    const getToken = async () => {
-        await axios
-            .post(`/api/instagram/${authCode}`, {
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    crossorigin: true,
-                    withCredentials: true,
-                },
-            })
-            .then((response) => console.log("response", response))
-            .catch((error) => console.log("error", error));
+
+    const fetcher = (url) => fetch(url).then((res) => res.json());
+
+    const getToken = () => {
+        const { data, error } = useSWR(`/api/instagram/${authCode}`, fetcher);
+        console.log("data", data);
+        return { data, isError: error };
     };
     if (authToken !== null) getToken();
     return (
@@ -61,8 +58,7 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     );
 };
 
-export async function getStaticProps(ctx) {
-    console.log("ctx", ctx);
+export async function getStaticProps() {
     const graphqlRequest = await request({
         query: HOMEPAGE_QUERY,
         variables: { limit: 8 },
