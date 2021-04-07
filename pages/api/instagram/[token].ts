@@ -25,7 +25,7 @@ const InstagramtokenHandler = async (req, res) => {
     await runMiddleware(req, res, cors);
     axios
         .post(url)
-        .then(({ data }) => res.status(200).json({ data }))
+        .then(({ data }) => console.log("data", data))
         .catch((error) => console.log("error", error));
 };
 
