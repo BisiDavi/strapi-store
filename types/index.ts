@@ -82,4 +82,5 @@ export interface AllWigsProps {
 export interface HomeProps {
     productData: any;
     seoData: {};
+    query: any;
 }

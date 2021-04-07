@@ -39,8 +39,8 @@ const Collections = () => {
                     }
                     @media (max-width: 768px) {
                         .collections {
-                            grid-template-columns: repeat(2, 1fr);
-                            margin: 30px;
+                            grid-template-columns: 1fr;
+                            margin: 20px 30px;
                         }
                     }
                 `}

@@ -13,7 +13,12 @@ import {
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
 
-const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
+const Home: NextPage<HomeProps> = ({
+    productData,
+    seoData,
+    query,
+}): JSX.Element => {
+    console.log("query", query);
     const { allProducts } = productData;
     const { addtoCartFromStorage } = useCart();
     useEffect(() => addtoCartFromStorage());
@@ -33,7 +38,8 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     );
 };
 
-export async function getStaticProps() {
+export async function getStaticProps({ query }) {
+    console.log("query", query);
     const graphqlRequest = await request({
         query: HOMEPAGE_QUERY,
         variables: { limit: 8 },
@@ -51,6 +57,7 @@ export async function getStaticProps() {
         props: {
             productData: graphqlRequest,
             seoData: seoRequest,
+            query,
         },
     };
 }
