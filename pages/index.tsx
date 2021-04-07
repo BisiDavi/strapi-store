@@ -8,6 +8,7 @@ import {
     Collections,
     ProductsList,
     Newsletter,
+    InstagramSlider,
 } from "../components";
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
@@ -25,6 +26,7 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
                     <ProductsList products={allProducts} />
                     <Newsletter />
                     <SelfiesBanner />
+                    <InstagramSlider />
                 </div>
             </Pagelayout>
         </>

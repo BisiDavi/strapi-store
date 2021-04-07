@@ -12,14 +12,14 @@ const config = withPurgeCss({
 if (process.env.NODE_ENV === "development") {
     module.exports = {
         images: {
-            domains: ["localhost"],
+            domains: ["localhost","scontent-lga3-1.cdninstagram.com"],
         },
         config,
     };
 } else if (process.env.NODE_ENV === "production") {
     module.exports = {
         images: {
-            domains: ["res.cloudinary.com"],
+            domains: ["res.cloudinary.com", "scontent-lga3-1.cdninstagram.com"],
         },
         config,
     };

@@ -15,6 +15,7 @@ export { default as Mailinglist } from "./MailList/MailList";
 export { default as MailButton } from "./MailList/MailButton";
 
 export { default as HomepageSlider } from "./Slider/HomepageSlider";
+export { default as InstagramSlider } from "./Slider/InstagramSlider";
 export { default as Loading } from "./loader/Loading";
 export { default as Newsletter } from "./Newsletter";
 export { default as Header } from "./Header/Header";
