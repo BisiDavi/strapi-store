@@ -15,7 +15,6 @@ const CartSidebar: FC<CartSidebarProps> = ({
     pushRight,
 }): JSX.Element => {
     const { products } = useCart();
-    console.log("products", products);
 
     const cartStyles = pushRight && { marginRight: "0px !important" };
     return (

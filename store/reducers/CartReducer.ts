@@ -98,7 +98,7 @@ export const CartReducer = (
 
         case ADD_CART_FROM_STORAGE:
             const { GetLocalStorageProducts } = useLocalStorage();
-            const cart = JSON.parse(GetLocalStorageProducts());
+            const cart = GetLocalStorageProducts();
             state.products = cart;
             return { ...state, products: [...state.products] };
 

@@ -21,8 +21,7 @@ const Pagelayout: FC<PagecontainerProps> = ({
     const [promoDisplay, setPromoDisplay] = useState(true);
     const promoHandler = () => setPromoDisplay(false);
     const [mailModal, setMailModal] = useState(false);
-    const { addtoCartFromStorage, productCount } = useCart();
-    useEffect(() => addtoCartFromStorage(), []);
+    
     const pageTitle = product
         ? title
         : `Jenjen's Luxury hair & beauty | ${title}`;
@@ -36,8 +35,7 @@ const Pagelayout: FC<PagecontainerProps> = ({
                       )
                     : null}
             </Head>
-            <Header
-                productCount={productCount}
+            <Header                
                 promoHandler={promoHandler}
                 promoDisplay={promoDisplay}
             />

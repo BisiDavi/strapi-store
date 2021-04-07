@@ -10,10 +10,10 @@ import {
 } from "../../utils/menu";
 import Logo from "../Icons/Logo";
 
-const Nav = ({productCount}) => {
+const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
     const { showCart, displayCart, hideCart } = useCart();
-
+    const { productCount } = useCart();
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
     return (

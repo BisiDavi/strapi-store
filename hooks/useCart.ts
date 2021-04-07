@@ -3,24 +3,26 @@ import { useLocalStorage } from "../hooks";
 import { useSelector, useDispatch } from "react-redux";
 import { AddCartFromStorage } from "../store/actions/CartActions";
 
+// lsProduct means localStorageProducts
 const useCart = () => {
     const [displayCart, setDisplayCart] = useState(false);
-    const [countProducts, setCountProducts] = useState([]);
+    const [lsProducts, setLsProducts] = useState([]);
     const cartState = useSelector((state) => state.cart);
     const { products } = cartState;
     const dispatch = useDispatch();
     const { GetLocalStorageProducts } = useLocalStorage();
 
     useEffect(() => {
-        const localStorageProduct = JSON.parse(GetLocalStorageProducts());
-        if (localStorageProduct.length !== 0) {
-            setCountProducts(localStorageProduct);
+        const getLsProduct = GetLocalStorageProducts();
+        if (getLsProduct.length !== 0) {
+            setLsProducts(getLsProduct);
         }
-    }, [cartState]);
+    }, []);
 
-    let localStorageProductCount =
-        countProducts !== null ? countProducts.length : 0;
+
+    let localStorageProductCount = lsProducts !== null ? lsProducts.length : 0;
     let productCount = products.length;
+
 
     const addtoCartFromStorage = () => {
         if (localStorageProductCount !== 0 && productCount === 0) {

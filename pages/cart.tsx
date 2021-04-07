@@ -9,7 +9,6 @@ const Cart = () => {
     const [showTextarea, setShowTextarea] = useState(false);
     const displayShowTextarea = () => setShowTextarea(!showTextarea);
 
-    console.log("products", products);
     return (
         <Pagelayout title={`(${productCount}) Your Shopping Cart`}>
             <Container>

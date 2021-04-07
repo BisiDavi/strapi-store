@@ -1,12 +1,12 @@
 import React from "react";
 import { AlertBanner, Nav, PromoBanner } from "..";
 
-const Header = ({ promoDisplay, promoHandler, productCount }) => {
+const Header = ({ promoDisplay, promoHandler }) => {
     return (
         <div className="header">
             {promoDisplay && <AlertBanner displayHandler={promoHandler} />}
             <PromoBanner />
-            <Nav productCount={productCount} />
+            <Nav />
         </div>
     );
 };

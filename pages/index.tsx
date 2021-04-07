@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
+import { useCart } from "../hooks";
 import { Pagelayout } from "../container";
 import {
     SelfiesBanner,
@@ -13,7 +14,8 @@ import { HomeProps } from "../types";
 
 const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     const { allProducts } = productData;
-   
+    const { addtoCartFromStorage } = useCart();
+    useEffect(() => addtoCartFromStorage());
     return (
         <>
             <Pagelayout metaTags={seoData} title="Welcome">

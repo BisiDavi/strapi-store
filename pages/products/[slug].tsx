@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { ProductpageProps } from "../../types";
@@ -20,7 +19,7 @@ const ProductPage: NextPage<ProductpageProps> = ({
     product,
     otherProducts,
 }): JSX.Element => {
-    const { addtoCartFromStorage, products, cartState } = useCart();
+    const { products, cartState } = useCart();
     const { SetCartStorage } = useLocalStorage();
     useEffect(() => SetCartStorage(products), [cartState]);
 
