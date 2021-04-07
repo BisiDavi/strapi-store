@@ -33,12 +33,18 @@ const Home: NextPage<HomeProps> = ({
             setAuthToken(authToken);
         }
     }, []);
+    console.log("auth token", authToken);
     const authCode = authToken !== null && authToken;
     const url = `${process.env.NEXT_PUBLIC_TOKEN_BASE_URL}/oauth/access_token/client_id=${process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID}/client_secret=${process.env.NEXT_PUBLIC_CLIENT_SECRET}/grant_type=authorization_code/redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}/code=${authCode}`;
     console.log("url", url);
     const getToken = async () => {
         await axios
-            .post(url)
+            .post(url, {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    crossorigin: true,
+                },
+            })
             .then((response) => console.log("response", response))
             .catch((error) => console.log("error", error));
     };

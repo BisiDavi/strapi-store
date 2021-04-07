@@ -3,7 +3,6 @@ import Image from "next/image";
 import InstagramMedia from "./instagram.json";
 
 const InstagramSlider = () => {
-    console.log(",InstagramMedia", InstagramMedia);
     return (
         <div className="medias">
             {InstagramMedia.map((media, index) => (
