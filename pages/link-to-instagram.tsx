@@ -1,6 +1,9 @@
 import React from "react";
 import { Pagelayout } from "../container";
 
+// GetInstagramShortToken
+
+
 const InstagramAccess = () => {
     return (
         <Pagelayout title="link-to-instagram">

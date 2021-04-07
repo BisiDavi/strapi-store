@@ -13,6 +13,7 @@
     "dependencies": {
         "@types/react": "^17.0.3",
         "algoliasearch": "^4.8.6",
+        "axios": "^0.21.1",
         "bootstrap": "^4.6.0",
         "cors": "^2.8.5",
         "graphql": "^15.5.0",

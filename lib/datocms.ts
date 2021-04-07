@@ -7,7 +7,6 @@ interface requestProps {
 }
 
 export function request({ query, variables, preview }: requestProps) {
-    let errorLog;
     const endpoint = preview
         ? `https://graphql.datocms.com/preview`
         : "https://graphql.datocms.com/";
