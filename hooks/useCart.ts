@@ -16,7 +16,7 @@ const useCart = () => {
         if (localStorageProduct.length !== 0) {
             setCountProducts(localStorageProduct);
         }
-    }, [cartState, products]);
+    }, [cartState]);
 
     let localStorageProductCount =
         countProducts !== null ? countProducts.length : 0;

@@ -6,7 +6,8 @@ const useLocalStorage = () => {
 
     const GetLocalStorageProducts = () => {
         const productFromStorage = localStorage.getItem("cart");
-        return productFromStorage;
+        const checkStorage = productFromStorage !== null && productFromStorage;
+        return checkStorage;
     };
 
     return {

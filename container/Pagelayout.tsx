@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Head from "next/head";
 import { PagecontainerProps } from "../types";
 import { useCart } from "../hooks";
@@ -22,7 +22,7 @@ const Pagelayout: FC<PagecontainerProps> = ({
     const promoHandler = () => setPromoDisplay(false);
     const [mailModal, setMailModal] = useState(false);
     const { addtoCartFromStorage, productCount } = useCart();
-    addtoCartFromStorage();
+    useEffect(() => addtoCartFromStorage(), []);
     const pageTitle = product
         ? title
         : `Jenjen's Luxury hair & beauty | ${title}`;
