@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 
 import { CartIcon } from "..";
 import { Hamburger } from "../Button";
@@ -11,14 +10,12 @@ import {
 } from "../../utils/menu";
 import Logo from "../Icons/Logo";
 
-const Nav = () => {
+const Nav = ({productCount}) => {
     const [btnState, setBtnstate] = useState(false);
     const { showCart, displayCart, hideCart } = useCart();
-    const { products } = useSelector((state) => state.cart);
 
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
-    const productCount = products.length;
     return (
         <nav className="nav-menu">
             <span className="hamburger">

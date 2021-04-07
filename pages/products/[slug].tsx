@@ -12,19 +12,18 @@ import {
     HOMEPAGE_QUERY,
 } from "../../lib";
 import ErrorPage from "next/error";
+import { useCart, useLocalStorage } from "../../hooks";
 import ProductSlider from "../../components/Slider/ProductSlider";
-import { SetCartStorage } from "../../utils";
 
 const ProductPage: NextPage<ProductpageProps> = ({
     seoData,
     product,
     otherProducts,
 }): JSX.Element => {
-    const cartState = useSelector((state) => state.cart);
-    const { products } = cartState;
-    useEffect(() => {
-        SetCartStorage(products);
-    }, [cartState]);
+    const { addtoCartFromStorage, products, cartState } = useCart();
+    const { SetCartStorage } = useLocalStorage();
+    useEffect(() => SetCartStorage(products), [cartState]);
+    addtoCartFromStorage();
 
     const router = useRouter();
 

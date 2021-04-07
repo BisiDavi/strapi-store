@@ -26,14 +26,14 @@ interface ProductDetailProps {
 const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
     const dispatch = useDispatch();
     const router = useRouter();
-    const { cart, displayCart, hideCart } = useCart();
+    const { displayCart, showCart, hideCart } = useCart();
     const rushOrderDropdown = {
         title: "--Choose Rush Order--",
         options: ["--Choose Rush Order--", "Rush My Orders (+$55.00)"],
     };
     const addToCartHandler = () => {
         const { image, title, price } = product;
-        displayCart();
+        showCart();
         toast.success("Product added to Cart");
         dispatch(AddToCartAction({ image, title, price }));
     };
@@ -72,7 +72,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     </Link>{" "}
                     calculated at checkout.
                 </p>
-                {displayCartSidebar(cart, hideCart)}
+                {displayCartSidebar(displayCart, hideCart)}
 
                 <span className={styles.btnGrp}>
                     <Select content={rushOrderDropdown} />

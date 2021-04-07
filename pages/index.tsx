@@ -10,15 +10,10 @@ import {
 } from "../components";
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
-import { useCart, useLocalStorage } from "../hooks";
 
 const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     const { allProducts } = productData;
-    const { addtoCartFromStorage, products } = useCart();
-    const { SetCartStorage } = useLocalStorage();
-    useEffect(() => SetCartStorage(products));
-    addtoCartFromStorage();
-
+   
     return (
         <>
             <Pagelayout metaTags={seoData} title="Welcome">

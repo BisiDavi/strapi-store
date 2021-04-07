@@ -6,7 +6,8 @@ import { AddCartFromStorage } from "../store/actions/CartActions";
 const useCart = () => {
     const [displayCart, setDisplayCart] = useState(false);
     const [countProducts, setCountProducts] = useState([]);
-    const { products } = useSelector((state) => state.cart);
+    const cartState = useSelector((state) => state.cart);
+    const { products } = cartState;
     const dispatch = useDispatch();
     const { GetLocalStorageProducts } = useLocalStorage();
 
@@ -15,7 +16,7 @@ const useCart = () => {
         if (localStorageProduct.length !== 0) {
             setCountProducts(localStorageProduct);
         }
-    }, []);
+    }, [cartState, products]);
 
     let localStorageProductCount =
         countProducts !== null ? countProducts.length : 0;
@@ -34,6 +35,7 @@ const useCart = () => {
         displayCart,
         hideCart,
         products,
+        cartState,
         productCount,
         addtoCartFromStorage,
     };

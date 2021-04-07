@@ -2,7 +2,6 @@ import React, { FC, useState, useEffect } from "react";
 import styles from "../../styles/CartSidebar.module.css";
 import { Image } from "react-datocms";
 import { useDispatch } from "react-redux";
-import { GetLocalStorageProducts } from "../../utils";
 
 import {
     DecrementCounterAction,

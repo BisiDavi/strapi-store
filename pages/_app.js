@@ -14,6 +14,7 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 const MyApp = ({ Component, pageProps }) => {
     const [loading, setLoading] = useState(false);
+    
     useEffect(() => {
         const start = () => {
             setLoading(true);
