@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./collection.module.css";
 import { CollectionViewProps } from "../../types";
@@ -7,17 +8,21 @@ const CollectionView = ({ collection }: CollectionViewProps): JSX.Element => {
     return (
         <div className="collectionView">
             <span>
-                <Image
-                    src={collection.img}
-                    alt={collection.name}
-                    height={400}
-                    width={400}
-                    className={styles.collectionImg}
-                    layout="responsive"
-                />
-                <div className={styles.backside}>
-                    <h4>{collection.text}</h4>
-                </div>
+                <Link href={collection.link} passHref>
+                    <a>
+                        <Image
+                            src={collection.img}
+                            alt={collection.name}
+                            height={400}
+                            width={400}
+                            className={styles.collectionImg}
+                            layout="responsive"
+                        />
+                        <div className={styles.backside}>
+                            <h4>{collection.text}</h4>
+                        </div>
+                    </a>
+                </Link>
             </span>
             <div className="title">
                 <h4>{collection.name}</h4>

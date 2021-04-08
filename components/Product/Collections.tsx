@@ -13,7 +13,7 @@ const Collections = () => {
         {
             img: "/stylewig.webp",
             name: "Signature Style Wigs",
-            link: "/ready-to-ship",
+            link: "/signature-style-wigs",
             text: "Get awesome signature wigs.",
         },
 

@@ -34,7 +34,7 @@ export interface HamburgerProps {
 }
 
 export interface CollectionViewProps {
-    collection: Record<"img" | "name" | "text", string>;
+    collection: Record<"img" | "name" | "text" | "link", string>;
 }
 
 export interface IProduct {
