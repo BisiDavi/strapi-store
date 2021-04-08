@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Pagelayout } from "../../container";
 
-const BuildYourWig = () => {
+const SignatureWigs = () => {
     return (
         <Pagelayout title="Ready To Ship">
             <Container fluid>
@@ -14,4 +14,4 @@ const BuildYourWig = () => {
     );
 };
 
-export default BuildYourWig;
+export default SignatureWigs;

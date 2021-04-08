@@ -1,9 +1,10 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { ProductsList } from "../../components";
 import { Pagelayout } from "../../container";
 import { READY_TO_SHIP_QUERY, request } from "../../lib";
 
-const ReadyToShip = () => {
+const ReadyToShip = ({ shipWigs }) => {
     return (
         <Pagelayout title="Ready To Ship">
             <Container fluid>
@@ -19,6 +20,9 @@ const ReadyToShip = () => {
                             rightly.
                         </p>
                     </Col>
+                    <Col lg={12} xs={12}>
+                        <ProductsList products={shipWigs} />
+                    </Col>
                 </Row>
             </Container>
         </Pagelayout>
@@ -28,7 +32,6 @@ const ReadyToShip = () => {
 export async function getStaticProps() {
     const graphqlRequest = await request({
         query: READY_TO_SHIP_QUERY,
-        variables: { limit: 4 },
     });
 
     return {

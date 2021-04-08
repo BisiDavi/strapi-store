@@ -7,17 +7,20 @@ const Collections = () => {
         {
             img: "/customwig.webp",
             name: "Customize Your Own Unit!",
+            link: "/buy-your-custom-wig",
             text: "Buy your custom wig, at an affordable rate",
         },
         {
             img: "/stylewig.webp",
             name: "Signature Style Wigs",
+            link: "/ready-to-ship",
             text: "Get awesome signature wigs.",
         },
 
         {
             img: "/shipWig.webp",
             name: "Ready to Ship wigs",
+            link: "/ready-to-ship",
             text: "Oh yes, All wigs are available for shipping.",
         },
     ];
