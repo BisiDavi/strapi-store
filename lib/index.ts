@@ -4,4 +4,5 @@ export {
     PRODUCTPAGE_QUERY,
     SEO_QUERY,
     FETCH_ALL_PRODUCT_QUERY,
+    READY_TO_SHIP_QUERY
 } from "./api";

@@ -109,3 +109,29 @@ export const FETCH_ALL_PRODUCT_QUERY = `query FetchAllProduct{
     }
   }
 }`;
+
+export const READY_TO_SHIP_QUERY = `query ReadytoShip($limit:IntType){
+  allProducts(first:$limit) {
+    description
+    title
+    price
+    slug
+    id
+    image {
+      url
+      responsiveImage(imgixParams: {h: "400", w:"400",  fit: max,}) {
+          srcSet
+          webpSrcSet
+          sizes
+          src
+          width
+          height
+          aspectRatio
+          alt
+          title
+          base64
+          bgColor
+      }
+    }
+  }
+}`;
