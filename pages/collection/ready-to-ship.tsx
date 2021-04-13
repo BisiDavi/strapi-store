@@ -5,6 +5,8 @@ import { Pagelayout } from "../../container";
 import { READY_TO_SHIP_QUERY, request } from "../../lib";
 
 const ReadyToShip = ({ shipWigs }) => {
+    console.log("ship wigs", shipWigs);
+    const { allProducts } = shipWigs;
     return (
         <Pagelayout title="Ready To Ship">
             <Container fluid>
@@ -21,7 +23,7 @@ const ReadyToShip = ({ shipWigs }) => {
                         </p>
                     </Col>
                     <Col lg={12} xs={12}>
-                        <ProductsList products={shipWigs} />
+                        <ProductsList products={allProducts} />
                     </Col>
                 </Row>
             </Container>
