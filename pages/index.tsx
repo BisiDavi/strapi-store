@@ -14,8 +14,13 @@ import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
 import { GetInstagramAuthCode } from "../utils";
 import axios from "axios";
+import connectToDatabase from "../middlewares/database";
 
-const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
+const Home: NextPage<HomeProps> = ({
+    productData,
+    seoData,
+    isConnected,
+}): JSX.Element => {
     const { allProducts } = productData;
     const [authToken, setAuthToken] = useState(null);
 
@@ -30,11 +35,10 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     }, []);
     console.log("auth token", authToken);
     const authCode = authToken !== null && authToken;
-    // const url = `${process.env.NEXT_PUBLIC_TOKEN_BASE_URL}/oauth/access_token/client_id=${process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID}/client_secret=${process.env.NEXT_PUBLIC_CLIENT_SECRET}/grant_type=authorization_code/redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}/code=${authCode}`;
-    // console.log("url", url);
+    isConnected && console.log("You are connected to mongoDB!");
     const getToken = async () =>
         await axios
-            .post(`/api/instagram-access/${authCode}`)
+            .post(`/api/instagram/${authCode}`)
             .then((response) => console.log("response", response))
             .catch((error) => console.log("error", error));
 
@@ -55,7 +59,9 @@ const Home: NextPage<HomeProps> = ({ productData, seoData }): JSX.Element => {
     );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
+    const { client } = await connectToDatabase();
+    const isConnected = await client.isConnected();
     const graphqlRequest = await request({
         query: HOMEPAGE_QUERY,
         variables: { limit: 8 },
@@ -73,6 +79,7 @@ export async function getStaticProps() {
         props: {
             productData: graphqlRequest,
             seoData: seoRequest,
+            isConnected,
         },
     };
 }

@@ -1,6 +1,6 @@
 const withPurgeCss = require("next-purgecss");
 
-const config = withPurgeCss({
+const cssConfig = withPurgeCss({
     purgeCssPaths: ["pages/**/*", "components/**/*"],
     purgeCss: {
         whitelist: () => ["player"],
@@ -15,7 +15,15 @@ if (process.env.NODE_ENV === "development") {
         images: {
             domains: ["localhost", "scontent-lga3-1.cdninstagram.com"],
         },
-        config,
+        webpack: (config, { isServer }) => {
+            if (!isServer) {
+                config.node = {
+                    fs: "empty",
+                };
+            }
+            return config;
+        },
+        cssConfig,
         async rewrites() {
             return [
                 {
@@ -30,7 +38,15 @@ if (process.env.NODE_ENV === "development") {
         images: {
             domains: ["res.cloudinary.com", "scontent-lga3-1.cdninstagram.com"],
         },
-        config,
+        cssConfig,
+        webpack: (config, { isServer }) => {
+            if (!isServer) {
+                config.node = {
+                    fs: "empty",
+                };
+            }
+            return config;
+        },
         async rewrites() {
             return [
                 {

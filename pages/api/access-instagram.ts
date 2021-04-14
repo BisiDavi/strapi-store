@@ -1,3 +1,4 @@
+import nc from 'next-connect'
 import axios from "axios";
 
 const AccessInstagramHandler = async (req, res) => {

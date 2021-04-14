@@ -83,4 +83,5 @@ export interface HomeProps {
     productData: any;
     seoData: {};
     query: any;
+    isConnected: any;
 }

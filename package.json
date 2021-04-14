@@ -20,6 +20,7 @@
         "graphql-request": "^3.4.0",
         "http-proxy-middleware": "^1.1.0",
         "mongodb": "^3.6.5",
+        "nanoid": "^3.1.22",
         "next": "latest",
         "next-auth": "^3.13.3",
         "next-connect": "^0.10.1",
