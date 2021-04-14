@@ -13,6 +13,7 @@ const Product: FC<ProductProps> = ({ product }): JSX.Element => {
                         <Image
                             className={styles.product}
                             data={product.image.responsiveImage}
+                            
                         />
                     </div>
                     <div className={styles.backView}>

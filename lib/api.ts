@@ -7,7 +7,7 @@ export const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
     id
     image {
       url
-      responsiveImage(imgixParams: {h: "400", w:"400",  fit: max,}) {
+      responsiveImage(imgixParams: {auto:format,q:60, h: 700, w:700, fit:crop}) {
           srcSet
           webpSrcSet
           sizes
@@ -118,11 +118,19 @@ export const READY_TO_SHIP_QUERY = `query ReadytoShip{
     slug
     id
     image {
-      responsiveImage {
-        alt
-        base64
-        bgColor
-        title
+      url
+      responsiveImage(imgixParams: {auto:format,q:60, h: 500, w:500, fit:crop}) {
+          srcSet
+          webpSrcSet
+          sizes
+          src
+          width
+          height
+          aspectRatio
+          alt
+          title
+          base64
+          bgColor
       }
     }
   }

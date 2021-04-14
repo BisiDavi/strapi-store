@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { IProduct } from "../../types";
 import Product from "./Product";
 
@@ -19,6 +18,7 @@ const ProductsList: FC<productsProps> = ({ products }): JSX.Element => {
                     grid-template-columns: repeat(4, 1fr);
                     grid-gap: 35px;
                     padding: 0px 30px;
+                    margin: 20px 0px;
                 }
                 @media (max-width: 768px) {
                     .products {
