@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
 import style from "../../styles/ProductSlider.module.css";
 import { useCurrency } from "../../hooks";
-import { useDispatch } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -67,7 +66,7 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                                 data={slider.image.responsiveImage}
                             />
                             <div className="product-info">
-                                <div className="title">
+                                <div className={`${style.info} title`}>
                                     <h4>{slider.title}</h4>
                                     <h6>
                                         {symbol}

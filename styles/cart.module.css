@@ -3,7 +3,7 @@
     margin-bottom: 20px;
 }
 .productImage {
-    height: 250px;
+    height: 200px;
     margin: 10px;
 }
 
@@ -135,4 +135,16 @@ span.emptycart a:hover {
 .calculator {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+}
+
+.price img,
+.priceAmount img {
+    height: 20px;
+    width: 20px;
+    margin: 0px 3px;
 }

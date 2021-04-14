@@ -62,7 +62,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                 />
             </div>
             <div className="product_column_1 flex-column">
-                <span className="info">
+                <span className={`${styles.info} info`}>
                     <h1>{product.title}</h1>
                     <h4>
                         {symbol}
@@ -114,10 +114,6 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
 
                 .product p {
                     font-size: 25px;
-                }
-                .info h4 {
-                    display: flex;
-                    align-items: center;
                 }
                 .product h1 {
                     font-weight: bold;

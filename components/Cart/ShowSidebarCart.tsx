@@ -1,8 +1,8 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC } from "react";
 import styles from "../../styles/CartSidebar.module.css";
 import { Image } from "react-datocms";
 import { useDispatch } from "react-redux";
-
+import { useCurrency } from "../../hooks";
 import {
     DecrementCounterAction,
     IncrementCounterAction,
@@ -15,6 +15,8 @@ const ShowSidebarCart: FC<ShowSidebarCartProps> = ({
     products,
 }): JSX.Element => {
     const dispatch = useDispatch();
+    const { priceExchange, symbol } = useCurrency();
+
     const increaseCount = (index) => {
         dispatch(IncrementCounterAction({ products, index }));
     };
@@ -50,11 +52,13 @@ const ShowSidebarCart: FC<ShowSidebarCartProps> = ({
                                         +
                                     </button>
                                 </div>
-                                <div className="price">
-                                    Price: ${product.price}
+                                <div className={`${styles.price} price`}>
+                                    Price: {symbol}
+                                    {priceExchange(product.price)}
                                 </div>
-                                <div className="amount">
-                                    Amount: ${product.amount}
+                                <div className={`${styles.priceAmount} amount`}>
+                                    Amount: {symbol}
+                                    {priceExchange(product.amount)}
                                 </div>
                             </div>
                         </div>

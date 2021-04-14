@@ -2,7 +2,7 @@ import React from "react";
 import { Image } from "react-datocms";
 import { FcFullTrash } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-
+import { useCurrency } from "../../hooks";
 import { DeleteProductAction } from "../../store/actions/counterActions";
 import { Button } from "../.";
 import styles from "../../styles/cart.module.css";
@@ -11,6 +11,8 @@ import { getTotalAmount } from "../../utils";
 const CartTable = (props) => {
     const { products, displayShowTextarea, showTextarea } = props;
     console.log("products", products);
+    const { priceExchange, symbol } = useCurrency();
+
     const tableTitle = ["Product", "Name", "Price", "Quantity", "Total"];
     const dispatch = useDispatch();
     const deleteProduct = (index) => {
@@ -45,7 +47,10 @@ const CartTable = (props) => {
                                     onClick={() => deleteProduct(index)}
                                 />
                             </div>
-                            <div>${product.price}</div>
+                            <div className={styles.price}>
+                                {symbol}
+                                {priceExchange(product.price)}
+                            </div>
                             <div>
                                 <input
                                     onChange={inputHandler(index)}
@@ -53,7 +58,10 @@ const CartTable = (props) => {
                                     type="number"
                                 />
                             </div>
-                            <div>${product.amount}</div>
+                            <div className={styles.price}>
+                                {symbol}
+                                {priceExchange(product.amount)}
+                            </div>
                         </div>
                     ))}
                 <div className={styles.calculator}>
@@ -66,7 +74,10 @@ const CartTable = (props) => {
                     <div className={styles.subtotal}>
                         <div>
                             <h3>Subtotal</h3>
-                            <h2>${getTotalAmount(products)}</h2>
+                            <h2 className={styles.price}>
+                                {symbol}
+                                {priceExchange(getTotalAmount(products))}
+                            </h2>
                             <p>
                                 Tax included. Shipping calculated at checkout.
                             </p>

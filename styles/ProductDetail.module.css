@@ -17,6 +17,17 @@
     flex-direction: column;
 }
 
+.info h4 {
+    display: flex;
+    align-items: center;
+}
+
+.info h4 img {
+    height: 30px;
+    width: 30px;
+    margin: 0px 2px;
+}
+
 .btnGrp button {
     margin: 8px 0px;
     border-radius: 0px;

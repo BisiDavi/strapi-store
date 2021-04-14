@@ -7,7 +7,7 @@ import Link from "next/link";
 import { EmptyCart } from "../Cart";
 import { getTotalAmount } from "../../utils";
 import styles from "../../styles/CartSidebar.module.css";
-import { useCart } from "../../hooks";
+import { useCart, useCurrency } from "../../hooks";
 
 const CartSidebar: FC<CartSidebarProps> = ({
     onClose,
@@ -15,6 +15,7 @@ const CartSidebar: FC<CartSidebarProps> = ({
     pushRight,
 }): JSX.Element => {
     const { products } = useCart();
+    const { priceExchange, symbol } = useCurrency();
 
     const cartStyles = pushRight && { marginRight: "0px !important" };
     return (
@@ -31,7 +32,10 @@ const CartSidebar: FC<CartSidebarProps> = ({
                         </div>
                         <div className="subtotal">
                             <h3>Subtotal</h3>
-                            <p>${getTotalAmount(products)}</p>
+                            <p className={styles.price}>
+                                {symbol}
+                                {priceExchange(getTotalAmount(products))}
+                            </p>
                         </div>
                         <p>
                             Tax included.{" "}
