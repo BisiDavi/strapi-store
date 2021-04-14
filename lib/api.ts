@@ -93,7 +93,7 @@ export const FETCH_ALL_PRODUCT_QUERY = `query FetchAllProduct{
     id
     image {
       url
-      responsiveImage(imgixParams: {h: "400", w:"400",  fit: max,}) {
+      responsiveImage(imgixParams: {auto:format, q:60, h:400, w:400,  fit: crop,}) {
           srcSet
           webpSrcSet
           sizes
