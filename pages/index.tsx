@@ -36,12 +36,15 @@ const Home: NextPage<HomeProps> = ({
     console.log("auth token", authToken);
     const authCode = authToken !== null && authToken;
     isConnected && console.log("You are connected to mongoDB!");
-    const getToken = async () =>
-        await axios
-            .post(`/api/instagram/${authCode}`)
+
+    async function getToken() {
+        await fetch(`/api/instagram/${authCode}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+        })
             .then((response) => console.log("response", response))
             .catch((error) => console.log("error", error));
-
+    }
     if (authToken !== null) getToken();
     return (
         <>
