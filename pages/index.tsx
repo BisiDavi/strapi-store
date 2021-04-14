@@ -13,7 +13,6 @@ import {
 import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
 import { GetInstagramAuthCode } from "../utils";
-import axios from "axios";
 import connectToDatabase from "../middlewares/database";
 
 const Home: NextPage<HomeProps> = ({
@@ -25,7 +24,12 @@ const Home: NextPage<HomeProps> = ({
     const [authToken, setAuthToken] = useState(null);
 
     const { addtoCartFromStorage } = useCart();
-    useEffect(() => addtoCartFromStorage());
+
+    useEffect(() => {
+        if (localStorage.getItem("cart") !== null) {
+            addtoCartFromStorage();
+        }
+    });
 
     useEffect(() => {
         if (window.location.search.includes("code")) {
@@ -62,7 +66,7 @@ const Home: NextPage<HomeProps> = ({
     );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
     const { client } = await connectToDatabase();
     const isConnected = await client.isConnected();
     const graphqlRequest = await request({

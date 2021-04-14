@@ -1,6 +1,8 @@
 const useLocalStorage = () => {
     const SetCartStorage = (cart) => {
-        localStorage.setItem("cart", JSON.stringify(cart));
+        if (localStorage.getItem("cart") === null) {
+            return localStorage.setItem("cart", JSON.stringify(cart));
+        }
     };
 
     const GetLocalStorageProducts = () => {
