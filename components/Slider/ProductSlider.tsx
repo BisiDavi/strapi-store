@@ -123,6 +123,12 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                     h1{
                         font-size:7vw;
                     }
+                    .product-info{
+                        margin: 0px;
+                    }
+                    .product-info p{
+                        margin-bottom:5px;
+                    }
                 }
              }
             `}</style>

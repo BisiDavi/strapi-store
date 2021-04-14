@@ -8,12 +8,7 @@ const useCurrency = () => {
         let newPrice = currency.value * price;
         return newPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
-    const symbol =
-        currency.name === "Dollar" ? (
-            "$"
-        ) : (
-            <img height="30px" width="30px" src="/naira.svg" />
-        );
+    const symbol = currency.name === "Dollar" ? "$" : <span>&#8358;</span>;
     return {
         priceExchange,
         symbol,
@@ -21,7 +16,3 @@ const useCurrency = () => {
 };
 
 export default useCurrency;
-
-// function numberWithCommas(x) {
-//     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-// }

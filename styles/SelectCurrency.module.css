@@ -10,3 +10,11 @@
     border-bottom-right-radius: 10px;
     background: black;
 }
+
+@media (max-width: 768px) {
+    .selectCurrency {
+        width: 125px;
+        font-size: 14px;
+        padding: 6px 10px 0px 10px;
+    }
+}
