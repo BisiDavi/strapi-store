@@ -8,6 +8,7 @@ import {
     DECREASE_COUNT,
     DELETE_PRODUCT,
     INCREASE_COUNT,
+    SELECT_CURRENCY,
 } from "../constants";
 import { CartCounter, deleteProduct, ProductAmount } from "../utils/cart";
 
