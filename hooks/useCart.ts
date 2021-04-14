@@ -17,6 +17,7 @@ const useCart = () => {
         if (getLsProduct.length !== 0) {
             setLsProducts(getLsProduct);
         }
+        addtoCartFromStorage();
     }, []);
 
     let localStorageProductCount = lsProducts !== null ? lsProducts.length : 0;
