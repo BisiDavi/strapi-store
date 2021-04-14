@@ -18,7 +18,7 @@ const Product: FC<ProductProps> = ({ product }): JSX.Element => {
                         />
                     </div>
                     <div className={styles.backView}>
-                        <h1>{product.title}</h1>
+                         <h1>{product.title}</h1>
                         <h3>
                             {symbol}
                             {priceExchange(product.price)}

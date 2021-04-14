@@ -11,6 +11,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "../../styles/ProductDetail.module.css";
+import { useCurrency } from "../../hooks";
 
 interface ProductDetailProps {
     product: {
@@ -25,6 +26,7 @@ interface ProductDetailProps {
 
 const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
     const dispatch = useDispatch();
+    const { priceExchange, symbol } = useCurrency();
     const router = useRouter();
     const { displayCart, showCart, hideCart } = useCart();
     const rushOrderDropdown = {
@@ -62,7 +64,10 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
             <div className="product_column_1 flex-column">
                 <span className="info">
                     <h1>{product.title}</h1>
-                    <h4>${product.price}</h4>
+                    <h4>
+                        {symbol}
+                        {priceExchange(product.price)}
+                    </h4>
                 </span>
                 <p className="description">{product.description}</p>
                 <p className="tax">
@@ -109,6 +114,10 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
 
                 .product p {
                     font-size: 25px;
+                }
+                .info h4 {
+                    display: flex;
+                    align-items: center;
                 }
                 .product h1 {
                     font-weight: bold;

@@ -4,6 +4,8 @@ import { Image } from "react-datocms";
 import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
 import style from "../../styles/ProductSlider.module.css";
+import { useCurrency } from "../../hooks";
+import { useDispatch } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -12,6 +14,7 @@ interface ProductSliderProps {
 }
 
 const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
+    const { priceExchange, symbol } = useCurrency();
     const settings = {
         dots: false,
         infinite: true,
@@ -66,7 +69,10 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                             <div className="product-info">
                                 <div className="title">
                                     <h4>{slider.title}</h4>
-                                    <h6>${slider.price}</h6>
+                                    <h6>
+                                        {symbol}
+                                        {priceExchange(slider.price)}
+                                    </h6>
                                 </div>
                                 <p>{slider.description}</p>
                             </div>
@@ -97,6 +103,15 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                     color: black;
                     display:flex;
                     flex-direction:column;
+                }
+                .title h6{
+                    display:flex;
+                    align-items:center;
+                }
+                .title h6 img{
+                    height:20px;
+                    width:20px;
+                    margin:0px 2px;
                 }
                 .product-info h4 {
                     font-size: 25px;
