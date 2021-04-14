@@ -34,11 +34,12 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                 },
             },
             {
-                breakpoint: 600,
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: false,
                 },
             },
             {
@@ -46,6 +47,7 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
+                    dots: false,
                 },
             },
         ],
@@ -119,15 +121,21 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                     font-size: 20px;
                     font-weight: bold;
                 }
+
                 @media(max-width:768px){
                     h1{
-                        font-size:7vw;
+                        font-size:4vw;
                     }
                     .product-info{
                         margin: 0px;
                     }
                     .product-info p{
                         margin-bottom:5px;
+                    }
+                }
+                @media (max-width:450px){
+                    h1{
+                        font-size:6vw;
                     }
                 }
              }

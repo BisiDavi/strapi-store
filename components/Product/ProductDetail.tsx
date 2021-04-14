@@ -134,6 +134,9 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         flex-direction: column;
                         width: 100%;
                     }
+                    .product-image {
+                        margin: 20px;
+                    }
                     .product_column_1 .info {
                         display: flex;
                         align-items: center;
