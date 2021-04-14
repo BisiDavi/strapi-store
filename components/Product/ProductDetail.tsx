@@ -103,6 +103,9 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     display: flex;
                     flex-direction: column;
                 }
+                .product-image {
+                    margin: 50px;
+                }
 
                 .product p {
                     font-size: 25px;
