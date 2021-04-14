@@ -25,3 +25,5 @@ export { default as ProductsList } from "./Product/ProductsList";
 export { default as Collections } from "./Product/Collections";
 
 export { default as CatalogTab } from "./Tab/CatalogTab";
+
+export { default as SelectCurrencyDropdown } from "./Currency/SelectCurrency";

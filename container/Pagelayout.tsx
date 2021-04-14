@@ -8,9 +8,10 @@ import {
     MailButton,
     Mailinglist,
     CatalogTab,
+    SelectCurrencyDropdown,
 } from "../components";
 import { renderMetaTags } from "react-datocms";
-// import Whatsappchat from "../components/ChatWidget/Whatsappchat";
+import Whatsappchat from "../components/ChatWidget/Whatsappchat";
 
 const Pagelayout: FC<PagecontainerProps> = ({
     title,
@@ -43,7 +44,8 @@ const Pagelayout: FC<PagecontainerProps> = ({
             <MailButton showMail={() => setMailModal(true)} />
             <Mailinglist show={mailModal} onHide={() => setMailModal(false)} />
             {children}
-            {/* <Whatsappchat /> */}
+            <Whatsappchat />
+            <SelectCurrencyDropdown />
             <Footer />
         </div>
     );

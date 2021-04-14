@@ -1,30 +1,32 @@
 import React from "react";
-import { Dropdown, Form } from "react-bootstrap";
-import { FiDollarSign } from "react-icons/fi";
-import { DropdownButton } from "../Button";
-import Naira from "../Icons/Naira";
+import { useDispatch } from "react-redux";
+import { Form } from "react-bootstrap";
+import { SelectCurrency } from "../../store/actions/currencyAction";
+import styles from "../../styles/SelectCurrency.module.css";
 
-const SelectCurrency = (): JSX.Element => {
-    const dropdownValues = [
-        { name: "Dollar", value: 1 },
-        { name: "Naira", value: 460 },
-    ];
-    const symbol = (currency) =>
-        currency.name === "Dollar" ? <FiDollarSign /> : <Naira />;
+const SelectCurrencyDropdown = (): JSX.Element => {
+    const dispatch = useDispatch();
+    const dropdownValues = {
+        dollar: { name: "Dollar", value: 1 },
+        naira: { name: "Naira", value: 460 },
+    };
+    const selectHandler = (e) => {
+        console.log("select value", e.target.value);
+        return e.target.value === "Dollar"
+            ? dispatch(SelectCurrency(dropdownValues.dollar))
+            : dispatch(SelectCurrency(dropdownValues.naira));
+    };
     return (
-        <Form>
+        <Form className={styles.selectCurrency}>
             <Form.Group controlId="currency.SelectCustom">
-                <Form.Label>Currency</Form.Label>
-                <Form.Control as="select" custom>
-                    {dropdownValues.map((dropdown) => (
-                        <option value={dropdown}>
-                            {dropdown.name} ({symbol(dropdown)})
-                        </option>
-                    ))}
+                <Form.Label>Select Currency</Form.Label>
+                <Form.Control onChange={selectHandler} as="select" custom>
+                    <option value="Dollar">Dollar ($)</option>
+                    <option value="Naira">Naira (NGN)</option>
                 </Form.Control>
             </Form.Group>
         </Form>
     );
 };
 
-export default SelectCurrency;
+export default SelectCurrencyDropdown;
