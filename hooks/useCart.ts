@@ -7,6 +7,7 @@ import { AddCartFromStorage } from "../store/actions/CartActions";
 const useCart = () => {
     const [displayCart, setDisplayCart] = useState(false);
     const [lsProducts, setLsProducts] = useState([]);
+    const { SetCartStorage } = useLocalStorage();
     const cartState = useSelector((state) => state.cart);
     const { products } = cartState;
     const dispatch = useDispatch();
@@ -17,8 +18,13 @@ const useCart = () => {
         if (getLsProduct.length !== 0) {
             setLsProducts(getLsProduct);
         }
+        console.log("product", products);
         addtoCartFromStorage();
-    }, []);
+    });
+
+    useEffect(() => SetCartStorage(products), [cartState]);
+
+    console.log("lsProducts", lsProducts);
 
     let localStorageProductCount = lsProducts !== null ? lsProducts.length : 0;
     let productCount = products.length;

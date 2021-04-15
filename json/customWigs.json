@@ -1,0 +1,103 @@
+[
+    {
+        "name": "Unit Type *",
+        "type": "select",
+        "content": ["--Choose Unit type--", "Closure", "Frontal +$50.00"]
+    },
+    {
+        "name": "Circumference *",
+        "type": "select",
+        "content": ["--Choose Circumference--", 20, 21, 21.5, 22, 22.5, 23, 24]
+    },
+    {
+        "name": "Length: Bundle Deals/Mixed Lengths *",
+        "type": "select",
+        "content": [
+            "--Choose Length: Bundle Deals/Mixed Lengths--",
+            "16 16 16 (+$125.00)",
+            "18 18 18 (+$130.00)",
+            "18 20 20 (+$140.00)",
+            "20 20 20 (+$150.00)",
+            "20 20 22 (+$150.00)",
+            "22 22 22 (+$160.00)",
+            "20 24 24 (+$165.00)",
+            "24 24 24 (+$175.00)",
+            "24 24 26 (+$180.00)",
+            "24 26 26 (+$185.00)",
+            "26 26 26 (+$195.00)",
+            "24 26 28 (+$200.00)",
+            "26 26 28 (+$210.00)",
+            "28 28 28 (+$220.00)",
+            "28 28 30 (+$245.00)",
+            "30 30 30 (+$260.00)"
+        ]
+    },
+    {
+        "name": "Texture *",
+        "type": "select",
+        "content": [
+            "--Choose Texture--",
+            "Straight",
+            "Body Wave",
+            "Malaysian(+$95.00)"
+        ]
+    },
+    {
+        "name": "Parting *",
+        "type": "select",
+        "content": [
+            "--Choose Parting--",
+            "Left Side Part",
+            "Middle Part",
+            "Right Side Part"
+        ]
+    },
+    {
+        "name": "Style *",
+        "type": "select",
+        "content": [
+            "--Choose Style--",
+            "Bone Straight (+$25.00)",
+            "Body Curl/LooseCurls (+$30.00)",
+            "Pin Curls/Vixen Curls (+$40.00)",
+            "Wand Curls (+$45.00)",
+            "No Style/Natural State"
+        ]
+    },
+    {
+        "name": " Add A Bundle",
+        "type": "select",
+        "content": [
+            "--Choose Add A Bundle--",
+            "18 (+50.00)",
+            "20 (+$60.00)",
+            "22 (+$70.00)",
+            "24 (+$80.00)",
+            "26 (+$90.00)",
+            "30 (+$115.00)"
+        ]
+    },
+    {
+        "name": "Baby Hair",
+        "type": "boolean"
+    },
+    {
+        "name": "Upgrade Closure Size",
+        "type": "select",
+        "content": [
+            "--Choose Upgrade Closure Size --",
+            "HD 4X4 closure (+$65.00)",
+            "5 x 5 Closure (+$85.00)",
+            "HD 5 x 5 Closure (+$105.00)"
+        ]
+    },
+    {
+        "name": "Elastic Band",
+        "type": "button"
+    },
+    {
+        "name": "Rush My Order",
+        "type": "select",
+        "content": ["--Choose Rush My Order--", "Rush My Order (+$150.00)"]
+    }
+]
