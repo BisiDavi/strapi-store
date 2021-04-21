@@ -18,39 +18,59 @@ const CustomWig = () => {
         elasticBand: "",
         RushMyOrder: "",
     });
-    const selectDropdown = () =>
-        customWigs.map((customWig) => (
-            <Form.Group controlId={customWig.name}>
-                <Form.Label>{customWig.name}</Form.Label>
-                <Form.Control as="select" custom>
-                    {customWig.content.map((wig) => (
-                        <option value={wig}>{wig}</option>
-                    ))}
-                </Form.Control>
-            </Form.Group>
-        ));
 
-    const buttonGrp = () => {
+    const buttonGrp = (input, index) => {
         return (
-            <div className="buttonGrp">
-                <Button text="Yes" />
-                <Button text="No" />
+            <div key={index} className="buttonGroup">
+                <p>{input.name}</p>
+                <div className="buttonGrp">
+                    <Button text="Yes" />
+                    <Button text="No" />
+                </div>
             </div>
         );
     };
 
-    const inputType = (type) => {
-        switch (type) {
+    const checkBox = (form) => (
+        <Form.Group controlId={form.name}>
+            {form.content.map((item, index) => (
+                <Form.Check key={index} type="checkbox" label={item} />
+            ))}
+        </Form.Group>
+    );
+
+    const selectDropdown = (wigs, index) => (
+        <Form.Group key={index} controlId={wigs.name}>
+            <Form.Label>{wigs.name}</Form.Label>
+            <Form.Control as="select" custom>
+                {wigs.content.map((wigOption, index) => (
+                    <option key={index} value={wigOption}>
+                        {wigOption}
+                    </option>
+                ))}
+            </Form.Control>
+        </Form.Group>
+    );
+
+    const fieldType = (input, index) => {
+        switch (input.type) {
             case "select":
-                return selectDropdown();
-            case "boolean":
-                return buttonGrp();
+                return selectDropdown(input, index);
+            case "button":
+                return buttonGrp(input, index);
+            case "checkbox":
+                return checkBox(input);
             default:
-                break;
+                return null;
         }
     };
+
+    const displayWigDropdown = () => {
+        return customWigs.map((wig, index) => fieldType(wig, index));
+    };
+
     return (
-        <Pagelayout title="Ready To Ship">
+        <Pagelayout title="Buy your custom wig">
             <HomepageSlider />
             <Container>
                 <Row>
@@ -61,9 +81,9 @@ const CustomWig = () => {
 
                         <span className="order-control my-3 p-2">
                             <Form>
-                                {customWigs.map((wig) => inputType(wig.type))}
+                                {displayWigDropdown()}
+                                <Button bgColor="black" text="Add to Cart" />
                             </Form>
-                            <Button bgColor="black" text="Add to Cart" />
                         </span>
                     </Col>
                     <Col lg={9} xs={9}>

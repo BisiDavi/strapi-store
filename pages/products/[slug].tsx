@@ -22,7 +22,7 @@ const ProductPage: NextPage<ProductpageProps> = ({
     const { products, cartState } = useCart();
     const { SetCartStorage } = useLocalStorage();
     useEffect(() => SetCartStorage(products), [cartState]);
-
+    console.log("products", product);
     const router = useRouter();
 
     if (!router.isFallback && !product?.slug) {

@@ -80,6 +80,11 @@
     margin: 0px 10px;
 }
 
+.otherImages {
+    margin: 10px;
+    border: 2px solid white;
+}
+
 @media (max-width: 425px) {
     .btnGrp form,
     .btnGrp button {
@@ -107,7 +112,7 @@
 
 @media (min-width: 1800px) {
     .product {
-        height: 90%;
+        height: unset;
         width: 90%;
     }
 }

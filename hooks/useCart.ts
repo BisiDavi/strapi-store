@@ -20,9 +20,9 @@ const useCart = () => {
         }
         console.log("product", products);
         addtoCartFromStorage();
-    });
+    }, []);
 
-    useEffect(() => SetCartStorage(products), [cartState]);
+    useEffect(() => SetCartStorage(products), []);
 
     console.log("lsProducts", lsProducts);
 

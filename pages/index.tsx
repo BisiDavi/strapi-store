@@ -14,6 +14,7 @@ import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
 import { HomeProps } from "../types";
 import { GetInstagramAuthCode } from "../utils";
 import connectToDatabase from "../middlewares/database";
+import { Viewmore } from "../components/Button";
 
 const Home: NextPage<HomeProps> = ({
     productData,
@@ -57,6 +58,7 @@ const Home: NextPage<HomeProps> = ({
                     <HomepageSlider />
                     <Collections />
                     <ProductsList products={allProducts} />
+                    <Viewmore />
                     <Newsletter />
                     <SelfiesBanner />
                     <InstagramSlider />
@@ -71,7 +73,7 @@ export async function getServerSideProps() {
     const isConnected = await client.isConnected();
     const graphqlRequest = await request({
         query: HOMEPAGE_QUERY,
-        variables: { limit: 8 },
+        variables: { limit: 12 },
     });
     const seoRequest = await request({
         query: SEO_QUERY,

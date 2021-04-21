@@ -25,6 +25,8 @@ interface ProductDetailProps {
 }
 
 const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
+    const { wigImages }: any = product;
+    console.log("wigImages", wigImages);
     const dispatch = useDispatch();
     const { priceExchange, symbol } = useCurrency();
     const router = useRouter();
@@ -48,37 +50,51 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
         router.push("/checkout");
     };
     return (
-        <div className="product">
-            <div className="product-image">
-                <Image
-                    className={styles.product}
-                    data={product.image.responsiveImage}
-                />
-                <ToastContainer
-                    position="top-left"
-                    closeOnClick
-                    draggable
-                    pauseOnHover
-                />
+        <div className="product-page">
+            <div className="product">
+                <div className="product-image">
+                    <Image
+                        className={styles.product}
+                        data={product.image.responsiveImage}
+                    />
+                    <ToastContainer
+                        position="top-left"
+                        closeOnClick
+                        draggable
+                        pauseOnHover
+                    />
+                </div>
+                <div className="product_column_1 flex-column">
+                    <div className="other-image">
+                        {wigImages.map((wig, index) => (
+                            <Image
+                                key={index}
+                                className={styles.otherImages}
+                                data={wig.responsiveImage}
+                            />
+                        ))}
+                    </div>
+                    {displayCartSidebar(displayCart, hideCart)}
+                </div>
             </div>
-            <div className="product_column_1 flex-column">
-                <span className={`${styles.info} info`}>
-                    <h1>{product.title}</h1>
-                    <h4>
-                        {symbol}
-                        {priceExchange(product.price)}
-                    </h4>
-                </span>
-                <p className="description">{product.description}</p>
-                <p className="tax">
-                    Tax included.{" "}
-                    <Link href="/policy/delivery-policy" passHref>
-                        <a>Shipping</a>
-                    </Link>{" "}
-                    calculated at checkout.
-                </p>
-                {displayCartSidebar(displayCart, hideCart)}
-
+            <div className="product-description">
+                <div className="product-text">
+                    <span className={`${styles.info} info`}>
+                        <h1>{product.title}</h1>
+                        <h4>
+                            {symbol}
+                            {priceExchange(product.price)}
+                        </h4>
+                    </span>
+                    <p className="description">{product.description}</p>
+                    <p className="tax">
+                        Tax included.{" "}
+                        <Link href="/policy/delivery-policy" passHref>
+                            <a>Shipping</a>
+                        </Link>{" "}
+                        calculated at checkout.
+                    </p>
+                </div>
                 <span className={styles.btnGrp}>
                     <Select content={rushOrderDropdown} />
 
@@ -102,6 +118,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     />
                 </span>
             </div>
+
             <style jsx>{`
                 .product_column_1 {
                     justify-content: center;
@@ -109,18 +126,42 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     flex-direction: column;
                 }
                 .product-image {
-                    margin: 50px;
+                    margin: 50px 0px 0px 0px;
+                }
+                .other-image {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    padding: 50px 0px;
                 }
 
-                .product p {
+                .product-description {
+                    display: flex;
+                    width: 80%;
+                    margin: 20px 80px;
+                }
+                .product-text {
+                    width: 50%;
+                    margin-right: 40px;
+                }
+                .info {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-right: 50px;
+                }
+                .product-description p {
                     font-size: 25px;
                 }
-                .product h1 {
+                .product-description h1 {
                     font-weight: bold;
                 }
-                .product h4 {
+                .product-description h4 {
                     font-size: 35px;
                     font-weight: bold;
+                }
+                @media (min-width: 1400px) {
+                    .other-image {
+                        grid-template-rows: 425px 425px;
+                    }
                 }
                 @media (min-width: 600px) {
                     .product {

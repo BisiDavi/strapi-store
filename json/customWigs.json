@@ -79,7 +79,8 @@
     },
     {
         "name": "Baby Hair",
-        "type": "boolean"
+        "type": "checkbox",
+        "content": ["Yes", "No"]
     },
     {
         "name": "Upgrade Closure Size",

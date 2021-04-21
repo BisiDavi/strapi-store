@@ -7,7 +7,7 @@ export const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
     id
     image {
       url
-      responsiveImage(imgixParams: {auto:format,q:60, h: 600, w:600, fit:crop}) {
+      responsiveImage(imgixParams: {auto:format,q:60, h: 700, w:700, fit:crop}) {
           srcSet
           webpSrcSet
           sizes
@@ -25,29 +25,45 @@ export const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
 }`;
 
 export const PRODUCTPAGE_QUERY = `query Productpage($slug: String) {
-    allProducts(filter: {slug: {eq: $slug}}) {
-      description
-      title
-      price
-      slug
-      id
-      image {
-        responsiveImage(imgixParams: {auto:format,q:60, h: 700, w:700, fit:crop}) {
-          srcSet
-          webpSrcSet
-          sizes
-          src
-          width
-          height
-          aspectRatio
-          alt
-          title
-          base64
-          bgColor
-        }
+  allProducts(filter: {slug: {eq: $slug}}) {
+    description
+    title
+    price
+    slug
+    id
+    image {
+      responsiveImage(imgixParams: {auto: format, q: 60, h: 800, w: 800, fit: crop}) {
+        srcSet
+        webpSrcSet
+        sizes
+        src
+        width
+        height
+        aspectRatio
+        alt
+        title
+        base64
+        bgColor
       }
     }
-  }`;
+    wigImages {
+      responsiveImage (imgixParams: {auto: format, q: 60, h: 300, w: 300, fit: crop}) {
+        srcSet
+        webpSrcSet
+        sizes
+        src
+        width
+        height
+        aspectRatio
+        alt
+        title
+        base64
+        bgColor
+      }
+    }
+  }
+}
+`;
 
 export const SEO_QUERY = `
   {
@@ -135,3 +151,30 @@ export const READY_TO_SHIP_QUERY = `query ReadytoShip{
     }
   }
 }`;
+
+export const SIGNATURE_WIGS = `query SignatureWigs {
+  allProducts(filter: {signatureWigs: {eq: "true"}}) {
+    description
+    title
+    price
+    slug
+    id
+    image {
+      url
+      responsiveImage(imgixParams: {auto: format, q: 60, h: 500, w: 500, fit: crop}) {
+        srcSet
+        webpSrcSet
+        sizes
+        src
+        width
+        height
+        aspectRatio
+        alt
+        title
+        base64
+        bgColor
+      }
+    }
+  }
+}
+`;

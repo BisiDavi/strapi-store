@@ -8,10 +8,13 @@ interface productsProps {
 
 const ProductsList: FC<productsProps> = ({ products }): JSX.Element => {
     return (
-        <div className="products">
-            {products.map((product) => (
-                <Product key={product.id} product={product} />
-            ))}
+        <div className="storeProducts">
+            <div className="products">
+                {products.map((product) => (
+                    <Product key={product.id} product={product} />
+                ))}
+            </div>
+            
             <style jsx>{`
                 .products {
                     display: grid;

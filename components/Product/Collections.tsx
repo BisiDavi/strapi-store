@@ -29,6 +29,7 @@ const Collections = () => {
             {collections.map((collection) => (
                 <CollectionView key={uuidv4()} collection={collection} />
             ))}
+
             <style jsx>
                 {`
                     .collections {
@@ -40,6 +41,7 @@ const Collections = () => {
                         grid-gap: 35px;
                         margin: 50px 30px;
                     }
+
                     @media (max-width: 768px) {
                         .collections {
                             grid-template-columns: 1fr;

@@ -4,13 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 import { Hamburger } from "../Button";
 import { menuProps, sidebarProps } from "../../types";
 
-export const displayMenu: FC<menuProps[]> = (menus) => {
+export const displayMenu: FC<menuProps[]> = (menus, linkType) => {
     return (
         <ul className="menulist">
             {menus.map((menu) => (
                 <li key={uuidv4()}>
                     <Link href={menu.link} passHref>
-                        <a>{menu.name}</a>
+                        <a className={linkType}>{menu.name}</a>
                     </Link>
                 </li>
             ))}
@@ -21,6 +21,13 @@ export const displayMenu: FC<menuProps[]> = (menus) => {
                 a:hover {
                     text-decoration: none;
                 }
+                a.menu {
+                    font-size: 25px;
+                }
+                a.submenu {
+                    font-size: 20px;
+                }
+
                 li {
                     margin: 15px 0px;
                 }

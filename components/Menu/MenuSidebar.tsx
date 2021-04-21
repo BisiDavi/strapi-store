@@ -9,12 +9,15 @@ const MenuSidebar: FC<sidebarProps> = ({
 }): JSX.Element => {
     const menuArr = {
         menus: [
-            { name: "All Products", link: "#all-products" },
+            { name: "All Products", link: "/collection/all" },
             {
-                name: "Provide Your Own Bundles",
-                link: "#provide-your-own-bundles",
+                name: "Customize Your Own Unit!",
+                link: "/collection/buy-your-custom-wig",
             },
-            { name: "Signature Style Wigs", link: "#signature-style-wigs" },
+            {
+                name: "Signature Style Wigs",
+                link: "/collection/signature-style-wigs",
+            },
         ],
         submenus: [
             { name: "Log in", link: "#login" },
@@ -32,9 +35,9 @@ const MenuSidebar: FC<sidebarProps> = ({
     return (
         <Sidebar onClose={onClose} btnClassName={btnClassName}>
             <>
-                <div className={styles.menus}>{displayMenu(menuArr.menus)}</div>
+                <div className={styles.menus}>{displayMenu(menuArr.menus, 'menu')}</div>
                 <div className={styles.submenu}>
-                    {displayMenu(menuArr.submenus)}
+                    {displayMenu(menuArr.submenus, 'submenu')}
                 </div>
             </>
         </Sidebar>
