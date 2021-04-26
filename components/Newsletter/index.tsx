@@ -58,7 +58,7 @@ const Newsletter = () => {
 
                 @media (max-width: 576px) {
                     .newsletter {
-                        background: url("/mainBg.webp");
+                        background: url("/floralBg.webp");
                         background-size: cover;
                         position: relative;
                         height: 200px;
