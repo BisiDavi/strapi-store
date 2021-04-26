@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { NextPage } from "next";
-import { useCart } from "../hooks";
 import { Pagelayout } from "../container";
 import {
     SelfiesBanner,
@@ -23,14 +22,6 @@ const Home: NextPage<HomeProps> = ({
 }): JSX.Element => {
     const { allProducts } = productData;
     const [authToken, setAuthToken] = useState(null);
-
-    const { addtoCartFromStorage } = useCart();
-
-    useEffect(() => {
-        if (localStorage.getItem("cart") !== null) {
-            addtoCartFromStorage();
-        }
-    });
 
     useEffect(() => {
         if (window.location.search.includes("code")) {

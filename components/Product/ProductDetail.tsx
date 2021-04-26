@@ -51,32 +51,32 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
     };
     return (
         <div className="product-page">
-            <div className="product">
-                <div className="product-image">
+            <div className="productGrid">
+                <div className="mainWigImage">
                     <Image
                         className={styles.product}
                         data={product.image.responsiveImage}
                     />
-                    <ToastContainer
-                        position="top-left"
-                        closeOnClick
-                        draggable
-                        pauseOnHover
-                    />
                 </div>
-                <div className="product_column_1 flex-column">
-                    <div className="other-image">
-                        {wigImages.map((wig, index) => (
-                            <Image
-                                key={index}
-                                className={styles.otherImages}
-                                data={wig.responsiveImage}
-                            />
-                        ))}
+                {wigImages.map((wig, index) => (
+                    <div className={`wigImage column-${index}`}>
+                        <Image
+                            key={index}
+                            className={styles.otherImages}
+                            data={wig.responsiveImage}
+                        />
                     </div>
-                    {displayCartSidebar(displayCart, hideCart)}
-                </div>
+                ))}
             </div>
+
+            <ToastContainer
+                position="top-left"
+                closeOnClick
+                draggable
+                pauseOnHover
+            />
+
+            {displayCartSidebar(displayCart, hideCart)}
             <div className="product-description">
                 <div className="product-text">
                     <span className={`${styles.info} info`}>
@@ -164,9 +164,16 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     }
                 }
                 @media (min-width: 600px) {
-                    .product {
+                    .productGrid {
                         display: grid;
-                        grid-template-columns: 1fr 1fr;
+                        grid-template-columns: 2fr 1fr 1fr;
+                        grid-template-rows: 1fr 1fr;
+                        grid-gap: 15px;
+                        margin: 30px;
+                    }
+                    .mainWigImage {
+                        grid-column: 1;
+                        grid-row: 1/3;
                     }
                 }
                 @media (max-width: 599px) {

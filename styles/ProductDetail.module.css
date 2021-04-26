@@ -1,5 +1,5 @@
 .product {
-    margin: 10px auto;
+    margin: 7px 10px;
 }
 
 .addToCart {
@@ -81,7 +81,7 @@
 }
 
 .otherImages {
-    margin: 10px;
+    margin: 3px;
     border: 2px solid white;
 }
 
@@ -112,8 +112,8 @@
 
 @media (min-width: 1800px) {
     .product {
-        height: unset;
-        width: 90%;
+        height: 100%;
+        width: 100%;
     }
 }
 @media (max-width: 480px) {

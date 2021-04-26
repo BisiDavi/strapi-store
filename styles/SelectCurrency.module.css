@@ -9,6 +9,7 @@
     color: white;
     border-bottom-right-radius: 10px;
     background: black;
+    z-index: 100;
 }
 
 @media (max-width: 768px) {

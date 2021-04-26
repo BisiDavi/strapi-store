@@ -14,7 +14,7 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 const MyApp = ({ Component, pageProps }) => {
     const [loading, setLoading] = useState(false);
-    
+
     useEffect(() => {
         const start = () => {
             setLoading(true);
@@ -49,6 +49,7 @@ const MyApp = ({ Component, pageProps }) => {
                     integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
                     crossOrigin="anonymous"
                 />
+                <script src="https://www.paypal.com/sdk/js?client-id=AcP5kjoPdLOpeNujacudxWPynh-ucYPekVXxWKdVk48JvhJErKVvVNo65BUrFNPETweN-zUz6Na5Y4aL"></script>
             </Head>
 
             {loading && <Loading />}

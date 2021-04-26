@@ -1,6 +1,7 @@
 import React from "react";
 
 const CartIcon = ({ count, cartClick }) => {
+    console.log("count| cartIcon", count);
     return (
         <div onClick={cartClick} className="cartIcon">
             <svg

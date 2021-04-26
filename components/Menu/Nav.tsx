@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { CartIcon } from "..";
 import { Hamburger } from "../Button";
 import { useCart } from "../../hooks";
@@ -12,7 +11,7 @@ import Logo from "../Icons/Logo";
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
-    const { showCart, displayCart, hideCart } = useCart();
+    const { showCart, cart, hideCart } = useCart();
     const { productCount } = useCart();
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
@@ -29,7 +28,7 @@ const Nav = () => {
             <span className="cart">
                 <CartIcon cartClick={showCart} count={productCount} />
             </span>
-            {displayCartSidebar(displayCart, hideCart)}
+            {displayCartSidebar(cart, hideCart)}
             <style jsx>
                 {`
                     .image {

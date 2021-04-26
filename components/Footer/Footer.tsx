@@ -23,7 +23,7 @@ const Footer = () => {
     ];
 
     return (
-        <div className="footer-section">
+        <footer className="footer-section">
             <ul className="footerLinks row">
                 {footerLinks.map((link) => (
                     <li key={uuidv4()}>
@@ -61,11 +61,14 @@ const Footer = () => {
                         color: #5c5c5c;
                         padding: 40px 20px;
                     }
-                    .footer {
+                    footer {
                         background-color: rgb(189, 90, 188);
                         color: white;
                         text-align: center;
                         font-size: 1em;
+                        position: static;
+                        bottom: 0px;
+                        width: 100%;
                     }
                     ul.footerLinks.row li {
                         margin: 0px 10px;
@@ -148,7 +151,7 @@ const Footer = () => {
                     }
                 `}
             </style>
-        </div>
+        </footer>
     );
 };
 
