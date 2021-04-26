@@ -65,6 +65,12 @@
     }
 }
 
+@media (max-width: 600px) {
+    .productslider button {
+        margin: 25px;
+    }
+}
+
 @media (max-width: 500px) and (min-width: 400px) {
     .productImage {
         height: 320px;

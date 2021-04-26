@@ -51,14 +51,14 @@ const CartTable = (props) => {
                                 {symbol}
                                 {priceExchange(product.price)}
                             </div>
-                            <div>
+                            <div className={styles.input}>
                                 <input
                                     onChange={inputHandler(index)}
                                     defaultValue={product.count}
                                     type="number"
                                 />
                             </div>
-                            <div className={styles.price}>
+                            <div className={styles.amount}>
                                 {symbol}
                                 {priceExchange(product.amount)}
                             </div>

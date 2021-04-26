@@ -176,7 +176,18 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         grid-row: 1/3;
                     }
                 }
-                @media (max-width: 599px) {
+                @media (max-width: 600px) {
+                    .product-description {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        margin: 0px auto;
+                    }
+                    .product-text {
+                        padding: 20px;
+                        width: 100%;
+                        margin: 0px;
+                    }
                     .product {
                         display: flex;
                         flex-direction: column;
@@ -201,12 +212,18 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         font-size: 20px;
                         padding: 10px;
                     }
+                    .product-description p {
+                        font-size: 20px;
+                    }
                     .product .tax {
                         font-size: 15px;
                         text-align: center;
                     }
                     .tax a {
                         color: red;
+                    }
+                    .info h1, .info h4 {
+                        font-size: 25px;
                     }
                 }
             `}</style>

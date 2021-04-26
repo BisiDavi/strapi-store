@@ -20,10 +20,11 @@ const AlertBanner = ({ displayHandler }) => {
                         color: white;
                         font-size: 1vw;
                         text-transform: capitalize;
-                        background-color: #ca3862;
+                        background-color: #ffa6ca;
                         text-align: center;
                         width: 100%;
                         margin-bottom: 0;
+                        font-weight: bold;
                         padding: 10px;
                         font-family: "raleway";
                     }
