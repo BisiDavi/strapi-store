@@ -28,7 +28,7 @@ const HomepageSlider: FC = (): JSX.Element => {
         setSliderState(true);
     };
 
-    const sliderArr = ["/slider.webp", "/slider2.webp"];
+    const sliderArr = ["/mainBg.webp", "/pinkBg.webp"];
 
     return (
         <div className="homepageSlider">

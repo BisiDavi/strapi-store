@@ -20,8 +20,8 @@ const MenuSidebar: FC<sidebarProps> = ({
             },
         ],
         submenus: [
-            { name: "Log in", link: "#login" },
-            { name: "Create Account", link: "#create-account" },
+            { name: "Log in", link: "/auth/login" },
+            { name: "Create Account", link: "/auth/sign-in" },
             { name: "Privacy Policy", link: "/policy/privacy-policy" },
             { name: "Refund Policy", link: "/policy/refund-policy" },
             { name: "Delivery Policy", link: "/policy/delivery-policy" },
@@ -35,9 +35,11 @@ const MenuSidebar: FC<sidebarProps> = ({
     return (
         <Sidebar onClose={onClose} btnClassName={btnClassName}>
             <>
-                <div className={styles.menus}>{displayMenu(menuArr.menus, 'menu')}</div>
+                <div className={styles.menus}>
+                    {displayMenu(menuArr.menus, "menu")}
+                </div>
                 <div className={styles.submenu}>
-                    {displayMenu(menuArr.submenus, 'submenu')}
+                    {displayMenu(menuArr.submenus, "submenu")}
                 </div>
             </>
         </Sidebar>

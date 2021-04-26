@@ -32,7 +32,7 @@ const Pagelayout: FC<PagecontainerProps> = ({
         ? title
         : `Jenjen's Luxury hair & beauty | ${title}`;
     return (
-        <div>
+        <div className="pageLayout">
             <Head>
                 <title>{pageTitle}</title>
                 {metaTags
@@ -49,6 +49,16 @@ const Pagelayout: FC<PagecontainerProps> = ({
             <Whatsappchat />
             <SelectCurrencyDropdown />
             <Footer />
+
+            <style jsx>
+                {`
+                    .pageLayout {
+                        height: 100%;
+                        width: 100%;
+                        position: relative;
+                    }
+                `}
+            </style>
         </div>
     );
 };

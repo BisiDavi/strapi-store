@@ -30,7 +30,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
     const dispatch = useDispatch();
     const { priceExchange, symbol } = useCurrency();
     const router = useRouter();
-    const { displayCart, showCart, hideCart } = useCart();
+    const { cart, showCart, hideCart } = useCart();
     const rushOrderDropdown = {
         title: "--Choose Rush Order--",
         options: ["--Choose Rush Order--", "Rush My Orders (+$55.00)"],
@@ -76,7 +76,7 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                 pauseOnHover
             />
 
-            {displayCartSidebar(displayCart, hideCart)}
+            {displayCartSidebar(cart, hideCart)}
             <div className="product-description">
                 <div className="product-text">
                     <span className={`${styles.info} info`}>

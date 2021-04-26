@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Router from "next/router";
 import { Provider } from "react-redux";
+import { Provider as AuthProvider } from "next-auth/client";
 import NProgress from "nprogress";
 import store from "../store/store";
 import { Loading } from "../components";
@@ -12,6 +13,7 @@ import "../styles/globals.css";
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
+
 const MyApp = ({ Component, pageProps }) => {
     const [loading, setLoading] = useState(false);
 
@@ -32,7 +34,10 @@ const MyApp = ({ Component, pageProps }) => {
         };
     }, []);
     return (
-        <>
+        <AuthProvider
+            options={{ clientMaxAge: 0, keepAlive: 0 }}
+            session={pageProps.session}
+        >
             <Head>
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link
@@ -51,13 +56,12 @@ const MyApp = ({ Component, pageProps }) => {
                 />
                 <script src="https://www.paypal.com/sdk/js?client-id=AcP5kjoPdLOpeNujacudxWPynh-ucYPekVXxWKdVk48JvhJErKVvVNo65BUrFNPETweN-zUz6Na5Y4aL"></script>
             </Head>
-
             {loading && <Loading />}
 
             <Provider store={store}>
                 <Component {...pageProps} />
             </Provider>
-        </>
+        </AuthProvider>
     );
 };
 
