@@ -1,13 +1,13 @@
 import React from "react";
+import { ShippingAddress } from "../components/Checkout";
 import { Pagelayout } from "../container";
 
 const Checkout = () => {
     return (
         <Pagelayout title="Checkout |">
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
-
-                    <div className="col-lg-6 bg-white">
+                    <div className="col-lg-12 info">
                         <h3>Jenjen's Luxury Wigs</h3>
                         <div className="bread-crumb">
                             <p>Information &gt; Shipping &gt; Payment</p>
@@ -23,8 +23,19 @@ const Checkout = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="col-lg-6"></div>
+                    <ShippingAddress />
                 </div>
+                <style jsx>
+                    {`
+                        .container-fluid {
+                            padding: 0px 100px;
+                        }
+                        .info {
+                            text-align: center;
+                            margin: 20px auto;
+                        }
+                    `}
+                </style>
             </div>
         </Pagelayout>
     );
