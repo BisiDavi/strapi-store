@@ -59,9 +59,8 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     />
                 </div>
                 {wigImages.map((wig, index) => (
-                    <div className={`wigImage column-${index}`}>
+                    <div key={index} className={`wigImage column-${index}`}>
                         <Image
-                            key={index}
                             className={styles.otherImages}
                             data={wig.responsiveImage}
                         />
@@ -222,7 +221,8 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     .tax a {
                         color: red;
                     }
-                    .info h1, .info h4 {
+                    .info h1,
+                    .info h4 {
                         font-size: 25px;
                     }
                 }

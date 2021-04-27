@@ -115,6 +115,12 @@
         height: 100%;
         width: 100%;
     }
+}
+@media (max-width: 600px) {
+    .product {
+        width: auto;
+        height: 100%;
+    }
     .btnGrp form {
         margin: 0px;
         width: 300px;
@@ -122,11 +128,5 @@
         display: flex;
         align-items: center;
         margin: auto;
-    }
-}
-@media (max-width: 600px) {
-    .product {
-        width: auto;
-        height: 100%;
     }
 }

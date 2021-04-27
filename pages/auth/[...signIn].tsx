@@ -1,7 +1,12 @@
 import React from "react";
+import { useRouter } from "next/router";
 import { Pagelayout } from "../../container";
 
 const Signin = () => {
+    const router = useRouter();
+    const { signIn } = router.query;
+    console.log("signIn", signIn);
+
     const providers = [
         { icon: "/google.svg", name: "Google" },
         { icon: "/facebook.svg", name: "Facebook" },
@@ -12,7 +17,7 @@ const Signin = () => {
             <div className="container-fluid sign-in">
                 <div className="row">
                     <h3 className="text-center">
-                        Hello Dear Customer, Please sign in, we want to know
+                        Hello Dear Customer, Please {signIn}, we want to know
                         you.
                     </h3>
                     <div className="signinButtons">
@@ -22,7 +27,7 @@ const Signin = () => {
                                 placeholder="Your email"
                                 required
                             />
-                            <button>Sign in with Email</button>
+                            <button>{signIn} with Email</button>
                         </form>
                         or
                         <div className="providerSignin">
@@ -35,7 +40,7 @@ const Signin = () => {
                                     />
                                     <span>
                                         {" "}
-                                        Sign in with{" "}
+                                        {signIn} with{" "}
                                         <span className="mx-1">
                                             {provider.name}
                                         </span>
