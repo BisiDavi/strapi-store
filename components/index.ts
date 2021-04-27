@@ -10,8 +10,8 @@ export { default as CartIcon } from "./Icons/CartIcon";
 export { default as Button } from "./Button/Button";
 export { default as Footer } from "./Footer/Footer";
 
-export { default as MailForm } from "./MailList/MailList";
-export { default as Mailinglist } from "./MailList/MailList";
+export { default as MailForm } from "./Modal/MailListModal";
+export { default as Mailinglist } from "./Modal/MailListModal";
 export { default as MailButton } from "./MailList/MailButton";
 
 export { default as HomepageSlider } from "./Slider/HomepageSlider";

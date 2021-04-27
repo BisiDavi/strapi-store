@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { PageModal } from "../Modal";
+import { PageModal } from ".";
 import styles from "../../styles/Mailform.module.css";
 
 interface MailingListProps {

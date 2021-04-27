@@ -51,7 +51,6 @@ const Home: NextPage<HomeProps> = ({
                     <ProductsList products={allProducts} />
                     <Viewmore />
                     <Newsletter />
-                    {/* <SelfiesBanner /> */}
                     <InstagramSlider />
                 </div>
             </Pagelayout>
