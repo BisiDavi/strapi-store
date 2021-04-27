@@ -20,6 +20,7 @@ const useCart = () => {
     let productCount = products.length;
     useEffect(() => {
         if (productCount !== 0) {
+            console.log("I am implemented, useCart useEffect");
             SetCartStorage(products);
         }
     }, [products]);
