@@ -1,8 +1,14 @@
 import React from "react";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 import { Pagelayout } from "../../container";
 
 const Signin = () => {
-    // const { params } = req.query;
+    const providers = [
+        { icon: "/google.svg", name: "Google" },
+        { icon: "/facebook.svg", name: "Facebook" },
+        { icon: "/instagram.svg", name: "Instagram" },
+    ];
     return (
         <Pagelayout title="Sign in ">
             <div className="container-fluid sign-in">
@@ -15,24 +21,29 @@ const Signin = () => {
                         <form>
                             <input
                                 type="email"
-                                placeholder="email@example.com"
+                                placeholder="Your email"
+                                required
                             />
                             <button>Sign in with Email</button>
                         </form>
                         or
                         <div className="providerSignin">
-                            <button>
-                                <i className="fa fa-google"></i>Sign in with
-                                Google
-                            </button>
-                            <button>
-                                <i className="fa fa-facebook"></i>Sign in with
-                                Facebook
-                            </button>
-                            <button>
-                                <i className="fa fa-instagram"></i>Sign in with
-                                Instagram
-                            </button>
+                            {providers.map((provider, index) => (
+                                <button key={index}>
+                                    <img
+                                        src={provider.icon}
+                                        width="25"
+                                        height="25"
+                                    />
+                                    <span>
+                                        {" "}
+                                        Sign in with{" "}
+                                        <span className="mx-1">
+                                            {provider.name}
+                                        </span>
+                                    </span>
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -56,12 +67,19 @@ const Signin = () => {
                             margin: 10px 0px;
                             height: 50px;
                             border: none;
+                            font-weight: bold;
                             width: 250px;
+                            display: flex;
+                            color: white;
+                            background-color: #ffa6ca;
+                            align-items: center;
+                            justify-content: space-around;
                         }
 
-                        .providerSignin button:first-child {
-                            color: #4285f4;
+                        button img {
+                            margin: 0px 5px;
                         }
+
                         form input,
                         form button {
                             height: 50px;
