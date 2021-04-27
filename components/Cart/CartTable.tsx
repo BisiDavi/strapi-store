@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image } from "react-datocms";
 import { FcFullTrash } from "react-icons/fc";
 import { useDispatch } from "react-redux";
@@ -10,7 +10,9 @@ import { getTotalAmount } from "../../utils";
 
 const CartTable = (props) => {
     const { products, displayShowTextarea, showTextarea } = props;
+    const [productQty, setProductQty] = useState(0);
     console.log("products", products);
+
     const { priceExchange, symbol } = useCurrency();
 
     const tableTitle = ["Product", "Name", "Price", "Quantity", "Total"];
@@ -18,10 +20,14 @@ const CartTable = (props) => {
     const deleteProduct = (index) => {
         dispatch(DeleteProductAction({ products, index }));
     };
-    const inputHandler = (e) => (index) => {
-        let productQty = e.target.value;
-        let newAmount = productQty * products[index].price;
+    const inputHandler = (index) => (e) => {
+        e.preventDefault();
+        console.log("e.target.value", e.target.value);
+        setProductQty(Number(e.target.value));
+        products[index].count = e.target.value;
+        let newAmount = products[index].count * products[index].price;
         console.log("newAMount", newAmount);
+        products[index].amount = newAmount;
     };
     return (
         <div className={styles.cartTable}>
@@ -54,6 +60,7 @@ const CartTable = (props) => {
                             <div className={styles.input}>
                                 <input
                                     onChange={inputHandler(index)}
+                                    name={product.title}
                                     defaultValue={product.count}
                                     type="number"
                                 />
