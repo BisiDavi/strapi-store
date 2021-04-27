@@ -11,7 +11,6 @@ import {
     HOMEPAGE_QUERY,
 } from "../../lib";
 import ErrorPage from "next/error";
-import { useCart, useLocalStorage } from "../../hooks";
 import ProductSlider from "../../components/Slider/ProductSlider";
 
 const ProductPage: NextPage<ProductpageProps> = ({
@@ -19,10 +18,6 @@ const ProductPage: NextPage<ProductpageProps> = ({
     product,
     otherProducts,
 }): JSX.Element => {
-    const { products, cartState } = useCart();
-    const { SetCartStorage } = useLocalStorage();
-    useEffect(() => SetCartStorage(products), [cartState]);
-    console.log("products", product);
     const router = useRouter();
 
     if (!router.isFallback && !product?.slug) {
