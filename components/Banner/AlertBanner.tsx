@@ -41,8 +41,9 @@ const AlertBanner = ({ displayHandler }) => {
                     }
                     @media (max-width: 768px) {
                         h3 {
-                            font-size: 3.5vw;
+                            font-size: 3vw;
                             padding: 5px 15px;
+                            line-height: 20px;
                         }
                         button.cancel i {
                             font-size: 15px;
