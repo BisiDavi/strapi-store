@@ -19,6 +19,7 @@ const Signin = ({ providers, csrfToken }) => {
     const AuthLogin = (providerId) => {
         AuthSignIn(providerId);
         session && toast.success(`${session.user.name}, you're logged in`);
+        session && router.back();
     };
 
     const displayIcon = (icon) => {
