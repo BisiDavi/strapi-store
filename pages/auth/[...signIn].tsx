@@ -2,18 +2,20 @@ import React from "react";
 import {
     getProviders,
     signIn as AuthSignIn,
-    getSession,
     getCsrfToken,
+    useSession,
 } from "next-auth/client";
 import { useRouter } from "next/router";
 import { Pagelayout } from "../../container";
+import { Loading } from "../../components";
+import Link from "next/link";
 
 const Signin = ({ providers, csrfToken }) => {
     const router = useRouter();
+    const [session, loading] = useSession();
     const { signIn } = router.query;
-    console.log("signIn", signIn);
 
-    console.log("getSession", getSession);
+    if (loading) return <Loading />;
 
     const displayIcon = (icon) => {
         switch (icon) {
@@ -30,54 +32,75 @@ const Signin = ({ providers, csrfToken }) => {
     return (
         <Pagelayout title="Sign in ">
             <div className="container-fluid sign-in">
-                <div className="row">
-                    <h3 className="text-center">
-                        Hello Dear Customer, Please {signIn}, we want to know
-                        you.
-                    </h3>
-                    <div className="signinButtons">
-                        <form method="post" action="/api/auth/signin/email">
-                            <input
-                                name="csrfToken"
-                                type="hidden"
-                                defaultValue={csrfToken}
-                            />
-                            <input
-                                type="email"
-                                placeholder="Your email"
-                                required
-                            />
-                            <button type="submit">{signIn} with Email</button>
-                        </form>
-                        or
-                        <div className="providerSignin">
-                            {Object.values(providers).map((provider: any) => {
-                                if (provider.name === "Email") {
-                                    return;
-                                }
-                                return (
-                                    <button
-                                        onClick={() => AuthSignIn(provider.id)}
-                                        key={provider.name}
-                                    >
-                                        <img
-                                            src={displayIcon(provider.name)}
-                                            width="25"
-                                            height="25"
-                                        />
-                                        <span>
-                                            {" "}
-                                            {signIn} with{" "}
-                                            <span className="mx-1">
-                                                {provider.name}
-                                            </span>
-                                        </span>
-                                    </button>
-                                );
-                            })}
+                {!session ? (
+                    <div className="row">
+                        <h3 className="text-center">
+                            Hello Dear Customer, Please {signIn}, we want to
+                            know you.
+                        </h3>
+
+                        <div className="signinButtons">
+                            <form method="post" action="/api/auth/signin/email">
+                                <input
+                                    name="csrfToken"
+                                    type="hidden"
+                                    defaultValue={csrfToken}
+                                />
+                                <input
+                                    type="email"
+                                    placeholder="Your email"
+                                    required
+                                />
+                                <button type="submit">
+                                    {signIn} with Email
+                                </button>
+                            </form>
+                            or
+                            <div className="providerSignin">
+                                {Object.values(providers).map(
+                                    (provider: any) => {
+                                        if (provider.name === "Email") {
+                                            return;
+                                        }
+                                        return (
+                                            <button
+                                                onClick={() =>
+                                                    AuthSignIn(provider.id)
+                                                }
+                                                key={provider.name}
+                                            >
+                                                <img
+                                                    src={displayIcon(
+                                                        provider.name
+                                                    )}
+                                                    width="25"
+                                                    height="25"
+                                                />
+                                                <span>
+                                                    {" "}
+                                                    {signIn} with{" "}
+                                                    <span className="mx-1">
+                                                        {provider.name}
+                                                    </span>
+                                                </span>
+                                            </button>
+                                        );
+                                    }
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    <div className="row">
+                        <h3 className="text-center">
+                            Welcome {session.user.name}, to Jenjen's Luxury
+                            Wigs. continue{" "}
+                            <Link href="/collection/all">
+                                <a>shopping</a>
+                            </Link>
+                        </h3>
+                    </div>
+                )}
                 <style jsx>
                     {`
                         .container-fluid.sign-in .row {
@@ -153,7 +176,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             providers,
-            csrfToken, 
+            csrfToken,
         },
     };
 }

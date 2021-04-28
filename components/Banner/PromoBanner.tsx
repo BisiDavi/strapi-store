@@ -23,7 +23,7 @@ const PromoBanner = () => {
                 }
                 @media (max-width: 768px) {
                     h4 {
-                        font-size: 3.2vw;
+                        font-size: 12px;
                     }
                 }
             `}</style>

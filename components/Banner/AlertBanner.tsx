@@ -41,7 +41,7 @@ const AlertBanner = ({ displayHandler }) => {
                     }
                     @media (max-width: 768px) {
                         h3 {
-                            font-size: 3vw;
+                            font-size: 14px;
                             padding: 5px 15px;
                             line-height: 20px;
                         }

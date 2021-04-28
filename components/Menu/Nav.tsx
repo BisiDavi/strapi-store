@@ -56,7 +56,7 @@ const Nav = () => {
                     nav.nav-menu {
                         display: flex;
                         justify-content: space-between;
-                        padding: 0px 120px 0px 20px;
+                        padding: 0px 50px;
                         align-items: center;
                         width: 100%;
                     }
