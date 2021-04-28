@@ -20,8 +20,8 @@ const MenuSidebar: FC<sidebarProps> = ({
             },
         ],
         submenus: [
-            { name: "Log in", link: "/auth/login" },
-            { name: "Create Account", link: "/auth/sign-in" },
+            // { name: "Log in", link: "/auth/login" },
+            // { name: "Create Account", link: "/auth/sign-in" },
             { name: "Privacy Policy", link: "/policy/privacy-policy" },
             { name: "Refund Policy", link: "/policy/refund-policy" },
             { name: "Delivery Policy", link: "/policy/delivery-policy" },

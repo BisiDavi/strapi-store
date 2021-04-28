@@ -1,13 +1,19 @@
 import React from "react";
+import {
+    providers,
+    signIn as AuthSignIn,
+    getSession,
+    csrfToken,
+} from "next-auth/client";
 import { useRouter } from "next/router";
 import { Pagelayout } from "../../container";
 
-const Signin = () => {
+const Signin = ({ providers, csrfToken }) => {
     const router = useRouter();
     const { signIn } = router.query;
     console.log("signIn", signIn);
 
-    const providers = [
+    const authProviders = [
         { icon: "/google.svg", name: "Google" },
         { icon: "/facebook.svg", name: "Facebook" },
         { icon: "/instagram.svg", name: "Instagram" },
@@ -21,17 +27,22 @@ const Signin = () => {
                         you.
                     </h3>
                     <div className="signinButtons">
-                        <form>
+                        <form method="post" action="/api/auth/signin/email">
+                            <input
+                                name="csrfToken"
+                                type="hidden"
+                                defaultValue={csrfToken}
+                            />
                             <input
                                 type="email"
                                 placeholder="Your email"
                                 required
                             />
-                            <button>{signIn} with Email</button>
+                            <button type="submit">{signIn} with Email</button>
                         </form>
                         or
                         <div className="providerSignin">
-                            {providers.map((provider, index) => (
+                            {/* {authProviders.map((provider, index) => (
                                 <button key={index}>
                                     <img
                                         src={provider.icon}
@@ -46,7 +57,31 @@ const Signin = () => {
                                         </span>
                                     </span>
                                 </button>
-                            ))}
+                            ))} */}
+                            {Object.values(providers).map((provider: any) => {
+                                if (provider.name === "Email") {
+                                    return;
+                                }
+                                return (
+                                    <button
+                                        onClick={() => AuthSignIn(provider.id)}
+                                        key={provider.name}
+                                    >
+                                        <img
+                                            src={provider.icon}
+                                            width="25"
+                                            height="25"
+                                        />
+                                        <span>
+                                            {" "}
+                                            {signIn} with{" "}
+                                            <span className="mx-1">
+                                                {provider.name}
+                                            </span>
+                                        </span>
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -111,3 +146,22 @@ const Signin = () => {
 };
 
 export default Signin;
+
+Signin.getInitialProps = async (context) => {
+    const { req, res } = context;
+    const session = await getSession({ req });
+
+    if (session && res && session.accessToken) {
+        res.writeHead(302, {
+            Location: "/",
+        });
+        res.end();
+        return;
+    }
+
+    return {
+        session: undefined,
+        providers: await providers(context),
+        csrfToken: await csrfToken(context),
+    };
+};

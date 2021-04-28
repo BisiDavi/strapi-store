@@ -12,7 +12,6 @@ const SelectCurrencyDropdown = (): JSX.Element => {
         naira: { name: "Naira", value: 460 },
     };
     const selectHandler = (e) => {
-        console.log("select value", e.target.value);
         return e.target.value === "Dollar"
             ? dispatch(SelectCurrency(dropdownValues.dollar))
             : dispatch(SelectCurrency(dropdownValues.naira));

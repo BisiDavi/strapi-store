@@ -11,7 +11,6 @@ import { getTotalAmount } from "../../utils";
 const CartTable = (props) => {
     const { products, displayShowTextarea, showTextarea } = props;
     const [productQty, setProductQty] = useState(0);
-    console.log("products", products);
 
     const { priceExchange, symbol } = useCurrency();
 
@@ -22,11 +21,9 @@ const CartTable = (props) => {
     };
     const inputHandler = (index) => (e) => {
         e.preventDefault();
-        console.log("e.target.value", e.target.value);
         setProductQty(Number(e.target.value));
         products[index].count = e.target.value;
         let newAmount = products[index].count * products[index].price;
-        console.log("newAMount", newAmount);
         products[index].amount = newAmount;
     };
     return (

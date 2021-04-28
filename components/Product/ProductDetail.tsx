@@ -26,7 +26,6 @@ interface ProductDetailProps {
 
 const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
     const { wigImages }: any = product;
-    console.log("wigImages", wigImages);
     const dispatch = useDispatch();
     const { priceExchange, symbol } = useCurrency();
     const router = useRouter();

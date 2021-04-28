@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/client";
 import { CartIcon } from "..";
 import { Hamburger } from "../Button";
@@ -15,12 +14,9 @@ const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
     const [session, loading] = useSession();
     const { showCart, cart, hideCart } = useCart();
-    const router = useRouter();
     const { productCount } = useCart();
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
-
-    const redirectToSignIn = () => router.push("/auth/sign-in");
 
     if (typeof window !== "undefined" && loading) return null;
     return (
@@ -40,8 +36,7 @@ const Nav = () => {
                 {!session && (
                     <>
                         Not signed in
-                        <br />{" "}
-                        <button onClick={redirectToSignIn}>Sign in</button>
+                        <br /> <button onClick={() => signIn()}>Sign in</button>
                     </>
                 )}
                 {session && (

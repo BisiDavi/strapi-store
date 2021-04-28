@@ -99,7 +99,6 @@ export const CartReducer = (
         case ADD_CART_FROM_STORAGE:
             const { GetLocalStorageProducts } = useLocalStorage();
             const cart = GetLocalStorageProducts();
-            console.log("cart |ADD_CART_FROM_STORAGE ", cart);
             state.products = cart;
             return { ...state, products: [...state.products] };
 

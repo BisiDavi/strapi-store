@@ -14,13 +14,11 @@ const useCart = () => {
     const [cart, setCart] = useState(false);
     const cartState = useSelector((state) => state.cart);
     const { products } = cartState;
-    console.log("useCart | products", products);
     const dispatch = useDispatch();
 
     let productCount = products.length;
     useEffect(() => {
         if (productCount !== 0) {
-            console.log("I am implemented, useCart useEffect");
             SetCartStorage(products);
         }
     }, [products]);

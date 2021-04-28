@@ -6,7 +6,6 @@ import { READY_TO_SHIP_QUERY, request } from "../../lib";
 
 const ReadyToShip = ({ shipWigs }) => {
     const { allProducts } = shipWigs;
-    console.log("allProducts", allProducts);
     return (
         <Pagelayout title="Ready To Ship">
             <Container fluid>
