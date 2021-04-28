@@ -13,11 +13,18 @@ const Signin = ({ providers, csrfToken }) => {
     const { signIn } = router.query;
     console.log("signIn", signIn);
 
-    const authProviders = [
-        { icon: "/google.svg", name: "Google" },
-        { icon: "/facebook.svg", name: "Facebook" },
-        { icon: "/instagram.svg", name: "Instagram" },
-    ];
+    const displayIcon = (icon) => {
+        switch (icon) {
+            case "Google":
+                return "/google.svg";
+            case "Facebook":
+                return "/facebook.svg";
+            case "Instagram":
+                return "/instagram.svg";
+            default:
+                return null;
+        }
+    };
     return (
         <Pagelayout title="Sign in ">
             <div className="container-fluid sign-in">
@@ -68,7 +75,7 @@ const Signin = ({ providers, csrfToken }) => {
                                         key={provider.name}
                                     >
                                         <img
-                                            src={provider.icon}
+                                            src={displayIcon(provider.name)}
                                             width="25"
                                             height="25"
                                         />
