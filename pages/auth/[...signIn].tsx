@@ -79,6 +79,10 @@ const Signin = () => {
                             justify-content: space-around;
                         }
 
+                        button:hover {
+                            opacity: 0.5;
+                        }
+
                         button img {
                             margin: 0px 5px;
                         }
