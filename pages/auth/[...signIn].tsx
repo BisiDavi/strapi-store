@@ -7,15 +7,12 @@ import {
 } from "next-auth/client";
 import { useRouter } from "next/router";
 import { Pagelayout } from "../../container";
-import { Loading } from "../../components";
 import Link from "next/link";
 
 const Signin = ({ providers, csrfToken }) => {
     const router = useRouter();
-    const [session, loading] = useSession();
+    const [session] = useSession();
     const { signIn } = router.query;
-
-    if (loading) return <Loading />;
 
     const displayIcon = (icon) => {
         switch (icon) {
