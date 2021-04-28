@@ -18,6 +18,7 @@ const Signin = ({ providers, csrfToken }) => {
 
     const AuthLogin = (providerId) => {
         AuthSignIn(providerId);
+        console.log("authLogin");
         session && toast.success(`${session.user.name}, you're logged in`);
         session && router.back();
     };
