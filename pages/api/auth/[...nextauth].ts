@@ -20,13 +20,15 @@ const options = {
             clientSecret: process.env.NEXT_PUBLIC_INSTAGRAM_SECRET,
         }),
     ],
+    pages: {
+        signIn: "/auth/signin",
+    },
     database: process.env.NEXT_MONGODB_URI,
     secret: process.env.NEXT_PUBLIC_SECRET,
     session: {
         jwt: true,
         maxAge: 30 * 24 * 60 * 60,
     },
-    // pages: {},
     events: {},
     debug: true,
 };
