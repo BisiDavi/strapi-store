@@ -9,27 +9,18 @@ import {
     sidebarState,
 } from "../../utils/menu";
 import Logo from "../Icons/Logo";
-import { toast, ToastContainer } from "react-toastify";
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
     const [session, loading] = useSession();
-    const { showCart, cart, hideCart } = useCart();
-    const { productCount } = useCart();
+    const { showCart, cart, hideCart, productCount } = useCart();
+
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
-
-    !session && toast.error("You're logged out!.");
 
     if (typeof window !== "undefined" && loading) return null;
     return (
         <nav className="nav-menu">
-            <ToastContainer
-                position="top-left"
-                closeOnClick
-                draggable
-                pauseOnHover
-            />
             <span className="hamburger">
                 <Hamburger
                     btnClick={hamburgerHandler}

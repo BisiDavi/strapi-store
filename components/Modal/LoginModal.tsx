@@ -13,7 +13,7 @@ const LoginModal = ({ show, onHide }) => {
         >
             <div className="loginModal">
                 <h3>Dear customer, please login to proceed with your order.</h3>
-                <span>
+            <span>
                     <Link href="/auth/login" passHref>
                         <a>Login</a>
                     </Link>
