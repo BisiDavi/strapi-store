@@ -41,7 +41,7 @@ const Nav = () => {
                 )}
                 {session && (
                     <>
-                        Signed in as {session.user.email} <br />
+                        Signed in as {session.user.username} <br />
                         <button onClick={() => signOut()}>Sign out</button>
                     </>
                 )}

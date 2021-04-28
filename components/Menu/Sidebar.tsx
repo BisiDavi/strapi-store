@@ -31,6 +31,14 @@ export const displayMenu: FC<menuProps[]> = (menus, linkType) => {
                 li {
                     margin: 15px 0px;
                 }
+                @media (max-width: 600px) {
+                    a.menu {
+                        font-size: 20px;
+                    }
+                    a.submenu {
+                        font-size: 18px;
+                    }
+                }
             `}</style>
         </ul>
     );

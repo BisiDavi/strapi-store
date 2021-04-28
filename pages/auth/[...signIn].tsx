@@ -49,22 +49,6 @@ const Signin = ({ providers, csrfToken }) => {
                         </form>
                         or
                         <div className="providerSignin">
-                            {/* {authProviders.map((provider, index) => (
-                                <button key={index}>
-                                    <img
-                                        src={provider.icon}
-                                        width="25"
-                                        height="25"
-                                    />
-                                    <span>
-                                        {" "}
-                                        {signIn} with{" "}
-                                        <span className="mx-1">
-                                            {provider.name}
-                                        </span>
-                                    </span>
-                                </button>
-                            ))} */}
                             {Object.values(providers).map((provider: any) => {
                                 if (provider.name === "Email") {
                                     return;
@@ -145,6 +129,12 @@ const Signin = ({ providers, csrfToken }) => {
                             display: flex;
                             flex-direction: column;
                         }
+
+                        @media (max-width: 768px) {
+                            .sign-in h3 {
+                                font-size: 18px;
+                            }
+                        }
                     `}
                 </style>
             </div>
@@ -157,7 +147,7 @@ export default Signin;
 Signin.getInitialProps = async (context) => {
     const { req, res } = context;
     const session = await getSession({ req });
-
+    
     if (session && res && session.accessToken) {
         res.writeHead(302, {
             Location: "/",
