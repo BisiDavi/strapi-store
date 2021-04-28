@@ -97,7 +97,18 @@ const Nav = () => {
                             right: 10px;
                         }
                         nav.nav-menu {
-                            padding: 0px 22px;
+                            padding: 0px 20px;
+                            position: relative;
+                        }
+                        .signupStatus {
+                            position: absolute;
+                            right: 0;
+                            top: 10px;
+                            margin: 0;
+                            font-size: 12px;
+                        }
+                        .signupStatus button {
+                            padding: 5px;
                         }
                     }
                 `}
