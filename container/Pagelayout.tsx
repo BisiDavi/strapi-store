@@ -32,7 +32,9 @@ const Pagelayout: FC<PagecontainerProps> = ({
         persistCart();
     }, []);
 
-    loading && <Loading />;
+    useEffect(() => {
+        session && toast.success(`${session.user.name}, you're logged in`);
+    }, [session]);
 
     const pageTitle = product
         ? title
@@ -47,9 +49,11 @@ const Pagelayout: FC<PagecontainerProps> = ({
                       )
                     : null}
             </Head>
+
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
             <CatalogTab />
-            {session && toast.success(`${session.user.name}, you're logged in`)}
+            {loading && <Loading />}
+
             <ToastContainer
                 position="top-left"
                 closeOnClick
