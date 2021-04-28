@@ -9,6 +9,7 @@ import {
     sidebarState,
 } from "../../utils/menu";
 import Logo from "../Icons/Logo";
+import { toast, ToastContainer } from "react-toastify";
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
@@ -18,9 +19,20 @@ const Nav = () => {
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
 
+    const signUserout = () => {
+        signOut();
+        !session && toast.error("You're logged out!.");
+    };
+
     if (typeof window !== "undefined" && loading) return null;
     return (
         <nav className="nav-menu">
+            <ToastContainer
+                position="top-left"
+                closeOnClick
+                draggable
+                pauseOnHover
+            />
             <span className="hamburger">
                 <Hamburger
                     btnClick={hamburgerHandler}
@@ -42,7 +54,7 @@ const Nav = () => {
                 {session && (
                     <>
                         Signed in as {session.user.name} <br />
-                        <button onClick={() => signOut()}>Sign out</button>
+                        <button onClick={() => signUserout()}>Sign out</button>
                     </>
                 )}
             </div>
