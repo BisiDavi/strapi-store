@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
 import Head from "next/head";
-import { useSession } from "next-auth/client";
 import { useCart } from "../hooks";
 import { PagecontainerProps } from "../types";
 import {
@@ -10,10 +9,8 @@ import {
     Mailinglist,
     CatalogTab,
     SelectCurrencyDropdown,
-    Loading,
 } from "../components";
 import { renderMetaTags } from "react-datocms";
-import { toast, ToastContainer } from "react-toastify";
 import Whatsappchat from "../components/ChatWidget/Whatsappchat";
 
 const Pagelayout: FC<PagecontainerProps> = ({
@@ -26,15 +23,10 @@ const Pagelayout: FC<PagecontainerProps> = ({
     const promoHandler = () => setPromoDisplay(false);
     const [mailModal, setMailModal] = useState(false);
     const { persistCart } = useCart();
-    const [session, loading] = useSession();
 
     useEffect(() => {
         persistCart();
     }, []);
-
-    useEffect(() => {
-        session && toast.success(`${session.user.name}, you're logged in`);
-    }, [session]);
 
     const pageTitle = product
         ? title
@@ -52,14 +44,8 @@ const Pagelayout: FC<PagecontainerProps> = ({
 
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
             <CatalogTab />
-            {loading && <Loading />}
-
-            <ToastContainer
-                position="top-left"
-                closeOnClick
-                draggable
-                pauseOnHover
-            />
+            
+            
             <MailButton showMail={() => setMailModal(true)} />
             <Mailinglist show={mailModal} onHide={() => setMailModal(false)} />
             {children}

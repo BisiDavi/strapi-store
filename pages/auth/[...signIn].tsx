@@ -6,13 +6,20 @@ import {
     useSession,
 } from "next-auth/client";
 import { useRouter } from "next/router";
+import { toast, ToastContainer } from "react-toastify";
 import { Pagelayout } from "../../container";
 import Link from "next/link";
+import { Loading } from "../../components";
 
 const Signin = ({ providers, csrfToken }) => {
     const router = useRouter();
-    const [session] = useSession();
+    const [session, loading] = useSession();
     const { signIn } = router.query;
+
+    const AuthLogin = (providerId) => {
+        AuthSignIn(providerId);
+        session && toast.success(`${session.user.name}, you're logged in`);
+    };
 
     const displayIcon = (icon) => {
         switch (icon) {
@@ -26,6 +33,7 @@ const Signin = ({ providers, csrfToken }) => {
                 return null;
         }
     };
+    loading && <Loading />;
     return (
         <Pagelayout title="Sign in ">
             <div className="container-fluid sign-in">
@@ -62,7 +70,7 @@ const Signin = ({ providers, csrfToken }) => {
                                         return (
                                             <button
                                                 onClick={() =>
-                                                    AuthSignIn(provider.id)
+                                                    AuthLogin(provider.id)
                                                 }
                                                 key={provider.name}
                                             >
@@ -89,6 +97,12 @@ const Signin = ({ providers, csrfToken }) => {
                     </div>
                 ) : (
                     <div className="row">
+                        <ToastContainer
+                            position="top-left"
+                            closeOnClick
+                            draggable
+                            pauseOnHover
+                        />
                         <h3 className="text-center">
                             Welcome {session.user.name}, to Jenjen's Luxury
                             Wigs. continue{" "}

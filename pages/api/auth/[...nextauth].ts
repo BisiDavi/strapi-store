@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import nodemailer from 'nodemailer'
 import Providers from "next-auth/providers";
 
 console.log("EMAIL_SERVER", process.env.EMAIL_SERVER);
