@@ -21,7 +21,7 @@ const options = {
         }),
     ],
     pages: {
-        signIn: "/auth/signin",
+        signIn: "/auth/signin",        
     },
     database: process.env.NEXT_MONGODB_URI,
     secret: process.env.NEXT_PUBLIC_SECRET,

@@ -1,9 +1,9 @@
 import React from "react";
 import {
-    providers,
+    getProviders,
     signIn as AuthSignIn,
     getSession,
-    csrfToken,
+    getCsrfToken,
 } from "next-auth/client";
 import { useRouter } from "next/router";
 import { Pagelayout } from "../../container";
@@ -12,7 +12,7 @@ const Signin = ({ providers, csrfToken }) => {
     const router = useRouter();
     const { signIn } = router.query;
     console.log("signIn", signIn);
-    
+
     console.log("getSession", getSession);
 
     const displayIcon = (icon) => {
@@ -146,21 +146,14 @@ const Signin = ({ providers, csrfToken }) => {
 
 export default Signin;
 
-Signin.getInitialProps = async (context) => {
-    const { req, res } = context;
-    const session = await getSession({ req });
-
-    if (session && res && session.accessToken) {
-        res.writeHead(302, {
-            Location: "/",
-        });
-        res.end();
-        return;
-    }
+export async function getServerSideProps(context) {
+    const providers = await getProviders();
+    const csrfToken = await getCsrfToken(context);
 
     return {
-        session: undefined,
-        providers: await providers(context),
-        csrfToken: await csrfToken(context),
+        props: {
+            providers,
+            csrfToken, 
+        },
     };
-};
+}
