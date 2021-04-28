@@ -12,6 +12,8 @@ const Signin = ({ providers, csrfToken }) => {
     const router = useRouter();
     const { signIn } = router.query;
     console.log("signIn", signIn);
+    
+    console.log("getSession", getSession);
 
     const displayIcon = (icon) => {
         switch (icon) {
@@ -147,7 +149,7 @@ export default Signin;
 Signin.getInitialProps = async (context) => {
     const { req, res } = context;
     const session = await getSession({ req });
-    
+
     if (session && res && session.accessToken) {
         res.writeHead(302, {
             Location: "/",
