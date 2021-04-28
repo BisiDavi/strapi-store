@@ -148,6 +148,9 @@ const Footer = () => {
                         .footer-section {
                             padding: 30px 20px 10px;
                         }
+                        ul.footerLinks.row li a {
+                            font-size: 14px;
+                        }
                     }
                 `}
             </style>
