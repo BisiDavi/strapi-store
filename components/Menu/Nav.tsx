@@ -19,10 +19,7 @@ const Nav = () => {
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
 
-    const signUserout = () => {
-        signOut();
-        !session && toast.error("You're logged out!.");
-    };
+    !session && toast.error("You're logged out!.");
 
     if (typeof window !== "undefined" && loading) return null;
     return (
@@ -54,7 +51,7 @@ const Nav = () => {
                 {session && (
                     <>
                         Signed in as {session.user.name} <br />
-                        <button onClick={() => signUserout()}>Sign out</button>
+                        <button onClick={() => signOut()}>Sign out</button>
                     </>
                 )}
             </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     getProviders,
     signIn as AuthSignIn,
@@ -16,12 +16,14 @@ const Signin = ({ providers, csrfToken }) => {
     const [session, loading] = useSession();
     const { signIn } = router.query;
 
-    const AuthLogin = (providerId) => {
-        AuthSignIn(providerId);
-        console.log("authLogin");
-        session && toast.success(`${session.user.name}, you're logged in`);
-        session && router.back();
+    const loginNotification = () => {
+        toast.success(`${session.user.name}, you're logged in`);
+        router.back();
     };
+
+    useEffect(() => {
+        session && loginNotification();
+    }, []);
 
     const displayIcon = (icon) => {
         switch (icon) {
@@ -72,7 +74,7 @@ const Signin = ({ providers, csrfToken }) => {
                                         return (
                                             <button
                                                 onClick={() =>
-                                                    AuthLogin(provider.id)
+                                                    AuthSignIn(provider.id)
                                                 }
                                                 key={provider.name}
                                             >
