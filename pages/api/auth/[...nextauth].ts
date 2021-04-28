@@ -1,11 +1,13 @@
 import NextAuth from "next-auth";
+import nodemailer from 'nodemailer'
 import Providers from "next-auth/providers";
 
+console.log("EMAIL_SERVER", process.env.EMAIL_SERVER);
 const options = {
     providers: [
         Providers.Email({
-            server: process.env.NEXT_PUBLIC_EMAIL_SERVER,
-            from: process.env.NEXT_PUBLIC_EMAIL_FROM,
+            server: process.env.EMAIL_SERVER,
+            from: process.env.EMAIL_FROM,
         }),
         Providers.Google({
             clientId: process.env.NEXT_PUBLIC_GOOGLE_ID,
@@ -21,7 +23,7 @@ const options = {
         }),
     ],
     pages: {
-        signIn: "/auth/signin",        
+        signIn: "/auth/signin",
     },
     database: process.env.NEXT_MONGODB_URI,
     secret: process.env.NEXT_PUBLIC_SECRET,
