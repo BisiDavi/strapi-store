@@ -124,7 +124,10 @@ const Signin = ({ providers, csrfToken }) => {
                             text-align: center;
                             align-items: center;
                         }
-
+                        h3.text-center a {
+                            color: #ffa6ca;
+                            font-weight: bold;
+                        }
                         .providerSignin {
                             display: flex;
                             flex-direction: column;

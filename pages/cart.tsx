@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
+import { useSession } from "next-auth/client";
 import { Pagelayout } from "../container";
 import { useCart, useModal } from "../hooks";
 import { CartTable, EmptyCartTable } from "../components/Cart";
 import { LoginModal } from "../components/Modal";
+import { Loading } from "../components";
 
 const Cart = () => {
     const { productCount, products } = useCart();
     const { modal, displayModal } = useModal();
     const [showTextarea, setShowTextarea] = useState(false);
     const displayShowTextarea = () => setShowTextarea(!showTextarea);
+    const [session, loading] = useSession();
 
     useEffect(() => {
-        const displayLoginModal = setTimeout(() => displayModal(true), 2000);
+        const displayLoginModal =
+            !session && setTimeout(() => displayModal(true), 2000);
         return () => clearTimeout(displayLoginModal);
     }, []);
+
+    loading && <Loading />;
 
     return (
         <Pagelayout title={`(${productCount}) Your Shopping Cart`}>
