@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
+import { useRouter } from "next/router";
+import { toast, ToastContainer } from "react-toastify";
 import { CartIcon } from "..";
 import { Hamburger } from "../Button";
 import { useCart } from "../../hooks";
@@ -13,11 +15,20 @@ import Logo from "../Icons/Logo";
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
     const [session, loading] = useSession();
+    const router = useRouter();
     const { showCart, cart, hideCart, productCount } = useCart();
 
     const hamburgerHandler = () => setBtnstate(true);
     const onCloseHandler = () => setBtnstate(false);
+    const logUserIn = () => {
+        signIn();
+        session && loginNotification();
+    };
 
+    const loginNotification = () => {
+        toast.success(`${session.user.name}, you're logged in`);
+        router.back();
+    };
     if (typeof window !== "undefined" && loading) return null;
     return (
         <nav className="nav-menu">
@@ -36,7 +47,7 @@ const Nav = () => {
                 {!session && (
                     <>
                         Not signed in
-                        <br /> <button onClick={() => signIn()}>Sign in</button>
+                        <br /> <button onClick={logUserIn}>Sign in</button>
                     </>
                 )}
                 {session && (
@@ -47,6 +58,12 @@ const Nav = () => {
                 )}
             </div>
             {displayCartSidebar(cart, hideCart)}
+            <ToastContainer
+                position="top-left"
+                closeOnClick
+                draggable
+                pauseOnHover
+            />
             <style jsx>
                 {`
                     .image {

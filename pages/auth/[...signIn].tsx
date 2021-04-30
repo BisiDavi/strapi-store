@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
     getProviders,
     signIn as AuthSignIn,
@@ -6,7 +6,6 @@ import {
     useSession,
 } from "next-auth/client";
 import { useRouter } from "next/router";
-import { toast, ToastContainer } from "react-toastify";
 import { Pagelayout } from "../../container";
 import Link from "next/link";
 import { Loading } from "../../components";
@@ -16,14 +15,7 @@ const Signin = ({ providers, csrfToken }) => {
     const [session, loading] = useSession();
     const { signIn } = router.query;
 
-    const loginNotification = () => {
-        toast.success(`${session.user.name}, you're logged in`);
-        router.back();
-    };
-
-    useEffect(() => {
-        session && loginNotification();
-    }, []);
+    console.log("session", session);
 
     const displayIcon = (icon) => {
         switch (icon) {
@@ -101,12 +93,6 @@ const Signin = ({ providers, csrfToken }) => {
                     </div>
                 ) : (
                     <div className="row">
-                        <ToastContainer
-                            position="top-left"
-                            closeOnClick
-                            draggable
-                            pauseOnHover
-                        />
                         <h3 className="text-center">
                             Welcome {session.user.name}, to Jenjen's Luxury
                             Wigs. continue{" "}

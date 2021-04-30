@@ -1,23 +1,28 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { PageModal } from ".";
 import styles from "../../styles/loginModal.module.css";
 
 const LoginModal = ({ show, onHide }) => {
+    const router = useRouter();
+
+    const userLogin = () => {
+        onHide();
+        router.push("/auth/login");
+    };
     return (
         <PageModal
             onHide={onHide}
             show={show}
+            backdrop="static"
+            keyboard={false}
             modalstyle={styles.loginModal}
             header="Sign up to proceed with Order"
         >
             <div className="loginModal">
                 <h3>Dear customer, please login to proceed with your order.</h3>
-            <span>
-                    <Link href="/auth/login" passHref>
-                        <a>Login</a>
-                    </Link>
-                </span>
+                <span onClick={userLogin}>Login</span>
                 <style jsx>
                     {`
                         .loginModal {
@@ -28,11 +33,13 @@ const LoginModal = ({ show, onHide }) => {
                             text-align: center;
                         }
                         span {
-                            background-color: #ffa6ca;
+                            text-align: center;
+                            background-color: rgb(255, 166, 202);
                             font-weight: bold;
                             color: white;
-                            height: 100px;
-                            width: 100px;
+                            padding: 10px 20px;
+                            font-size: 25px;
+                            font-weight: bold;
                             margin: 10px auto;
                         }
                     `}

@@ -7,6 +7,8 @@ interface PageModalProps {
     onHide: () => void;
     modalstyle: string;
     header: string;
+    backdrop?: string;
+    keyboard?: boolean;
 }
 
 const PageModal: FC<PageModalProps> = (props): JSX.Element => {
