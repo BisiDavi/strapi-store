@@ -1,57 +1,79 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { HomepageSlider } from "../../components";
+import { CustomWigButtonGrp } from "../../components/Form/ButtonGrp";
 import { Pagelayout } from "../../container";
 import customWigs from "../../json/customWigs.json";
 import styles from "../../styles/customWig.module.css";
 
 const CustomWig = () => {
     const [formState, setFormState] = useState({
-        unitType: "",
-        circumference: "",
-        bundleLength: "",
-        texture: "",
-        parting: "",
-        style: "",
-        addBundle: "",
-        babyHair: "",
-        upgradeClosure: "",
         elasticBand: "",
-        RushMyOrder: "",
+        babyHair: "",
     });
 
-    const buttonGrp = (input, index) => {
-        return (
-            <div key={index} className="buttonGroup">
-                <p>{input.name} :</p>
-                <div className="buttonGrp">
-                    <button>Yes</button>
-                    <button>No</button>
-                </div>
-                <style jsx>
-                    {`
-                        .buttonGroup {
-                            display: flex;
-                            flex-direction: column;
-                            margin: 10px auto;
-                        }
-                        .buttonGrp button {
-                            margin: 0px 10px;
-                            padding: 0px 4px;
-                            height: 30px;
-                        }
+    useEffect(() => btnStyle());
 
-                        .buttonGrp {
-                            display: flex;
-                            align-items: center;
-                            padding: 0px 20px;
-                            justify-content: space-between;
-                        }
-                    `}
-                </style>
-            </div>
-        );
+    const selectHandler = (e) => {
+        e.preventDefault();
+        setFormState({
+            ...formState,
+            [e.target.name]: e.target.value,
+        });
     };
+
+    const sumbmitHandler = (e) => {
+        e.preventDefault();
+        alert(JSON.stringify(formState));
+    };
+
+    const inputHandler = (e) => {
+        e.preventDefault();
+        setFormState({
+            ...formState,
+            elasticBand: e.target.value,
+        });
+    };
+
+    const styleBtn = (id1, id2) => {
+        ((document.getElementById(id1).style.backgroundColor = "#f7f7f7"),
+        (document.getElementById(id1).style.color = "black"),
+        (document.getElementById(id2).style.backgroundColor = "blue")),
+            (document.getElementById(id2).style.color = "white");
+    };
+
+    const btnStyle = () => {
+        formState.elasticBand === "No" && styleBtn("Yes (+$2.50)", "No");
+
+        formState.elasticBand === "Yes (+$2.50)" &&
+            styleBtn("No", "Yes (+$2.50)");
+    };
+
+    const radioHandler = (e) => {
+        setFormState({
+            ...formState,
+            babyHair: e.target.value,
+        });
+        console.log("formState", formState);
+    };
+
+    console.log("formState", formState);
+
+    const buttonGrp = (input, index) => (
+        <div key={index} className="buttonGrp">
+            <p>{input.name} :</p>
+            <CustomWigButtonGrp data={input} inputHandler={inputHandler} />
+            <style jsx>
+                {`
+                    .buttonGroup {
+                        display: flex;
+                        flex-direction: column;
+                        margin: 10px auto;
+                    }
+                `}
+            </style>
+        </div>
+    );
 
     const checkBox = (form, index) => (
         <Form.Group
@@ -64,8 +86,10 @@ const CustomWig = () => {
                 <Form.Check
                     key={index}
                     name={form.name}
-                    id="babyHair"
-                    type="checkbox"
+                    value={item}
+                    id={`${item} ${form.name}`}
+                    onChange={radioHandler}
+                    type="radio"
                     label={item}
                 />
             ))}
@@ -73,9 +97,9 @@ const CustomWig = () => {
     );
 
     const selectDropdown = (wigs, index) => (
-        <Form.Group key={index} controlId={wigs.name}>
+        <Form.Group key={index} onClick={selectHandler} controlId={wigs.name}>
             <Form.Label>{wigs.name} :</Form.Label>
-            <Form.Control as="select" custom>
+            <Form.Control name={wigs.id} as="select" custom>
                 {wigs.content.map((wigOption, index) => (
                     <option key={index} value={wigOption}>
                         {wigOption}
@@ -106,14 +130,20 @@ const CustomWig = () => {
         <Pagelayout title="Buy your custom wig">
             <HomepageSlider />
             <Container className="py-5">
-                <Row className={styles.row}>
-                    <Col lg={3} xs={3}>
+                <Row className={`{styles.row} px-3`} sm={12} lg={12}>
+                    <div className="text">
                         <h4>Build a Custom Wig</h4>
                         <p>$ 160</p>
                         <h5>Tax included.Shipping calculated at checkout</h5>
-
+                    </div>
+                </Row>
+                <Row className={styles.row}>
+                    <Col lg={3} sm={12}>
                         <span className="order-control my-3 p-2">
-                            <Form className={styles.form}>
+                            <Form
+                                onSubmit={sumbmitHandler}
+                                className={styles.form}
+                            >
                                 {displayWigDropdown()}
                                 <button className={styles.addToCart}>
                                     Add to Cart
@@ -121,7 +151,7 @@ const CustomWig = () => {
                             </Form>
                         </span>
                     </Col>
-                    <Col lg={8} xs={8}>
+                    <Col lg={8} sm={12}>
                         <h3>Build your own custom unit!</h3>
                         <h6>
                             Any questions or concerns, please contact us via

@@ -7,6 +7,7 @@ const AlertBanner = ({ displayHandler }) => {
                 DUE TO <b>COVID 19</b> PLEASE BE ADVISED THERE MAY BE DELAY IN
                 SHIPMENT. WE APOLOGISE FOR ANY INCONVENIENCE. FOR FURTHER
                 ASSISTANCE PLEASE CALL{" "}
+                <a href="tel:+12674038663">+1 (267) 403-8663</a>
             </h3>
             <button className="cancel" onClick={displayHandler}>
                 <i className="fas fa-times-circle"></i>
@@ -15,6 +16,11 @@ const AlertBanner = ({ displayHandler }) => {
                 {`
                     .alertBanner {
                         position: relative;
+                    }
+                    a {
+                        color: black;
+                        text-decoration: underline;
+                        margin: 0px 5px;
                     }
                     h3 {
                         color: white;

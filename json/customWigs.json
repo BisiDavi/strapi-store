@@ -1,16 +1,19 @@
 [
     {
         "name": "Unit Type *",
+        "id": "unitType",
         "type": "select",
         "content": ["--Choose Unit type--", "Closure", "Frontal +$50.00"]
     },
     {
         "name": "Circumference *",
+        "id": "circumference",
         "type": "select",
         "content": ["--Choose Circumference--", 20, 21, 21.5, 22, 22.5, 23, 24]
     },
     {
         "name": "Length: Bundle Deals/Mixed Lengths *",
+        "id": "bundleLength",
         "type": "select",
         "content": [
             "--Choose Length: Bundle Deals/Mixed Lengths--",
@@ -34,6 +37,7 @@
     },
     {
         "name": "Texture *",
+        "id": "texture",
         "type": "select",
         "content": [
             "--Choose Texture--",
@@ -44,6 +48,7 @@
     },
     {
         "name": "Parting *",
+        "id": "parting",
         "type": "select",
         "content": [
             "--Choose Parting--",
@@ -54,6 +59,7 @@
     },
     {
         "name": "Style *",
+        "id": "style",
         "type": "select",
         "content": [
             "--Choose Style--",
@@ -65,7 +71,8 @@
         ]
     },
     {
-        "name": " Add A Bundle",
+        "name": "Add A Bundle",
+        "id": "addBundle",
         "type": "select",
         "content": [
             "--Choose Add A Bundle--",
@@ -79,11 +86,13 @@
     },
     {
         "name": "Baby Hair",
+        "id": "babyHair",
         "type": "checkbox",
         "content": ["Yes", "No"]
     },
     {
         "name": "Upgrade Closure Size",
+        "id": "upgadeClosure",
         "type": "select",
         "content": [
             "--Choose Upgrade Closure Size --",
@@ -94,10 +103,13 @@
     },
     {
         "name": "Elastic Band",
-        "type": "button"
+        "id": "elasticBand",
+        "type": "button",
+        "content": ["Yes (+$2.50)", "No"]
     },
     {
         "name": "Rush My Order",
+        "id": "rushOrder",
         "type": "select",
         "content": ["--Choose Rush My Order--", "Rush My Order (+$150.00)"]
     }
