@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { HomepageSlider } from "../../components";
-import { SelectWigs } from "../../components/Form";
+import { SelectWigs, WigCheckbox } from "../../components/Form";
 import { CustomWigButtonGrp } from "../../components/Form/ButtonGrp";
 import { Pagelayout } from "../../container";
 import customWigs from "../../json/customWigs.json";
 import styles from "../../styles/customWig.module.css";
+import { sumTotal } from "../../utils";
 
 const CustomWig = () => {
     const [formState, setFormState] = useState({
@@ -55,31 +56,11 @@ const CustomWig = () => {
             ...formState,
             babyHair: e.target.value,
         });
-        console.log("formState", formState);
     };
 
     console.log("formState", formState);
 
-    const checkBox = (form, index) => (
-        <Form.Group
-            key={index}
-            className={styles.checkbox}
-            controlId={form.name}
-        >
-            <Form.Label>{form.name} :</Form.Label>
-            {form.content.map((item, index) => (
-                <Form.Check
-                    key={index}
-                    name={form.name}
-                    value={item}
-                    id={`${item} ${form.name}`}
-                    onChange={radioHandler}
-                    type="radio"
-                    label={item}
-                />
-            ))}
-        </Form.Group>
-    );
+    console.log("total", sumTotal(formState));
 
     const fieldType = (input, index) => {
         switch (input.type) {
@@ -100,7 +81,13 @@ const CustomWig = () => {
                     />
                 );
             case "checkbox":
-                return checkBox(input, index);
+                return (
+                    <WigCheckbox
+                        key={index}
+                        form={input}
+                        radioHandler={radioHandler}
+                    />
+                );
             default:
                 return null;
         }
@@ -122,13 +109,22 @@ const CustomWig = () => {
                     </div>
                 </Row>
                 <Row className={styles.row}>
-                    <Col lg={3} sm={12}>
+                    <Col lg={4} sm={12}>
                         <span className="order-control my-3 p-2">
                             <Form
                                 onSubmit={sumbmitHandler}
                                 className={styles.form}
                             >
                                 {displayWigDropdown()}
+                                {sumTotal(formState) !== 0 ? (
+                                    <div className={styles.selection}>
+                                        <h6>
+                                            Selection will add{" "}
+                                            <span>$ {sumTotal(formState)}</span>
+                                            to the price
+                                        </h6>
+                                    </div>
+                                ) : null}
                                 <button className={styles.addToCart}>
                                     Add to Cart
                                 </button>
