@@ -1,0 +1,56 @@
+.row {
+    justify-content: space-between;
+}
+
+.row h4,
+.row h3 {
+    color: pink;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 10px 0px;
+}
+.row h6 {
+    color: black;
+    font-size: 18px;
+    margin: 15px 0px;
+}
+
+.row p {
+    color: black;
+    font-weight: bold;
+}
+.form {
+    background-color: #f7f7f7;
+    border: 1px solid #d1d1d1;
+    padding: 10px;
+}
+
+.form button.addToCart {
+    background-color: black;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    display: flex;
+    margin: 10px auto;
+}
+
+.form label {
+    color: black;
+    font-weight: bold;
+}
+
+.checkbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkbox div {
+    margin: 0px;
+    align-items: center;
+    display: flex;
+}
+
+.checkbox label {
+    margin: 0px;
+}

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
-import { Button, HomepageSlider } from "../../components";
+import { HomepageSlider } from "../../components";
 import { Pagelayout } from "../../container";
 import customWigs from "../../json/customWigs.json";
+import styles from "../../styles/customWig.module.css";
 
 const CustomWig = () => {
     const [formState, setFormState] = useState({
@@ -22,26 +23,54 @@ const CustomWig = () => {
     const buttonGrp = (input, index) => {
         return (
             <div key={index} className="buttonGroup">
-                <p>{input.name}</p>
+                <p>{input.name} :</p>
                 <div className="buttonGrp">
-                    <Button text="Yes" />
-                    <Button text="No" />
+                    <button>Yes</button>
+                    <button>No</button>
                 </div>
+                <style jsx>
+                    {`
+                        .buttonGroup {
+                            display: flex;
+                            flex-direction: column;
+                            margin: 10px auto;
+                        }
+                        .buttonGrp button {
+                            margin: 0px 10px;
+                            padding: 0px 4px;
+                            height: 30px;
+                        }
+
+                        .buttonGrp {
+                            display: flex;
+                            align-items: center;
+                            padding: 0px 20px;
+                            justify-content: space-between;
+                        }
+                    `}
+                </style>
             </div>
         );
     };
 
     const checkBox = (form) => (
-        <Form.Group controlId={form.name}>
+        <Form.Group className={styles.checkbox} controlId={form.name}>
+            <Form.Label>{form.name} :</Form.Label>
             {form.content.map((item, index) => (
-                <Form.Check key={index} type="checkbox" label={item} />
+                <Form.Check
+                    key={index}
+                    name={form.name}
+                    id="babyHair"
+                    type="checkbox"
+                    label={item}
+                />
             ))}
         </Form.Group>
     );
 
     const selectDropdown = (wigs, index) => (
         <Form.Group key={index} controlId={wigs.name}>
-            <Form.Label>{wigs.name}</Form.Label>
+            <Form.Label>{wigs.name} :</Form.Label>
             <Form.Control as="select" custom>
                 {wigs.content.map((wigOption, index) => (
                     <option key={index} value={wigOption}>
@@ -72,36 +101,38 @@ const CustomWig = () => {
     return (
         <Pagelayout title="Buy your custom wig">
             <HomepageSlider />
-            <Container>
-                <Row>
+            <Container className="py-5">
+                <Row className={styles.row}>
                     <Col lg={3} xs={3}>
                         <h4>Build a Custom Wig</h4>
                         <p>$ 160</p>
                         <p>Tax included.Shipping calculated at checkout</p>
 
                         <span className="order-control my-3 p-2">
-                            <Form>
+                            <Form className={styles.form}>
                                 {displayWigDropdown()}
-                                <Button bgColor="black" text="Add to Cart" />
+                                <button className={styles.addToCart}>
+                                    Add to Cart
+                                </button>
                             </Form>
                         </span>
                     </Col>
-                    <Col lg={9} xs={9}>
-                        <p>Build your own custom unit!</p>
-                        <p>
+                    <Col lg={8} xs={8}>
+                        <h3>Build your own custom unit!</h3>
+                        <h6>
                             Any questions or concerns, please contact us via
                             info@jenjensluxurywigs.com
-                        </p>
+                        </h6>
 
-                        <h4>
+                        <h6>
                             Please carefully select everything you want included
                             in your custom order!
-                        </h4>
+                        </h6>
                         <p>Ensure to choose correct cap size!</p>
-                        <h4>
+                        <h6>
                             Ready Shipping Policy for custom order shipping
                             time!
-                        </h4>
+                        </h6>
                     </Col>
                 </Row>
             </Container>
