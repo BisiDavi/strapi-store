@@ -53,8 +53,12 @@ const CustomWig = () => {
         );
     };
 
-    const checkBox = (form) => (
-        <Form.Group className={styles.checkbox} controlId={form.name}>
+    const checkBox = (form, index) => (
+        <Form.Group
+            key={index}
+            className={styles.checkbox}
+            controlId={form.name}
+        >
             <Form.Label>{form.name} :</Form.Label>
             {form.content.map((item, index) => (
                 <Form.Check
@@ -88,7 +92,7 @@ const CustomWig = () => {
             case "button":
                 return buttonGrp(input, index);
             case "checkbox":
-                return checkBox(input);
+                return checkBox(input, index);
             default:
                 return null;
         }
@@ -106,7 +110,7 @@ const CustomWig = () => {
                     <Col lg={3} xs={3}>
                         <h4>Build a Custom Wig</h4>
                         <p>$ 160</p>
-                        <p>Tax included.Shipping calculated at checkout</p>
+                        <h5>Tax included.Shipping calculated at checkout</h5>
 
                         <span className="order-control my-3 p-2">
                             <Form className={styles.form}>
@@ -121,7 +125,9 @@ const CustomWig = () => {
                         <h3>Build your own custom unit!</h3>
                         <h6>
                             Any questions or concerns, please contact us via
-                            info@jenjensluxurywigs.com
+                            <a href="mailto:info@jenjensluxurywigs.com">
+                                info@jenjensluxurywigs.com
+                            </a>
                         </h6>
 
                         <h6>

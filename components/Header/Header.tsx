@@ -3,11 +3,11 @@ import { AlertBanner, Nav, PromoBanner } from "..";
 
 const Header = ({ promoDisplay, promoHandler }) => {
     return (
-        <div className="header">
+        <header className="header">
             {promoDisplay && <AlertBanner displayHandler={promoHandler} />}
             <PromoBanner />
             <Nav />
-        </div>
+        </header>
     );
 };
 

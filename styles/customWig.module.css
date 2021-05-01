@@ -4,10 +4,14 @@
 
 .row h4,
 .row h3 {
-    color: pink;
+    color: #ffa6ca;
     font-weight: bold;
     font-size: 25px;
     margin: 10px 0px;
+}
+.row h5 {
+    color: black;
+    font-size: 16px;
 }
 .row h6 {
     color: black;
@@ -15,9 +19,16 @@
     margin: 15px 0px;
 }
 
+.row h6 a {
+    color: #ffa6ca;
+    margin: 0px 5px;
+}
+
 .row p {
     color: black;
     font-weight: bold;
+    margin: 0px 0px 3px 0px;
+    font-size: 18px;
 }
 .form {
     background-color: #f7f7f7;
@@ -32,6 +43,10 @@
     border: none;
     display: flex;
     margin: 10px auto;
+    width: 100%;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .form label {

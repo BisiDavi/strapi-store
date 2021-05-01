@@ -29,7 +29,6 @@ const Nav = () => {
         toast.success(`${session.user.name}, you're logged in`);
         router.back();
     };
-    if (typeof window !== "undefined" && loading) return null;
     return (
         <nav className="nav-menu">
             <span className="hamburger">
