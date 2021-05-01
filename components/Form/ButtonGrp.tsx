@@ -1,22 +1,31 @@
 import React from "react";
+import { priceRegex } from "../../utils";
 
 export const CustomWigButtonGrp = ({ data, inputHandler }) => {
     return (
-        <div className="buttonGrp">
-            {data.content.map((item, index) => (
-                <button
-                    type="button"
-                    key={index}
-                    id={item}
-                    data-price={20}
-                    value={item}
-                    onClick={inputHandler}
-                >
-                    {item}
-                </button>
-            ))}
+        <div className="buttonGroup">
+            <p>{data.name} :</p>
+            <div className="buttonGrp">
+                {data.content.map((item, index) => (
+                    <button
+                        type="button"
+                        key={index}
+                        id={item}
+                        data-price={priceRegex(item)}
+                        value={item}
+                        onClick={inputHandler}
+                    >
+                        {item}
+                    </button>
+                ))}
+            </div>
             <style jsx>
                 {`
+                    .buttonGroup {
+                        display: flex;
+                        flex-direction: column;
+                        margin: 10px auto;
+                    }
                     .selected {
                         background-color: blue;
                         color: white;

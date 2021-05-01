@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { HomepageSlider } from "../../components";
+import { SelectWigs } from "../../components/Form";
 import { CustomWigButtonGrp } from "../../components/Form/ButtonGrp";
 import { Pagelayout } from "../../container";
 import customWigs from "../../json/customWigs.json";
@@ -12,7 +13,7 @@ const CustomWig = () => {
         babyHair: "",
     });
 
-    useEffect(() => btnStyle());
+    useEffect(() => btnStyle(), [formState.elasticBand]);
 
     const selectHandler = (e) => {
         e.preventDefault();
@@ -59,22 +60,6 @@ const CustomWig = () => {
 
     console.log("formState", formState);
 
-    const buttonGrp = (input, index) => (
-        <div key={index} className="buttonGrp">
-            <p>{input.name} :</p>
-            <CustomWigButtonGrp data={input} inputHandler={inputHandler} />
-            <style jsx>
-                {`
-                    .buttonGroup {
-                        display: flex;
-                        flex-direction: column;
-                        margin: 10px auto;
-                    }
-                `}
-            </style>
-        </div>
-    );
-
     const checkBox = (form, index) => (
         <Form.Group
             key={index}
@@ -96,25 +81,24 @@ const CustomWig = () => {
         </Form.Group>
     );
 
-    const selectDropdown = (wigs, index) => (
-        <Form.Group key={index} onClick={selectHandler} controlId={wigs.name}>
-            <Form.Label>{wigs.name} :</Form.Label>
-            <Form.Control name={wigs.id} as="select" custom>
-                {wigs.content.map((wigOption, index) => (
-                    <option key={index} value={wigOption}>
-                        {wigOption}
-                    </option>
-                ))}
-            </Form.Control>
-        </Form.Group>
-    );
-
     const fieldType = (input, index) => {
         switch (input.type) {
             case "select":
-                return selectDropdown(input, index);
+                return (
+                    <SelectWigs
+                        wigs={input}
+                        key={index}
+                        selectHandler={selectHandler}
+                    />
+                );
             case "button":
-                return buttonGrp(input, index);
+                return (
+                    <CustomWigButtonGrp
+                        data={input}
+                        key={index}
+                        inputHandler={inputHandler}
+                    />
+                );
             case "checkbox":
                 return checkBox(input, index);
             default:
