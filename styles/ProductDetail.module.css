@@ -105,7 +105,8 @@
 @media (max-width: 768px) {
     .btnGrp .addToCart,
     .btnGrp .buyNow {
-        width: 250px;
+        width: 200px;
+        font-size: 20px;
         margin: 10px auto;
     }
 }

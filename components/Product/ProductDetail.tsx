@@ -118,11 +118,6 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
             </div>
 
             <style jsx>{`
-                .product_column_1 {
-                    justify-content: center;
-                    display: flex;
-                    flex-direction: column;
-                }
                 .product-image {
                     margin: 50px 0px 0px 0px;
                 }
@@ -182,47 +177,24 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                         margin: 0px auto;
                     }
                     .product-text {
-                        padding: 20px;
+                        padding:5px 20px;
                         width: 100%;
                         margin: 0px;
                     }
-                    .product {
-                        display: flex;
-                        flex-direction: column;
-                        width: 100%;
-                    }
+
                     .product-image {
                         margin: 20px;
                     }
-                    .product_column_1 .info {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-around;
-                        width: 100%;
-                        flex-direction: row;
-                    }
-                    .product_column_1 .info h1,
-                    .product_column_1 .info h4 {
-                        width: unset;
-                        font-size: 25px;
-                    }
-                    .product p {
-                        font-size: 20px;
-                        padding: 10px;
-                    }
                     .product-description p {
-                        font-size: 20px;
+                        font-size: 16px;
                     }
-                    .product .tax {
-                        font-size: 15px;
-                        text-align: center;
-                    }
+
                     .tax a {
                         color: red;
                     }
                     .info h1,
                     .info h4 {
-                        font-size: 25px;
+                        font-size: 18px;
                     }
                 }
             `}</style>

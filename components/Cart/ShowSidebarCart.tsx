@@ -67,7 +67,8 @@ const ShowSidebarCart: FC<ShowSidebarCartProps> = ({
                         {`
                             .text h1 {
                                 color: black;
-                                font-size: 25px;
+                                font-size: 20px;
+                                line-height: 30px;
                                 font-weight: bold;
                             }
                             .controls {
@@ -83,7 +84,7 @@ const ShowSidebarCart: FC<ShowSidebarCartProps> = ({
                                 font-size: 30px;
                             }
                             .price {
-                                font-size: 25px;
+                                font-size: 20px;
                                 color: black;
                             }
                             .controls {
@@ -113,7 +114,7 @@ const ShowSidebarCart: FC<ShowSidebarCartProps> = ({
                                 background-color: green;
                                 color: white;
                             }
-                            
+
                             .controls button:first-child {
                                 background-color: red;
                                 color: white;
