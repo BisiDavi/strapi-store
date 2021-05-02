@@ -7,20 +7,21 @@ const Logo = () => {
         <div className="logo">
             <Link href="/" passHref>
                 <a>
-                    <Image
-                        src="/logo.jpg"
-                        height={100}
-                        width={100}
-                        layout="responsive"
-                    />
+                    <Image src="/logo.png" height={70} width={100} />
                 </a>
             </Link>
             <style jsx>
                 {`
                     .logo {
-                        height: 150px;
-                        width: 150px;
+                        height: 60px;
+                        width: 100px;
                         margin: auto;
+                    }
+                    @media (max-width: 768px) {
+                        .logo {
+                            margin-top: 0px;
+                            height: 50px;
+                        }
                     }
                 `}
             </style>

@@ -131,11 +131,15 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                     }
                     .product-info p{
                         margin-bottom:5px;
+                        font-size:20px;
                     }
                 }
                 @media (max-width:450px){
                     h1{
                         font-size:6vw;
+                    }
+                    .product-info p{
+                        font-size:16px;
                     }
                 }
              }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Pagelayout } from "../../container";
 import { displayList } from "./delivery-policy";
+
 const returnConditions = [
     "All orders must be returned in the original packaging.",
     "All returns/exchanges must be made within 72 hours of recorded receipt. ",

@@ -65,16 +65,13 @@ const Nav = () => {
             />
             <style jsx>
                 {`
-                    .image {
-                        height: 150px;
-                        width: 150px;
-                    }
                     nav.nav-menu {
                         display: flex;
                         justify-content: space-between;
                         padding: 0px 50px;
                         align-items: center;
                         width: 100%;
+                        height: 110px;
                     }
                     .signupStatus button {
                         margin: 0px 10px;
@@ -96,11 +93,6 @@ const Nav = () => {
                         font-weight: bold;
                     }
                     @media (max-width: 768px) {
-                        .image {
-                            height: 5%;
-                            width: 30%;
-                            margin: auto;
-                        }
                         .cart {
                             position: absolute;
                             left: 20px;
@@ -115,6 +107,7 @@ const Nav = () => {
                         nav.nav-menu {
                             padding: 0px 20px;
                             position: relative;
+                            padding-top: 30px;
                         }
                         .signupStatus {
                             position: absolute;

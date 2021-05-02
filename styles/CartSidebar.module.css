@@ -33,3 +33,9 @@
     display: flex;
     align-items: center;
 }
+
+@media (max-width: 768px) {
+    .priceAmount {
+        margin: 10px 0px 0px 0px;
+    }
+}

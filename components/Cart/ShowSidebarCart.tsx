@@ -109,9 +109,30 @@ const ShowSidebarCart: FC<ShowSidebarCartProps> = ({
                                 width: 100%;
                             }
 
+                            .controls button:last-child {
+                                background-color: green;
+                                color: white;
+                            }
+                            
+                            .controls button:first-child {
+                                background-color: red;
+                                color: white;
+                            }
+
                             .controls span {
                                 font-size: 30px;
                                 color: black;
+                            }
+
+                            @media (max-width: 768px) {
+                                .price {
+                                    margin-top: 10px;
+                                }
+                                .controls button {
+                                    height: 40px;
+                                    width: 40px;
+                                    font-size: 25px;
+                                }
                             }
                         `}
                     </style>

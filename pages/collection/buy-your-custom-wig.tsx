@@ -121,7 +121,7 @@ const CustomWig = () => {
                                         <h6>
                                             Selection will add{" "}
                                             <span>$ {sumTotal(formState)}</span>
-                                            to the price
+                                              to the price
                                         </h6>
                                     </div>
                                 ) : null}
