@@ -83,17 +83,17 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
             </Slider>
 
             <style jsx>{`
-                h1{
-                    text-align:center;
-                    color:#ffa6ca;
-                    font-weight:1000;
-                    font-size:2.5vw;
+                h1 {
+                    text-align: center;
+                    color: #ffa6ca;
+                    font-weight: 1000;
+                    font-size: 2.5vw;
                 }
-                .title{
-                    display:flex;
-                    align-items:center;
-                    justify-content:space-between;
-                    margin:20px 0px;
+                .title {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 20px 0px;
                 }
                 .product-info p {
                     white-space: nowrap;
@@ -102,17 +102,17 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                 }
                 .product-info {
                     color: black;
-                    display:flex;
-                    flex-direction:column;
+                    display: flex;
+                    flex-direction: column;
                 }
-                .title h6{
-                    display:flex;
-                    align-items:center;
+                .title h6 {
+                    display: flex;
+                    align-items: center;
                 }
-                .title h6 img{
-                    height:20px;
-                    width:20px;
-                    margin:0px 2px;
+                .title h6 img {
+                    height: 20px;
+                    width: 20px;
+                    margin: 0px 2px;
                 }
                 .product-info h4 {
                     font-size: 25px;
@@ -122,27 +122,36 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
                     font-weight: bold;
                 }
 
-                @media(max-width:768px){
-                    h1{
-                        font-size:4vw;
+                @media (max-width: 768px) {
+                    h1 {
+                        font-size: 4vw;
                     }
-                    .product-info{
+                    .product-info {
                         margin: 0px;
                     }
-                    .product-info p{
-                        margin-bottom:5px;
-                        font-size:20px;
+                    .product-info p {
+                        margin-bottom: 5px;
+                        font-size: 20px;
                     }
                 }
-                @media (max-width:450px){
-                    h1{
-                        font-size:6vw;
+                @media (max-width: 450px) {
+                    h1 {
+                        font-size: 16px;
+                        margin-bottom: 0px;
+                        margin-top: 5px;
                     }
-                    .product-info p{
-                        font-size:16px;
+                    .product-info p {
+                        font-size: 16px;
+                    }
+                    .product-info h6,
+                    .product-info h4 {
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                    .title {
+                        margin: 10px 5px 0px 5px;
                     }
                 }
-             }
             `}</style>
         </div>
     );

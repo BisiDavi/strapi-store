@@ -59,6 +59,12 @@ const AlertBanner = ({ displayHandler }) => {
                             right: 8px;
                         }
                     }
+                    @media (max-width: 380px) {
+                        h3 {
+                            font-size: 12px;
+                            line-height: 15px;
+                        }
+                    }
                 `}
             </style>
         </div>

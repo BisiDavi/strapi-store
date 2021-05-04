@@ -11,19 +11,24 @@ const PromoBanner = () => {
                     background-color: black;
                     display: flex;
                     justify-content: center;
+                    align-items:center;
+                    text-align:center;
                     height: 30px;
                 }
                 h4 {
                     color: #ffa6ca;
-                    margin: 0px;
+                    margin: 0px auto;
                     padding: 0px;
-                    align-items: center;
-                    display: flex;
-                    font: 700 normal 1.2em/1.6 "Open Sans", sans-serif;
+                    font: 700 normal 14px/16px "Open Sans", sans-serif;
                 }
                 @media (max-width: 768px) {
                     h4 {
                         font-size: 12px;
+                    }
+                }
+                @media (max-width:360px){
+                    h4{
+                        font-size:10px;
                     }
                 }
             `}</style>
