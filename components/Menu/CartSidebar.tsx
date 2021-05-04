@@ -112,6 +112,7 @@ const CartSidebar: FC<CartSidebarProps> = ({
                                 p.shipping,
                                 p.shipping a {
                                     font-size: 14px;
+                                    text-decoration: none;
                                 }
                             }
                         `}</style>

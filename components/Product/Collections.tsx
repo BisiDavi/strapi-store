@@ -46,6 +46,14 @@ const Collections = () => {
                         .collections {
                             grid-template-columns: 1fr;
                             margin: 20px 30px;
+                            grid-gap: 15px;
+                        }
+                    }
+                    @media (max-width: 500px) {
+                        .collections {
+                            margin: 0px 30px;
+                            margin-top: 20px;
+                            grid-gap: 10px;
                         }
                     }
                 `}

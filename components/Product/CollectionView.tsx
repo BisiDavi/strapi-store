@@ -47,7 +47,7 @@ const CollectionView = ({ collection }: CollectionViewProps): JSX.Element => {
                     letter-spacing: 0.05em;
                     color: #ffa6ca;
                     font-size: 1.33333em;
-                    margin: 20px 0px;
+                    margin: 10px 0px;
                 }
 
                 @media (max-width: 768px) {

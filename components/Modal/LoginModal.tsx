@@ -42,6 +42,12 @@ const LoginModal = ({ show, onHide }) => {
                             font-weight: bold;
                             margin: 10px auto;
                         }
+                        @media (max-width: 500px) {
+                            h3,
+                            span {
+                                font-size: 16px;
+                            }
+                        }
                     `}
                 </style>
             </div>
