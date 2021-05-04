@@ -25,6 +25,22 @@ const Viewmore = () => {
                     button:hover {
                         opacity: 0.8;
                     }
+                    @media (max-width: 768px) {
+                        button {
+                            padding: 0px;
+                            width: 150px;
+                            font-size: 18px;
+                            height: 50px;
+                        }
+                    }
+                    @media (max-width: 500px) {
+                        button {
+                            padding: 0px;
+                            width: 130px;
+                            font-size: 16px;
+                            height: 50px;
+                        }
+                    }
                 `}
             </style>
         </div>
