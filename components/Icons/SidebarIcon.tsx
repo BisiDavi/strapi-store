@@ -15,9 +15,7 @@ const SidebarIcon = (): JSX.Element => {
             <Mailinglist show={mailModal} onHide={() => setMailModal(false)} />
 
             {showCurrency ? (
-                <div onClick={() => setShowCurrency(false)}>
-                    <SelectCurrencyDropdown />
-                </div>
+                <SelectCurrencyDropdown />
             ) : (
                 <div className="currency" onClick={() => setShowCurrency(true)}>
                     {currency === "Naira" ? (
