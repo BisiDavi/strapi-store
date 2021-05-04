@@ -11,6 +11,7 @@
     border: none;
     font-size: 25px;
     font-weight: bold;
+    background-color: green;
     margin: 0px 0px 40px 0px;
 }
 
@@ -37,5 +38,16 @@
 @media (max-width: 768px) {
     .priceAmount {
         margin: 10px 0px 0px 0px;
+    }
+}
+
+@media (max-width: 500px) {
+    .sidebarContent button.checkout {
+        margin: 0px auto;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        display: flex;
+        margin-bottom: 50px;
     }
 }

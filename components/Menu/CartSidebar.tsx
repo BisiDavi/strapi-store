@@ -37,13 +37,11 @@ const CartSidebar: FC<CartSidebarProps> = ({
                                 {priceExchange(getTotalAmount(products))}
                             </p>
                         </div>
-                        <p>
-                            Tax included.{" "}
-                            <span>
-                                <Link href="/policy/delivery-policy" passHref>
-                                    <a>Shipping</a>
-                                </Link>
-                            </span>
+                        <p className="shipping">
+                            Tax included,{" "}
+                            <Link href="/policy/delivery-policy" passHref>
+                                <a>Shipping</a>
+                            </Link>
                             calculated at checkout.
                         </p>
                         <Button
@@ -99,10 +97,22 @@ const CartSidebar: FC<CartSidebarProps> = ({
                                 color: black;
                                 text-align: center;
                             }
-                            p span {
+                            p a {
                                 color: pink;
                                 margin: 0px 5px;
                                 text-decoration: underline;
+                            }
+                            @media (max-width: 500px) {
+                                textarea {
+                                    margin: 0px 20px;
+                                }
+                                p.shipping {
+                                    margin: 10px 5px;
+                                }
+                                p.shipping,
+                                p.shipping a {
+                                    font-size: 14px;
+                                }
                             }
                         `}</style>
                     </div>
