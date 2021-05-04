@@ -1,17 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import Head from "next/head";
-import { useSession } from "next-auth/client";
 import { useCart } from "../hooks";
 import { PagecontainerProps } from "../types";
-import {
-    Header,
-    Footer,
-    MailButton,
-    Mailinglist,
-    CatalogTab,
-    SelectCurrencyDropdown,
-    Loading,
-} from "../components";
+import { Header, Footer, CatalogTab, SidebarIcon } from "../components";
 import { renderMetaTags } from "react-datocms";
 import Whatsappchat from "../components/ChatWidget/Whatsappchat";
 
@@ -23,13 +14,11 @@ const Pagelayout: FC<PagecontainerProps> = ({
 }): JSX.Element => {
     const [promoDisplay, setPromoDisplay] = useState(true);
     const promoHandler = () => setPromoDisplay(false);
-    const [mailModal, setMailModal] = useState(false);
     const { persistCart } = useCart();
 
     useEffect(() => {
         persistCart();
     }, []);
-    
 
     const pageTitle = product
         ? title
@@ -47,12 +36,10 @@ const Pagelayout: FC<PagecontainerProps> = ({
             </Head>
 
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
-            <CatalogTab />          
-            <MailButton showMail={() => setMailModal(true)} />
-            <Mailinglist show={mailModal} onHide={() => setMailModal(false)} />
+            <CatalogTab />
+            <SidebarIcon />
             {children}
             <Whatsappchat />
-            <SelectCurrencyDropdown />
             <Footer />
 
             <style jsx>

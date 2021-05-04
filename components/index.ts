@@ -7,6 +7,8 @@ export { default as SelfiesBanner } from "./Banner/SelfiesBanner";
 export { default as PromoBanner } from "./Banner/PromoBanner";
 
 export { default as CartIcon } from "./Icons/CartIcon";
+export { default as SidebarIcon } from "./Icons/SidebarIcon";
+
 export { default as Button } from "./Button/Button";
 export { default as Footer } from "./Footer/Footer";
 
