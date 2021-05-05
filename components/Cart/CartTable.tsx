@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Image } from "react-datocms";
-import { FcFullTrash } from "react-icons/fc";
-import { useDispatch } from "react-redux";
-import { useCurrency } from "../../hooks";
-import { DeleteProductAction } from "../../store/actions/counterActions";
-import { Button } from "../.";
-import styles from "../../styles/cart.module.css";
-import { getTotalAmount } from "../../utils";
+import React, { useState } from 'react';
+import { Image } from 'react-datocms';
+import { FcFullTrash } from 'react-icons/fc';
+import { useDispatch } from 'react-redux';
+import { useCurrency } from '../../hooks';
+import { DeleteProductAction } from '../../store/actions/counterActions';
+import { Button } from '../.';
+import styles from '../../styles/cart.module.css';
+import { getTotalAmount } from '../../utils';
 
 const CartTable = (props) => {
     const { products, displayShowTextarea, showTextarea } = props;
@@ -14,7 +14,7 @@ const CartTable = (props) => {
 
     const { priceExchange, symbol } = useCurrency();
 
-    const tableTitle = ["Product", "Name", "Price", "Quantity", "Total"];
+    const tableTitle = ['Product', 'Name', 'Price', 'Quantity', 'Total'];
     const dispatch = useDispatch();
     const deleteProduct = (index) => {
         dispatch(DeleteProductAction({ products, index }));
@@ -51,6 +51,7 @@ const CartTable = (props) => {
                                 />
                             </div>
                             <div className={styles.price}>
+                                <p className='mobile'>Price</p>
                                 {symbol}
                                 {priceExchange(product.price)}
                             </div>
@@ -59,10 +60,11 @@ const CartTable = (props) => {
                                     onChange={inputHandler(index)}
                                     name={product.title}
                                     defaultValue={product.count}
-                                    type="number"
+                                    type='number'
                                 />
                             </div>
                             <div className={styles.amount}>
+                                <p className='mobile'>Amount</p>
                                 {symbol}
                                 {priceExchange(product.amount)}
                             </div>
@@ -88,16 +90,29 @@ const CartTable = (props) => {
                         </div>
 
                         <Button
-                            color="white"
+                            color='white'
                             btnClassName={styles.checkout}
-                            linkTo="/checkout"
-                            bgColor="black"
-                            text="Check out"
+                            linkTo='/checkout'
+                            bgColor='black'
+                            text='Check out'
                             asLink
                         />
                     </div>
                 </div>
             </div>
+            <style jsx>
+                {`
+                    .mobile {
+                        display: none;
+                    }
+                    @media (max-width: 768px) {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: auto;
+                    }
+                `}
+            </style>
         </div>
     );
 };
