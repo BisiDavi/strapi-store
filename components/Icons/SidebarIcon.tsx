@@ -42,7 +42,7 @@ const SidebarIcon = (): JSX.Element => {
                     }
                     @media (max-width: 500px) {
                         .sidebar {
-                            top: 450px;
+                            top: 390px;
                         }
                         .sidebar img {
                             height: 35px;

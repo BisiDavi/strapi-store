@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
-import { HomepageSlider } from "../../components";
-import { SelectWigs, WigCheckbox } from "../../components/Form";
-import { CustomWigButtonGrp } from "../../components/Form/ButtonGrp";
-import { Pagelayout } from "../../container";
-import customWigs from "../../json/customWigs.json";
-import styles from "../../styles/customWig.module.css";
-import { sumTotal } from "../../utils";
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Form } from 'react-bootstrap';
+import { HomepageSlider } from '../../components';
+import { SelectWigs, WigCheckbox } from '../../components/Form';
+import { CustomWigButtonGrp } from '../../components/Form/ButtonGrp';
+import { Pagelayout } from '../../container';
+import customWigs from '../../json/customWigs.json';
+import styles from '../../styles/customWig.module.css';
+import { sumTotal } from '../../utils';
 
 const CustomWig = () => {
     const [formState, setFormState] = useState({
-        elasticBand: "",
-        babyHair: "",
+        elasticBand: '',
+        babyHair: '',
     });
 
     useEffect(() => btnStyle(), [formState.elasticBand]);
@@ -38,17 +38,17 @@ const CustomWig = () => {
     };
 
     const styleBtn = (id1, id2) => {
-        ((document.getElementById(id1).style.backgroundColor = "#f7f7f7"),
-        (document.getElementById(id1).style.color = "black"),
-        (document.getElementById(id2).style.backgroundColor = "blue")),
-            (document.getElementById(id2).style.color = "white");
+        ((document.getElementById(id1).style.backgroundColor = '#f7f7f7'),
+        (document.getElementById(id1).style.color = 'black'),
+        (document.getElementById(id2).style.backgroundColor = 'blue')),
+            (document.getElementById(id2).style.color = 'white');
     };
 
     const btnStyle = () => {
-        formState.elasticBand === "No" && styleBtn("Yes (+$2.50)", "No");
+        formState.elasticBand === 'No' && styleBtn('Yes (+$2.50)', 'No');
 
-        formState.elasticBand === "Yes (+$2.50)" &&
-            styleBtn("No", "Yes (+$2.50)");
+        formState.elasticBand === 'Yes (+$2.50)' &&
+            styleBtn('No', 'Yes (+$2.50)');
     };
 
     const radioHandler = (e) => {
@@ -58,13 +58,13 @@ const CustomWig = () => {
         });
     };
 
-    console.log("formState", formState);
+    console.log('formState', formState);
 
-    console.log("total", sumTotal(formState));
+    console.log('total', sumTotal(formState));
 
     const fieldType = (input, index) => {
         switch (input.type) {
-            case "select":
+            case 'select':
                 return (
                     <SelectWigs
                         wigs={input}
@@ -72,7 +72,7 @@ const CustomWig = () => {
                         selectHandler={selectHandler}
                     />
                 );
-            case "button":
+            case 'button':
                 return (
                     <CustomWigButtonGrp
                         data={input}
@@ -80,7 +80,7 @@ const CustomWig = () => {
                         inputHandler={inputHandler}
                     />
                 );
-            case "checkbox":
+            case 'checkbox':
                 return (
                     <WigCheckbox
                         key={index}
@@ -98,11 +98,11 @@ const CustomWig = () => {
     };
 
     return (
-        <Pagelayout title="Buy your custom wig">
+        <Pagelayout title='Buy your custom wig'>
             <HomepageSlider />
-            <Container className="py-5">
+            <Container className='py-5'>
                 <Row className={`{styles.row} px-3`} sm={12} lg={12}>
-                    <div className="text">
+                    <div className='text'>
                         <h4>Build a Custom Wig</h4>
                         <p>$ 160</p>
                         <h5>Tax included.Shipping calculated at checkout</h5>
@@ -110,7 +110,7 @@ const CustomWig = () => {
                 </Row>
                 <Row className={styles.row}>
                     <Col lg={4} sm={12}>
-                        <span className="order-control my-3 p-2">
+                        <span className='order-control my-3 p-2'>
                             <Form
                                 onSubmit={sumbmitHandler}
                                 className={styles.form}
@@ -119,9 +119,9 @@ const CustomWig = () => {
                                 {sumTotal(formState) !== 0 ? (
                                     <div className={styles.selection}>
                                         <h6>
-                                            Selection will add{" "}
+                                            Selection will add{' '}
                                             <span>$ {sumTotal(formState)}</span>
-                                              to the price
+                                            to the price
                                         </h6>
                                     </div>
                                 ) : null}
@@ -135,7 +135,7 @@ const CustomWig = () => {
                         <h3>Build your own custom unit!</h3>
                         <h6>
                             Any questions or concerns, please contact us via
-                            <a href="mailto:info@jenjensluxurywigs.com">
+                            <a href='mailto:info@jenjensluxurywigs.com'>
                                 info@jenjensluxurywigs.com
                             </a>
                         </h6>
@@ -151,6 +151,19 @@ const CustomWig = () => {
                         </h6>
                     </Col>
                 </Row>
+                <style jsx>
+                    {`
+                        .text p {
+                            font-size: 24px;
+                            font-weight: bold;
+                        }
+                        @media (max-width: 500px) {
+                            .text p {
+                                font-size: 18px;
+                            }
+                        }
+                    `}
+                </style>
             </Container>
         </Pagelayout>
     );
