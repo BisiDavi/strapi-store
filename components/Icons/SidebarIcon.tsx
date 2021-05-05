@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Mailinglist, SelectCurrencyDropdown } from "..";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Mailinglist, SelectCurrencyDropdown } from '..';
 
 const SidebarIcon = (): JSX.Element => {
     const currencyState = useSelector((state) => state.currency);
     const currency = currencyState.name;
 
     const [mailModal, setMailModal] = useState(false);
-    const [showCurrency, setShowCurrency] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
 
+    useEffect(() => {
+        currency === 'Naira' && setShowDropdown(false);
+        currency === 'Dollar' && setShowDropdown(false);
+    }, [currency]);
     return (
-        <div className="sidebar">
-            <img src="/email.png" onClick={() => setMailModal(true)} />
+        <div className='sidebar'>
+            <img src='/email.png' onClick={() => setMailModal(true)} />
             <Mailinglist show={mailModal} onHide={() => setMailModal(false)} />
-
-            {showCurrency ? (
-                <SelectCurrencyDropdown />
-            ) : (
-                <div className="currency" onClick={() => setShowCurrency(true)}>
-                    {currency === "Naira" ? (
-                        <img src="/naira.png" />
-                    ) : (
-                        <img src="/dollar.png" />
-                    )}
-                </div>
-            )}
+            <div className='currency' onClick={() => setShowDropdown(true)}>
+                {currency === 'Naira' ? (
+                    <img src='/naira.png' />
+                ) : (
+                    <img src='/dollar.png' />
+                )}
+            </div>
+            {showDropdown && <SelectCurrencyDropdown />}
             <style jsx>
                 {`
                     .sidebar {
