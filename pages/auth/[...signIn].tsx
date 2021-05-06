@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     getProviders,
     signIn as AuthSignIn,
@@ -16,8 +16,12 @@ const Signin = ({ providers, csrfToken }) => {
     const [session, loading] = useSession();
     const { signIn } = router.query;
 
+    useEffect(() => {
+        session && router.back();
+    }, [session]);
+
     console.log('session', session);
-    console.log('server', process.env.EMAIL_SERVER);
+
     const displayIcon = (icon) => {
         switch (icon) {
             case 'Google':
@@ -42,24 +46,6 @@ const Signin = ({ providers, csrfToken }) => {
                         </h3>
 
                         <div className='signinButtons'>
-                            {/* <form method='post' action='/api/auth/signin/email'>
-                                <input
-                                    name='csrfToken'
-                                    type='hidden'
-                                    defaultValue={csrfToken}
-                                />
-                                <input
-                                    type='email'
-                                    placeholder='Your email'
-                                    required
-                                    name='email'
-                                    id='email'
-                                />
-                                <button type='submit'>
-                                    {signIn} with Email
-                                </button>
-                            </form>
-                            or */}
                             <div className='providerSignin'>
                                 {Object.values(providers).map(
                                     (provider: any) => {
