@@ -1,22 +1,6 @@
 import Cors from "cors";
 var crypto = require("crypto");
 
-// const cors = Cors({
-//     methods: ["POST", "HEAD"],
-// });
-
-// function runMiddleware(req, res, fn) {
-//     return new Promise((resolve, reject) => {
-//         fn(req, res, (result) => {
-//             if (result instanceof Error) {
-//                 return reject(result);
-//             }
-
-//             return resolve(result);
-//         });
-//     });
-// }
-
 export default function deleteUserHandler(req, res) {
     //     await runMiddleware(req, res, cors);
     if (req.method === "POST") {

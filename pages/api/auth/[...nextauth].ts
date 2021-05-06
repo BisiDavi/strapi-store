@@ -1,9 +1,6 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 
-console.log('EMAIL_SERVER', process.env.EMAIL_SERVER);
-console.log('from', process.env.EMAIL_FROM);
-
 const options = {
     providers: [
         Providers.Email({
