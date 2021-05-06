@@ -7,22 +7,22 @@ const ShippingAddress: FC = (): JSX.Element => {
     let fullName, email;
 
     useEffect(() => {
-        fullName = !loading && session ? session.user.name : '';
-        email = !loading && session ? session.user.email : '';
+        formState.fullName = !loading && session ? session.user.name : '';
+        formState.email = !loading && session ? session.user.email : '';
     }, [session]);
 
     console.log('fullName', fullName);
     console.log('email', email);
 
     const [formState, setFormState] = useState({
-        fullName: fullName,
-        email: email,
+        fullName: '',
+        email: '',
         telephone: '',
         address: '',
         zip: '',
         city: '',
-        country: '',
         state: '',
+        country: '',
     });
     const formArr = [
         { name: 'fullName', placeHolder: 'Name*' },
@@ -31,8 +31,8 @@ const ShippingAddress: FC = (): JSX.Element => {
         { name: 'address', placeHolder: 'Address*' },
         { name: 'zip', placeHolder: 'Zip/Postal Code*' },
         { name: 'city', placeHolder: 'City*' },
-        { name: 'country', placeHolder: 'Country*' },
         { name: 'state', placeHolder: 'State*' },
+        { name: 'country', placeHolder: 'Country*' },
     ];
     const inputHandler = (e) => {
         setFormState({
