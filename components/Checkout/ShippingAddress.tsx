@@ -153,6 +153,7 @@ const ShippingAddress: FC = (): JSX.Element => {
                         }
                         input {
                             height: 40px;
+                            width:100%;
                         }
                     }
                 `}
