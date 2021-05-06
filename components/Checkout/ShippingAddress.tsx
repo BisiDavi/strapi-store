@@ -1,38 +1,58 @@
-import React, { useState } from "react";
+import React, { FC, useState } from 'react';
+import { useSession } from 'next-auth/client';
 
-const ShippingAddress = () => {
+const ShippingAddress: FC = (): JSX.Element => {
+    const [session, loading] = useSession();
+    console.log('session', session);
+
+    const condition = session !== null && session !== undefined;
+    const fullName = condition ? session.user.name : '';
+    const email = condition && session.user.email ? session.user.email : '';
+
+    console.log('fullName', fullName);
+    console.log('email', email);
+
     const [formState, setFormState] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        telephone: "",
-        address: "",
-        zip: "",
-        city: "",
-        country: "",
-        state: "",
+        fullName: fullName,
+        email: email,
+        telephone: '',
+        address: '',
+        zip: '',
+        city: '',
+        country: '',
+        state: '',
     });
     const formArr = [
-        { name: "firstName", placeHolder: "First Name*" },
-        { name: "lastName", placeHolder: "Last Name*" },
-        { name: "email", placeHolder: "Email*" },
-        { name: "telephone", placeHolder: "Telephone*" },
-        { name: "address", placeHolder: "Address*" },
-        { name: "zip", placeHolder: "Zip/Postal Code*" },
-        { name: "city", placeHolder: "City*" },
-        { name: "country", placeHolder: "Country*" },
-        { name: "state", placeHolder: "State*" },
+        { name: 'fullName', placeHolder: 'Name*' },
+        { name: 'email', placeHolder: 'Email*' },
+        { name: 'telephone', placeHolder: 'Telephone*' },
+        { name: 'address', placeHolder: 'Address*' },
+        { name: 'zip', placeHolder: 'Zip/Postal Code*' },
+        { name: 'city', placeHolder: 'City*' },
+        { name: 'country', placeHolder: 'Country*' },
+        { name: 'state', placeHolder: 'State*' },
     ];
+    const inputHandler = (e) => {
+        setFormState({
+            ...formState,
+            [e.target.name]: e.target.value,
+        });
+    };
+    console.log('formState', formState);
+
     return (
-        <div className="shippingAddress">
-            <div className="title">
+        <div className='shippingAddress'>
+            <div className='title'>
                 <span>1</span>SHIPPING ADDRESS
             </div>
-            <div className="addressForm">
+            <div className='addressForm'>
                 {formArr.map((formInput, index) => (
                     <input
+                        key={index}
                         className={`input-${index}`}
                         name={formInput.name}
+                        value={formState[formInput.name]}
+                        onChange={inputHandler}
                         placeholder={formInput.placeHolder}
                         required
                     />
@@ -77,12 +97,20 @@ const ShippingAddress = () => {
                         grid-gap: 10px;
                     }
 
-                    .shippingAddress {
+                    .addressForm input {
                         width: 100%;
+                    }
+
+                    .shippingAddress {
                         border: 1px solid black;
                         padding: 20px;
                         margin: 30px 0px;
                         width: 450px;
+                    }
+                    @media (max-width: 768px) {
+                        .shippingAddress {
+                            width: 100%;
+                        }
                     }
                 `}
             </style>

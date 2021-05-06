@@ -1,4 +1,4 @@
-import { ResponsiveImageType } from "react-datocms";
+import { ResponsiveImageType } from 'react-datocms';
 
 export interface PagecontainerProps {
     children: any;
@@ -34,7 +34,7 @@ export interface HamburgerProps {
 }
 
 export interface CollectionViewProps {
-    collection: Record<"img" | "name" | "text" | "link", string>;
+    collection: Record<'img' | 'name' | 'text' | 'link', string>;
 }
 
 export interface IProduct {
@@ -84,4 +84,13 @@ export interface HomeProps {
     seoData: {};
     query: any;
     isConnected: any;
+}
+
+export interface shippingAddressProps {
+    session: {
+        user: {
+            email: string;
+            name: string;
+        };
+    };
 }
