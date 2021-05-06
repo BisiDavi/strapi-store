@@ -16,7 +16,7 @@ const Signin = ({ providers, csrfToken }) => {
     const { signIn } = router.query;
 
     console.log('session', session);
-
+    console.log('server', process.env.EMAIL_SERVER);
     const displayIcon = (icon) => {
         switch (icon) {
             case 'Google':
@@ -51,6 +51,8 @@ const Signin = ({ providers, csrfToken }) => {
                                     type='email'
                                     placeholder='Your email'
                                     required
+                                    name='email'
+                                    id='email'
                                 />
                                 <button type='submit'>
                                     {signIn} with Email
