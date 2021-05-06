@@ -106,10 +106,12 @@ const CartTable = (props) => {
                         display: none;
                     }
                     @media (max-width: 768px) {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        margin: auto;
+                        .mobile {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: auto;
+                        }
                     }
                 `}
             </style>
