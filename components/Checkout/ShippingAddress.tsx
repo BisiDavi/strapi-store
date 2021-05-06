@@ -99,8 +99,9 @@ const ShippingAddress: FC = (): JSX.Element => {
                         grid-gap: 10px;
                     }
 
-                    .addressForm input {
+                    .addressForm input:focus {
                         width: 100%;
+                        border: 2px dotted #ffa6ca;
                     }
 
                     .shippingAddress {
@@ -109,6 +110,11 @@ const ShippingAddress: FC = (): JSX.Element => {
                         margin: 30px 0px;
                         width: 450px;
                     }
+                    input:focus-visible {
+                        outline: none;
+                    }
+                    .addressForm input {
+                    }
                     @media (max-width: 768px) {
                         .shippingAddress {
                             width: 100%;
@@ -116,21 +122,37 @@ const ShippingAddress: FC = (): JSX.Element => {
                         .addressForm {
                             display: grid;
                             grid-template-columns: 1fr 1fr;
-                            grid-template-rows: repeat(5,45px);
+                            grid-template-rows: repeat(5, 45px);
                             grid-gap: 10px;
                         }
                     }
                     @media (max-width: 450px) {
                         .addressForm {
-                            grid-template-columns: 1fr;
+                            grid-template-columns: 1fr 1fr;
                             grid-template-rows: unset;
                         }
-                        input.input-4 {
-                            grid-column: unset
-                            grid-row: unset
+
+                        input.input-0 {
+                            grid-column: 1/3;
                         }
-                        input{
-                            height:40px;
+                        input.input-1 {
+                            grid-column: 1/3;
+                        }
+                        input.input-2 {
+                            grid-column: 1/2;
+                        }
+                        input.input-3 {
+                            grid-column: 2/3;
+                        }
+                        input.input-4 {
+                            grid-column: 1/3;
+                            grid-row: 3;
+                        }
+                        input.input-7 {
+                            grid-column: 1/3;
+                        }
+                        input {
+                            height: 40px;
                         }
                     }
                 `}
