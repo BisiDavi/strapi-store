@@ -14,8 +14,10 @@ const Cart = () => {
     const displayShowTextarea = () => setShowTextarea(!showTextarea);
     const [session, loading] = useSession();
 
+    console.log('session', session);
+
     const displayLoginModal = () =>
-        !session && setTimeout(() => displayModal(true), 2000);
+        !session && !loading && setTimeout(() => displayModal(true), 2000);
 
     useEffect(() => {
         displayLoginModal();
