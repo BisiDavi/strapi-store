@@ -7,9 +7,9 @@ import {
     getSession,
 } from 'next-auth/client';
 import { useRouter } from 'next/router';
-import { Pagelayout } from '../../container';
+import { Pagelayout } from '../../../container';
 import Link from 'next/link';
-import { Loading } from '../../components';
+import { Loading } from '../../../components';
 
 const Signin = ({ providers, csrfToken }) => {
     const router = useRouter();
@@ -171,7 +171,7 @@ const Signin = ({ providers, csrfToken }) => {
                 </style>
             </div>
         </Pagelayout>
-    ); 
+    );
 };
 
 export default Signin;
