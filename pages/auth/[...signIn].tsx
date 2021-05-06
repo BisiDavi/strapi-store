@@ -2,16 +2,14 @@ import React, { useEffect } from 'react';
 import {
     getProviders,
     signIn as AuthSignIn,
-    getCsrfToken,
     useSession,
-    getSession,
 } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { Pagelayout } from '../../container';
 import Link from 'next/link';
 import { Loading } from '../../components';
 
-const Signin = ({ providers, csrfToken }) => {
+const Signin = ({ providers }) => {
     const router = useRouter();
     const [session, loading] = useSession();
     const { signIn } = router.query;
@@ -163,23 +161,11 @@ const Signin = ({ providers, csrfToken }) => {
 export default Signin;
 
 export async function getServerSideProps(context) {
-    const { req, res } = context;
-    const session = await getSession({ req });
-
-    if (session && res && session.accessToken) {
-        res.writeHead(302, {
-            Location: '/',
-        });
-        res.end;
-        return;
-    }
     const providers = await getProviders();
-    const csrfToken = await getCsrfToken(context);
 
     return {
         props: {
             providers,
-            csrfToken,
         },
     };
 }
