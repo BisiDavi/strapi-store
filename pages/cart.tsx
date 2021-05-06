@@ -17,7 +17,7 @@ const Cart = () => {
     console.log('session', session);
 
     useEffect(() => {
-        session === 'null' || session === 'undefined'
+        session === null || session === undefined
             ? displayModal(true)
             : displayModal(false);
     }, [session]);
