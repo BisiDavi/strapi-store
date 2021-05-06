@@ -154,6 +154,8 @@ span.emptycart a:hover {
     .price {
         grid-row: 2;
         grid-column: 2;
+        place-items: center;
+        place-self: center;
     }
     .amount {
         display: flex;
@@ -164,10 +166,11 @@ span.emptycart a:hover {
     .cartItem {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr 70px;
+        margin: 10px;
     }
     .productImage {
         height: unset;
-        margin: 10px;
+        margin: unset;
     }
     .cartImage {
         grid-column: 1/5;
