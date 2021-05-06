@@ -7,9 +7,9 @@ import {
     getSession,
 } from 'next-auth/client';
 import { useRouter } from 'next/router';
-import { Pagelayout } from '../../../container';
+import { Pagelayout } from '../../container';
 import Link from 'next/link';
-import { Loading } from '../../../components';
+import { Loading } from '../../components';
 
 const Signin = ({ providers, csrfToken }) => {
     const router = useRouter();
@@ -42,7 +42,7 @@ const Signin = ({ providers, csrfToken }) => {
                         </h3>
 
                         <div className='signinButtons'>
-                            <form method='post' action='/api/auth/signin/email'>
+                            {/* <form method='post' action='/api/auth/signin/email'>
                                 <input
                                     name='csrfToken'
                                     type='hidden'
@@ -59,7 +59,7 @@ const Signin = ({ providers, csrfToken }) => {
                                     {signIn} with Email
                                 </button>
                             </form>
-                            or
+                            or */}
                             <div className='providerSignin'>
                                 {Object.values(providers).map(
                                     (provider: any) => {

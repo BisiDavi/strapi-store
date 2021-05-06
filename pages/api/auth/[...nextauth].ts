@@ -3,21 +3,6 @@ import Providers from 'next-auth/providers';
 
 const options = {
     providers: [
-        Providers.Email({
-            server: {
-                port: 465,
-                host: 'smtppro.zoho.com',
-                secure: true,
-                auth: {
-                    user: process.env.NEXT_PUBLIC_EMAIL_USERNAME,
-                    pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
-                },
-                tls: {
-                    rejectUnauthorized: false,
-                },
-                from: process.env.EMAIL_FROM,
-            },
-        }),
         Providers.Google({
             clientId: process.env.NEXT_PUBLIC_GOOGLE_ID,
             clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET,
@@ -31,9 +16,9 @@ const options = {
             clientSecret: process.env.NEXT_PUBLIC_INSTAGRAM_SECRET,
         }),
     ],
-    // pages: {
-    //     signIn: '/auth/signin',
-    // },
+    pages: {
+        signIn: '/auth/signin',
+    },
     site: process.env.NEXT_PUBLIC_NEXTAUTH_URL,
     database: process.env.DATABASE_URL,
     secret: process.env.NEXT_PUBLIC_SECRET,
