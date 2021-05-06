@@ -28,9 +28,9 @@ const ShippingAddress: FC = (): JSX.Element => {
         { name: 'fullName', placeHolder: 'Name*' },
         { name: 'email', placeHolder: 'Email*' },
         { name: 'telephone', placeHolder: 'Telephone*' },
+        { name: 'city', placeHolder: 'City*' },
         { name: 'address', placeHolder: 'Address*' },
         { name: 'zip', placeHolder: 'Zip/Postal Code*' },
-        { name: 'city', placeHolder: 'City*' },
         { name: 'state', placeHolder: 'State*' },
         { name: 'country', placeHolder: 'Country*' },
     ];
