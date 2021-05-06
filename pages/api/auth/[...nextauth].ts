@@ -6,18 +6,9 @@ const options = {
     providers: [
         Providers.Email({
             server: {
-                port: 465,
-                host: 'smtppro.zoho.com',
-                secure: true,
-                auth: {
-                    user: process.env.NEXT_PUBLIC_EMAIL_USERNAME,
-                    pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
-                },
-                tls: {
-                    rejectUnauthorized: false,
-                },
+                server: process.env.EMAIL_SERVER,
+                from: process.env.EMAIL_FROM,
             },
-            from: process.env.NEXT_PUBLIC_EMAIL_FROM,
         }),
         Providers.Google({
             clientId: process.env.NEXT_PUBLIC_GOOGLE_ID,
@@ -35,8 +26,8 @@ const options = {
     pages: {
         signIn: '/auth/signin',
     },
-    site:process.env.NEXT_PUBLIC_NEXTAUTH_URL,
-    database: process.env.NEXT_MONGODB_URI,
+    site: process.env.NEXT_PUBLIC_NEXTAUTH_URL,
+    database: process.env.DATABASE_URL,
     secret: process.env.NEXT_PUBLIC_SECRET,
     session: {
         jwt: true,
