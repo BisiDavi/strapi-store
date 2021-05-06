@@ -5,7 +5,16 @@ const options = {
     providers: [
         Providers.Email({
             server: {
-                server: process.env.EMAIL_SERVER,
+                port: 587,
+                host: 'smtppro.zoho.com',
+                secure: true,
+                auth: {
+                    user: process.env.NEXT_PUBLIC_EMAIL_USERNAME,
+                    pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
+                },
+                tls: {
+                    rejectUnauthorized: false,
+                },
                 from: process.env.EMAIL_FROM,
             },
         }),
