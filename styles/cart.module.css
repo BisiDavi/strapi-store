@@ -86,6 +86,10 @@
     float: right;
 }
 
+.subtotal p {
+    text-align: right;
+}
+
 .emptycart {
     margin: 100px auto;
     padding: 80px;
@@ -186,6 +190,9 @@ span.emptycart a:hover {
     .name h3 {
         font-size: 18px;
         margin-bottom: 0px;
+    }
+    .name svg {
+        font-size: 25px;
     }
     .input {
         grid-column: 3;
