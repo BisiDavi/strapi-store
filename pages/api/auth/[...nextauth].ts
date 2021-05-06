@@ -35,6 +35,7 @@ const options = {
     pages: {
         signIn: '/auth/signin',
     },
+    site:process.env.NEXT_PUBLIC_NEXTAUTH_URL,
     database: process.env.NEXT_MONGODB_URI,
     secret: process.env.NEXT_PUBLIC_SECRET,
     session: {
