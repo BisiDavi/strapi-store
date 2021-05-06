@@ -17,7 +17,6 @@ const CustomWig = () => {
     useEffect(() => btnStyle(), [formState.elasticBand]);
 
     const selectHandler = (e) => {
-        e.preventDefault();
         setFormState({
             ...formState,
             [e.target.name]: e.target.value,
@@ -30,7 +29,6 @@ const CustomWig = () => {
     };
 
     const inputHandler = (e) => {
-        e.preventDefault();
         setFormState({
             ...formState,
             elasticBand: e.target.value,
