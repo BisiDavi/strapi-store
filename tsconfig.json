@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/404.js", "middlewares/database.js", "components/Icons/Naira.jsx"  ],
+, "pages/404.js", "middlewares/database.js", "components/Icons/Naira.jsx", "pages/api/auth/[...nextauth].js"  ],
   "exclude": [
     "node_modules"
   ]
