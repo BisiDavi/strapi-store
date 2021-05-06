@@ -1,12 +1,15 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/client';
 
 const ShippingAddress: FC = (): JSX.Element => {
     const [session, loading] = useSession();
     console.log('session', session);
+    let fullName, email;
 
-    const fullName = !loading && session ? session.user.name : '';
-    const email = !loading && session ? session.user.email : '';
+    useEffect(() => {
+        fullName = !loading && session ? session.user.name : '';
+        email = !loading && session ? session.user.email : '';
+    }, [session]);
 
     console.log('fullName', fullName);
     console.log('email', email);
@@ -116,15 +119,18 @@ const ShippingAddress: FC = (): JSX.Element => {
                             grid-template-rows: repeat(5,45px);
                             grid-gap: 10px;
                         }
-                        @media (max-width: 450px) {
-
-                            .addressForm {
-                                grid-template-columns: 1fr;
-                            }
-                            input.input-4 {
-                                grid-column: unset
-                                grid-row: unset
-                            }
+                    }
+                    @media (max-width: 450px) {
+                        .addressForm {
+                            grid-template-columns: 1fr;
+                            grid-template-rows: unset;
+                        }
+                        input.input-4 {
+                            grid-column: unset
+                            grid-row: unset
+                        }
+                        input{
+                            height:40px;
                         }
                     }
                 `}
