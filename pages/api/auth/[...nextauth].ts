@@ -22,9 +22,9 @@ const options = {
             clientSecret: process.env.NEXT_PUBLIC_INSTAGRAM_SECRET,
         }),
     ],
-    pages: {
-        signIn: '/auth/signin',
-    },
+    // pages: {
+    //     signIn: '/auth/signin',
+    // },
     site: process.env.NEXT_PUBLIC_NEXTAUTH_URL,
     database: process.env.DATABASE_URL,
     secret: process.env.NEXT_PUBLIC_SECRET,
