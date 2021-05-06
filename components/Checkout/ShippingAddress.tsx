@@ -5,9 +5,8 @@ const ShippingAddress: FC = (): JSX.Element => {
     const [session, loading] = useSession();
     console.log('session', session);
 
-    const condition = session !== null && session !== undefined;
-    const fullName = condition ? session.user.name : '';
-    const email = condition && session.user.email ? session.user.email : '';
+    const fullName = !loading && session ? session.user.name : '';
+    const email = !loading && session ? session.user.email : '';
 
     console.log('fullName', fullName);
     console.log('email', email);
@@ -110,6 +109,22 @@ const ShippingAddress: FC = (): JSX.Element => {
                     @media (max-width: 768px) {
                         .shippingAddress {
                             width: 100%;
+                        }
+                        .addressForm {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            grid-template-rows: repeat(5,45px);
+                            grid-gap: 10px;
+                        }
+                        @media (max-width: 450px) {
+
+                            .addressForm {
+                                grid-template-columns: 1fr;
+                            }
+                            input.input-4 {
+                                grid-column: unset
+                                grid-row: unset
+                            }
                         }
                     }
                 `}

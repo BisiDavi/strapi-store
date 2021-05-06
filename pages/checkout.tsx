@@ -41,7 +41,7 @@ const Checkout = () => {
                             </button>
                         </div>
                     </div>
-                    <ShippingAddress/>
+                    <ShippingAddress />
                 </div>
                 <style jsx>
                     {`
