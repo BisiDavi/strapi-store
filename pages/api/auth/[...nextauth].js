@@ -19,7 +19,6 @@ const options = {
     pages: {
         signIn: '/auth/signin',
     },
-    site: process.env.NEXT_PUBLIC_NEXTAUTH_URL,
     database: process.env.DATABASE_URL,
     secret: process.env.NEXT_PUBLIC_SECRET,
     session: {
