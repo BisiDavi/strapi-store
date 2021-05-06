@@ -1,30 +1,30 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { v4 as uuidv4 } from "uuid";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { v4 as uuidv4 } from 'uuid';
 
 const Footer = () => {
     const footerLinks = [
-        { name: "Search", link: "#link" },
-        { name: "Privacy Policy", link: "/policy/privacy-policy" },
-        { name: "Refund Policy", link: "/policy/refund-policy" },
-        { name: "Delivery Policy", link: "/policy/delivery-policy" },
-        { name: "Terms and Condition", link: "/policy/terms-and-conditions" },
+        { name: 'Search', link: '#link' },
+        { name: 'Privacy Policy', link: '/policy/privacy-policy' },
+        { name: 'Refund Policy', link: '/policy/refund-policy' },
+        { name: 'Delivery Policy', link: '/policy/delivery-policy' },
+        { name: 'Terms and Condition', link: '/policy/terms-and-conditions' },
     ];
 
     const socialLinks = [
-        { icon: "fab fa-instagram", link: "#link" },
-        { icon: "fab fa-youtube", link: "#link" },
+        { icon: 'fab fa-instagram', link: '#link' },
+        { icon: 'fab fa-youtube', link: '#link' },
     ];
 
     const paymentMethods = [
-        { icon: "/mastercard.svg" },
-        { icon: "/paypal.svg" },
+        { icon: '/mastercard.svg' },
+        { icon: '/paypal.svg' },
     ];
 
     return (
-        <footer className="footer-section">
-            <ul className="footerLinks row">
+        <footer className='footer-section'>
+            <ul className='footerLinks row'>
                 {footerLinks.map((link) => (
                     <li key={uuidv4()}>
                         <Link href={link.link} passHref>
@@ -33,20 +33,20 @@ const Footer = () => {
                     </li>
                 ))}
             </ul>
-            <div className="row social">
-                <ul className="social-links">
+            <div className='row social'>
+                <ul className='social-links'>
                     {socialLinks.map((link) => (
                         <Link key={uuidv4()} href={link.link}>
                             <i className={link.icon}></i>
                         </Link>
                     ))}
                 </ul>
-                <div className="copyright">
-                    <i className="far fa-copyright"></i>
-                    <p>2021, JenJensLuxuryhair.</p>
+                <div className='copyright'>
+                    <i className='far fa-copyright'></i>
+                    <p>2021, Jenjens Luxury Wigs.</p>
                 </div>
 
-                <ul className="payment-gateway">
+                <ul className='payment-gateway'>
                     {paymentMethods.map((mthd) => (
                         <li key={uuidv4()}>
                             <Image src={mthd.icon} height={30} width={30} />

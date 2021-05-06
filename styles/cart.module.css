@@ -199,6 +199,7 @@ span.emptycart a:hover {
     .calculator {
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr;
+        margin: 10px;
     }
     .textareaRow {
         width: 100%;
