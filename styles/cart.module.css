@@ -163,6 +163,7 @@ span.emptycart a:hover {
         grid-row: 2;
         grid-column: 4;
     }
+
     .cartItem {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr 70px;
@@ -178,7 +179,13 @@ span.emptycart a:hover {
     }
     .name {
         grid-row: 2;
+        display: flex;
         grid-column: 1;
+        align-items: center;
+    }
+    .name h3 {
+        font-size: 18px;
+        margin-bottom: 0px;
     }
     .input {
         grid-column: 3;
