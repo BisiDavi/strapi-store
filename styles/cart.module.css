@@ -162,7 +162,6 @@ span.emptycart a:hover {
         place-self: center;
     }
     .amount {
-        display: flex;
         align-items: center;
         grid-row: 2;
         grid-column: 4;
@@ -183,7 +182,6 @@ span.emptycart a:hover {
     }
     .name {
         grid-row: 2;
-        display: flex;
         grid-column: 1;
         align-items: center;
     }
@@ -206,6 +204,10 @@ span.emptycart a:hover {
         width: 100%;
         margin: 0px auto 10px auto;
     }
+    .cartItem input {
+        width: 40px;
+        text-align: center;
+    }
     .title {
         display: none;
         margin: 10px 0px;
@@ -221,10 +223,28 @@ span.emptycart a:hover {
         font-size: 20px;
     }
 
+    .subtotal div {
+        display: unset;
+    }
+
+    .price,
+    .amount {
+        display: unset;
+        align-items: unset;
+    }
+
     .subtotal h3 {
         font-size: 20px;
     }
     .subtotal {
         padding-right: 10px;
+    }
+    .subtotal a {
+        width: 120px;
+        height: 40px;
+    }
+
+    .subtotal a button {
+        font-size: 20px;
     }
 }

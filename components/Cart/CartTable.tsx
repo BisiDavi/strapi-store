@@ -51,7 +51,7 @@ const CartTable = (props) => {
                                 />
                             </div>
                             <div className={styles.price}>
-                                <p className='mobile'>Price</p>
+                                <p className='mobile'>Price: </p>
                                 {symbol}
                                 {priceExchange(product.price)}
                             </div>
@@ -64,7 +64,7 @@ const CartTable = (props) => {
                                 />
                             </div>
                             <div className={styles.amount}>
-                                <p className='mobile'>Amount</p>
+                                <p className='mobile'>Amount: </p>
                                 {symbol}
                                 {priceExchange(product.amount)}
                             </div>
