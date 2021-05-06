@@ -5,7 +5,7 @@ const options = {
     providers: [
         Providers.Email({
             server: {
-                port: 587,
+                port: 465,
                 host: 'smtppro.zoho.com',
                 secure: true,
                 auth: {
