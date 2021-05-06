@@ -16,13 +16,9 @@ const Cart = () => {
 
     console.log('session', session);
 
-    const displayLoginModal = () =>
-        !session && !loading && setTimeout(() => displayModal(true), 2000);
-
     useEffect(() => {
-        displayLoginModal();
-        return () => clearTimeout();
-    }, []);
+        session ? displayModal(false) : displayModal(true);
+    }, [session]);
 
     loading && <Loading />;
 

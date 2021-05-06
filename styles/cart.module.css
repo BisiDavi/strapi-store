@@ -239,6 +239,7 @@ span.emptycart a:hover {
     }
     .subtotal {
         padding-right: 10px;
+        text-align: right;
     }
     .subtotal a {
         width: 120px;
