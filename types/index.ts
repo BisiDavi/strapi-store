@@ -5,6 +5,7 @@ export interface PagecontainerProps {
     title: string | string[];
     product?: boolean;
     metaTags?: any;
+    className?: string;
 }
 
 export interface DropdownButtonProps {

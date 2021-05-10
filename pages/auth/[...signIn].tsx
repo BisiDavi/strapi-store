@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { Pagelayout } from '../../container';
 import Link from 'next/link';
 import { Loading } from '../../components';
+import styles from '../../styles/auth.module.css';
 
 const Signin = ({ providers }) => {
     const router = useRouter();
@@ -15,6 +16,7 @@ const Signin = ({ providers }) => {
     const { signIn } = router.query;
 
     useEffect(() => {
+        session && router.back();
         session && router.back();
     }, [session]);
 
@@ -34,7 +36,7 @@ const Signin = ({ providers }) => {
     };
     loading && <Loading />;
     return (
-        <Pagelayout title='Sign in '>
+        <Pagelayout title='Sign in' className={styles.authPage}>
             <div className='container-fluid sign-in'>
                 {!session ? (
                     <div className='row'>
