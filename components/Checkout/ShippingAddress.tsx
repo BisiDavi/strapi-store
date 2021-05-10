@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/client';
 import CountryDropdownbutton from '../Form/CountryDropdown';
+import styles from '../../styles/checkout.module.css';
 
 const ShippingAddress: FC = (): JSX.Element => {
     const [session, loading] = useSession();
@@ -38,8 +39,8 @@ const ShippingAddress: FC = (): JSX.Element => {
     console.log('formState', formState);
 
     return (
-        <div className='shippingAddress'>
-            <div className='title'>
+        <div className={`${styles.form} shippingAddress`}>
+            <div className={styles.title}>
                 <span>1</span>SHIPPING ADDRESS
             </div>
             <div className='addressForm'>
@@ -61,25 +62,6 @@ const ShippingAddress: FC = (): JSX.Element => {
             </div>
             <style jsx>
                 {`
-                    .title {
-                        display: flex;
-                        align-items: center;
-                        margin: 0px 10px 10px 0px;
-                    }
-
-                    .title span {
-                        color: white;
-                        width: 20px;
-                        height: 20px;
-                        font-size: 14px;
-                        text-align: center;
-                        line-height: 20px;
-                        background-color: #999;
-                        color: #fff;
-                        border-radius: 2px;
-                        text-transform: uppercase;
-                        margin-right: 10px;
-                    }
                     input.input-4 {
                         grid-column: 1/3;
                         grid-row: 3;
@@ -107,7 +89,7 @@ const ShippingAddress: FC = (): JSX.Element => {
                     .shippingAddress {
                         border: 1px solid black;
                         padding: 20px;
-                        margin: 30px 0px;
+                        margin: 10px 0px;
                         width: 450px;
                     }
                     input:focus-visible {

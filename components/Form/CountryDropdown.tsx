@@ -8,8 +8,8 @@ const CountryDropdownbutton: FC = (): JSX.Element => {
         region: '',
     });
 
-    console.log('countryState', countryState)
-    
+    console.log('countryState', countryState);
+
     const selectCountry = (val) => {
         setCountryState({
             ...countryState,
@@ -31,6 +31,7 @@ const CountryDropdownbutton: FC = (): JSX.Element => {
             <CountryDropdown
                 value={country}
                 onChange={(val) => selectCountry(val)}
+                priorityOptions={['US', 'NG']}
             />
             <RegionDropdown
                 country={country}

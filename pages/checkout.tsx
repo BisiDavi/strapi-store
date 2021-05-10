@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/client';
-import { ShippingAddress } from '../components/Checkout';
+import {
+    AdditionalInformation,
+    ShippingAddress,
+    ShippingMethod,
+    ShoppingBag,
+} from '../components/Checkout';
 import { Pagelayout } from '../container';
 import { useModal } from '../hooks';
 import { Loading } from '../components';
@@ -28,7 +33,10 @@ const Checkout = () => {
                     <div className='col-lg-12 info'>
                         <h3>Jenjen's Luxury Wigs</h3>
                         <div className='bread-crumb'>
-                            <p>Information &gt; Shipping &gt; Payment</p>
+                            <p>
+                                Shopping Cart &gt; <b>Checkout</b> &gt; Paid
+                                Succeed
+                            </p>
                         </div>
                         <div className='express-checkout'>
                             <p>Express checkout</p>
@@ -42,6 +50,9 @@ const Checkout = () => {
                         </div>
                     </div>
                     <ShippingAddress />
+                    <ShippingMethod />
+                    <ShoppingBag />
+                    <AdditionalInformation />
                 </div>
                 <style jsx>
                     {`
