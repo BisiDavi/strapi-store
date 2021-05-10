@@ -38,6 +38,7 @@
         "react-instagram-embed": "^2.0.0",
         "react-instantsearch-dom": "^6.10.3",
         "react-navigator-online": "^1.0.7",
+        "react-paypal-button-v2": "^2.6.3",
         "react-redux": "^7.2.2",
         "react-slick": "^0.28.1",
         "react-spring": "^8.0.27",
