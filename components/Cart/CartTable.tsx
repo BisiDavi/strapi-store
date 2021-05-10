@@ -71,12 +71,6 @@ const CartTable = (props) => {
                         </div>
                     ))}
                 <div className={styles.calculator}>
-                    <div className={styles.textareaRow}>
-                        <p onClick={displayShowTextarea}>
-                            Special instructons for seller
-                        </p>
-                        {showTextarea && <textarea></textarea>}
-                    </div>
                     <div className={styles.subtotal}>
                         <div>
                             <h3>Subtotal</h3>

@@ -1,3 +1,5 @@
-.authPage footer {
-    position: fixed !important;
+@media (min-width: 768px) {
+    .authPage footer {
+        position: fixed !important;
+    }
 }
