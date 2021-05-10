@@ -11,7 +11,7 @@ const ShippingMethod: FC = (): JSX.Element => {
         },
         {
             name: 'OthersMethod',
-            label: 'SHIP TO ADDRESS $50.00',
+            label: 'SHIP TO MY ADDRESS (other countries) $50.00',
         },
     ];
 

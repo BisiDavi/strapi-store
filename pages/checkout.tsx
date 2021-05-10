@@ -5,6 +5,7 @@ import {
     ShippingAddress,
     ShippingMethod,
     ShoppingBag,
+    OrderSummary,
 } from '../components/Checkout';
 import { Pagelayout } from '../container';
 import { useModal } from '../hooks';
@@ -53,6 +54,7 @@ const Checkout = () => {
                     <ShippingMethod />
                     <ShoppingBag />
                     <AdditionalInformation />
+                    <OrderSummary />
                 </div>
                 <style jsx>
                     {`

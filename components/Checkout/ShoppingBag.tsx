@@ -1,7 +1,6 @@
 import React from 'react';
 import { useCart, useCurrency } from '../../hooks';
 import { Image } from 'react-datocms';
-import { MdDeleteForever } from 'react-icons/md';
 import styles from '../../styles/checkout.module.css';
 
 const ShoppingBag = () => {
@@ -29,12 +28,8 @@ const ShoppingBag = () => {
                                 </h5>
                             </div>
                             <div className='control'>
-                                <span>+</span>
+                                <h5>Qty</h5>
                                 <h5>{product.count}</h5>
-                                <span>-</span>
-                            </div>
-                            <div className='delete'>
-                                <MdDeleteForever />
                             </div>
                         </div>
                     </div>
@@ -100,17 +95,8 @@ const ShoppingBag = () => {
                     .control {
                         display: flex;
                         align-items: center;
+                        flex-direction: column;
                         justify-content: space-around;
-                    }
-                    .control span {
-                        font-size: 25px;
-                        justify-content: center;
-                        height: 25px;
-                        width: 25px;
-                        display: flex;
-                        border-radius: 50%;
-                        align-items: center;
-                        margin: 0px 15px;
                     }
                 `}
             </style>
