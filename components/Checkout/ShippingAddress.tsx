@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/client';
+import CountryDropdownbutton from '../Form/CountryDropdown';
 
 const ShippingAddress: FC = (): JSX.Element => {
     const [session, loading] = useSession();
@@ -11,28 +12,21 @@ const ShippingAddress: FC = (): JSX.Element => {
         formState.email = !loading && session ? session.user.email : '';
     }, [session]);
 
-    console.log('fullName', fullName);
-    console.log('email', email);
-
     const [formState, setFormState] = useState({
         fullName: '',
         email: '',
-        telephone: '',
         address: '',
         zip: '',
-        city: '',
-        state: '',
-        country: '',
+        telephone: '',
     });
+
     const formArr = [
         { name: 'fullName', placeHolder: 'Name*' },
         { name: 'email', placeHolder: 'Email*' },
         { name: 'telephone', placeHolder: 'Telephone*' },
-        { name: 'city', placeHolder: 'City*' },
+        { name: 'country', placeHolder: 'Country*' },
         { name: 'address', placeHolder: 'Address*' },
         { name: 'zip', placeHolder: 'Zip/Postal Code*' },
-        { name: 'state', placeHolder: 'State*' },
-        { name: 'country', placeHolder: 'Country*' },
     ];
     const inputHandler = (e) => {
         setFormState({
@@ -40,6 +34,7 @@ const ShippingAddress: FC = (): JSX.Element => {
             [e.target.name]: e.target.value,
         });
     };
+
     console.log('formState', formState);
 
     return (
@@ -48,17 +43,21 @@ const ShippingAddress: FC = (): JSX.Element => {
                 <span>1</span>SHIPPING ADDRESS
             </div>
             <div className='addressForm'>
-                {formArr.map((formInput, index) => (
-                    <input
-                        key={index}
-                        className={`input-${index}`}
-                        name={formInput.name}
-                        value={formState[formInput.name]}
-                        onChange={inputHandler}
-                        placeholder={formInput.placeHolder}
-                        required
-                    />
-                ))}
+                {formArr.map((formInput, index) => {
+                    return formInput.name === 'country' ? (
+                        <CountryDropdownbutton key={index} />
+                    ) : (
+                        <input
+                            key={index}
+                            className={`input-${index}`}
+                            name={formInput.name}
+                            value={formState[formInput.name]}
+                            onChange={inputHandler}
+                            placeholder={formInput.placeHolder}
+                            required
+                        />
+                    );
+                })}
             </div>
             <style jsx>
                 {`
@@ -89,6 +88,7 @@ const ShippingAddress: FC = (): JSX.Element => {
                     .addressForm input {
                         border: 2px dotted black;
                         border-radius: 10px;
+                        width: 100%;
                         text-align: center;
                     }
 
@@ -128,32 +128,12 @@ const ShippingAddress: FC = (): JSX.Element => {
                     }
                     @media (max-width: 450px) {
                         .addressForm {
-                            grid-template-columns: 1fr 1fr;
-                            grid-template-rows: unset;
-                        }
-
-                        input.input-0 {
-                            grid-column: 1/3;
-                        }
-                        input.input-1 {
-                            grid-column: 1/3;
-                        }
-                        input.input-2 {
-                            grid-column: 1/2;
-                        }
-                        input.input-3 {
-                            grid-column: 2/3;
-                        }
-                        input.input-4 {
-                            grid-column: 1/3;
-                            grid-row: 3;
-                        }
-                        input.input-7 {
-                            grid-column: 1/3;
+                            display: flex;
+                            flex-direction: column;
                         }
                         input {
                             height: 40px;
-                            width: 100%;
+                            width: 80%;
                         }
                     }
                 `}

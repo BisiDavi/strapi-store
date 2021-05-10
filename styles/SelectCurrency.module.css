@@ -12,6 +12,16 @@
     z-index: 100;
 }
 
+/* countrydropdown select component */
+.countryDropdown select {
+    height: 40px;
+    margin: 5px 0px;
+    border-radius: 5px;
+    border: 2px dotted black;
+    background: white;
+    width: 100%;
+}
+
 @media (max-width: 768px) {
     .selectCurrency {
         width: 125px;
