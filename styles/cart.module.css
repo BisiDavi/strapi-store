@@ -225,7 +225,10 @@ span.emptycart a:hover {
     }
 
     .subtotal div {
-        display: unset;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .price,

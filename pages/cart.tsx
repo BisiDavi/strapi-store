@@ -10,17 +10,15 @@ import { Loading } from '../components';
 const Cart = () => {
     const { productCount, products } = useCart();
     const { modal, displayModal } = useModal();
-    const [showTextarea, setShowTextarea] = useState(false);
-    const displayShowTextarea = () => setShowTextarea(!showTextarea);
     const [session, loading] = useSession();
 
     console.log('session', session);
 
-    // useEffect(() => {
-    //     session === null || session === undefined
-    //         ? displayModal(true)
-    //         : displayModal(false);
-    // }, [session]);
+    useEffect(() => {
+        session === null || session === undefined
+            ? displayModal(true)
+            : displayModal(false);
+    }, [session]);
 
     loading && <Loading />;
 
@@ -34,11 +32,7 @@ const Cart = () => {
                     />
 
                     {products.length > 0 ? (
-                        <CartTable
-                            products={products}
-                            displayShowTextarea={displayShowTextarea}
-                            showTextarea={showTextarea}
-                        />
+                        <CartTable products={products} />
                     ) : (
                         <EmptyCartTable />
                     )}

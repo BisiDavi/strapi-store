@@ -6,8 +6,8 @@ import ShowSidebarCart from '../Cart/ShowSidebarCart';
 import Link from 'next/link';
 import { EmptyCart } from '../Cart';
 import { getTotalAmount } from '../../utils';
-import styles from '../../styles/CartSidebar.module.css';
 import { useCart, useCurrency } from '../../hooks';
+import styles from '../../styles/CartSidebar.module.css';
 
 const CartSidebar: FC<CartSidebarProps> = ({
     onClose,

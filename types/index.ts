@@ -95,3 +95,14 @@ export interface shippingAddressProps {
         };
     };
 }
+
+export interface ProductDetailProps {
+    product: {
+        title: string;
+        price: number;
+        image: {
+            responsiveImage: ResponsiveImageType;
+        };
+        description: string;
+    };
+}

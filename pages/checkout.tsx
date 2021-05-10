@@ -17,11 +17,11 @@ const Checkout = () => {
     const { modal, displayModal } = useModal();
 
     loading && <Loading />;
-    // useEffect(() => {
-    //     session === null || session === undefined
-    //         ? displayModal(true)
-    //         : displayModal(false);
-    // }, [session]);
+    useEffect(() => {
+        session === null || session === undefined
+            ? displayModal(true)
+            : displayModal(false);
+    }, [session]);
 
     return (
         <Pagelayout title='Checkout |'>
