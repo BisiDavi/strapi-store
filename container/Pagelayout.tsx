@@ -25,43 +25,40 @@ const Pagelayout: FC<PagecontainerProps> = ({
     const pageTitle = product
         ? title
         : `Jenjen's Luxury hair & beauty | ${title}`;
-    console.log('metaTags', metaTags);
-    const { siteName, titleSuffix, fallbackSeo } = metaTags.site.seo;
+
     return (
         <div className={`pageLayout ${className}`}>
             <Head>
                 <title>{pageTitle}</title>
-                {renderMetaTags(metaTags.site.favicon)}
                 {metaTags && (
                     <>
                         <meta
                             name='description'
-                            content={fallbackSeo.description}
+                            content={metaTags.fallbackSeo.description}
                         />
                         <meta
                             property='og:image'
-                            content={fallbackSeo.image.url}
+                            content={metaTags.fallbackSeo.image.url}
                             key='ogimage'
                         />
                         <meta
                             property='og:site_name'
-                            content={siteName}
+                            content={metaTags.siteName}
                             key='ogsitename'
                         />
                         <meta
                             property='og:title'
-                            content={titleSuffix}
+                            content={metaTags.titleSuffix}
                             key='ogtitle'
                         />
                         <meta
                             property='og:description'
-                            content={fallbackSeo.description}
+                            content={metaTags.fallbackSeo.description}
                             key='ogdesc'
                         />
                     </>
                 )}
-                {productMetaTags &&
-                    renderMetaTags(productMetaTags.site.product.seo)}
+                {productMetaTags && renderMetaTags(productMetaTags.product.seo)}
             </Head>
 
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
