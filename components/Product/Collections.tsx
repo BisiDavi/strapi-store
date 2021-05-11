@@ -1,31 +1,31 @@
-import React from "react";
-import { v4 as uuidv4 } from "uuid";
-import CollectionView from "./CollectionView";
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import CollectionView from './CollectionView';
 
 const Collections = () => {
     const collections = [
         {
-            img: "/customwig.webp",
-            name: "Customize Your Own Unit!",
-            link: "/collection/buy-your-custom-wig",
-            text: "Buy your custom wig, at an affordable rate",
+            img: '/customwig.webp',
+            name: 'Customize Your Own Unit!',
+            link: '/collection/buy-your-custom-wig',
+            text: 'Buy your custom wig, at an affordable rate',
         },
         {
-            img: "/stylewig.webp",
-            name: "Signature Style Wigs",
-            link: "/collection/signature-style-wigs",
-            text: "Get awesome signature wigs.",
+            img: '/stylewig.webp',
+            name: 'Signature Style Wigs',
+            link: '/collection/signature-style-wigs',
+            text: 'Get awesome signature wigs.',
         },
 
         {
-            img: "/shipWig.webp",
-            name: "Ready to Ship wigs",
-            link: "/collection/ready-to-ship",
-            text: "Oh yes, All wigs are available for shipping.",
+            img: '/shipWig.webp',
+            name: 'Ready to Ship wigs',
+            link: '/collection/ready-to-ship',
+            text: 'Oh yes, All wigs are available for shipping.',
         },
     ];
     return (
-        <div className="collections">
+        <div className='collections'>
             {collections.map((collection) => (
                 <CollectionView key={uuidv4()} collection={collection} />
             ))}
@@ -40,6 +40,12 @@ const Collections = () => {
                         );
                         grid-gap: 35px;
                         margin: 50px 30px;
+                    }
+
+                    @media (max-width: 1440px) and (min-width: 1000px) {
+                        .collections {
+                            grid-template-columns: repeat(3, 1fr);
+                        }
                     }
 
                     @media (max-width: 768px) {
