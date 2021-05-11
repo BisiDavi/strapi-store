@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { Pagelayout } from '../container';
-import { useAuthModal, useCart, useModal } from '../hooks';
+import { useAuthModal, useCart } from '../hooks';
 import { CartTable, EmptyCartTable } from '../components/Cart';
 import { LoginModal } from '../components/Modal';
 import { Loading } from '../components';

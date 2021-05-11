@@ -65,17 +65,13 @@ export const PRODUCTPAGE_QUERY = `query Productpage($slug: String) {
 }
 `;
 
-export const SEO_QUERY = `
+export const PRODUCT_SEO_QUERY = `
   {
     site: _site {
       favicon: faviconMetaTags {
         attributes
         content
         tag
-      }
-      globalSeo {
-        siteName
-        titleSuffix
       }
     }
     product {
@@ -89,12 +85,23 @@ export const SEO_QUERY = `
 
 export const HOMEPAGE_SEO_QUERY = `{
   site:_site {
-    globalSeo {      
+      favicon: faviconMetaTags {
+        attributes
+        content
+        tag
+      }
+    seo:globalSeo {
+      facebookPageUrl
       siteName
-      titleSuffix  
-    }
-    favicon {      
-      url
+      titleSuffix
+      twitterAccount
+      fallbackSeo {
+        description
+        title
+        image {
+         url
+        }
+      }
     }
   }
 }

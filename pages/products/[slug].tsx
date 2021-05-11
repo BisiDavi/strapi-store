@@ -1,17 +1,17 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { NextPage } from "next";
-import { ProductpageProps } from "../../types";
-import { Pagelayout } from "../../container";
-import { Loading, ProductDetail } from "../../components";
+import React from 'react';
+import { useRouter } from 'next/router';
+import { NextPage } from 'next';
+import { ProductpageProps } from '../../types';
+import { Pagelayout } from '../../container';
+import { Loading, ProductDetail } from '../../components';
 import {
     PRODUCTPAGE_QUERY,
-    SEO_QUERY,
+    PRODUCT_SEO_QUERY,
     request,
     HOMEPAGE_QUERY,
-} from "../../lib";
-import ErrorPage from "next/error";
-import ProductSlider from "../../components/Slider/ProductSlider";
+} from '../../lib';
+import ErrorPage from 'next/error';
+import ProductSlider from '../../components/Slider/ProductSlider';
 
 const ProductPage: NextPage<ProductpageProps> = ({
     seoData,
@@ -32,7 +32,7 @@ const ProductPage: NextPage<ProductpageProps> = ({
     }
     const other_Products = otherProducts.allProducts;
     return (
-        <Pagelayout metaTags={seoData} title={product.title} product>
+        <Pagelayout productMetaTags={seoData} title={product.title} product>
             <ProductDetail product={product} />
             <ProductSlider products={other_Products} />
         </Pagelayout>
@@ -49,7 +49,7 @@ export async function getStaticProps({ params }) {
         variables: { limit: 8 },
     });
     const seoData = await request({
-        query: SEO_QUERY,
+        query: PRODUCT_SEO_QUERY,
     });
 
     const { allProducts } = getproduct;

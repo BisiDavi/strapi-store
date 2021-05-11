@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { NextPage } from "next";
-import { Pagelayout } from "../container";
+import React, { useState, useEffect } from 'react';
+import { NextPage } from 'next';
+import { Pagelayout } from '../container';
 import {
     SelfiesBanner,
     HomepageSlider,
@@ -8,12 +8,12 @@ import {
     ProductsList,
     Newsletter,
     InstagramSlider,
-} from "../components";
-import { HOMEPAGE_QUERY, SEO_QUERY, request } from "../lib";
-import { HomeProps } from "../types";
-import { GetInstagramAuthCode } from "../utils";
-import connectToDatabase from "../middlewares/database";
-import { Viewmore } from "../components/Button";
+} from '../components';
+import { HOMEPAGE_QUERY, HOMEPAGE_SEO_QUERY, request } from '../lib';
+import { HomeProps } from '../types';
+import { GetInstagramAuthCode } from '../utils';
+import connectToDatabase from '../middlewares/database';
+import { Viewmore } from '../components/Button';
 
 const Home: NextPage<HomeProps> = ({
     productData,
@@ -24,27 +24,27 @@ const Home: NextPage<HomeProps> = ({
     const [authToken, setAuthToken] = useState(null);
 
     useEffect(() => {
-        if (window.location.search.includes("code")) {
+        if (window.location.search.includes('code')) {
             const authToken = GetInstagramAuthCode();
             setAuthToken(authToken);
         }
     }, []);
     const authCode = authToken !== null && authToken;
-    isConnected && console.log("You are connected to mongoDB!");
+    isConnected && console.log('You are connected to mongoDB!');
 
     async function getToken() {
         await fetch(`/api/instagram/${authCode}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
         })
-            .then((response) => console.log("response", response))
-            .catch((error) => console.log("error", error));
+            .then((response) => console.log('response', response))
+            .catch((error) => console.log('error', error));
     }
     if (authToken !== null) getToken();
     return (
         <>
-            <Pagelayout metaTags={seoData} title="Welcome">
-                <div className="homepage position-relative">
+            <Pagelayout metaTags={seoData} title='Welcome'>
+                <div className='homepage position-relative'>
                     <HomepageSlider />
                     <Collections />
                     <ProductsList products={allProducts} />
@@ -65,7 +65,7 @@ export async function getServerSideProps() {
         variables: { limit: 12 },
     });
     const seoRequest = await request({
-        query: SEO_QUERY,
+        query: HOMEPAGE_SEO_QUERY,
     });
 
     if (!graphqlRequest) {

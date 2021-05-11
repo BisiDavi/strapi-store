@@ -5,6 +5,7 @@ export interface PagecontainerProps {
     title: string | string[];
     product?: boolean;
     metaTags?: any;
+    productMetaTags?: any;
     className?: string;
 }
 

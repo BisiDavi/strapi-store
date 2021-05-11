@@ -7,9 +7,10 @@ import { renderMetaTags } from 'react-datocms';
 import Whatsappchat from '../components/ChatWidget/Whatsappchat';
 
 const Pagelayout: FC<PagecontainerProps> = ({
-title,
+    title,
     children,
     metaTags,
+    productMetaTags,
     product,
     className,
 }): JSX.Element => {
@@ -24,16 +25,43 @@ title,
     const pageTitle = product
         ? title
         : `Jenjen's Luxury hair & beauty | ${title}`;
-
+    console.log('metaTags', metaTags);
+    const { siteName, titleSuffix, fallbackSeo } = metaTags.site.seo;
     return (
         <div className={`pageLayout ${className}`}>
             <Head>
                 <title>{pageTitle}</title>
-                {metaTags
-                    ? renderMetaTags(
-                          metaTags.product.seo.concat(metaTags.site.favicon),
-                      )
-                    : null}
+                {renderMetaTags(metaTags.site.favicon)}
+                {metaTags && (
+                    <>
+                        <meta
+                            name='description'
+                            content={fallbackSeo.description}
+                        />
+                        <meta
+                            property='og:image'
+                            content={fallbackSeo.image.url}
+                            key='ogimage'
+                        />
+                        <meta
+                            property='og:site_name'
+                            content={siteName}
+                            key='ogsitename'
+                        />
+                        <meta
+                            property='og:title'
+                            content={titleSuffix}
+                            key='ogtitle'
+                        />
+                        <meta
+                            property='og:description'
+                            content={fallbackSeo.description}
+                            key='ogdesc'
+                        />
+                    </>
+                )}
+                {productMetaTags &&
+                    renderMetaTags(productMetaTags.site.product.seo)}
             </Head>
 
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
