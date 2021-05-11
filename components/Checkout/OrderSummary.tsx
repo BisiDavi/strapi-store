@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useCart, useCurrency } from '../../hooks';
 import styles from '../../styles/checkout.module.css';
 import { getTotalAmount } from '../../utils';
@@ -6,6 +7,7 @@ import { getTotalAmount } from '../../utils';
 const OrderSummary = () => {
     const { products } = useCart();
     const { priceExchange, symbol } = useCurrency();
+    const { rushOrder } = useSelector((state) => state.rushOrder);
 
     return (
         <div className={styles.form}>
@@ -20,6 +22,15 @@ const OrderSummary = () => {
                         {priceExchange(getTotalAmount(products))}
                     </h3>
                 </div>
+                {rushOrder && (
+                    <div className='row'>
+                        <h3>Rush Order</h3>
+                        <h3>
+                            {symbol}
+                            {priceExchange(rushOrder)}
+                        </h3>
+                    </div>
+                )}
             </div>
             <style jsx>
                 {`

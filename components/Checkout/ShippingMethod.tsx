@@ -4,14 +4,20 @@ import styles from '../../styles/checkout.module.css';
 
 const ShippingMethod: FC = (): JSX.Element => {
     const methodArr = [
-        { name: 'localMethod', label: 'EXPRESS SHIPPING (US only) $20.00' },
+        {
+            name: 'localMethod',
+            label: 'EXPRESS SHIPPING (US only) $20.00',
+            value: '20',
+        },
         {
             name: 'foreignMethod',
             label: 'SHIP TO NIGERIA (Lagos only) ₦5,000',
+            value: '5000',
         },
         {
             name: 'OthersMethod',
             label: 'SHIP TO MY ADDRESS (other countries) $50.00',
+            value: '50',
         },
     ];
 
@@ -22,6 +28,7 @@ const ShippingMethod: FC = (): JSX.Element => {
                     className='d-flex align-items-center'
                     type='radio'
                     name='shipping'
+                    value={formInput.value}
                     label={formInput.label}
                 />
             </Form.Group>

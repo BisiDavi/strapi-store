@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/client';
+import React from 'react';
 import {
     AdditionalInformation,
     ShippingAddress,
@@ -8,25 +7,18 @@ import {
     OrderSummary,
 } from '../components/Checkout';
 import { Pagelayout } from '../container';
-import { useModal } from '../hooks';
+import { useAuthModal } from '../hooks';
 import { Loading } from '../components';
 import { LoginModal } from '../components/Modal';
 
 const Checkout = () => {
-    const [session, loading] = useSession();
-    const { modal, displayModal } = useModal();
-
-    loading && <Loading />;
-    useEffect(() => {
-        session === null || session === undefined
-            ? displayModal(true)
-            : displayModal(false);
-    }, [session]);
+    const { modal, loading, displayModal } = useAuthModal();
 
     return (
         <Pagelayout title='Checkout |'>
             <div className='container-fluid'>
                 <div className='row w-100 m-0'>
+                    {loading && <Loading />}
                     <LoginModal
                         show={modal}
                         onHide={() => displayModal(false)}

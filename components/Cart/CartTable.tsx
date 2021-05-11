@@ -156,6 +156,11 @@ const CartTable = (props) => {
                     .subtotal h3 {
                         font-weight: bold;
                     }
+                    .subtotal {
+                        border-top: 1px solid black;
+                        padding-top: 10px;
+                        margin-top: 5px;
+                    }
                     @media (max-width: 768px) {
                         .mobile {
                             display: block;
