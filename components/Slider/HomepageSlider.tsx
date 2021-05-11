@@ -1,10 +1,10 @@
-import React, { useRef, useState, FC } from "react";
-import Slider from "react-slick";
-import Image from "next/image";
-import { v4 as uuidv4 } from "uuid";
-import style from "../../styles/HomepageSlider.module.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useRef, useState, FC } from 'react';
+import Slider from 'react-slick';
+import Image from 'next/image';
+import { v4 as uuidv4 } from 'uuid';
+import style from '../../styles/HomepageSlider.module.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const HomepageSlider: FC = (): JSX.Element => {
     const [sliderState, setSliderState] = useState(true);
@@ -28,62 +28,48 @@ const HomepageSlider: FC = (): JSX.Element => {
         setSliderState(true);
     };
 
-    const sliderArr = ["/mainBg.webp", "/pinkBg.webp"];
+    const sliderArr = ['/mainBg.webp', '/pinkBg.webp'];
 
     return (
-        <div className="homepageSlider">
+        <div className='homepageSlider'>
             <Slider
                 className={`${style.pageslider} pageslider`}
                 {...settings}
                 ref={sliderRef}
             >
                 {sliderArr.map((slider) => (
-                    <div key={uuidv4()} className="content">
+                    <div key={uuidv4()} className='content'>
                         <Image
                             src={slider}
-                            className="sliderImg"
+                            className='sliderImg'
                             width={1000}
                             height={450}
-                            layout="responsive"
+                            layout='responsive'
                         />
                     </div>
                 ))}
 
-                <div className="content slider">
-                    <div className="slider-img">
+                <div className='content slider'>
+                    <div className='slider-img'>
                         <Image
-                            src="/slider3.webp"
-                            className="sliderImg"
+                            src='/slider3.webp'
+                            className='sliderImg'
                             width={1000}
                             height={450}
-                            layout="responsive"
+                            layout='responsive'
                         />
                     </div>
-                    <div className="gif">
+                    <div className='gif'>
                         <Image
-                            src="/bannerGif.gif"
-                            className="sliderImg"
+                            src='/bannerGif.gif'
+                            className='sliderImg'
                             width={400}
                             height={400}
-                            layout="responsive"
+                            layout='responsive'
                         />
                     </div>
                 </div>
             </Slider>
-
-            <div className="btnGrp">
-                <div className="slider-control">
-                    {sliderState ? (
-                        <button className="button" onClick={play}>
-                            <i className="far fa-play-circle"></i>
-                        </button>
-                    ) : (
-                        <button className="button" onClick={pause}>
-                            <i className="far fa-pause-circle"></i>
-                        </button>
-                    )}
-                </div>
-            </div>
             <style jsx>{`
                 .slider {
                     width: 100%;
@@ -155,7 +141,34 @@ const HomepageSlider: FC = (): JSX.Element => {
                 .slider-control button:hover {
                     opacity: 0.5;
                 }
-                @media (max-width: 768px) {
+                @media (max-width: 1440px) and (min-width: 1200px) {
+                    .gif {
+                        width: 300px;
+                        height: 300px;
+                        top: 35%;
+                        left: 5%;
+                        border: 10px solid white;
+                    }
+                }
+                @media (max-width: 1200px) and (min-width: 768px) {
+                    .gif {
+                        width: 200px;
+                        height: 200px;
+                        top: 35%;
+                        left: 5%;
+                        border: 10px solid white;
+                    }
+                }
+                @media (max-width: 768px) and (min-width: 500px) {
+                    .gif {
+                        width: 140px;
+                        height: 140px;
+                        border: 5px solid white;
+                        left: 5%;
+                        top: 27%;
+                    }
+                }
+                @media (max-width: 500px) {
                     .gif {
                         top: 27%;
                         left: 10%;
@@ -188,6 +201,12 @@ const HomepageSlider: FC = (): JSX.Element => {
                         top: 2px;
                         left: -1px;
                         z-index: 1000;
+                    }
+                }
+                @media (max-width: 340px) {
+                    .gif {
+                        height: 75px;
+                        width: 75px;
                     }
                 }
             `}</style>

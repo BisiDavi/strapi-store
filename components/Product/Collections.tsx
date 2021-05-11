@@ -34,21 +34,20 @@ const Collections = () => {
                 {`
                     .collections {
                         display: grid;
-                        grid-template-columns: repeat(
-                            auto-fill,
-                            minmax(450px, 1fr)
-                        );
+                        grid-template-columns: repeat(3, 1fr);
                         grid-gap: 35px;
                         margin: 50px 30px;
                     }
 
-                    @media (max-width: 1440px) and (min-width: 1000px) {
+                    @media (max-width: 1440px) and (min-width: 500px) {
                         .collections {
                             grid-template-columns: repeat(3, 1fr);
+                            margin: 20px 30px;
+                            grid-gap: 15px;
                         }
                     }
 
-                    @media (max-width: 768px) {
+                    @media (max-width: 500px) {
                         .collections {
                             grid-template-columns: 1fr;
                             margin: 20px 30px;
