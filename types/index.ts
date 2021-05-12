@@ -118,6 +118,7 @@ export interface NotifyProps {
     text: string;
 }
 
-export interface PaypalProps{
-    amount: string
+export interface PaypalProps {
+    amount: string;
+    loadPaypal: () => void;
 }

@@ -33,6 +33,8 @@ const Checkout = () => {
         ) : null;
     };
 
+    const loadPaypal = () => setPaypalLoaded(true);
+
     return (
         <Pagelayout title='Checkout |'>
             <div className='container-fluid'>
@@ -61,8 +63,11 @@ const Checkout = () => {
                     <AdditionalInformation />
                     <OrderSummary />
                     <div className='express-checkout'>
-                        {formCondition !== null && (
-                            <Paypal amount={totalAmount} />
+                        {formCondition !== null && paypalLoaded && (
+                            <Paypal
+                                amount={totalAmount}
+                                loadPaypal={loadPaypal}
+                            />
                         )}
                     </div>
                 </div>
