@@ -63,7 +63,7 @@ const Checkout = () => {
                     <AdditionalInformation />
                     <OrderSummary />
                     <div className='express-checkout'>
-                        {formCondition !== null && paypalLoaded && (
+                        {paypalLoaded && (
                             <Paypal
                                 amount={totalAmount}
                                 loadPaypal={loadPaypal}
