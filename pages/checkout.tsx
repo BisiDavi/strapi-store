@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
     AdditionalInformation,
     ShippingAddress,
@@ -10,9 +11,24 @@ import { Pagelayout } from '../container';
 import { useAuthModal } from '../hooks';
 import { Loading } from '../components';
 import { LoginModal } from '../components/Modal';
+import Notify from '../components/Notify';
 
 const Checkout = () => {
     const { modal, loading, displayModal } = useAuthModal();
+    const { details } = useSelector((state) => state.userDetails);
+    const { method } = useSelector((state) => state.shipping);
+
+    const formCondition = details && method;
+    console.log('formCondition', formCondition);
+
+    const notifyUser = () => {
+        return formCondition === null ? (
+            <Notify
+                variant='danger'
+                text='The shipping address form and shipping method must be filled, thanks.'
+            />
+        ) : null;
+    };
 
     return (
         <Pagelayout title='Checkout |'>
@@ -27,26 +43,35 @@ const Checkout = () => {
                         <h3>Jenjen's Luxury Wigs</h3>
                         <div className='bread-crumb'>
                             <p>
-                                Shopping Cart &gt; <b>Checkout</b> &gt; Paid
-                                Succeed
+                                Shopping Cart <span className='mx-1'>&gt;</span>{' '}
+                                <b>Checkout</b>{' '}
+                                <span className='mx-1'>&gt;</span> Paid Succeed
                             </p>
                         </div>
-                        <div className='express-checkout'>
-                            <p>Express checkout</p>
-
+                    </div>
+                    {notifyUser()}
+                    <ShippingAddress />
+                    <ShippingMethod />
+                    <ShoppingBag />
+                    <AdditionalInformation />
+                    <OrderSummary />
+                    <div className='express-checkout'>
+                        {formCondition ? (
                             <button className='paypal-checkout'>
                                 <img
                                     src='https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png'
                                     alt='Check out with PayPal'
                                 />
                             </button>
-                        </div>
+                        ) : (
+                            <button className='paypal-checkout' disabled>
+                                <img
+                                    src='https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png'
+                                    alt='Check out with PayPal'
+                                />
+                            </button>
+                        )}
                     </div>
-                    <ShippingAddress />
-                    <ShippingMethod />
-                    <ShoppingBag />
-                    <AdditionalInformation />
-                    <OrderSummary />
                 </div>
                 <style jsx>
                     {`

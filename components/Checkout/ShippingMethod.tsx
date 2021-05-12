@@ -10,7 +10,7 @@ const ShippingMethod: FC = (): JSX.Element => {
     const methodArr: shippingMethodArray[] = [
         {
             name: 'localMethod',
-            label: 'EXPRESS SHIPPING (US only) $20.00',
+            label: 'EXPRESS SHIPPING (US only) $20.00,',
         },
         {
             name: 'foreignMethod',
@@ -42,12 +42,14 @@ const ShippingMethod: FC = (): JSX.Element => {
         ));
     };
 
-    
-
     return (
         <div className={styles.form}>
             <div className={styles.title}>
-                <span>2</span>SHIPPING METHOD
+                <span>2</span>
+                <div className='text d-flex w-100 justify-content-between'>
+                    SHIPPING METHOD
+                    <p className='mb-0'>4-10 working days</p>
+                </div>
             </div>
             <Form className='d-flex flex-column'>{displayRadioBtn()}</Form>
         </div>

@@ -112,3 +112,8 @@ export interface shippingMethodArray {
     name: string;
     label: string;
 }
+
+export interface NotifyProps {
+    variant: string;
+    text: string;
+}

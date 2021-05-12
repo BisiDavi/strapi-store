@@ -1,12 +1,14 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSession } from 'next-auth/client';
+import { useDispatch } from 'react-redux';
 import CountryDropdownbutton from '../Form/CountryDropdown';
 import styles from '../../styles/checkout.module.css';
+import { UserDetailsAction } from '../../store/actions/UserDetailsAction';
 
 const ShippingAddress: FC = (): JSX.Element => {
     const [session, loading] = useSession();
     console.log('session', session);
-    let fullName, email;
+    const dispatch = useDispatch();
 
     useEffect(() => {
         formState.fullName = !loading && session ? session.user.name : '';
@@ -20,6 +22,15 @@ const ShippingAddress: FC = (): JSX.Element => {
         zip: '',
         telephone: '',
     });
+
+    const formStateLength = Object.values(formState).filter((f) => f !== '')
+        .length;
+
+    useEffect(() => {
+        if (formStateLength === 5) {
+            dispatch(UserDetailsAction(formState));
+        }
+    }, [formState]);
 
     const formArr = [
         { name: 'fullName', placeHolder: 'Name*' },

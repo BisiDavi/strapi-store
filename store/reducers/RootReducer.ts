@@ -4,6 +4,7 @@ import { CartReducer } from './CartReducer';
 import { CurrencyReducer } from './CurrencyReducer';
 import { RushOrderReducer } from './RushOrderReducer';
 import { ShippingMethodReducer } from './ShippingMethodReducer';
+import { UserDetailsReducer } from './UserDetailsReducer';
 
 const RootReducer = combineReducers({
     cart: CartReducer,
@@ -11,6 +12,7 @@ const RootReducer = combineReducers({
     rushOrder: RushOrderReducer,
     shipping: ShippingMethodReducer,
     information: AdditionalInformationReducer,
+    userDetails: UserDetailsReducer,
 });
 
 export default RootReducer;

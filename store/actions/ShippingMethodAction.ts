@@ -1,7 +1,4 @@
-import {
-    SHIPPING_ADDRESS,
-    SHIPPING_ADDRESS_ERROR,
-} from '../constants';
+import { SHIPPING_ADDRESS, SHIPPING_ADDRESS_ERROR } from '../constants';
 
 export const ShippingMethodAction = (shippingMethod) => (dispatch) => {
     try {
