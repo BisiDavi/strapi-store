@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
     AdditionalInformation,
@@ -19,8 +19,10 @@ const Checkout = () => {
     const { details } = useSelector((state) => state.userDetails);
     const { method } = useSelector((state) => state.shipping);
     const { totalAmount } = useSelector((state) => state.totalAmount);
-
+    const [paypalLoaded, setPaypalLoaded] = useState(false);
     const formCondition = details && method;
+
+    console.log('formCondition', formCondition);
 
     const notifyUser = () => {
         return formCondition === null ? (
@@ -59,7 +61,9 @@ const Checkout = () => {
                     <AdditionalInformation />
                     <OrderSummary />
                     <div className='express-checkout'>
-                        <Paypal amount={totalAmount} />
+                        {formCondition !== null && (
+                            <Paypal amount={totalAmount} />
+                        )}
                     </div>
                 </div>
                 <style jsx>
@@ -67,7 +71,8 @@ const Checkout = () => {
                         .container-fluid {
                             padding: 0px 100px;
                         }
-                        .alert {
+                        .alert,
+                        .express-checkout {
                             display: flex;
                             margin: auto;
                             justify-content: center;
