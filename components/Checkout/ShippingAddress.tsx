@@ -101,7 +101,7 @@ const ShippingAddress: FC = (): JSX.Element => {
                         border: 1px solid black;
                         padding: 20px;
                         margin: 10px 0px;
-                        width: 450px;
+                        width: 100%;
                     }
                     input:focus-visible {
                         outline: none;

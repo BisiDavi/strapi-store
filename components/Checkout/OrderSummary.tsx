@@ -4,6 +4,7 @@ import { useCart, useCurrency } from '../../hooks';
 import styles from '../../styles/checkout.module.css';
 import { getTotalAmount } from '../../utils';
 import { CurrencyAction } from '../../store/actions/currencyAction';
+import { TotalAmountAction } from '../../store/actions/TotalAmountAction';
 
 const OrderSummary = () => {
     const { products } = useCart();
@@ -15,7 +16,7 @@ const OrderSummary = () => {
     } = useCurrency();
     const dispatch = useDispatch();
     const { rushOrder } = useSelector((state) => state.rushOrder);
-    const { name, value } = useSelector((state) => state.currency);
+    const { name } = useSelector((state) => state.currency);
     const { method } = useSelector((state) => state.shipping);
 
     const dropdownValues = {
@@ -72,6 +73,12 @@ const OrderSummary = () => {
         }
     };
 
+    const itemTotalAmount = calculateTotal();
+
+    useEffect(() => {
+        dispatch(TotalAmountAction(formatToNumber(itemTotalAmount)));
+    }, [itemTotalAmount]);
+
     return (
         <div className={styles.form}>
             <div className={styles.title}>
@@ -107,7 +114,7 @@ const OrderSummary = () => {
                     <h3>Total</h3>
                     <h3>
                         {symbol}
-                        {calculateTotal()}
+                        {itemTotalAmount}
                     </h3>
                 </div>
             </div>

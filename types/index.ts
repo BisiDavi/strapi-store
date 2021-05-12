@@ -117,3 +117,7 @@ export interface NotifyProps {
     variant: string;
     text: string;
 }
+
+export interface PaypalProps{
+    amount: string
+}

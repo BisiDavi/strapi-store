@@ -12,14 +12,15 @@ import { useAuthModal } from '../hooks';
 import { Loading } from '../components';
 import { LoginModal } from '../components/Modal';
 import Notify from '../components/Notify';
+import Paypal from '../components/Paypal';
 
 const Checkout = () => {
     const { modal, loading, displayModal } = useAuthModal();
     const { details } = useSelector((state) => state.userDetails);
     const { method } = useSelector((state) => state.shipping);
+    const { totalAmount } = useSelector((state) => state.totalAmount);
 
     const formCondition = details && method;
-    console.log('formCondition', formCondition);
 
     const notifyUser = () => {
         return formCondition === null ? (
@@ -49,28 +50,16 @@ const Checkout = () => {
                             </p>
                         </div>
                     </div>
-                    {notifyUser()}
+                </div>
+                <div className='row alert'>{notifyUser()}</div>
+                <div className='row checkout-field w-100 m-auto my-3'>
                     <ShippingAddress />
                     <ShippingMethod />
                     <ShoppingBag />
                     <AdditionalInformation />
                     <OrderSummary />
                     <div className='express-checkout'>
-                        {formCondition ? (
-                            <button className='paypal-checkout'>
-                                <img
-                                    src='https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png'
-                                    alt='Check out with PayPal'
-                                />
-                            </button>
-                        ) : (
-                            <button className='paypal-checkout' disabled>
-                                <img
-                                    src='https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png'
-                                    alt='Check out with PayPal'
-                                />
-                            </button>
-                        )}
+                        <Paypal amount={totalAmount} />
                     </div>
                 </div>
                 <style jsx>
@@ -78,9 +67,21 @@ const Checkout = () => {
                         .container-fluid {
                             padding: 0px 100px;
                         }
+                        .alert {
+                            display: flex;
+                            margin: auto;
+                            justify-content: center;
+                        }
                         .info {
                             text-align: center;
-                            margin: 20px auto;
+                            margin: 0px auto;
+                        }
+                        @media (min-width: 768px) {
+                            .row.checkout-field.w-100 {
+                                display: grid;
+                                grid-template-columns: repeat(2, 1fr);
+                                grid-gap: 30px;
+                            }
                         }
                         @media (max-width: 768px) {
                             .container-fluid {

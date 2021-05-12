@@ -104,7 +104,7 @@ const CartTable = (props) => {
                         <SelectRushOrder content={rushOrderDropdown} />
                     </div>
                     <div className={styles.subtotal}>
-                        <div>
+                        <div className='priceList'>
                             <div className='amount'>
                                 <h2>Amount</h2>
                                 <h2 className={styles.price}>
@@ -157,10 +157,17 @@ const CartTable = (props) => {
                     .subtotal h3 {
                         font-weight: bold;
                     }
+
                     .subtotal {
                         border-top: 1px solid black;
                         padding-top: 10px;
                         margin-top: 5px;
+                    }
+                    @media (min-width: 768px) {
+                        .priceList div {
+                            width: 60%;
+                            justify-content: space-between;
+                        }
                     }
                     @media (max-width: 768px) {
                         .mobile {
