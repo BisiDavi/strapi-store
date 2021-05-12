@@ -3,7 +3,7 @@ import {
     ADD_TO_CART_ERROR,
     ADD_TO_CART_REQUEST,
     ADD_TO_CART_SUCCESS,
-} from "../constants";
+} from '../constants';
 
 export const AddToCartAction = (product) => (dispatch) => {
     try {

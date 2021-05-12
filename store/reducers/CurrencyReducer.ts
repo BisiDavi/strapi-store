@@ -1,4 +1,4 @@
-import { SELECT_CURRENCY } from '../constants';
+import { SELECT_CURRENCY, SELECT_CURRENCY_ERROR } from '../constants';
 
 export const CurrencyReducer = (
     state = {
@@ -11,19 +11,16 @@ export const CurrencyReducer = (
 
     switch (type) {
         case SELECT_CURRENCY:
-            if (payload.name === 'Naira') {
-                return {
-                    ...state,
-                    name: payload.name,
-                    value: payload.value,
-                };
-            } else if (payload.name === 'Dollar') {
-                return {
-                    ...state,
-                    name: payload.name,
-                    value: payload.value,
-                };
-            }
+            return {
+                ...state,
+                name: payload.name,
+                value: payload.value,
+            };
+        case SELECT_CURRENCY_ERROR:
+            return {
+                ...state,
+                error: payload,
+            };
         default:
             return state;
     }

@@ -1,6 +1,6 @@
-import { SELECT_CURRENCY, SELECT_CURRENCY_ERROR } from "../constants";
+import { SELECT_CURRENCY, SELECT_CURRENCY_ERROR } from '../constants';
 
-export const SelectCurrency = (currency) => (dispatch) => {
+export const CurrencyAction = (currency) => (dispatch) => {
     try {
         dispatch({
             type: SELECT_CURRENCY,
@@ -9,6 +9,8 @@ export const SelectCurrency = (currency) => (dispatch) => {
     } catch (error) {
         dispatch({
             type: SELECT_CURRENCY_ERROR,
+            payload: error,
         });
+        console.log('error', error);
     }
 };

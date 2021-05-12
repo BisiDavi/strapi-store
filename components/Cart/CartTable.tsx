@@ -13,7 +13,7 @@ const CartTable = (props) => {
     const { products } = props;
     const [productQty, setProductQty] = useState(0);
 
-    const { priceExchange, symbol } = useCurrency();
+    const { priceExchange, symbol, formatPrice } = useCurrency();
 
     const tableTitle = ['Product', 'Name', 'Price', 'Quantity', 'Total'];
     const dispatch = useDispatch();
@@ -49,7 +49,8 @@ const CartTable = (props) => {
         const amount = getNumber(productsAmount);
         const rushPrice = rushOrder !== false ? getNumber(rushOrderPrice) : 0;
         const subtotal = amount + rushPrice;
-        return subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        // return subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return formatPrice(subtotal);
     };
 
     const subtotalAmount = calculateSubtotal();

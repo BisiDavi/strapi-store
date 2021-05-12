@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from "react";
-import useLocalStorage from "./useLocalStorage";
-import { useSelector, useDispatch } from "react-redux";
-import { AddCartFromStorage } from "../store/actions/CartActions";
-
-// 1. check if localStorage has cart done
-// 2. if ls doesn't have cart, set a cart. done
-// 3. if cart in ls has products, populate the products to redux store
-// and  assess products from store in the ui.
-// 4. if ls-cart is empty use redux store.
+import React, { useState, useEffect } from 'react';
+import useLocalStorage from './useLocalStorage';
+import { useSelector, useDispatch } from 'react-redux';
+import { AddCartFromStorage } from '../store/actions/CartActions';
 
 const useCart = () => {
     const { GetLocalStorageProducts, SetCartStorage } = useLocalStorage();

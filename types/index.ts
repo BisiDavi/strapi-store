@@ -107,3 +107,8 @@ export interface ProductDetailProps {
         description: string;
     };
 }
+
+export interface shippingMethodArray {
+    name: string;
+    label: string;
+}

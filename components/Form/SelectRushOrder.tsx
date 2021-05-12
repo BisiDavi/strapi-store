@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { useCurrency } from '../../hooks';
-import { RushOrderAction } from '../../store/actions';
+import { RushOrderAction } from '../../store/actions/RushOrderAction';
 
 const SelectRushOrder = ({ content }) => {
     const { priceExchange, symbol } = useCurrency();

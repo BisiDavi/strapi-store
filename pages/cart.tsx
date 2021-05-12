@@ -19,7 +19,6 @@ const Cart = () => {
                         show={modal}
                         onHide={() => displayModal(false)}
                     />
-
                     {products.length > 0 ? (
                         <CartTable products={products} />
                     ) : (

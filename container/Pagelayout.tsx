@@ -32,7 +32,7 @@ const Pagelayout: FC<PagecontainerProps> = ({
                 <title>{pageTitle}</title>
                 {metaTags && (
                     <>
-                        <meta
+                        {/* <meta
                             name='description'
                             content={metaTags.fallbackSeo.description}
                         />
@@ -40,7 +40,7 @@ const Pagelayout: FC<PagecontainerProps> = ({
                             property='og:image'
                             content={metaTags.fallbackSeo.image.url}
                             key='ogimage'
-                        />
+                        /> */}
                         <meta
                             property='og:site_name'
                             content={metaTags.siteName}
@@ -51,11 +51,11 @@ const Pagelayout: FC<PagecontainerProps> = ({
                             content={metaTags.titleSuffix}
                             key='ogtitle'
                         />
-                        <meta
+                        {/* <meta
                             property='og:description'
                             content={metaTags.fallbackSeo.description}
                             key='ogdesc'
-                        />
+                        /> */}
                     </>
                 )}
                 {productMetaTags && renderMetaTags(productMetaTags.product.seo)}
