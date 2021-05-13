@@ -113,6 +113,7 @@ export const CartReducer = (
             return { ...state, error: payload };
 
         case CLEAR_CART:
+            state.products = [];
             return { ...state, products: [] };
 
         case CLEAR_CART_ERROR:

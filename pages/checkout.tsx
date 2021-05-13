@@ -29,6 +29,7 @@ const Checkout = () => {
     const { payment, paymentDetails } = useSelector((state) => state.payment);
     const clearCart = () => dispatch(ClearCartAction());
 
+    console.log('payment', payment);
     const formCondition = details && method;
 
     const notifyUser = () => {
@@ -45,17 +46,12 @@ const Checkout = () => {
     };
 
     useEffect(() => {
-        if (payment) {
-            setShowModal(true);
-        }
-    }, [payment]);
-
-    useEffect(() => {
         redirectUser();
     }, [showModal]);
 
     useEffect(() => {
         if (paymentConfirmed) {
+            setShowModal(true);
             clearCart();
         }
     }, [paymentConfirmed]);

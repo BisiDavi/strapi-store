@@ -4,6 +4,7 @@ import { BsCheckCircle } from 'react-icons/bs';
 import { PageModal } from '.';
 
 const SuccessModal = ({ modal, onHide, content }) => {
+    console.log('successModal loaded');
     return (
         <PageModal show={modal} onHide={onHide}>
             <div className='modal'>
