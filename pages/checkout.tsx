@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
     AdditionalInformation,
@@ -33,6 +33,7 @@ const Checkout = () => {
         ) : null;
     };
 
+    useEffect(() => setPaypalLoaded(true), []);
 
     return (
         <Pagelayout title='Checkout |'>
@@ -63,12 +64,7 @@ const Checkout = () => {
                     <OrderSummary />
                     <div className='express-checkout'>
                         {console.log('paypalLoaded', paypalLoaded)}
-                        {paypalLoaded && (
-                            <Paypal
-                                amount={totalAmount}
-                                loadPaypal={() => setPaypalLoaded(true)}
-                            />
-                        )}
+                        {paypalLoaded && <Paypal amount={totalAmount} />}
                     </div>
                 </div>
                 <style jsx>
