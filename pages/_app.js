@@ -72,7 +72,7 @@ const MyApp = ({ Component, pageProps }) => {
                     href="/favicon-16x16.png"
                 />
                 <link rel="manifest" href="/site.webmanifest" />
-                <script src="https://www.paypal.com/sdk/js?client-id=AcP5kjoPdLOpeNujacudxWPynh-ucYPekVXxWKdVk48JvhJErKVvVNo65BUrFNPETweN-zUz6Na5Y4aL"></script>
+                {/* <script src="https://www.paypal.com/sdk/js?client-id=AcP5kjoPdLOpeNujacudxWPynh-ucYPekVXxWKdVk48JvhJErKVvVNo65BUrFNPETweN-zUz6Na5Y4aL"></script> */}
             </Head>
             {loading && <Loading />}
 

@@ -33,7 +33,6 @@ const Checkout = () => {
         ) : null;
     };
 
-    const loadPaypal = () => setPaypalLoaded(true);
 
     return (
         <Pagelayout title='Checkout |'>
@@ -67,7 +66,7 @@ const Checkout = () => {
                         {paypalLoaded && (
                             <Paypal
                                 amount={totalAmount}
-                                loadPaypal={loadPaypal}
+                                loadPaypal={() => setPaypalLoaded(true)}
                             />
                         )}
                     </div>

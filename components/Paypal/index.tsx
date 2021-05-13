@@ -13,6 +13,10 @@ const Paypal: FC<PaypalProps> = ({ amount, loadPaypal }): JSX.Element => {
                     'Transaction completed by ' + details.payer.name.given_name,
                 );
             }}
+            options={{
+                clientId:
+                    'AcP5kjoPdLOpeNujacudxWPynh-ucYPekVXxWKdVk48JvhJErKVvVNo65BUrFNPETweN-zUz6Na5Y4aL',
+            }}
         />
     );
 };
