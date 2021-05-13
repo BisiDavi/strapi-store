@@ -1,12 +1,9 @@
-const SendData = (link, data, router, route) => {
-    fetch(`${link}`, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json, text/plain, */*',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
+import axios from 'axios';
+import { axiosInstance } from '../axios/axiosInstance';
+
+const SendData = async (link, data, router, route) => {
+    await axiosInstance
+        .post(link, { body: JSON.stringify(data) })
         .then((res) => {
             if (res.status === 200) {
                 console.log('response received');

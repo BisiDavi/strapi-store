@@ -14,7 +14,7 @@ export const CartNotification = (req, res) => {
     });
 
     console.log(req.body);
-    // res.status(200).json('Hello, user');
+    res.status(200).json('Hello, user');
 };
 
 export default CartNotification;
