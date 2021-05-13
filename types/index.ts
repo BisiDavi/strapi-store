@@ -122,3 +122,15 @@ export interface PaypalProps {
     amount: string;
     hasPaid: (payment: boolean) => void;
 }
+
+export interface SuccessModalProps {
+    modal: boolean;
+    onHide: () => void;
+    content?: {
+        payer: {
+            name: {
+                given_name;
+            };
+        };
+    };
+}

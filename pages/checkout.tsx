@@ -18,7 +18,7 @@ const Checkout = () => {
     const { modal, loading, displayModal } = useAuthModal();
     const [paymentConfirmed, setPaymentConfirmed] = useState(false);
     const [paypalLoaded, setPaypalLoaded] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(true);
 
     const dispatch = useDispatch();
     const router = useRouter();

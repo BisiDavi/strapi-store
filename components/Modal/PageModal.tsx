@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Modal } from 'react-bootstrap';
-import styles from './Pagemodal.module.css';
+import styles from '../../styles/Pagemodal.module.css';
 
 interface PageModalProps {
     show: boolean;
@@ -8,7 +8,9 @@ interface PageModalProps {
     modalstyle?: string;
     header?: string;
     backdrop?: string;
+    modalLogo?: JSX.Element;
     keyboard?: boolean;
+    icon?: boolean;
 }
 
 const PageModal: FC<PageModalProps> = (props): JSX.Element => {
@@ -21,7 +23,8 @@ const PageModal: FC<PageModalProps> = (props): JSX.Element => {
             contentClassName={props.modalstyle}
         >
             <Modal.Header className={styles.modalHeader} closeButton>
-                <h1 className='header'>{props.header}</h1>
+                {props.icon && props.modalLogo}
+                {props.icon ? null : <h1 className='header'>{props.header}</h1>}
             </Modal.Header>
             <Modal.Body>{props.children}</Modal.Body>
             <style jsx>{`
