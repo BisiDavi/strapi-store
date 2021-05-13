@@ -1,30 +1,21 @@
 import React, { FC } from 'react';
 import { PayPalButton } from 'react-paypal-button-v2';
-import { useRouter } from 'next/router';
-import { useModal } from '../../hooks';
+import { useDispatch } from 'react-redux';
 import { PaypalProps } from '../../types';
-import { SuccessModal } from '../Modal';
+import { PaymentAction } from '../../store/actions/PaymentAction';
 
 const Paypal: FC<PaypalProps> = ({ amount, hasPaid }): JSX.Element => {
-    const { modal, displayModal } = useModal();
-    const router = useRouter();
+    const dispatch = useDispatch();
 
-    const redirectUser = () => {
-        !modal && router.push('/');
-    };
+    const successfulPayment = (details) => dispatch(PaymentAction(details));
+
     return (
         <PayPalButton
             amount={amount}
             shippingPreference='NO_SHIPPING'
             onSuccess={(details, data) => {
-                () => displayModal(true);
                 hasPaid(true);
-                <SuccessModal
-                    modal={modal}
-                    content={details}
-                    onHide={() => displayModal(false)}
-                />;
-                redirectUser();
+                successfulPayment(details);
             }}
             options={{
                 clientId:

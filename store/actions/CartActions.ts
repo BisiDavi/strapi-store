@@ -5,6 +5,8 @@ import {
     ADD_TO_CART_SUCCESS,
     CLEAR_CART,
     CLEAR_CART_ERROR,
+    CLEAR_CART_FROM_STORAGE,
+    CLEAR_CART_FROM_STORAGE_ERROR,
 } from '../constants';
 
 export const AddToCartAction = (product) => (dispatch) => {
@@ -20,7 +22,7 @@ export const AddToCartAction = (product) => (dispatch) => {
     } catch (error) {
         dispatch({
             type: ADD_TO_CART_ERROR,
-            error,
+            payload: error,
         });
     }
 };
@@ -33,6 +35,7 @@ export const AddCartFromStorage = () => (dispatch) => {
     } catch (error) {
         dispatch({
             type: ADD_TO_CART_ERROR,
+            payload: error,
         });
     }
 };
@@ -42,9 +45,17 @@ export const ClearCartAction = () => (dispatch) => {
         dispatch({
             type: CLEAR_CART,
         });
+        dispatch({
+            type: CLEAR_CART_FROM_STORAGE,
+        });
     } catch (error) {
         dispatch({
             type: CLEAR_CART_ERROR,
+            payload: error,
+        });
+        dispatch({
+            type: CLEAR_CART_FROM_STORAGE_ERROR,
+            payload: error,
         });
     }
 };

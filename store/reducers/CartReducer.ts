@@ -6,6 +6,8 @@ import {
     ADD_TO_CART_SUCCESS,
     CLEAR_CART,
     CLEAR_CART_ERROR,
+    CLEAR_CART_FROM_STORAGE,
+    CLEAR_CART_FROM_STORAGE_ERROR,
     COUNT_ERROR,
     DECREASE_COUNT,
     DELETE_PRODUCT,
@@ -114,6 +116,17 @@ export const CartReducer = (
             return { ...state, products: [] };
 
         case CLEAR_CART_ERROR:
+            return {
+                ...state,
+                error: payload,
+            };
+
+        case CLEAR_CART_FROM_STORAGE:
+            const { clearLocalStorage } = useLocalStorage();
+            clearLocalStorage();
+            return { ...state, products: [] };
+
+        case CLEAR_CART_FROM_STORAGE_ERROR:
             return {
                 ...state,
                 error: payload,

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { AdditionalInformationReducer } from './AdditionalInformationReducer';
 import { CartReducer } from './CartReducer';
 import { CurrencyReducer } from './CurrencyReducer';
+import { PaymentReducer } from './PaymentReducer';
 import { RushOrderReducer } from './RushOrderReducer';
 import { ShippingMethodReducer } from './ShippingMethodReducer';
 import { TotalAmountReducer } from './TotalAmountReducer';
@@ -15,6 +16,7 @@ const RootReducer = combineReducers({
     information: AdditionalInformationReducer,
     userDetails: UserDetailsReducer,
     totalAmount: TotalAmountReducer,
+    payment: PaymentReducer,
 });
 
 export default RootReducer;

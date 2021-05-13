@@ -14,6 +14,7 @@ export { default as Footer } from './Footer/Footer';
 
 export { default as MailForm } from './Modal/MailListModal';
 export { default as LoginModal } from './Modal/LoginModal';
+export { default as SuccessModal } from './Modal/SuccessModal';
 
 export { default as Mailinglist } from './Modal/MailListModal';
 export { default as MailButton } from './MailList/MailButton';

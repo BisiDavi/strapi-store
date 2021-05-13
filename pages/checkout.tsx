@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import {
     AdditionalInformation,
     ShippingAddress,
@@ -12,21 +12,24 @@ import { ClearCartAction } from '../store/actions/CartActions';
 import { Pagelayout } from '../container';
 import { useAuthModal } from '../hooks';
 import { Notify, Paypal, LoginModal, Loading } from '../components';
+import { SuccessModal } from '../components/Modal';
 
 const Checkout = () => {
     const { modal, loading, displayModal } = useAuthModal();
     const [paymentConfirmed, setPaymentConfirmed] = useState(false);
     const [paypalLoaded, setPaypalLoaded] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const dispatch = useDispatch();
+    const router = useRouter();
+
     const { details } = useSelector((state) => state.userDetails);
     const { method } = useSelector((state) => state.shipping);
     const { totalAmount } = useSelector((state) => state.totalAmount);
+    const { payment, paymentDetails } = useSelector((state) => state.payment);
+    const clearCart = () => dispatch(ClearCartAction());
 
     const formCondition = details && method;
-
-    console.log('formCondition', formCondition);
-    const clearCart = () => dispatch(ClearCartAction());
 
     const notifyUser = () => {
         return formCondition === null ? (
@@ -36,6 +39,20 @@ const Checkout = () => {
             />
         ) : null;
     };
+
+    const redirectUser = () => {
+        !showModal && router.push('/');
+    };
+
+    useEffect(() => {
+        if (payment) {
+            setShowModal(true);
+        }
+    }, [payment]);
+
+    useEffect(() => {
+        redirectUser();
+    }, [showModal]);
 
     useEffect(() => {
         if (paymentConfirmed) {
@@ -54,7 +71,7 @@ const Checkout = () => {
                         show={modal}
                         onHide={() => displayModal(false)}
                     />
-                    <div className='col-lg-12 info'>
+                    <div className='col-lg-12 info mt-2'>
                         <h3>Jenjen's Luxury Wigs</h3>
                         <div className='bread-crumb'>
                             <p>
@@ -66,6 +83,11 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className='row alert'>{notifyUser()}</div>
+                <SuccessModal
+                    modal={showModal}
+                    content={paymentDetails}
+                    onHide={() => setShowModal(false)}
+                />
                 <div className='row checkout-field w-100 m-auto my-3'>
                     <ShippingAddress />
                     <ShippingMethod />
