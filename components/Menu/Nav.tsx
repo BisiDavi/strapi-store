@@ -105,6 +105,7 @@ const Nav = () => {
                             position: absolute;
                             right: 0px;
                             z-index: 0;
+                            height: 55px;
                         }
                     }
                     @media (max-width: 768px) {

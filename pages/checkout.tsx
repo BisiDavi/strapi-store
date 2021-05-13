@@ -79,7 +79,7 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className='row alert'>{notifyUser()}</div>
-                {paymentConfirmed && (
+                {paymentDetails !== null && (
                     <SuccessModal
                         modal={showModal}
                         content={paymentDetails}
