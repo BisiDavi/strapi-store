@@ -1,5 +1,8 @@
 .cartSvg {
     color: red;
+    position: absolute;
+    right: -5px;
+    top: -5px;
 }
 
 .cartTable {

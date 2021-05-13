@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { signIn, signOut, useSession } from "next-auth/client";
-import { useRouter } from "next/router";
-import { toast, ToastContainer } from "react-toastify";
-import { CartIcon } from "..";
-import { Hamburger } from "../Button";
-import { useCart } from "../../hooks";
+import React, { useState } from 'react';
+import { signIn, signOut, useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import { toast, ToastContainer } from 'react-toastify';
+import { CartIcon } from '..';
+import { Hamburger } from '../Button';
+import { useCart } from '../../hooks';
 import {
     displayCartSidebar,
     displayMenuSidebar,
     sidebarState,
-} from "../../utils/menu";
-import Logo from "../Icons/Logo";
+} from '../../utils/menu';
+import Logo from '../Icons/Logo';
 
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
@@ -30,8 +30,8 @@ const Nav = () => {
         router.back();
     };
     return (
-        <nav className="nav-menu">
-            <span className="hamburger">
+        <nav className='nav-menu'>
+            <span className='hamburger'>
                 <Hamburger
                     btnClick={hamburgerHandler}
                     className={sidebarState(btnState)}
@@ -39,10 +39,10 @@ const Nav = () => {
                 {displayMenuSidebar(btnState, onCloseHandler)}
             </span>
             <Logo />
-            <span className="cart mx-2">
+            <span className='cart mx-2'>
                 <CartIcon cartClick={showCart} count={productCount} />
             </span>
-            <div className="signupStatus">
+            <div className='signupStatus'>
                 {!session && (
                     <>
                         Not signed in
@@ -58,7 +58,7 @@ const Nav = () => {
             </div>
             {displayCartSidebar(cart, hideCart)}
             <ToastContainer
-                position="top-left"
+                position='top-left'
                 closeOnClick
                 draggable
                 pauseOnHover
@@ -72,6 +72,7 @@ const Nav = () => {
                         align-items: center;
                         width: 100%;
                         height: 110px;
+                        position: relative;
                     }
                     .signupStatus button {
                         margin: 0px 10px;
@@ -88,9 +89,23 @@ const Nav = () => {
 
                     .signupStatus {
                         display: flex;
-                        align-items: center;
+                        align-items: flex-end;
                         margin: 0px 20px;
                         font-weight: bold;
+                    }
+                    @media (min-width: 768px) {
+                        span.cart.mx-2 {
+                            position: absolute;
+                            right: 120px;
+                            top: 25px;
+                            z-index: 1;
+                        }
+
+                        .signupStatus {
+                            position: absolute;
+                            right: 0px;
+                            z-index: 0;
+                        }
                     }
                     @media (max-width: 768px) {
                         .cart {

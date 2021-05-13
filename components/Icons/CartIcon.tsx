@@ -5,11 +5,7 @@ import styles from '../../styles/cart.module.css';
 const CartIcon = ({ count, cartClick }) => {
     return (
         <div onClick={cartClick} className='cartIcon position-relative'>
-            {Number(count) > 0 && (
-                <div className='star'>
-                    <FaStarOfLife className={styles.cartSvg} />
-                </div>
-            )}
+            {Number(count) > 0 && <FaStarOfLife className={styles.cartSvg} />}
             <svg
                 xmlns='http://www.w3.org/2000/svg'
                 version='1.1'
@@ -40,16 +36,8 @@ const CartIcon = ({ count, cartClick }) => {
                     }
                     .cartIcon {
                         height: 100%;
-                        width: 25px;
+                        width: 30px;
                         cursor: pointer;
-                    }
-                    .star {
-                        position: absolute;
-                        right: -5px;
-                        top: -5px;
-                    }
-                    .star svg {
-                        color: red;
                     }
                 `}
             </style>
