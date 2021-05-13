@@ -42,7 +42,7 @@ const Checkout = () => {
     };
 
     const redirectUser = () => {
-        !showModal && router.push('/');
+        !showModal && payment && router.push('/');
     };
 
     useEffect(() => {
@@ -79,7 +79,7 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className='row alert'>{notifyUser()}</div>
-                {paymentConfirmed && (
+                {paymentConfirmed !== null && (
                     <SuccessModal
                         modal={showModal}
                         content={paymentDetails}
