@@ -79,11 +79,13 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className='row alert'>{notifyUser()}</div>
-                <SuccessModal
-                    modal={showModal}
-                    content={paymentDetails}
-                    onHide={() => setShowModal(false)}
-                />
+                {paymentConfirmed && (
+                    <SuccessModal
+                        modal={showModal}
+                        content={paymentDetails}
+                        onHide={() => setShowModal(false)}
+                    />
+                )}
                 <div className='row checkout-field w-100 m-auto my-3'>
                     <ShippingAddress />
                     <ShippingMethod />
