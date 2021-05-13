@@ -5,8 +5,8 @@ import styles from './Pagemodal.module.css';
 interface PageModalProps {
     show: boolean;
     onHide: () => void;
-    modalstyle: string;
-    header: string;
+    modalstyle?: string;
+    header?: string;
     backdrop?: string;
     keyboard?: boolean;
 }

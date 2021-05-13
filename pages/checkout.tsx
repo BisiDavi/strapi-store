@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
     AdditionalInformation,
     ShippingAddress,
@@ -7,22 +8,25 @@ import {
     ShoppingBag,
     OrderSummary,
 } from '../components/Checkout';
+import { ClearCartAction } from '../store/actions/CartActions';
 import { Pagelayout } from '../container';
 import { useAuthModal } from '../hooks';
-import { Loading } from '../components';
-import { LoginModal } from '../components/Modal';
-import Notify from '../components/Notify';
-import Paypal from '../components/Paypal';
+import { Notify, Paypal, LoginModal, Loading } from '../components';
 
 const Checkout = () => {
     const { modal, loading, displayModal } = useAuthModal();
+    const [paymentConfirmed, setPaymentConfirmed] = useState(false);
+    const [paypalLoaded, setPaypalLoaded] = useState(false);
+
+    const dispatch = useDispatch();
     const { details } = useSelector((state) => state.userDetails);
     const { method } = useSelector((state) => state.shipping);
     const { totalAmount } = useSelector((state) => state.totalAmount);
-    const [paypalLoaded, setPaypalLoaded] = useState(false);
+
     const formCondition = details && method;
 
     console.log('formCondition', formCondition);
+    const clearCart = () => dispatch(ClearCartAction());
 
     const notifyUser = () => {
         return formCondition === null ? (
@@ -32,6 +36,12 @@ const Checkout = () => {
             />
         ) : null;
     };
+
+    useEffect(() => {
+        if (paymentConfirmed) {
+            clearCart();
+        }
+    }, [paymentConfirmed]);
 
     useEffect(() => setPaypalLoaded(true), []);
 
@@ -64,7 +74,14 @@ const Checkout = () => {
                     <OrderSummary />
                     <div className='express-checkout'>
                         {console.log('paypalLoaded', paypalLoaded)}
-                        {paypalLoaded && <Paypal amount={totalAmount} />}
+                        {formCondition && paypalLoaded && (
+                            <Paypal
+                                amount={totalAmount}
+                                hasPaid={(payment) =>
+                                    setPaymentConfirmed(payment)
+                                }
+                            />
+                        )}
                     </div>
                 </div>
                 <style jsx>

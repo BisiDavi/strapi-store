@@ -1,15 +1,17 @@
-import { useLocalStorage } from "../../hooks";
+import { useLocalStorage } from '../../hooks';
 import {
     ADD_CART_FROM_STORAGE,
     ADD_TO_CART_ERROR,
     ADD_TO_CART_REQUEST,
     ADD_TO_CART_SUCCESS,
+    CLEAR_CART,
+    CLEAR_CART_ERROR,
     COUNT_ERROR,
     DECREASE_COUNT,
     DELETE_PRODUCT,
     INCREASE_COUNT,
-} from "../constants";
-import { CartCounter, deleteProduct, ProductAmount } from "../utils/cart";
+} from '../constants';
+import { CartCounter, deleteProduct, ProductAmount } from '../utils/cart';
 
 export const CartReducer = (
     state = {
@@ -17,7 +19,7 @@ export const CartReducer = (
         loading: false,
         products: [],
     },
-    action
+    action,
 ) => {
     const { type, payload } = action;
 
@@ -31,7 +33,7 @@ export const CartReducer = (
 
     const doesProductExist = () => {
         const existingProduct = state.products.find(
-            (product) => product.title === payload.title
+            (product) => product.title === payload.title,
         );
         return existingProduct;
     };
@@ -62,7 +64,7 @@ export const CartReducer = (
         case INCREASE_COUNT:
             const increaseQuantity = CartCounter(
                 state.products[payload.index].count,
-                "increase"
+                'increase',
             );
             const increaseAmount = ProductAmount(payload, increaseQuantity);
 
@@ -76,7 +78,7 @@ export const CartReducer = (
         case DECREASE_COUNT:
             const decreaseQuantity = CartCounter(
                 state.products[payload.index].count,
-                "decrease"
+                'decrease',
             );
             const decreaseAmount = ProductAmount(payload, decreaseQuantity);
 
@@ -107,6 +109,15 @@ export const CartReducer = (
 
         case COUNT_ERROR:
             return { ...state, error: payload };
+
+        case CLEAR_CART:
+            return { ...state, products: [] };
+
+        case CLEAR_CART_ERROR:
+            return {
+                ...state,
+                error: payload,
+            };
 
         default:
             return state;

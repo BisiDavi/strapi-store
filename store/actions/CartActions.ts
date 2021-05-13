@@ -3,6 +3,8 @@ import {
     ADD_TO_CART_ERROR,
     ADD_TO_CART_REQUEST,
     ADD_TO_CART_SUCCESS,
+    CLEAR_CART,
+    CLEAR_CART_ERROR,
 } from '../constants';
 
 export const AddToCartAction = (product) => (dispatch) => {
@@ -31,6 +33,18 @@ export const AddCartFromStorage = () => (dispatch) => {
     } catch (error) {
         dispatch({
             type: ADD_TO_CART_ERROR,
+        });
+    }
+};
+
+export const ClearCartAction = () => (dispatch) => {
+    try {
+        dispatch({
+            type: CLEAR_CART,
+        });
+    } catch (error) {
+        dispatch({
+            type: CLEAR_CART_ERROR,
         });
     }
 };
