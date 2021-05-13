@@ -1,8 +1,4 @@
-import { useRouter } from 'next/router';
-
-const SendData = (link, data,route) => {
-    const router = useRouter();
-
+const SendData = (link, data, router, route) => {
     fetch(`${link}`, {
         method: 'POST',
         headers: {
@@ -14,7 +10,7 @@ const SendData = (link, data,route) => {
         .then((res) => {
             if (res.status === 200) {
                 console.log('response received');
-                router.push(route)
+                router.push(route);
             }
         })
         .catch((err) => console.error(err));

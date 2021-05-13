@@ -8,17 +8,17 @@ import { Loading } from '../components';
 
 const Cart = () => {
     const { productCount, products } = useCart();
-    // const { modal, loading, displayModal } = useAuthModal();
+    const { modal, loading, displayModal } = useAuthModal();
 
     return (
         <Pagelayout title={`(${productCount}) Your Shopping Cart`}>
             <Container>
                 <Row>
-                    {/* {loading && <Loading />}
+                    {loading && <Loading />}
                     <LoginModal
                         show={modal}
                         onHide={() => displayModal(false)}
-                    /> */}
+                    />
                     {products.length > 0 ? (
                         <CartTable products={products} />
                     ) : (

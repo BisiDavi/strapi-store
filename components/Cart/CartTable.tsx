@@ -76,7 +76,12 @@ const CartTable = (props) => {
             amount,
         };
         console.log(notificationData);
-        SendData('/api/cart-notification', notificationData, '/checkout');
+        SendData(
+            '/api/cart-notification',
+            notificationData,
+            router,
+            '/checkout',
+        );
     };
 
     return (
