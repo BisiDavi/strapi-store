@@ -155,6 +155,13 @@ span.emptycart a:hover {
     width: 20px;
     margin: 0px 3px;
 }
+@media (min-width: 768px) {
+    .subtotal {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
 
 @media (max-width: 600px) {
     .price {

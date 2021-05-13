@@ -63,6 +63,7 @@ const Checkout = () => {
                     <AdditionalInformation />
                     <OrderSummary />
                     <div className='express-checkout'>
+                        {console.log('paypalLoaded', paypalLoaded)}
                         {paypalLoaded && (
                             <Paypal
                                 amount={totalAmount}

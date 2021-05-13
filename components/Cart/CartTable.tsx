@@ -2,26 +2,30 @@ import React, { useState } from 'react';
 import { Image } from 'react-datocms';
 import { FcFullTrash } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/client';
 import { useCurrency } from '../../hooks';
 import { DeleteProductAction } from '../../store/actions/counterActions';
 import { Button } from '../.';
-import { getTotalAmount } from '../../utils';
+import { getTotalAmount, SendData } from '../../utils';
 import { SelectRushOrder } from '../Form';
 import styles from '../../styles/cart.module.css';
 
 const CartTable = (props) => {
     const { products } = props;
     const [productQty, setProductQty] = useState(0);
-
+    const dispatch = useDispatch();
+    const [session] = useSession();
+    const router = useRouter();
+    const { rushOrder } = useSelector((state) => state.rushOrder);
     const { priceExchange, symbol, formatPrice } = useCurrency();
 
     const tableTitle = ['Product', 'Name', 'Price', 'Quantity', 'Total'];
-    const dispatch = useDispatch();
-    const { rushOrder } = useSelector((state) => state.rushOrder);
 
     const deleteProduct = (index) => {
         dispatch(DeleteProductAction({ products, index }));
     };
+
     const inputHandler = (index) => (e) => {
         e.preventDefault();
         setProductQty(Number(e.target.value));
@@ -49,11 +53,31 @@ const CartTable = (props) => {
         const amount = getNumber(productsAmount);
         const rushPrice = rushOrder !== false ? getNumber(rushOrderPrice) : 0;
         const subtotal = amount + rushPrice;
-        // return subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         return formatPrice(subtotal);
     };
 
     const subtotalAmount = calculateSubtotal();
+
+    const cartNotification = () => {
+        const userName = session.user.name;
+        const userEmail = session.user.email;
+        const amount = `${symbol} ${subtotalAmount}`;
+        let notificationData = {
+            userName: null,
+            userEmail: null,
+            cart: null,
+            amount,
+        };
+        notificationData = {
+            ...notificationData,
+            userName,
+            userEmail,
+            cart: props.products,
+            amount,
+        };
+        console.log(notificationData);
+        SendData('/api/cart-notification', notificationData, '/checkout');
+    };
 
     return (
         <div className={styles.cartTable}>
@@ -136,10 +160,9 @@ const CartTable = (props) => {
                         <Button
                             color='white'
                             btnClassName={styles.checkout}
-                            linkTo='/checkout'
+                            btnClick={cartNotification}
                             bgColor='black'
                             text='Check out'
-                            asLink
                         />
                     </div>
                 </div>
