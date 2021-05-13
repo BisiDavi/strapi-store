@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { axiosInstance } from '../axios/axiosInstance';
 
 const SendData = async (link, data, router, route) => {

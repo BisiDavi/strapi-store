@@ -10,15 +10,22 @@ import { Button } from '../.';
 import { getTotalAmount, SendData } from '../../utils';
 import { SelectRushOrder } from '../Form';
 import styles from '../../styles/cart.module.css';
+import Loading from '../loader/Loading';
 
 const CartTable = (props) => {
     const { products } = props;
     const [productQty, setProductQty] = useState(0);
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const [session] = useSession();
     const router = useRouter();
     const { rushOrder } = useSelector((state) => state.rushOrder);
-    const { priceExchange, symbol, formatPrice } = useCurrency();
+    const {
+        priceExchange,
+        symbol,
+        formatPrice,
+        formatToNumber,
+    } = useCurrency();
 
     const tableTitle = ['Product', 'Name', 'Price', 'Quantity', 'Total'];
 
@@ -42,16 +49,10 @@ const CartTable = (props) => {
     const productsAmount = priceExchange(getTotalAmount(products));
     const rushOrderPrice = priceExchange(Number(rushOrder));
 
-    const getNumber = (value) => {
-        const numberString = value.replace(/\,/g, '');
-        const number = parseInt(numberString, 10);
-        console.log('value', value);
-        return number;
-    };
-
     const calculateSubtotal = () => {
-        const amount = getNumber(productsAmount);
-        const rushPrice = rushOrder !== false ? getNumber(rushOrderPrice) : 0;
+        const amount = formatToNumber(productsAmount);
+        const rushPrice =
+            rushOrder !== false ? formatToNumber(rushOrderPrice) : 0;
         const subtotal = amount + rushPrice;
         return formatPrice(subtotal);
     };
@@ -76,16 +77,14 @@ const CartTable = (props) => {
             amount,
         };
         console.log(notificationData);
-        SendData(
-            '/api/cart-notification',
-            notificationData,
-            router,
-            '/checkout',
-        );
+        setLoading(true);
+        SendData('/cart-notification', notificationData, router, '/checkout');
+        setLoading(false);
     };
 
     return (
         <div className={styles.cartTable}>
+            {loading && <Loading />}
             <div className={styles.title}>
                 {tableTitle.map((title, index) => (
                     <h3 key={index}>{title}</h3>
