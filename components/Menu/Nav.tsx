@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
 import { toast, ToastContainer } from 'react-toastify';
 import { CartIcon } from '..';
 import { Hamburger } from '../Button';
@@ -15,7 +14,6 @@ import Logo from '../Icons/Logo';
 const Nav = () => {
     const [btnState, setBtnstate] = useState(false);
     const [session, loading] = useSession();
-    const router = useRouter();
     const { showCart, cart, hideCart, productCount } = useCart();
 
     const hamburgerHandler = () => setBtnstate(true);
@@ -27,7 +25,6 @@ const Nav = () => {
 
     const loginNotification = () => {
         toast.success(`${session.user.name}, you're logged in`);
-        router.back();
     };
     return (
         <nav className='nav-menu'>
