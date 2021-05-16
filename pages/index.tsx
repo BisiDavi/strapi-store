@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { NextPage } from 'next';
 import { Pagelayout } from '../container';
 import {
-    SelfiesBanner,
     HomepageSlider,
     Collections,
     ProductsList,
@@ -12,7 +11,7 @@ import {
 import { HOMEPAGE_QUERY, HOMEPAGE_SEO_QUERY, request } from '../lib';
 import { HomeProps } from '../types';
 import { GetInstagramAuthCode } from '../utils';
-import connectToDatabase from '../middlewares/database';
+import { connectToDatabase } from '../middlewares/database';
 import { Viewmore } from '../components/Button';
 
 const Home: NextPage<HomeProps> = ({
@@ -32,12 +31,16 @@ const Home: NextPage<HomeProps> = ({
     const authCode = authToken !== null && authToken;
     isConnected && console.log('You are connected to mongoDB!');
 
+    console.log('authCode', authCode);
+
     async function getToken() {
         await fetch(`/api/instagram/${authCode}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
         })
-            .then((response) => console.log('response', response))
+            .then((response) => {
+                console.log('response', response);
+            })
             .catch((error) => console.log('error', error));
     }
     if (authToken !== null) getToken();

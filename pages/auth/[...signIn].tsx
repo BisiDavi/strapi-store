@@ -16,8 +16,7 @@ const Signin = ({ providers }) => {
     const { signIn } = router.query;
 
     useEffect(() => {
-        session && router.back();
-        session && router.back();
+        session && router.push('/');
     }, [session]);
 
     console.log('session', session);

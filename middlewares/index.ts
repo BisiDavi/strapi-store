@@ -1,5 +1,5 @@
-import nc from "next-connect";
-import connectToDatabase from "./database";
+import nc from 'next-connect';
+import { connectToDatabase } from './database';
 
 const all = nc();
 

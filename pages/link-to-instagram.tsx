@@ -1,20 +1,18 @@
-import React from "react";
-import { Pagelayout } from "../container";
+import React, { useEffect } from 'react';
+import { Pagelayout } from '../container';
 
-// GetInstagramShortToken
+const InstagramAccess = (): JSX.Element => {
 
-
-const InstagramAccess = () => {
     return (
-        <Pagelayout title="link-to-instagram">
-            <div className="instagram-link">
-                <h1 className="text-center">
+        <Pagelayout title='link-to-instagram'>
+            <div className='instagram-link'>
+                <h1 className='text-center'>
                     Hello Jennifer, to link you site to instagram and display
                     your instagram post on your site, click on the button below
                 </h1>
                 <a
-                    className="mx-auto button"
-                    href="https://www.instagram.com/oauth/authorize?client_id=710736562936672&redirect_uri=https://www.jenjensluxury.com/&scope=user_profile,user_media&response_type=code"
+                    className='mx-auto button'
+                    href='https://www.instagram.com/oauth/authorize?client_id=710736562936672&redirect_uri=https://www.jenjensluxury.com/&scope=user_profile,user_media&response_type=code'
                 >
                     <button>Link to Instagrm </button>
                 </a>
