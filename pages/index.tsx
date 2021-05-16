@@ -30,6 +30,7 @@ const Home: NextPage<HomeProps> = ({
             setAuthToken(authToken);
         }
     }, []);
+    
     const authCode = authToken !== null && authToken;
     isConnected && console.log('You are connected to mongoDB!');
 
@@ -46,7 +47,7 @@ const Home: NextPage<HomeProps> = ({
             .catch((error) => console.log('error', error));
     }
 
-    if (authToken !== null) getToken();
+    authToken !== null && getToken();
 
     return (
         <>
