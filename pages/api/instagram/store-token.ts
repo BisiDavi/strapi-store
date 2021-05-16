@@ -1,6 +1,7 @@
 import { connectToDatabase } from '../../../middlewares/database';
 
 export default async function handler(req, res) {
+    console.log('req', req);
     if (req.method === 'POST') {
         console.log('token', req.token);
         const token = req.token;
