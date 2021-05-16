@@ -7,7 +7,6 @@ import {
     ProductsList,
     Newsletter,
     InstagramSlider,
-    Loading,
 } from '../components';
 import { HOMEPAGE_QUERY, HOMEPAGE_SEO_QUERY, request } from '../lib';
 import { HomeProps } from '../types';
@@ -30,7 +29,7 @@ const Home: NextPage<HomeProps> = ({
             setAuthToken(authToken);
         }
     }, []);
-    
+
     const authCode = authToken !== null && authToken;
     isConnected && console.log('You are connected to mongoDB!');
 
