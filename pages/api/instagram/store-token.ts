@@ -5,7 +5,7 @@ export default async function handler(req, res) {
         const token = req.body.token;
         console.log('token', token);
         const { db } = await connectToDatabase();
-        db.instagram.insertOne({
+        db.collection('instagram').insertOne({
             code: token,
         });
     }
