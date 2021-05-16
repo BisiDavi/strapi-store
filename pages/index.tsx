@@ -37,7 +37,9 @@ const Home: NextPage<HomeProps> = ({
 
     async function getToken() {
         await axiosInstance
-            .post(`/instagram/${authCode}`)
+            .post(`/instagram/store-token`, {
+                token: authCode,
+            })
             .then((response) => {
                 console.log('response', response);
             })
