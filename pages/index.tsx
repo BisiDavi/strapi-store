@@ -13,6 +13,7 @@ import { HomeProps } from '../types';
 import { GetInstagramAuthCode } from '../utils';
 import { connectToDatabase } from '../middlewares/database';
 import { Viewmore } from '../components/Button';
+import { axiosInstance } from '../axios/axiosInstance';
 
 const Home: NextPage<HomeProps> = ({
     productData,
@@ -34,16 +35,16 @@ const Home: NextPage<HomeProps> = ({
     console.log('authCode', authCode);
 
     async function getToken() {
-        await fetch(`/api/instagram/${authCode}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-        })
+        await axiosInstance
+            .post(`/instagram/${authCode}`)
             .then((response) => {
                 console.log('response', response);
             })
             .catch((error) => console.log('error', error));
     }
+
     if (authToken !== null) getToken();
+
     return (
         <>
             <Pagelayout metaTags={seoData} title='Welcome'>
