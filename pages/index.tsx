@@ -53,7 +53,6 @@ const Home: NextPage<HomeProps> = ({
             <Pagelayout metaTags={seoData} title='Welcome'>
                 <div className='homepage position-relative'>
                     <HomepageSlider />
-                    {authCode === false && <Loading />}
                     <Collections />
                     <ProductsList products={allProducts} />
                     <Viewmore />
