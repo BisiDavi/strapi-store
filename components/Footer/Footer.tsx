@@ -12,7 +12,7 @@ const Footer = () => {
     ];
 
     const socialLinks = [
-        { icon: 'fab fa-instagram', link: '#link' },
+        { icon: 'fab fa-instagram', link: 'https://www.instagram.com/jenjensluxurywigs/' },
         { icon: 'fab fa-youtube', link: '#link' },
     ];
 
