@@ -37,17 +37,19 @@ export default function Home({
 
     console.log('authCode', authCode);
 
+    const data = {
+        client_id: process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID,
+        client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+        grant_type: 'authorization_code',
+        redirect_uri: 'https://www.jenjensluxury.com/',
+        code: authCode,
+    };
+
     async function getAccessToken() {
         await axiosInstagramAPIInstance
-            .post('/oauth/access_token', {
-                client_id: process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID,
-                client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-                grant_type: 'authorization_code',
-                redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
-                code: authCode,
-            })
+            .post('/oauth/access_token', JSON.stringify(data))
             .then((response) =>
-                console.log('response getAccessToken', response),
+                console.log('response getAccessToken', response.data),
             )
             .catch((error) => console.error('error', error));
     }
