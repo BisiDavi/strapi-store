@@ -2,10 +2,6 @@ import axios from 'axios';
 
 export const axiosInstance = axios.create({
     baseURL: '/api',
-    headers: {
-        'content-type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-    },
 });
 
 export const axiosInstagramGraphInstance = axios.create({

@@ -16,6 +16,7 @@ import {
     axiosInstagramAPIInstance,
     axiosInstance,
 } from '../axios/axiosInstance';
+import axios from 'axios';
 
 export default function Home({
     productData,
@@ -37,17 +38,9 @@ export default function Home({
 
     console.log('authCode', authCode);
 
-    const data = {
-        client_id: process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID,
-        client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-        grant_type: 'authorization_code',
-        redirect_uri: 'https://www.jenjensluxury.com/',
-        code: authCode,
-    };
-
     async function getAccessToken() {
-        await axiosInstagramAPIInstance
-            .post('/oauth/access_token', JSON.stringify(data))
+        await axios
+            .post(`/api/instagram/${authToken}`)
             .then((response) =>
                 console.log('response getAccessToken', response.data),
             )
