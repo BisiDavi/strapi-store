@@ -1,4 +1,4 @@
-import nc from 'next-connect';
+import qs from 'qs';
 import axios from 'axios';
 
 const AccessInstagramHandler = async (req, res) => {
@@ -15,7 +15,11 @@ const AccessInstagramHandler = async (req, res) => {
     };
     if (req.method === 'POST') {
         axios
-            .post(url, JSON.stringify(data))
+            .post(url, qs.stringify(data), {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
             .then((response) => {
                 console.log('response AccessInstagramHandler', response.data);
                 res.status(200).json(response.data);
