@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Renderer } from 'nextmail';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {
@@ -57,6 +58,12 @@ const Checkout = () => {
     }, [paymentConfirmed]);
 
     useEffect(() => setPaypalLoaded(true), []);
+
+    async function sendCheckoutNotification() {
+        const renderer = new Renderer();
+        const { text } = await renderer.renderEmail('checkout', {});
+        console.log('email text', text);
+    }
 
     return (
         <Pagelayout title='Checkout |'>

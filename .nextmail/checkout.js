@@ -5,13 +5,14 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = Newsletter;
+exports["default"] = Checkout;
 
 var _react = _interopRequireDefault(require("react"));
 
 var _mjmlReact = require("nextmail/mjml-react");
 
-function Newsletter() {
+function Checkout(_ref) {
+  var data = _ref.data;
   return /*#__PURE__*/_react["default"].createElement(_mjmlReact.Mjml, null, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlBody, {
     backgroundColor: "rgb(244, 244, 244)"
   }, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlWrapper, null, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlSection, {
@@ -31,7 +32,7 @@ function Newsletter() {
     color: "black",
     lineHeight: "25px",
     fontFamily: "helvetica"
-  }, "Hello Jenjen's Luxury Wigs, a customer just checked out some wigs \uD83D\uDE00"))), /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlSection, {
+  }, "Hello Jenjen's Luxury Wigs, a customer,", ' ', data.name, " just checked out some wigs \uD83D\uDE00"))), /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlSection, {
     backgroundColor: "white"
   }, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlColumn, null, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlTable, {
     containerBackgroundColor: "pink"
@@ -51,35 +52,24 @@ function Newsletter() {
       padding: '10px 15px',
       fontSize: '20px'
     }
-  }, "Price")), /*#__PURE__*/_react["default"].createElement("tr", {
-    style: {
-      borderBottom: '1px solid white'
-    }
-  }, /*#__PURE__*/_react["default"].createElement("td", {
-    style: {
-      padding: '10px 15px',
-      fontSize: '18px'
-    }
-  }, "Bob"), /*#__PURE__*/_react["default"].createElement("td", {
-    style: {
-      padding: '10px 15px',
-      fontSize: '18px'
-    }
-  }, "$300")), /*#__PURE__*/_react["default"].createElement("tr", {
-    style: {
-      borderBottom: '1px solid white'
-    }
-  }, /*#__PURE__*/_react["default"].createElement("td", {
-    style: {
-      padding: '10px 15px',
-      fontSize: '18px'
-    }
-  }, "Veneza"), /*#__PURE__*/_react["default"].createElement("td", {
-    style: {
-      padding: '10px 15px',
-      fontSize: '18px'
-    }
-  }, "$200")), /*#__PURE__*/_react["default"].createElement("tr", null, /*#__PURE__*/_react["default"].createElement("td", {
+  }, "Price")), data.products.map(function (product, index) {
+    return /*#__PURE__*/_react["default"].createElement("tr", {
+      style: {
+        borderBottom: '1px solid white'
+      },
+      key: index
+    }, /*#__PURE__*/_react["default"].createElement("td", {
+      style: {
+        padding: '10px 15px',
+        fontSize: '18px'
+      }
+    }, product.name), /*#__PURE__*/_react["default"].createElement("td", {
+      style: {
+        padding: '10px 15px',
+        fontSize: '18px'
+      }
+    }, "$", product.price));
+  }), /*#__PURE__*/_react["default"].createElement("tr", null, /*#__PURE__*/_react["default"].createElement("td", {
     style: {
       padding: '10px 15px',
       fontWeight: 'bold',
@@ -91,7 +81,7 @@ function Newsletter() {
       fontWeight: 'bold',
       fontSize: '20px'
     }
-  }, "$500"))))), /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlSection, {
+  }, "$", product.total))))), /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlSection, {
     backgroundColor: "pink"
   }, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlColumn, null, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlSocial, {
     fontSize: "15px",
@@ -112,7 +102,8 @@ function Newsletter() {
     style: {
       color: 'blue'
     },
-    href: "https://www.jenjensluxury.com"
+    target: "_blank",
+    href: "https://www.jenjensluxury.com/"
   }, "Jenjensluxury.com")), /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlText, {
     fontWeight: "bold",
     align: "center",

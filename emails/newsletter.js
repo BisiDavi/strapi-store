@@ -12,7 +12,7 @@ import {
     MjmlText,
 } from 'nextmail/mjml-react';
 
-export default function Newsletter() {
+export default function Newsletter({ data }) {
     return (
         <Mjml>
             <MjmlBody backgroundColor='rgb(244, 244, 244)'>
@@ -50,9 +50,9 @@ export default function Newsletter() {
                                 lineHeight='25px'
                                 fontFamily='helvetica'
                             >
-                                Dear customer, thank you for subscribing to my
-                                newsletter get to hear about new wigs &#x1f469;
-                                and wig treatment.
+                                Dear {data.email} , thank you for subscribing to
+                                my newsletter get to hear about new wigs
+                                &#x1f469; and wig treatment.
                             </MjmlText>
                             <MjmlText
                                 fontSize='18px'

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { NextPage } from 'next';
 import { Pagelayout } from '../container';
 import {
     HomepageSlider,
@@ -13,13 +12,16 @@ import { HomeProps } from '../types';
 import { GetInstagramAuthCode } from '../utils';
 import { connectToDatabase } from '../middlewares/database';
 import { Viewmore } from '../components/Button';
-import { axiosInstance } from '../axios/axiosInstance';
+import {
+    axiosInstagramAPIInstance,
+    axiosInstance,
+} from '../axios/axiosInstance';
 
-const Home: NextPage<HomeProps> = ({
+export default function Home({
     productData,
     seoData,
     isConnected,
-}): JSX.Element => {
+}: HomeProps): JSX.Element {
     const { allProducts } = productData;
     const [authToken, setAuthToken] = useState(null);
 
@@ -33,8 +35,28 @@ const Home: NextPage<HomeProps> = ({
     const authCode = authToken !== null && authToken;
     isConnected && console.log('You are connected to mongoDB!');
 
-
     console.log('authCode', authCode);
+
+    async function getAccessToken() {
+        await axiosInstagramAPIInstance
+            .post('/oauth/access_token', {
+                client_id: process.env.NEXT_PUBLIC_INSTAGRAM_CLIENT_ID,
+                client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+                grant_type: 'authorization_code',
+                redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
+                code: authCode,
+            })
+            .then((response) =>
+                console.log('response getAccessToken', response),
+            )
+            .catch((error) => console.error('error', error));
+    }
+
+    useEffect(() => {
+        if (authToken !== null) {
+            getAccessToken();
+        }
+    }, [authToken]);
 
     async function getToken() {
         await axiosInstance
@@ -63,7 +85,7 @@ const Home: NextPage<HomeProps> = ({
             </Pagelayout>
         </>
     );
-};
+}
 
 export async function getServerSideProps() {
     const { client } = await connectToDatabase();
@@ -89,5 +111,3 @@ export async function getServerSideProps() {
         },
     };
 }
-
-export default Home;

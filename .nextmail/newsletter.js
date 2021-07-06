@@ -11,7 +11,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _mjmlReact = require("nextmail/mjml-react");
 
-function Newsletter() {
+function Newsletter(_ref) {
+  var data = _ref.data;
   return /*#__PURE__*/_react["default"].createElement(_mjmlReact.Mjml, null, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlBody, {
     backgroundColor: "rgb(244, 244, 244)"
   }, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlWrapper, null, /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlSection, {
@@ -40,7 +41,7 @@ function Newsletter() {
     color: "black",
     lineHeight: "25px",
     fontFamily: "helvetica"
-  }, "Dear customer, thank you for subscribing to my newsletter get to hear about new wigs \uD83D\uDC69 and wig treatment."), /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlText, {
+  }, "Dear ", data.email, " , thank you for subscribing to my newsletter get to hear about new wigs \uD83D\uDC69 and wig treatment."), /*#__PURE__*/_react["default"].createElement(_mjmlReact.MjmlText, {
     fontSize: "18px",
     color: "black",
     lineHeight: "30px",

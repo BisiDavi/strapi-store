@@ -13,7 +13,7 @@ import {
     MjmlText,
 } from 'nextmail/mjml-react';
 
-export default function Newsletter() {
+export default function Checkout({ data }) {
     return (
         <Mjml>
             <MjmlBody backgroundColor='rgb(244, 244, 244)'>
@@ -39,8 +39,8 @@ export default function Newsletter() {
                                 lineHeight='25px'
                                 fontFamily='helvetica'
                             >
-                                Hello Jenjen's Luxury Wigs, a customer just
-                                checked out some wigs &#128512;
+                                Hello Jenjen's Luxury Wigs, a customer,{' '}
+                                {data.name} just checked out some wigs &#128512;
                             </MjmlText>
                         </MjmlColumn>
                     </MjmlSection>
@@ -71,42 +71,31 @@ export default function Newsletter() {
                                         Price
                                     </th>
                                 </tr>
-                                <tr style={{ borderBottom: '1px solid white' }}>
-                                    <td
+                                {data.products.map((product, index) => (
+                                    <tr
                                         style={{
-                                            padding: '10px 15px',
-                                            fontSize: '18px',
+                                            borderBottom: '1px solid white',
                                         }}
+                                        key={index}
                                     >
-                                        Bob
-                                    </td>
-                                    <td
-                                        style={{
-                                            padding: '10px 15px',
-                                            fontSize: '18px',
-                                        }}
-                                    >
-                                        $300
-                                    </td>
-                                </tr>
-                                <tr style={{ borderBottom: '1px solid white' }}>
-                                    <td
-                                        style={{
-                                            padding: '10px 15px',
-                                            fontSize: '18px',
-                                        }}
-                                    >
-                                        Veneza
-                                    </td>
-                                    <td
-                                        style={{
-                                            padding: '10px 15px',
-                                            fontSize: '18px',
-                                        }}
-                                    >
-                                        $200
-                                    </td>
-                                </tr>
+                                        <td
+                                            style={{
+                                                padding: '10px 15px',
+                                                fontSize: '18px',
+                                            }}
+                                        >
+                                            {product.name}
+                                        </td>
+                                        <td
+                                            style={{
+                                                padding: '10px 15px',
+                                                fontSize: '18px',
+                                            }}
+                                        >
+                                            ${product.price}
+                                        </td>
+                                    </tr>
+                                ))}
                                 <tr>
                                     <td
                                         style={{
@@ -124,7 +113,7 @@ export default function Newsletter() {
                                             fontSize: '20px',
                                         }}
                                     >
-                                        $500
+                                        ${product.total}
                                     </td>
                                 </tr>
                             </MjmlTable>
@@ -156,7 +145,8 @@ export default function Newsletter() {
                             >
                                 <a
                                     style={{ color: 'blue' }}
-                                    href='https://www.jenjensluxury.com'
+                                    target='_blank'
+                                    href='https://www.jenjensluxury.com/'
                                 >
                                     Jenjensluxury.com
                                 </a>
