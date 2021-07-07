@@ -1,29 +1,58 @@
-import React, { FC } from "react";
-import { PageModal } from ".";
-import styles from "../../styles/Mailform.module.css";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { axiosInstance } from '@axios/axiosInstance';
+import { PageModal } from '.';
+import styles from '@styles/Mailform.module.css';
 
 interface MailingListProps {
     show: boolean;
     onHide: () => void;
 }
 
-const MailList: FC<MailingListProps> = ({ show, onHide }): JSX.Element => {
+export default function MailList({ show, onHide }: MailingListProps) {
+    const [userEmail, setEmail] = useState('');
+
+    function onChangeHandler(e) {
+        setEmail(e.target.value);
+    }
+
+    function onSubmitHandler(e) {
+        e.preventDefault();
+        axiosInstance
+            .post('/mailing-list', JSON.stringify({ email: userEmail }))
+            .then((response) => {
+                console.log('response newsletter', response.data);
+                toast.success('Thanks for subscribing to my newsletter');
+                onHide();
+                setEmail('');
+            })
+            .catch((error) => {
+                console.error('error', error);
+                toast.error('an error just occurred, please try again');
+            });
+    }
     return (
         <PageModal
-            header="JOIN OUR MAILING LIST!"
+            header='JOIN OUR MAILING LIST!'
             modalstyle={styles.pageModal}
             show={show}
             onHide={onHide}
         >
-            <div className="mailingList">
-                <p className="text">
+            <div className='mailingList'>
+                <p className='text'>
                     Be among the first to hear about our discount sales, new
                     arrivals & more!
                 </p>
-                <form className="mailForm">
-                    <input placeholder="Email" type="email" required />
-                    <button type="submit">Subscribe</button>
-                    <p className="notice">
+                <form onSubmit={onSubmitHandler} className='mailForm'>
+                    <input
+                        value={userEmail}
+                        placeholder='Email'
+                        onChange={onChangeHandler}
+                        type='email'
+                        required
+                    />
+                    <button type='submit'>Subscribe</button>
+                    <p className='notice'>
                         *By completing this form you are signing up to receive
                         our emails and can unsubscribe at any time
                     </p>
@@ -31,7 +60,7 @@ const MailList: FC<MailingListProps> = ({ show, onHide }): JSX.Element => {
             </div>
             <style jsx>{`
                 .mailingList {
-                    font-family: Anton, Helvetica, Arial, "Sans Serif", serif;
+                    font-family: Anton, Helvetica, Arial, 'Sans Serif', serif;
                 }
                 form.mailForm {
                     margin: auto;
@@ -45,7 +74,7 @@ const MailList: FC<MailingListProps> = ({ show, onHide }): JSX.Element => {
                     margin: 20px 0px;
                 }
                 form input::placeholder {
-                    font-family: "Open Sans", sans-serif;
+                    font-family: 'Open Sans', sans-serif;
                     font-size: 18px;
                     padding: 0px 15px;
                 }
@@ -75,7 +104,7 @@ const MailList: FC<MailingListProps> = ({ show, onHide }): JSX.Element => {
                     width: 80%;
                     font-size: 24px;
                     color: rgb(92, 92, 92);
-                    font-family: Anton, Helvetica, Arial, "Sans Serif", serif;
+                    font-family: Anton, Helvetica, Arial, 'Sans Serif', serif;
                     text-align: center;
                 }
                 .mailinglist p {
@@ -101,6 +130,4 @@ const MailList: FC<MailingListProps> = ({ show, onHide }): JSX.Element => {
             `}</style>
         </PageModal>
     );
-};
-
-export default MailList;
+}

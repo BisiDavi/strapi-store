@@ -13,14 +13,15 @@ const Newsletter = () => {
         e.preventDefault();
         console.log('subscriberEmail', subscriberEmail);
         axiosInstance
-            .post('/newsletter', subscriberEmail)
+            .post('/newsletter', JSON.stringify({ email: subscriberEmail }))
             .then((response) => {
                 console.log('response newsletter', response.data);
                 toast.success('Thanks for subscribing to my newsletter');
+                setSubscriberEmail('');
             })
             .catch((error) => {
                 console.error('error', error);
-                toast.error('an erro just occurred, please try again');
+                toast.error('an error just occurred, please try again');
             });
     }
 
@@ -36,6 +37,8 @@ const Newsletter = () => {
                         onChange={onChangeHandler}
                         value={subscriberEmail}
                         placeholder='Email Address'
+                        type='email'
+                        required
                     />
                     <button type='submit'>Subscribe</button>
                 </form>

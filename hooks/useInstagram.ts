@@ -37,7 +37,7 @@ export default function useInstagram() {
                     ...instagramToken,
                     longTokenDetails: response.data,
                 });
-                dbSaveInstagramToken(response.data);
+                dbSaveInstagramToken(JSON.stringify(response.data));
             })
             .catch((error) => console.error('error', error));
     }
