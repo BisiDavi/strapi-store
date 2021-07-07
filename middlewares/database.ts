@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 
 const { NEXT_MONGODB_URI, NEXT_MONGODB } = process.env;
 
@@ -16,13 +16,13 @@ if (!NEXT_MONGODB) {
  * during API Route usage.
  */
 
-let cached = (global as any).mongo;
+let cached = (global as any).mongoose;
 
 if (!cached) {
-    cached = (global as any).mongo = { conn: null, promise: null };
+    cached = (global as any).mongoose = { conn: null, promise: null };
 }
 
-export async function connectToDatabase() {
+export default async function connectToDatabase() {
     if (cached.conn) {
         return cached.conn;
     }
@@ -31,16 +31,17 @@ export async function connectToDatabase() {
         const options = {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            bufferCommands: false,
+            bufferMaxEntries: 0,
+            useFindAndModify: false,
+            useCreateIndex: true,
         };
 
-        cached.promise = MongoClient.connect(NEXT_MONGODB_URI, options).then(
-            (client) => {
-                return {
-                    client,
-                    db: client.db(NEXT_MONGODB),
-                };
-            },
-        );
+        cached.promise = mongoose
+            .connect(NEXT_MONGODB_URI, options)
+            .then((clmongooseient) => {
+                return mongoose;
+            });
     }
     cached.conn = await cached.promise;
     return cached.conn;

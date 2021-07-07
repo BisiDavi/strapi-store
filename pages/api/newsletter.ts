@@ -1,4 +1,4 @@
-import { connectToDatabase } from '../../middlewares/database';
+import connectToDatabase from '../../middlewares/database';
 import Newsletter from '../../models/newsletter';
 
 export default async function handler(req, res) {

@@ -1,4 +1,4 @@
-import { connectToDatabase } from '../../middlewares/database';
+import  connectToDatabase  from '../../middlewares/database';
 import InstagramToken from '../../models/token';
 
 export default async function handler(req, res) {

@@ -9,7 +9,6 @@ import {
     InstagramSlider,
 } from '@components/.';
 import { HOMEPAGE_QUERY, HOMEPAGE_SEO_QUERY, request } from '@lib/.';
-import { connectToDatabase } from '@middlewares/database';
 import { Viewmore } from '@components/Button';
 import { HomeProps } from '../types';
 import InstaSlider from '@components/Slider/instaSlider';
@@ -48,8 +47,6 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-    const { client } = await connectToDatabase();
-    const isConnected = await client.isConnected();
     const graphqlRequest = await request({
         query: HOMEPAGE_QUERY,
         variables: { limit: 12 },
@@ -67,7 +64,6 @@ export async function getServerSideProps() {
         props: {
             productData: graphqlRequest,
             seoData: seoRequest,
-            isConnected,
         },
     };
 }
