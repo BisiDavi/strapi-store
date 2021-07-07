@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { axiosInstance } from '@axios/axiosInstance';
 
 const Newsletter = () => {
+    const [subscriberEmail, setSubscriberEmail] = useState('');
+
+    function onChangeHandler(e) {
+        setSubscriberEmail(e.target.value);
+    }
+
+    function onSubmitHandler(e) {
+        e.preventDefault();
+        console.log('subscriberEmail', subscriberEmail);
+        axiosInstance
+            .post('/newsletter', subscriberEmail)
+            .then((response) => {
+                console.log('response newsletter', response.data);
+                toast.success('Thanks for subscribing to my newsletter');
+            })
+            .catch((error) => {
+                console.error('error', error);
+                toast.error('an erro just occurred, please try again');
+            });
+    }
+
     return (
         <div className='newsletter'>
             <div className='overlay'>
@@ -8,8 +31,12 @@ const Newsletter = () => {
                 <p>
                     Promotions, new products and sales.Directly to your inbox.
                 </p>
-                <form>
-                    <input placeholder='Email Address' />
+                <form onSubmit={onSubmitHandler}>
+                    <input
+                        onChange={onChangeHandler}
+                        value={subscriberEmail}
+                        placeholder='Email Address'
+                    />
                     <button type='submit'>Subscribe</button>
                 </form>
             </div>
