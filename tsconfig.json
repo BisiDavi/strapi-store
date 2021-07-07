@@ -25,7 +25,10 @@
             "@types/*": ["types/*"],
             "@lib/*": ["lib/*"],
             "@middlewares/*": ["middlewares/*"],
-            "@emails/*": ["emails/*"]
+            "@emails/*": ["emails/*"],
+            "@db/*": ["db/*"],
+            "@models/*": ["models/*"],
+            "@axios/*": ["axios/*"]
         }
     },
     "include": [

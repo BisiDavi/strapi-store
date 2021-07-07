@@ -3,6 +3,7 @@ import axios from 'axios';
 import { GetInstagramAuthCode } from '@utils/.';
 import { checkExpiryTime } from '@utils/checkExpiryTime';
 import useLocalStorage from './useLocalStorage';
+import { dbSaveInstagramToken, getInstagramToken } from '@middlewares/request';
 
 export default function useInstagram() {
     const [authCode, setAuthCode] = useState(null);
@@ -10,7 +11,6 @@ export default function useInstagram() {
         shortTokenDetails: null,
         longTokenDetails: null,
     });
-    const [lsToken, setLsToken] = useState(null);
     const [instagramMedia, setInstagramMedia] = useState(null);
     const { setStartTime, checkTime } = checkExpiryTime();
     const { setStorage, getStorage } = useLocalStorage();
@@ -37,15 +37,16 @@ export default function useInstagram() {
                     ...instagramToken,
                     longTokenDetails: response.data,
                 });
+                dbSaveInstagramToken(response.data);
             })
             .catch((error) => console.error('error', error));
     }
 
-    async function getInstagramUserMedia() {
+    console.log('instagramToken', instagramToken);
+
+    async function getInstagramUserMedia(token) {
         await axios
-            .get(
-                `/api/get-instagram-media/${instagramToken.longTokenDetails?.access_token}`,
-            )
+            .get(`/api/get-instagram-media/${token}`)
             .then((response) => {
                 setInstagramMedia(response.data);
             })
@@ -87,33 +88,27 @@ export default function useInstagram() {
     }, [instagramToken.shortTokenDetails]);
 
     useEffect(() => {
-        instagramToken.longTokenDetails?.access_token &&
+        if (instagramToken.longTokenDetails !== null) {
             setStorage(
                 'instagramToken',
-                instagramToken.longTokenDetails?.access_token,
+                instagramToken.longTokenDetails.access_token,
             );
 
-        getInstagramUserMedia();
+            getInstagramUserMedia(
+                instagramToken.longTokenDetails?.access_token,
+            );
+        }
     }, [instagramToken]);
 
     useEffect(() => {
         const longLivedTokenLS = getStorage('instagramToken');
-        console.log('from storage', longLivedTokenLS);
+        const instaTokenFromDB = getInstagramToken();
+        console.log('instaTokenFromDB', instaTokenFromDB);
         if (longLivedTokenLS !== null && longLivedTokenLS !== undefined) {
-            setLsToken(longLivedTokenLS);
+            console.log('from storage', longLivedTokenLS);
+            getInstagramUserMedia(longLivedTokenLS);
         }
     }, []);
-
-    useEffect(() => {
-        if (lsToken !== null) {
-            console.log('longLivedTokenLS', lsToken);
-            setInstagramToken({
-                ...instagramToken,
-                longTokenDetails: lsToken,
-            });
-						getInstagramUserMedia();
-        }
-    }, [lsToken]);
 
     console.log('instagramMedia', instagramMedia);
 
