@@ -10,6 +10,7 @@ export default function useInstagram() {
         shortTokenDetails: null,
         longTokenDetails: null,
     });
+    const [lsToken, setLsToken] = useState(null);
     const [instagramMedia, setInstagramMedia] = useState(null);
     const { setStartTime, checkTime } = checkExpiryTime();
     const { setStorage, getStorage } = useLocalStorage();
@@ -42,7 +43,9 @@ export default function useInstagram() {
 
     async function getInstagramUserMedia() {
         await axios
-            .get(`/api/get-instagram-media/${instagramToken.longTokenDetails.access_token}`)
+            .get(
+                `/api/get-instagram-media/${instagramToken.longTokenDetails?.access_token}`,
+            )
             .then((response) => {
                 setInstagramMedia(response.data);
             })
@@ -96,12 +99,19 @@ export default function useInstagram() {
     useEffect(() => {
         const longLivedTokenLS = getStorage('instagramToken');
         if (longLivedTokenLS !== null || longLivedTokenLS !== undefined) {
-            setInstagramToken({
-                ...instagramToken,
-                longTokenDetails: longLivedTokenLS,
-            });
+            setLsToken(longLivedTokenLS);
         }
     }, []);
+
+    useEffect(() => {
+        if (lsToken !== null) {
+            console.log('longLivedTokenLS', lsToken);
+            setInstagramToken({
+                ...instagramToken,
+                longTokenDetails: lsToken,
+            });
+        }
+    }, [lsToken]);
 
     console.log('instagramMedia', instagramMedia);
 
