@@ -9,7 +9,8 @@ export default async function GetInstagramMediaHandler(req, res) {
         axios
             .get(url, {
                 params: {
-                    fields: 'id,media_type,media_url,thumbnail_url,permalink',
+                    fields:
+                        'id,media_type,caption,media_url,thumbnail_url,permalink',
                     access_token: accessToken,
                 },
             })
