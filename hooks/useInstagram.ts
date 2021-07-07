@@ -89,10 +89,7 @@ export default function useInstagram() {
 
     useEffect(() => {
         if (instagramToken.longTokenDetails !== null) {
-            setStorage(
-                'instagramToken',
-                instagramToken.longTokenDetails.access_token,
-            );
+            setStorage('instagramToken', instagramToken.longTokenDetails);
 
             getInstagramUserMedia(
                 instagramToken.longTokenDetails?.access_token,
@@ -106,7 +103,7 @@ export default function useInstagram() {
         console.log('instaTokenFromDB', instaTokenFromDB);
         if (longLivedTokenLS !== null && longLivedTokenLS !== undefined) {
             console.log('from storage', longLivedTokenLS);
-            getInstagramUserMedia(longLivedTokenLS);
+            getInstagramUserMedia(longLivedTokenLS.access_token);
         }
     }, []);
 
