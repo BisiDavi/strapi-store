@@ -4,11 +4,13 @@ import {
     signIn as AuthSignIn,
     useSession,
 } from 'next-auth/client';
+import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next/router';
-import { Pagelayout } from '../../containers';
 import Link from 'next/link';
-import { Loading } from '../../components';
-import styles from '../../styles/auth.module.css';
+import { Pagelayout } from '@containers/.';
+import { Loading } from '@components/.';
+import EmailSignin from '@components/Form/EmailSignin';
+import styles from '@styles/auth.module.css';
 
 const Signin = ({ providers }) => {
     const router = useRouter();
@@ -36,6 +38,7 @@ const Signin = ({ providers }) => {
     loading && <Loading />;
     return (
         <Pagelayout title='Sign in' className={styles.authPage}>
+            <ToastContainer />
             <div className='container-fluid sign-in'>
                 {!session ? (
                     <div className='row'>
@@ -49,7 +52,7 @@ const Signin = ({ providers }) => {
                                 {Object.values(providers).map(
                                     (provider: any) => {
                                         if (provider.name === 'Email') {
-                                            return;
+                                            return <EmailSignin />;
                                         }
                                         return (
                                             <button
