@@ -1,4 +1,4 @@
-import { axiosInstance } from '@axios/axiosInstance';
+import { axiosInstance } from '../axios/axiosInstance';
 
 export async function dbSaveInstagramToken(data) {
     await axiosInstance

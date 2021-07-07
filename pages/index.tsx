@@ -12,6 +12,7 @@ import { HOMEPAGE_QUERY, HOMEPAGE_SEO_QUERY, request } from '@lib/.';
 import { connectToDatabase } from '@middlewares/database';
 import { Viewmore } from '@components/Button';
 import { HomeProps } from '../types';
+import InstaSlider from '@components/Slider/instaSlider';
 
 export default function Home({
     productData,
@@ -35,7 +36,8 @@ export default function Home({
                     <Viewmore />
                     <Newsletter />
                     {instagramMedia !== null ? (
-                        <InstagramSlider InstagramMedia={instagramMedia.data} />
+                        //<InstagramSlider InstagramMedia={instagramMedia.data} />
+                        <InstaSlider InstagramMedia={instagramMedia.data} />
                     ) : (
                         'loading'
                     )}
