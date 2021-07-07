@@ -98,7 +98,8 @@ export default function useInstagram() {
 
     useEffect(() => {
         const longLivedTokenLS = getStorage('instagramToken');
-        if (longLivedTokenLS !== null || longLivedTokenLS !== undefined) {
+        console.log('from storage', longLivedTokenLS);
+        if (longLivedTokenLS !== null && longLivedTokenLS !== undefined) {
             setLsToken(longLivedTokenLS);
         }
     }, []);
@@ -110,8 +111,8 @@ export default function useInstagram() {
                 ...instagramToken,
                 longTokenDetails: lsToken,
             });
+						getInstagramUserMedia();
         }
-        getInstagramUserMedia();
     }, [lsToken]);
 
     console.log('instagramMedia', instagramMedia);
