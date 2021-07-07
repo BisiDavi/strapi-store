@@ -104,6 +104,8 @@ export default function useInstagram() {
         }
     }, []);
 
+    console.log('instagramMedia', instagramMedia);
+
     useEffect(() => {
         if (instagramToken.longTokenDetails !== null) {
             const expiresIn = Number(
