@@ -42,7 +42,7 @@ export default function useInstagram() {
 
     async function getInstagramUserMedia(token?: string) {
         const validToken =
-            instagramToken.longTokenDetails.access_token === null
+            instagramToken.longTokenDetails === null
                 ? token
                 : instagramToken.longTokenDetails.access_token;
         await axios
