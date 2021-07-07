@@ -17,7 +17,7 @@ export default async function handler(req, res) {
                     data: MailinglistSubscriber,
                 });
             } catch (error) {
-                res.status(400).json({ sucess: false });
+                res.status(400).json({ sucess: false, error });
             }
             break;
         default:
