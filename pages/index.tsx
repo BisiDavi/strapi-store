@@ -57,10 +57,10 @@ export default function Home({
         );
         await axios
             .get(
-                `api/instagram/${instagramToken?.shortTokenDetails?.access_token}`,
+                `/api/instagram/${instagramToken.shortTokenDetails.access_token}`,
             )
             .then((response) => {
-                console.log('response getLongLivedToken', response);
+                console.log('response getLongLivedToken', response.data);
                 setInstagramToken({
                     ...instagramToken,
                     longTokenDetails: response.data,
@@ -81,7 +81,7 @@ export default function Home({
         if (instagramToken.shortTokenDetails !== null) {
             getLongLivedToken();
         }
-    }, [instagramToken]);
+    }, [instagramToken.shortTokenDetails]);
 
     return (
         <>

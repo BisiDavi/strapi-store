@@ -15,11 +15,6 @@ const AccessInstagramHandler = async (req, res) => {
         code: authCode,
     };
 
-    const longTokenData = {
-        grant_type: 'ig_exchange_token',
-        client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-        access_token: authCode,
-    };
     if (req.method === 'POST') {
         axios
             .post(shortTokenURL, qs.stringify(data), {
@@ -35,7 +30,13 @@ const AccessInstagramHandler = async (req, res) => {
     }
     if (req.method === 'GET') {
         axios
-            .get(longTokenURL, qs.stringify(longTokenData))
+            .get(longTokenURL, {
+                params: {
+                    grant_type: 'ig_exchange_token',
+                    client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+                    access_token: authCode,
+                },
+            })
             .then((response) => {
                 console.log('response longToken ', response.data);
                 res.status(200).json(response.data);
