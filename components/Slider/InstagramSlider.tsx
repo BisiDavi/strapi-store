@@ -1,25 +1,29 @@
-import React from "react";
-import Image from "next/image";
-import InstagramMedia from "./instagram.json";
+import React from 'react';
+import Image from 'next/image';
 
-const InstagramSlider = () => {
+export default function InstagramSlider({
+    InstagramMedia,
+}: InstagramSliderProps) {
     return (
-        <div className="medias">
-            {InstagramMedia.map((media, index) => (
-                <span key={index}>
-                    <Image
-                        src={media.media_url}
-                        height={200}
-                        width={200}
-                        className="instagramImage"
-                    />
-                </span>
+        <div className='medias'>
+            {InstagramMedia.map((media) => (
+                <a className='mx-3' href={media.permalink}>
+                    <span key={media.id}>
+                        <Image
+                            src={media.media_url}
+                            height={200}
+                            width={200}
+                            className='instagramImage'
+                        />
+                    </span>
+                </a>
             ))}
 
             <style jsx>
                 {`
                     .medias {
                         display: flex;
+                        align-items: center;
                     }
                     .medias span {
                         border: 5px solid white;
@@ -28,6 +32,15 @@ const InstagramSlider = () => {
             </style>
         </div>
     );
+}
+
+type InstagramSliderType = {
+    permalink: string;
+    id: string;
+    media_url: string;
+    media_type?: string;
 };
 
-export default InstagramSlider;
+interface InstagramSliderProps {
+    InstagramMedia: InstagramSliderType[];
+}

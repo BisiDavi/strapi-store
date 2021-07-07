@@ -3,12 +3,27 @@ const useLocalStorage = () => {
         localStorage.setItem('cart', JSON.stringify(cart));
     };
 
+    function setStorage(name, data) {
+        return localStorage.setItem(name, JSON.stringify(data));
+    }
+
     const checkStorage = () => {
         const cartStorage =
             localStorage.getItem('cart') === null && SetCartStorage([]);
 
         return cartStorage;
     };
+
+    function getStorage(name) {
+        if (
+            localStorage.getItem(name) !== null ||
+            localStorage.getItem(name) !== undefined
+        ) {
+            const getSavedData = localStorage.getItem(name);
+            console.log('getSavedData', getSavedData);
+            return JSON.parse(getSavedData);
+        }
+    }
 
     const GetLocalStorageProducts = () => {
         checkStorage();
@@ -26,6 +41,8 @@ const useLocalStorage = () => {
         SetCartStorage,
         GetLocalStorageProducts,
         clearLocalStorage,
+        setStorage,
+        getStorage,
     };
 };
 
