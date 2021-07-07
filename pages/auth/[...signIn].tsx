@@ -51,8 +51,13 @@ const Signin = ({ providers }) => {
                             <div className='providerSignin'>
                                 {Object.values(providers).map(
                                     (provider: any) => {
+                                        console.log('providers', provider.name);
                                         if (provider.name === 'Email') {
-                                            return <EmailSignin />;
+                                            return (
+                                                <EmailSignin
+                                                    key={provider.name}
+                                                />
+                                            );
                                         }
                                         return (
                                             <button

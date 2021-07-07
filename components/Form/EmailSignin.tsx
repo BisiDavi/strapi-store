@@ -48,9 +48,22 @@ export default function EmailSignin() {
                     form button {
                         margin: auto;
                         color: white;
-                        background-color: black;
+                        background-color: #ffa6ca;
                         padding: 5px 10px;
                         font-size: 20px;
+                        border: none;
+                    }
+                    form input {
+                        height: 40px;
+                        width: 100%;
+                        margin: 20px 0px;
+                        border-radius: 20px;
+                        border: 2px solid #ffa6ca;
+                        text-align: center;
+                    }
+                    form input::placeholder {
+                        text-align: center;
+                        font: 700 normal 16px/18px 'Roboto', sans-serif;
                     }
                 `}
             </style>
