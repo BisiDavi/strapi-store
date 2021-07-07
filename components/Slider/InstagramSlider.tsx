@@ -5,9 +5,9 @@ export default function InstagramSlider({
     InstagramMedia,
 }: InstagramSliderProps) {
     return (
-        <div className='medias'>
+        <div className='medias mb-4'>
             {InstagramMedia.map((media) => (
-                <a className='mx-3' href={media.permalink}>
+                <a target='_blank' className='mx-3' href={media.permalink}>
                     <span key={media.id}>
                         <img
                             src={media.media_url}
