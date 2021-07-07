@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { signIn } from 'next-auth/client';
-
 import { toast } from 'react-toastify';
 
 export default function EmailSignin() {

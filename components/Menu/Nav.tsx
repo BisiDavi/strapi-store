@@ -10,8 +10,9 @@ import {
     sidebarState,
 } from '../../utils/menu';
 import Logo from '../Icons/Logo';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Nav = () => {
+export default function Nav() {
     const [btnState, setBtnstate] = useState(false);
     const [session, loading] = useSession();
     const { showCart, cart, hideCart, productCount } = useCart();
@@ -137,6 +138,4 @@ const Nav = () => {
             </style>
         </nav>
     );
-};
-
-export default Nav;
+}

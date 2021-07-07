@@ -11,8 +11,9 @@ import { Pagelayout } from '@containers/.';
 import { Loading } from '@components/.';
 import EmailSignin from '@components/Form/EmailSignin';
 import styles from '@styles/auth.module.css';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Signin = ({ providers }) => {
+export default function Signin({ providers }) {
     const router = useRouter();
     const [session, loading] = useSession();
     const { signIn } = router.query;
@@ -165,9 +166,7 @@ const Signin = ({ providers }) => {
             </div>
         </Pagelayout>
     );
-};
-
-export default Signin;
+}
 
 export async function getServerSideProps(context) {
     const providers = await getProviders();
