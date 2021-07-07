@@ -54,7 +54,6 @@ export default function useInstagram() {
     }
 
     async function fetchRefreshToken() {
-        console.log('fetchRefreshToken was run');
         await axios
             .get(
                 `/api/get-refresh-token/${instagramToken.longTokenDetails.access_token}`,
@@ -100,7 +99,6 @@ export default function useInstagram() {
 
     useEffect(() => {
         const longLivedTokenLS = getStorage('instagramToken');
-        console.log('access_token', longLivedTokenLS);
         if (longLivedTokenLS !== null || longLivedTokenLS !== undefined) {
             getInstagramUserMedia(longLivedTokenLS);
         }
@@ -112,7 +110,6 @@ export default function useInstagram() {
                 instagramToken.longTokenDetails.expires_in,
             );
             const duration = checkTime(expiresIn);
-            console.log('duration', duration);
             if (duration < 1000) {
                 fetchRefreshToken();
             } else {
@@ -120,8 +117,6 @@ export default function useInstagram() {
             }
         }
     }, []);
-
-    console.log('instagramToken', instagramToken);
 
     return {
         instagramMedia,

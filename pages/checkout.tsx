@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Renderer } from 'nextmail';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {
@@ -15,7 +14,7 @@ import { useAuthModal } from '../hooks';
 import { Notify, Paypal, LoginModal, Loading } from '../components';
 import { SuccessModal } from '../components/Modal';
 
-const Checkout = () => {
+export default function Checkout() {
     const { modal, loading, displayModal } = useAuthModal();
     const [paymentConfirmed, setPaymentConfirmed] = useState(false);
     const [paypalLoaded, setPaypalLoaded] = useState(false);
@@ -59,11 +58,11 @@ const Checkout = () => {
 
     useEffect(() => setPaypalLoaded(true), []);
 
-    async function sendCheckoutNotification() {
-        const renderer = new Renderer();
-        const { text } = await renderer.renderEmail('checkout', {});
-        console.log('email text', text);
-    }
+    //async function sendCheckoutNotification() {
+    //    const renderer = new Renderer();
+    //    const { text } = await renderer.renderEmail('checkout', {});
+    //    console.log('email text', text);
+    //}
 
     return (
         <Pagelayout title='Checkout |'>
@@ -143,6 +142,4 @@ const Checkout = () => {
             </div>
         </Pagelayout>
     );
-};
-
-export default Checkout;
+}
