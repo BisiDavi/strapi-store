@@ -25,10 +25,10 @@ export default function MailList({ show, onHide }: MailingListProps) {
         axiosInstance
             .post('/mailing-list', JSON.stringify({ email: userEmail }))
             .then((response) => {
+                onHide();
                 console.log('response newsletter', response.data);
                 stopLoading();
                 toast.success('Thanks for subscribing to my newsletter');
-                onHide();
                 setEmail('');
             })
             .catch((error) => {
