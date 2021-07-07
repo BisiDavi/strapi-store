@@ -26,6 +26,8 @@ export default function useInstagram() {
             .catch((error) => console.error('error', error));
     }
 
+    console.log('instagramToken', instagramToken);
+
     async function getLongLivedToken() {
         await axios
             .get(
@@ -91,7 +93,7 @@ export default function useInstagram() {
     }, [instagramToken.shortTokenDetails]);
 
     useEffect(() => {
-        const access_token = getStorage(instagramToken);
+        const access_token = getStorage('instagramToken');
         console.log('access_token', access_token);
         if (access_token !== null) {
             getInstagramUserMedia();

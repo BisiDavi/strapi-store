@@ -5,11 +5,11 @@ export function checkExpiryTime() {
     let start = Date.now();
 
     function setStartTime() {
-        return setStorage('time', start);
+        return setStorage('startTime', start);
     }
 
     function checkTime(time): number {
-        const tokenSetTime = Number(getStorage('time'));
+        const tokenSetTime = Number(getStorage('startTime'));
         console.log('tokenSetTime', tokenSetTime);
         const secondsSpent = Math.floor((Date.now() - tokenSetTime) / 1000);
         const duration = time - secondsSpent;
