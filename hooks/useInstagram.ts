@@ -26,8 +26,6 @@ export default function useInstagram() {
             .catch((error) => console.error('error', error));
     }
 
-    console.log('instagramToken', instagramToken);
-
     async function getLongLivedToken() {
         await axios
             .get(
@@ -85,10 +83,11 @@ export default function useInstagram() {
         if (instagramToken.shortTokenDetails !== null) {
             setStartTime();
             getLongLivedToken();
-            setStorage(
-                'instagramToken',
-                instagramToken.longTokenDetails.access_token,
-            );
+            instagramToken.longTokenDetails?.access_token &&
+                setStorage(
+                    'instagramToken',
+                    instagramToken.longTokenDetails?.access_token,
+                );
         }
     }, [instagramToken.shortTokenDetails]);
 
@@ -114,6 +113,8 @@ export default function useInstagram() {
             }
         }
     }, []);
+
+    console.log('instagramToken', instagramToken);
 
     return {
         instagramMedia,
