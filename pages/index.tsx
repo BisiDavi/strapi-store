@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Pagelayout } from '../container';
+import { Pagelayout } from '@containers/.';
+import { useInstagram } from '@hooks/.';
 import {
     HomepageSlider,
     Collections,
     ProductsList,
     Newsletter,
     InstagramSlider,
-} from '../components';
-import { HOMEPAGE_QUERY, HOMEPAGE_SEO_QUERY, request } from '../lib';
+} from '@components/.';
+import { HOMEPAGE_QUERY, HOMEPAGE_SEO_QUERY, request } from '@lib/.';
+import { GetInstagramAuthCode } from '@utils/.';
+import { connectToDatabase } from '@middlewares/database';
+import { Viewmore } from '@components/Button';
 import { HomeProps } from '../types';
-import { GetInstagramAuthCode } from '../utils';
-import { connectToDatabase } from '../middlewares/database';
-import { Viewmore } from '../components/Button';
 
 export default function Home({
     productData,
@@ -20,68 +21,72 @@ export default function Home({
     isConnected,
 }: HomeProps): JSX.Element {
     const { allProducts } = productData;
-    const [authCode, setAuthCode] = useState(null);
-    const [instagramToken, setInstagramToken] = useState({
-        shortTokenDetails: null,
-        longTokenDetails: null,
-    });
+    const { instagramMedia } = useInstagram();
 
-    useEffect(() => {
-        if (window.location.search.includes('code')) {
-            const authCode = GetInstagramAuthCode();
-            setAuthCode(authCode);
-        }
-    }, []);
+    console.log('instagramMedia', instagramMedia);
 
     isConnected && console.log('You are connected to mongoDB!');
 
-    console.log('authCode', authCode);
+    //const [authCode, setAuthCode] = useState(null);
+    //const [instagramToken, setInstagramToken] = useState({
+    //    shortTokenDetails: null,
+    //    longTokenDetails: null,
+    //});
 
-    async function getShortLivedToken() {
-        await axios
-            .post(`/api/instagram/${authCode}`)
-            .then((response) => {
-                console.log('response getShortLivedToken', response.data);
-                setInstagramToken({
-                    ...instagramToken,
-                    shortTokenDetails: response.data,
-                });
-            })
-            .catch((error) => console.error('error', error));
-    }
+    //useEffect(() => {
+    //    if (window.location.search.includes('code')) {
+    //        const authCode = GetInstagramAuthCode();
+    //        setAuthCode(authCode);
+    //    }
+    //}, []);
 
-    async function getLongLivedToken() {
-        console.log(
-            'instagramToken?.shortTokenDetails?.access_token',
-            instagramToken?.shortTokenDetails?.access_token,
-        );
-        await axios
-            .get(
-                `/api/instagram/${instagramToken.shortTokenDetails.access_token}`,
-            )
-            .then((response) => {
-                console.log('response getLongLivedToken', response.data);
-                setInstagramToken({
-                    ...instagramToken,
-                    longTokenDetails: response.data,
-                });
-            })
-            .catch((error) => console.error('error', error));
-    }
+    //console.log('authCode', authCode);
 
-    console.log('longTokenDetails', instagramToken);
+    //async function getShortLivedToken() {
+    //    await axios
+    //        .post(`/api/instagram/${authCode}`)
+    //        .then((response) => {
+    //            console.log('response getShortLivedToken', response.data);
+    //            setInstagramToken({
+    //                ...instagramToken,
+    //                shortTokenDetails: response.data,
+    //            });
+    //        })
+    //        .catch((error) => console.error('error', error));
+    //}
 
-    useEffect(() => {
-        if (authCode !== null) {
-            getShortLivedToken();
-        }
-    }, [authCode]);
+    //async function getLongLivedToken() {
+    //    console.log(
+    //        'instagramToken?.shortTokenDetails?.access_token',
+    //        instagramToken?.shortTokenDetails?.access_token,
+    //    );
+    //    await axios
+    //        .get(
+    //            `/api/instagram/${instagramToken.shortTokenDetails.access_token}`,
+    //        )
+    //        .then((response) => {
+    //            console.log('response getLongLivedToken', response.data);
+    //            setInstagramToken({
+    //                ...instagramToken,
+    //                longTokenDetails: response.data,
+    //            });
+    //        })
+    //        .catch((error) => console.error('error', error));
+    //}
 
-    useEffect(() => {
-        if (instagramToken.shortTokenDetails !== null) {
-            getLongLivedToken();
-        }
-    }, [instagramToken.shortTokenDetails]);
+    //console.log('longTokenDetails', instagramToken);
+
+    //useEffect(() => {
+    //    if (authCode !== null) {
+    //        getShortLivedToken();
+    //    }
+    //}, [authCode]);
+
+    //useEffect(() => {
+    //    if (instagramToken.shortTokenDetails !== null) {
+    //        getLongLivedToken();
+    //    }
+    //}, [instagramToken.shortTokenDetails]);
 
     return (
         <>

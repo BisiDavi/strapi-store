@@ -3,7 +3,7 @@ import { Container, Row, Col, Form } from 'react-bootstrap';
 import { HomepageSlider } from '../../components';
 import { SelectWigs, WigCheckbox } from '../../components/Form';
 import { CustomWigButtonGrp } from '../../components/Form/ButtonGrp';
-import { Pagelayout } from '../../container';
+import { Pagelayout } from '../../containers';
 import customWigs from '../../json/customWigs.json';
 import styles from '../../styles/customWig.module.css';
 import { sumTotal } from '../../utils';

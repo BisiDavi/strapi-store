@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import { ProductsList } from "../../components";
-import { Pagelayout } from "../../container";
+import { Pagelayout } from "../../containers";
 import { FETCH_ALL_PRODUCT_QUERY, request } from "../../lib";
 import { AllWigsProps } from "../../types";
 

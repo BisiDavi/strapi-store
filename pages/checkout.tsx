@@ -10,7 +10,7 @@ import {
     OrderSummary,
 } from '../components/Checkout';
 import { ClearCartAction } from '../store/actions/CartActions';
-import { Pagelayout } from '../container';
+import { Pagelayout } from '../containers';
 import { useAuthModal } from '../hooks';
 import { Notify, Paypal, LoginModal, Loading } from '../components';
 import { SuccessModal } from '../components/Modal';

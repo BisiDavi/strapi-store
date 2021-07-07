@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { ProductsList } from "../../components";
-import { Pagelayout } from "../../container";
+import { Pagelayout } from "../../containers";
 import { READY_TO_SHIP_QUERY, request } from "../../lib";
 
 const ReadyToShip = ({ shipWigs }) => {

@@ -5,7 +5,7 @@ import {
     useSession,
 } from 'next-auth/client';
 import { useRouter } from 'next/router';
-import { Pagelayout } from '../../container';
+import { Pagelayout } from '../../containers';
 import Link from 'next/link';
 import { Loading } from '../../components';
 import styles from '../../styles/auth.module.css';

@@ -1,29 +1,43 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "baseUrl": ".",
+        "paths": {
+            "@components/*": ["components/*"],
+            "@containers/*": ["containers/*"],
+            "@hooks/*": ["hooks/*"],
+            "@json/*": ["json/*"],
+            "@store/*": ["store/*"],
+            "@styles/*": ["styles/*"],
+            "@utils/*": ["utils/*"],
+            "@types/*": ["types/*"],
+            "@lib/*": ["lib/*"],
+            "@middlewares/*": ["middlewares/*"],
+            "@emails/*": ["emails/*"]
+        }
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.js",
+        "**/*.tsx",
+        "**/*.jsx",
+        "**/**/*.ts",
+        "**/**/*.js",
+        "**/**/*.tsx",
+        "**/**/*.jsx"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve"
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-, "pages/404.js", "middlewares/database.ts", "components/Icons/Naira.jsx", "pages/api/auth/[...nextauth].js"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "exclude": ["node_modules"]
 }

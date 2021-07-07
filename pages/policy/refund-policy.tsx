@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagelayout } from "../../container";
+import { Pagelayout } from "../../containers";
 import { displayList } from "./delivery-policy";
 
 const returnConditions = [

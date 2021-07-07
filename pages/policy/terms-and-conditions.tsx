@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagelayout } from "../../container";
+import { Pagelayout } from "../../containers";
 
 const TermsAndCondition = () => {
     return (
@@ -160,14 +160,14 @@ const TermsAndCondition = () => {
                 </p>
             </div>
             <style jsx>
-                {`  
+                {`
                         h1{
                             font-weight:bold;
                         }
                         .content h3 {
                             font-weight: bold;
                         }
-                        
+
                         @media(max-width:768px){
                             .content h3 {
                                 font-size: 23px;
@@ -178,7 +178,7 @@ const TermsAndCondition = () => {
                             .content h3 {
                                 font-size: 20px;
                             }
-                    
+
                     `}
             </style>
         </Pagelayout>

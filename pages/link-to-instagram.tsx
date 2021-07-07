@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Pagelayout } from '../container';
+import { Pagelayout } from '../containers';
 
 const InstagramAccess = (): JSX.Element => {
 

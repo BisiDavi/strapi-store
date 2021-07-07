@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { Pagelayout } from '../container';
+import { Pagelayout } from '../containers';
 import { useAuthModal, useCart } from '../hooks';
 import { CartTable, EmptyCartTable } from '../components/Cart';
 import { LoginModal } from '../components/Modal';

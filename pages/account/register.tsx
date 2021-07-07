@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-import { Pagelayout } from "../../container";
+import { Pagelayout } from "../../containers";
 
 const Signup = () => {
     return (

@@ -1,7 +1,7 @@
 import qs from 'qs';
 import axios from 'axios';
 
-const AccessInstagramHandler = async (req, res) => {
+export default async function AccessInstagramHandler(req, res) {
     const { authCode } = req.query;
     console.log('authCode', authCode);
     const shortTokenURL = `${process.env.NEXT_PUBLIC_TOKEN_BASE_URL}/oauth/access_token`;
@@ -43,6 +43,4 @@ const AccessInstagramHandler = async (req, res) => {
             })
             .catch((error) => console.error('error longToken', error));
     }
-};
-
-export default AccessInstagramHandler;
+}

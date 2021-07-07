@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Pagelayout } from "../../container";
+import { Pagelayout } from "../../containers";
 import { v4 as uuidv4 } from "uuid";
 import policy from "../../json/deliveryPolicy.json";
 

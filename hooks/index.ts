@@ -5,3 +5,4 @@ export { default as useLocalStorage } from './useLocalStorage';
 export { default as useCurrency } from './useCurrency';
 export { default as useModal } from './useModal';
 export { default as useAuthModal } from './useAuthModal';
+export { default as useInstagram } from './useInstagram';
