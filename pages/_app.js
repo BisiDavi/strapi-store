@@ -4,11 +4,11 @@ import Router from "next/router";
 import { Provider } from "react-redux";
 import { Provider as AuthProvider } from "next-auth/client";
 import NProgress from "nprogress";
-import store from "../store/store";
-import { Loading } from "../components";
+import store from "@store/store";
+import { Loading } from "@components/.";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "nprogress/nprogress.css";
-import "../styles/globals.css";
+import "@styles/globals.css";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());

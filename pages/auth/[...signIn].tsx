@@ -4,14 +4,12 @@ import {
     signIn as AuthSignIn,
     useSession,
 } from 'next-auth/client';
-import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Pagelayout } from '@containers/.';
 import { Loading } from '@components/.';
 import EmailSignin from '@components/Form/EmailSignin';
 import styles from '@styles/auth.module.css';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signin({ providers }) {
     const router = useRouter();
@@ -39,7 +37,6 @@ export default function Signin({ providers }) {
     loading && <Loading />;
     return (
         <Pagelayout title='Sign in' className={styles.authPage}>
-            <ToastContainer />
             <div className='container-fluid sign-in'>
                 {!session ? (
                     <div className='row'>

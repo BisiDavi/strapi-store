@@ -1,19 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { useCart } from '../hooks';
-import { PagecontainerProps } from '../types';
-import { Header, Footer, CatalogTab, SidebarIcon } from '../components';
 import { renderMetaTags } from 'react-datocms';
-import Whatsappchat from '../components/ChatWidget/Whatsappchat';
+import { useCart } from '@hooks/.';
+import { PagecontainerProps } from '../types';
+import { Header, Footer, CatalogTab, SidebarIcon } from '@components/.';
+import Whatsappchat from '@components/ChatWidget/Whatsappchat';
 
-const Pagelayout: FC<PagecontainerProps> = ({
+export default function Pagelayout({
     title,
     children,
     metaTags,
     productMetaTags,
     product,
     className,
-}): JSX.Element => {
+}: PagecontainerProps): JSX.Element {
     const [promoDisplay, setPromoDisplay] = useState(true);
     const promoHandler = () => setPromoDisplay(false);
     const { persistCart } = useCart();
@@ -79,6 +79,4 @@ const Pagelayout: FC<PagecontainerProps> = ({
             </style>
         </div>
     );
-};
-
-export default Pagelayout;
+}
