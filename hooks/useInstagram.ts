@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GetInstagramAuthCode } from '@utils/.';
 import { checkExpiryTime } from '@utils/checkExpiryTime';
+import useLocalStorage from './useLocalStorage';
 
 export default function useInstagram() {
     const [authCode, setAuthCode] = useState(null);
@@ -11,6 +12,7 @@ export default function useInstagram() {
     });
     const [instagramMedia, setInstagramMedia] = useState(null);
     const { setStartTime, checkTime } = checkExpiryTime();
+    const { setStorage, getStorage } = useLocalStorage();
 
     async function getShortLivedToken() {
         await axios
@@ -81,14 +83,20 @@ export default function useInstagram() {
         if (instagramToken.shortTokenDetails !== null) {
             setStartTime();
             getLongLivedToken();
+            setStorage(
+                'instagramToken',
+                instagramToken.longTokenDetails.access_token,
+            );
         }
     }, [instagramToken.shortTokenDetails]);
 
     useEffect(() => {
-        if (instagramToken.longTokenDetails !== null) {
+        const access_token = getStorage(instagramToken);
+        console.log('access_token', access_token);
+        if (access_token !== null) {
             getInstagramUserMedia();
         }
-    }, [instagramToken.longTokenDetails]);
+    }, []);
 
     useEffect(() => {
         if (instagramToken.longTokenDetails !== null) {

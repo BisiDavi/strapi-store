@@ -9,7 +9,7 @@ export default function InstagramSlider({
             {InstagramMedia.map((media) => (
                 <a className='mx-3' href={media.permalink}>
                     <span key={media.id}>
-                        <Image
+                        <img
                             src={media.media_url}
                             height={200}
                             width={200}
