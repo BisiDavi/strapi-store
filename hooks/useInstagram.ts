@@ -83,21 +83,29 @@ export default function useInstagram() {
         if (instagramToken.shortTokenDetails !== null) {
             setStartTime();
             getLongLivedToken();
-            instagramToken.longTokenDetails?.access_token &&
-                setStorage(
-                    'instagramToken',
-                    instagramToken.longTokenDetails?.access_token,
-                );
         }
     }, [instagramToken.shortTokenDetails]);
 
     useEffect(() => {
+        console.log(
+            'instagramToken.longTokenDetails?.access_token',
+            instagramToken.longTokenDetails?.access_token,
+        );
+        instagramToken.longTokenDetails?.access_token &&
+            setStorage(
+                'instagramToken',
+                instagramToken.longTokenDetails?.access_token,
+            );
         const access_token = getStorage('instagramToken');
         console.log('access_token', access_token);
         if (access_token !== null) {
             getInstagramUserMedia();
         }
-    }, []);
+    }, [instagramToken]);
+
+    //useEffect(() => {
+
+		//}, []);
 
     useEffect(() => {
         if (instagramToken.longTokenDetails !== null) {
