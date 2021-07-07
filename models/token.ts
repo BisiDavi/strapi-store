@@ -1,10 +1,15 @@
 import mongoose from 'mongoose';
-import { Schema } from 'mongoose';
 
-const InstgramLongLivedSchema = new Schema({
-    access_token: String,
-    expires_in: Number,
-    token_type: String,
+const InstgramLongLivedSchema = new mongoose.Schema({
+    access_token: {
+        type: String,
+    },
+    expires_in: {
+        type: Number,
+    },
+    token_type: {
+        type: String,
+    },
 });
 
 export default mongoose.models.InstagramToken ||

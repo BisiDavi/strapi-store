@@ -1,11 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDatabase } from '../../middlewares/database';
 import InstagramToken from '../../models/token';
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse,
-) {
+export default async function handler(req, res) {
     const { method } = req;
 
     await connectToDatabase();
