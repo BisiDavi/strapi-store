@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React from "react";
 import Slider from "react-slick";
 import { Image } from "react-datocms";
 import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
-import style from "../../styles/ProductSlider.module.css";
-import { useCurrency } from "../../hooks";
+import { useCurrency } from "@hooks/.";
+import style from "@styles/ProductSlider.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -12,7 +12,7 @@ interface ProductSliderProps {
     products: any;
 }
 
-const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
+export default function ProductSlider ({ products }:ProductSliderProps): JSX.Element {
     const { priceExchange, symbol } = useCurrency();
     const settings = {
         dots: false,
@@ -157,4 +157,3 @@ const ProductSlider: FC<ProductSliderProps> = ({ products }): JSX.Element => {
     );
 };
 
-export default ProductSlider;
