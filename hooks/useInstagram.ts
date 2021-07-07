@@ -40,13 +40,9 @@ export default function useInstagram() {
             .catch((error) => console.error('error', error));
     }
 
-    async function getInstagramUserMedia(token?: string) {
-        const validToken =
-            instagramToken.longTokenDetails === null
-                ? token
-                : instagramToken.longTokenDetails.access_token;
+    async function getInstagramUserMedia() {
         await axios
-            .get(`/api/get-instagram-media/${validToken}`)
+            .get(`/api/get-instagram-media/${instagramToken.longTokenDetails.access_token}`)
             .then((response) => {
                 setInstagramMedia(response.data);
             })
@@ -94,13 +90,16 @@ export default function useInstagram() {
                 instagramToken.longTokenDetails?.access_token,
             );
 
-        getInstagramUserMedia(instagramToken.longTokenDetails?.access_token);
+        getInstagramUserMedia();
     }, [instagramToken]);
 
     useEffect(() => {
         const longLivedTokenLS = getStorage('instagramToken');
         if (longLivedTokenLS !== null || longLivedTokenLS !== undefined) {
-            getInstagramUserMedia(longLivedTokenLS);
+            setInstagramToken({
+                ...instagramToken,
+                longTokenDetails: longLivedTokenLS,
+            });
         }
     }, []);
 

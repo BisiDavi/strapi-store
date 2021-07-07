@@ -1,22 +1,23 @@
-import React from "react";
+import React from 'react';
 
 const Newsletter = () => {
     return (
-        <div className="newsletter">
-            <div className="overlay">
+        <div className='newsletter'>
+            <div className='overlay'>
                 <h5>Subscribe to our newsletter</h5>
                 <p>
                     Promotions, new products and sales.Directly to your inbox.
                 </p>
                 <form>
-                    <input placeholder="Email Address" />
-                    <button type="submit">Subscribe</button>
+                    <input placeholder='Email Address' />
+                    <button type='submit'>Subscribe</button>
                 </form>
             </div>
             <style jsx>{`
                 .newsletter {
                     margin: 40px auto;
                     display: flex;
+                    background: url('/floralBg.webp');
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
@@ -25,17 +26,26 @@ const Newsletter = () => {
                     font-style: normal;
                     text-rendering: optimizeLegibility;
                     letter-spacing: 0.05em;
+                    height: 300px;
                     font-size: 15px;
+                    background-size: cover;
+                }
+
+                .overlay {
+                    background-color: #ffffff96;
+                    text-align: center;
+                    padding: 50px;
                 }
 
                 .newsletter h5 {
-                    color: #ffa6ca;
-                    font-size: 1.4em;
+                    color: black;
+                    font-size: 1.6em;
+                    font-weight: bold;
                 }
 
                 p {
                     font-weight: 500;
-                    font-family: "Open-sans", sans-serif;
+                    font-family: 'Open-sans', sans-serif;
                 }
 
                 .newsletter input {
@@ -58,7 +68,7 @@ const Newsletter = () => {
 
                 @media (max-width: 576px) {
                     .newsletter {
-                        background: url("/floralBg.webp");
+                        background: url('/floralBg.webp');
                         background-size: cover;
                         position: relative;
                         height: 200px;
