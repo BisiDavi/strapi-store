@@ -111,6 +111,7 @@ export default function useInstagram() {
                 longTokenDetails: lsToken,
             });
         }
+        getInstagramUserMedia();
     }, [lsToken]);
 
     console.log('instagramMedia', instagramMedia);
