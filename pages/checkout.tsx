@@ -58,12 +58,6 @@ export default function Checkout() {
 
     useEffect(() => setPaypalLoaded(true), []);
 
-    //async function sendCheckoutNotification() {
-    //    const renderer = new Renderer();
-    //    const { text } = await renderer.renderEmail('checkout', {});
-    //    console.log('email text', text);
-    //}
-
     return (
         <Pagelayout title='Checkout |'>
             <div className='container-fluid'>

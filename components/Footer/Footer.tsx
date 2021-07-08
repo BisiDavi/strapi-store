@@ -23,8 +23,8 @@ const Footer = () => {
     ];
 
     const paymentMethods = [
-        { icon: '/mastercard.svg' },
-        { icon: '/paypal.svg' },
+        { name: 'mastercard icon', icon: '/mastercard.svg' },
+        { name: 'paypal icon', icon: '/paypal.svg' },
     ];
 
     return (
@@ -54,7 +54,12 @@ const Footer = () => {
                 <ul className='payment-gateway'>
                     {paymentMethods.map((mthd) => (
                         <li key={uuidv4()}>
-                            <Image src={mthd.icon} height={30} width={30} />
+                            <img
+                                alt={mthd.name}
+                                src={mthd.icon}
+                                height={30}
+                                width={30}
+                            />
                         </li>
                     ))}
                 </ul>
@@ -91,12 +96,16 @@ const Footer = () => {
                         font-size: 18px;
                     }
                     .copyright i {
-                        font-weight: 100 !important;
-                        font-size: 12px !important;
-                        margin-top: 2px !important;
+                        font-weight: 100;
+                        margin-top: 2px;
+                    }
+                    .payment-gateway li img {
+                        height: 50px;
+                        width: 50px;
                     }
                     p {
                         margin-bottom: 0px;
+                        font-size: 20px;
                     }
                     .social {
                         display: flex;
@@ -111,11 +120,9 @@ const Footer = () => {
                     }
                     .footer-section i {
                         margin: 0px 10px;
-                        font-size: 20px;
                     }
                     .social-links {
                         margin: 0px 10px;
-                        font-size: 20px;
                     }
                     .social-links i {
                         cursor: pointer;

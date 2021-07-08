@@ -4,10 +4,12 @@ import { useDispatch } from 'react-redux';
 import { PaypalProps } from '../../types';
 import { PaymentAction } from '../../store/actions/PaymentAction';
 
-const Paypal: FC<PaypalProps> = ({ amount, hasPaid }): JSX.Element => {
+export default function Paypal ({ amount, hasPaid }:PaypalProps): JSX.Element{
     const dispatch = useDispatch();
 
-    const successfulPayment = (details) => dispatch(PaymentAction(details));
+    function successfulPayment(details){
+			return dispatch(PaymentAction(details))
+		}
 
     return (
         <PayPalButton
@@ -25,4 +27,3 @@ const Paypal: FC<PaypalProps> = ({ amount, hasPaid }): JSX.Element => {
     );
 };
 
-export default Paypal;
