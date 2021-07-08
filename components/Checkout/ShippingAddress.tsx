@@ -1,19 +1,11 @@
 import React, { FC, useState, useEffect } from 'react';
-import { useSession } from 'next-auth/client';
-import { useDispatch } from 'react-redux';
-import CountryDropdownbutton from '../Form/CountryDropdown';
-import styles from '../../styles/checkout.module.css';
-import { UserDetailsAction } from '../../store/actions/UserDetailsAction';
+import CountryDropdownbutton from '@components/Form/CountryDropdown';
+import styles from '@styles/checkout.module.css';
+import { UserDetailsAction } from '@store/actions/UserDetailsAction';
+import { useRedux } from '@hooks/.';
 
 const ShippingAddress: FC = (): JSX.Element => {
-    const [session, loading] = useSession();
-    console.log('session', session);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        formState.fullName = !loading && session ? session.user.name : '';
-        formState.email = !loading && session ? session.user.email : '';
-    }, [session]);
+    const { dispatch } = useRedux();
 
     const [formState, setFormState] = useState({
         fullName: '',
