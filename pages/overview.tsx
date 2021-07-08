@@ -34,6 +34,7 @@ export default function Overview() {
                             border-radius: 50%;
                             display: flex;
                             align-items: center;
+                            margin: 50px auto;
                             justify-content: center;
                         }
 
