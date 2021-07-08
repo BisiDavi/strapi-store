@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image } from 'react-datocms';
 import { FcFullTrash } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/client';
-import { useCurrency } from '../../hooks';
-import { DeleteProductAction } from '../../store/actions/counterActions';
+import { useCurrency } from '@hooks/.';
+import { DeleteProductAction } from '@store/actions/counterActions';
 import { Button } from '../.';
-import { getTotalAmount, SendData } from '../../utils';
-import { SelectRushOrder } from '../Form';
-import styles from '../../styles/cart.module.css';
-import Loading from '../loader/Loading';
+import { getTotalAmount, SendData } from '@utils/.';
+import { SelectRushOrder } from '@components/Form/.';
+import Loading from '@components/loader/Loading';
+import styles from '@styles/cart.module.css';
 
-const CartTable = (props) => {
+export default function CartTable(props) {
     const { products } = props;
     const [productQty, setProductQty] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [notificationData, setNotificationData] = useState({
+        userName: null,
+        userEmail: null,
+        cart: null,
+        amount: null,
+    });
     const dispatch = useDispatch();
     const [session] = useSession();
     const router = useRouter();
@@ -29,9 +35,11 @@ const CartTable = (props) => {
 
     const tableTitle = ['Product', 'Name', 'Price', 'Quantity', 'Total'];
 
-    const deleteProduct = (index) => {
-        dispatch(DeleteProductAction({ products, index }));
-    };
+    function deleteProduct(index) {
+        return dispatch(DeleteProductAction({ products, index }));
+    }
+
+    console.log('productQty', productQty);
 
     const inputHandler = (index) => (e) => {
         e.preventDefault();
@@ -49,38 +57,36 @@ const CartTable = (props) => {
     const productsAmount = priceExchange(getTotalAmount(products));
     const rushOrderPrice = priceExchange(Number(rushOrder));
 
-    const calculateSubtotal = () => {
+    function calculateSubtotal() {
         const amount = formatToNumber(productsAmount);
         const rushPrice =
             rushOrder !== false ? formatToNumber(rushOrderPrice) : 0;
         const subtotal = amount + rushPrice;
         return formatPrice(subtotal);
-    };
+    }
 
     const subtotalAmount = calculateSubtotal();
 
-    const cartNotification = () => {
+    function cartNotification() {
         const userName = session.user.name;
         const userEmail = session.user.email;
         const amount = `${symbol} ${subtotalAmount}`;
-        let notificationData = {
-            userName: null,
-            userEmail: null,
-            cart: null,
-            amount,
-        };
-        notificationData = {
+        setNotificationData({
             ...notificationData,
             userName,
             userEmail,
             cart: props.products,
             amount,
-        };
-        console.log(notificationData);
+        });
+        console.log('notificationData', notificationData);
         setLoading(true);
         SendData('/cart-notification', notificationData, router, '/checkout');
         setLoading(false);
-    };
+    }
+
+		useEffect(() => {
+
+		},[])
 
     return (
         <div className={styles.cartTable}>
@@ -208,6 +214,4 @@ const CartTable = (props) => {
             </style>
         </div>
     );
-};
-
-export default CartTable;
+}
