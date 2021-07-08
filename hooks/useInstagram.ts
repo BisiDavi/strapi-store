@@ -103,6 +103,9 @@ export default function useInstagram() {
     useEffect(() => {
         const longLivedTokenLS = getStorage('instagramToken');
         const instaTokenFromDB = getInstagramToken();
+        instaTokenFromDB.then((response) => {
+            console.log('instaTokenFromDB response', response);
+        });
         console.log('instaTokenFromDB', instaTokenFromDB);
         if (longLivedTokenLS !== null && longLivedTokenLS !== undefined) {
             console.log('from storage', longLivedTokenLS);

@@ -4,16 +4,20 @@ export async function dbSaveInstagramToken(data) {
     await axiosInstance
         .post('/instagram-token-db', data)
         .then((response) => {
-            console.log('response', response.data);
+            return response.data;
         })
-        .catch((error) => console.error('error', error));
+        .catch((error) => {
+            return error;
+        });
 }
 
 export async function getInstagramToken() {
     await axiosInstance
         .get('/instagram-token-db')
         .then((response) => {
-            console.log('response', response.data);
+            return response.data;
         })
-        .catch((error) => console.error('error', error));
+        .catch((error) => {
+            return error;
+        });
 }
