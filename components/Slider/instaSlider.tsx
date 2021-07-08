@@ -67,9 +67,14 @@ export default function InstaSlider({
     return (
         <div>
             <h1>Jenjen's Luxury Wigs Instagram Feeds</h1>
-            <Slider {...settings}>
+            <Slider className='instagramSlider' {...settings}>
                 {InstagramMedia.map((media) => (
-                    <a target='_blank' className='mx-1' href={media.permalink}>
+                    <a
+                        target='_blank'
+                        key={media.id}
+                        className='mx-1'
+                        href={media.permalink}
+                    >
                         <span key={media.id}>
                             <img
                                 src={media.media_url}
