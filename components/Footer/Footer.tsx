@@ -168,6 +168,10 @@ const Footer = () => {
                         ul.footerLinks.row li a {
                             font-size: 16px;
                         }
+                        .payment-gateway li img {
+                            height: 50px;
+                            width: 200px;
+                        }
                     }
                 `}
             </style>
