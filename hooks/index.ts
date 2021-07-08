@@ -7,4 +7,4 @@ export { default as useModal } from './useModal';
 export { default as useAuthModal } from './useAuthModal';
 export { default as useInstagram } from './useInstagram';
 export { default as useLoading } from './useLoading';
-
+export { default as useRedux } from './useRedux';

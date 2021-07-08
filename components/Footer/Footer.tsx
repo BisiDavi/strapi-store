@@ -23,8 +23,10 @@ const Footer = () => {
     ];
 
     const paymentMethods = [
-        { name: 'mastercard icon', icon: '/mastercard.svg' },
-        { name: 'paypal icon', icon: '/paypal.svg' },
+        {
+            name: 'pay with visa mastercard discover american express',
+            icon: '/paymentMethods.png',
+        },
     ];
 
     return (
@@ -100,8 +102,8 @@ const Footer = () => {
                         margin-top: 2px;
                     }
                     .payment-gateway li img {
-                        height: 50px;
-                        width: 50px;
+                        height: 70px;
+                        width: 300px;
                     }
                     p {
                         margin-bottom: 0px;
