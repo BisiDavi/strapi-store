@@ -12,8 +12,14 @@ const Footer = () => {
     ];
 
     const socialLinks = [
-        { icon: 'fab fa-instagram', link: 'https://www.instagram.com/jenjensluxurywigs/' },
-        { icon: 'fab fa-youtube', link: '#link' },
+        {
+            icon: 'fab fa-instagram fa-2x',
+            link: 'https://www.instagram.com/jenjensluxurywigs/',
+        },
+        {
+            icon: 'fab fa-facebook fa-2x',
+            link: 'https://web.facebook.com/jenjensluxurywigs.azonobi',
+        },
     ];
 
     const paymentMethods = [
@@ -35,13 +41,13 @@ const Footer = () => {
             <div className='row social'>
                 <ul className='social-links'>
                     {socialLinks.map((link) => (
-                        <Link key={uuidv4()} href={link.link}>
+                        <a target='_blank' key={uuidv4()} href={link.link}>
                             <i className={link.icon}></i>
-                        </Link>
+                        </a>
                     ))}
                 </ul>
                 <div className='copyright'>
-                    <i className='far fa-copyright'></i>
+                    <i className='far fa-copyright fa-2x'></i>
                     <p>2021, Jenjens Luxury Wigs.</p>
                 </div>
 
@@ -110,6 +116,9 @@ const Footer = () => {
                     .social-links {
                         margin: 0px 10px;
                         font-size: 20px;
+                    }
+                    .social-links i {
+                        cursor: pointer;
                     }
                     .payment-gateway {
                         display: flex;
