@@ -13,7 +13,6 @@ export default function useInstagram() {
     });
     const [instagramMedia, setInstagramMedia] = useState(null);
     const { setStartTime, checkTime } = checkExpiryTime();
-    const { setStorage, getStorage } = useLocalStorage();
 
     async function getShortLivedToken() {
         await axios
@@ -92,8 +91,6 @@ export default function useInstagram() {
 
     useEffect(() => {
         if (instagramToken.longTokenDetails !== null) {
-            setStorage('instagramToken', instagramToken.longTokenDetails);
-
             getInstagramUserMedia(
                 instagramToken.longTokenDetails?.access_token,
             );
@@ -101,16 +98,13 @@ export default function useInstagram() {
     }, [instagramToken]);
 
     useEffect(() => {
-        const longLivedTokenLS = getStorage('instagramToken');
-        const instaTokenFromDB = getInstagramToken();
-        instaTokenFromDB.then((response) => {
-            console.log('instaTokenFromDB response', response);
+        getInstagramToken().then((response) => {
+            console.log('instaTokenFromDB response', response.data.data);
+            const responseArray = response.data.data;
+            const getLastItem = responseArray[responseArray.length - 1];
+            console.log('getLastItem', getLastItem);
+            getInstagramUserMedia(getLastItem.access_token);
         });
-        console.log('instaTokenFromDB', instaTokenFromDB);
-        if (longLivedTokenLS !== null && longLivedTokenLS !== undefined) {
-            console.log('from storage', longLivedTokenLS);
-            getInstagramUserMedia(longLivedTokenLS.access_token);
-        }
     }, []);
 
     console.log('instagramMedia', instagramMedia);

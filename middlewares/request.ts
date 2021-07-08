@@ -1,7 +1,7 @@
 import { axiosInstance } from '../axios/axiosInstance';
 
 export async function dbSaveInstagramToken(data) {
-    await axiosInstance
+    return await axiosInstance
         .post('/instagram-token-db', data)
         .then((response) => {
             return response.data;
@@ -12,12 +12,5 @@ export async function dbSaveInstagramToken(data) {
 }
 
 export async function getInstagramToken() {
-    await axiosInstance
-        .get('/instagram-token-db')
-        .then((response) => {
-            return response.data;
-        })
-        .catch((error) => {
-            return error;
-        });
+    return await axiosInstance.get('/instagram-token-db');
 }
