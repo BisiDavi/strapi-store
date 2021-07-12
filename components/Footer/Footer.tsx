@@ -1,8 +1,9 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { v4 as uuidv4 } from 'uuid';
 
-const Footer = () => {
+export default function Footer() {
     const footerLinks = [
         { name: 'Privacy Policy', link: '/policy/privacy-policy' },
         { name: 'Refund Policy', link: '/policy/refund-policy' },
@@ -42,7 +43,12 @@ const Footer = () => {
             <div className='row social'>
                 <ul className='social-links'>
                     {socialLinks.map((link) => (
-                        <a target='_blank' key={uuidv4()} href={link.link}>
+                        <a
+                            target='_blank'
+                            rel='noreferrer'
+                            key={uuidv4()}
+                            href={link.link}
+                        >
                             <i className={link.icon}></i>
                         </a>
                     ))}
@@ -55,7 +61,7 @@ const Footer = () => {
                 <ul className='payment-gateway'>
                     {paymentMethods.map((mthd) => (
                         <li key={uuidv4()}>
-                            <img
+                            <Image
                                 alt={mthd.name}
                                 src={mthd.icon}
                                 height={30}
@@ -176,6 +182,4 @@ const Footer = () => {
             </style>
         </footer>
     );
-};
-
-export default Footer;
+}

@@ -2,12 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Logo = () => {
+export default function Logo() {
     return (
         <div className='logo'>
             <Link href='/' passHref>
                 <a>
-                    <Image src='/logo.png' height={70} width={100} />
+                    <Image src='/logo.png' alt='logo' height={70} width={100} />
                 </a>
             </Link>
             <style jsx>
@@ -27,6 +27,4 @@ const Logo = () => {
             </style>
         </div>
     );
-};
-
-export default Logo;
+}

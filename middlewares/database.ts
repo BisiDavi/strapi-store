@@ -39,7 +39,7 @@ export default async function connectToDatabase() {
 
         cached.promise = mongoose
             .connect(NEXT_MONGODB_URI, options)
-            .then((clmongooseient) => {
+            .then((client) => {
                 return mongoose;
             });
     }

@@ -1,12 +1,12 @@
-import React, { CSSProperties, FC } from "react";
-import Link from "next/link";
-import { v4 as uuidv4 } from "uuid";
-import { Hamburger } from "../Button";
-import { menuProps, sidebarProps } from "../../types";
+import React, { PropsWithChildren, CSSProperties, FC } from 'react';
+import Link from 'next/link';
+import { v4 as uuidv4 } from 'uuid';
+import { Hamburger } from '../Button';
+import { menuProps, sidebarProps } from '../../types';
 
 export const displayMenu: FC<menuProps[]> = (menus, linkType) => {
     return (
-        <ul className="menulist">
+        <ul className='menulist'>
             {menus.map((menu) => (
                 <li key={uuidv4()}>
                     <Link href={menu.link} passHref>
@@ -44,24 +44,24 @@ export const displayMenu: FC<menuProps[]> = (menus, linkType) => {
     );
 };
 
-const Sidebar: FC<sidebarProps> = ({
+export default function Sidebar({
     children,
     onClose,
     btnClassName,
     right,
-}): JSX.Element => {
+}: PropsWithChildren<sidebarProps>): JSX.Element {
     const cartStyles: CSSProperties = right && {
-        overflowY: "scroll",
-        overflowX: "hidden",
-        marginRight: "15px",
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+        marginRight: '15px',
     };
     return (
-        <div className="Sidebar">
-            <div className="sidebar-wrapper">
+        <div className='Sidebar'>
+            <div className='sidebar-wrapper'>
                 {right ? (
                     <>
-                        <div className="overlay" onClick={onClose}></div>
-                        <span className="drawer" style={cartStyles}>
+                        <div className='overlay' onClick={onClose}></div>
+                        <span className='drawer' style={cartStyles}>
                             <Hamburger
                                 btnClick={onClose}
                                 className={btnClassName}
@@ -72,14 +72,14 @@ const Sidebar: FC<sidebarProps> = ({
                     </>
                 ) : (
                     <>
-                        <div className="drawer">
+                        <div className='drawer'>
                             <Hamburger
                                 btnClick={onClose}
                                 className={btnClassName}
                             />
                             {children}
                         </div>
-                        <div className="overlay" onClick={onClose}></div>
+                        <div className='overlay' onClick={onClose}></div>
                     </>
                 )}
             </div>
@@ -129,6 +129,4 @@ const Sidebar: FC<sidebarProps> = ({
             `}</style>
         </div>
     );
-};
-
-export default Sidebar;
+}

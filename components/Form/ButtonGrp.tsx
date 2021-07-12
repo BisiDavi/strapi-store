@@ -1,14 +1,14 @@
-import React from "react";
-import { priceRegex } from "../../utils";
+import React from 'react';
+import { priceRegex } from '@utils/.';
 
-export const CustomWigButtonGrp = ({ data, inputHandler }) => {
+export function CustomWigButtonGrp({ data, inputHandler }) {
     return (
-        <div className="buttonGroup">
+        <div className='buttonGroup'>
             <p>{data.name} :</p>
-            <div className="buttonGrp">
+            <div className='buttonGrp'>
                 {data.content.map((item, index) => (
                     <button
-                        type="button"
+                        type='button'
                         key={index}
                         id={item}
                         data-price={priceRegex(item)}
@@ -51,4 +51,4 @@ export const CustomWigButtonGrp = ({ data, inputHandler }) => {
             </style>
         </div>
     );
-};
+}

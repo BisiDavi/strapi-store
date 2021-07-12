@@ -1,10 +1,10 @@
 import React from 'react';
 
-const PromoBanner = () => {
+export default function PromoBanner() {
     return (
         <div className='promoBanner'>
             <h4>
-                Shop JenJen's Luxury Hair | Get virgin Hair at Affordable Price{' '}
+                Shop JenJen&#39;s Luxury Hair | Get virgin Hair at Affordable Price{' '}
             </h4>
             <style jsx>{`
                 .promoBanner {
@@ -22,7 +22,8 @@ const PromoBanner = () => {
                     color: #ffa6ca;
                     margin: 0px auto;
                     padding: 0px;
-                    font: 700 normal 14px/16px 'Open Sans', sans-serif;
+                    font: 700 normal 24px/24px 'Dancing Script', cursive;
+                    letter-spacing: 4px;
                 }
 
                 @media (max-width: 768px) {
@@ -45,4 +46,3 @@ const PromoBanner = () => {
     );
 };
 
-export default PromoBanner;

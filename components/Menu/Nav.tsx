@@ -3,12 +3,12 @@ import { signIn, signOut, useSession } from 'next-auth/client';
 import { toast, ToastContainer } from 'react-toastify';
 import { CartIcon } from '..';
 import { Hamburger } from '../Button';
-import { useCart } from '../../hooks';
+import { useCart } from '@hooks/.';
 import {
     displayCartSidebar,
     displayMenuSidebar,
     sidebarState,
-} from '../../utils/menu';
+} from '@utils/menu';
 import Logo from '../Icons/Logo';
 import 'react-toastify/dist/ReactToastify.css';
 

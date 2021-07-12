@@ -1,4 +1,4 @@
-const useLocalStorage = () => {
+export default function useLocalStorage() {
     const SetCartStorage = (cart) => {
         localStorage.setItem('cart', JSON.stringify(cart));
     };
@@ -44,6 +44,4 @@ const useLocalStorage = () => {
         setStorage,
         getStorage,
     };
-};
-
-export default useLocalStorage;
+}

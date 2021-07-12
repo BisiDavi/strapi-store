@@ -4,7 +4,7 @@ import { axiosInstance } from '@axios/axiosInstance';
 import useLoading from '@hooks/useLoading';
 import Loading from '@components/loader/Loading';
 
-const Newsletter = () => {
+export default function Newsletter() {
     const [subscriberEmail, setSubscriberEmail] = useState('');
     const { startLoading, stopLoading, loading } = useLoading();
 
@@ -83,8 +83,8 @@ const Newsletter = () => {
                     }
 
                     p {
-                        font-weight: 500;
-                        font-family: 'Open-sans', sans-serif;
+                        font: bold normal 25px/30px 'Dancing Script', cursive;
+                        letter-spacing: 5px;
                     }
 
                     .newsletter input {
@@ -153,6 +153,4 @@ const Newsletter = () => {
             </div>
         </>
     );
-};
-
-export default Newsletter;
+}

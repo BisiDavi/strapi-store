@@ -27,7 +27,6 @@ export default function Checkout() {
     const { method } = useSelector((state) => state.shipping);
     const { totalAmount } = useSelector((state) => state.totalAmount);
     const { payment, paymentDetails } = useSelector((state) => state.payment);
-    const clearCart = () => dispatch(ClearCartAction());
 
     console.log('payment', payment);
     const formCondition = details && method;
@@ -41,20 +40,16 @@ export default function Checkout() {
         ) : null;
     };
 
-    const redirectUser = () => {
-        !showModal && payment && router.push('/');
-    };
-
     useEffect(() => {
-        redirectUser();
-    }, [showModal]);
+        !showModal && payment && router.push('/');
+    }, [showModal, payment, router]);
 
     useEffect(() => {
         if (paymentConfirmed) {
             setShowModal(true);
-            clearCart();
+            dispatch(ClearCartAction());
         }
-    }, [paymentConfirmed]);
+    }, [paymentConfirmed, dispatch]);
 
     useEffect(() => setPaypalLoaded(true), []);
 
@@ -68,7 +63,7 @@ export default function Checkout() {
                         onHide={() => displayModal(false)}
                     />
                     <div className='col-lg-12 info mt-2'>
-                        <h3>Jenjen's Luxury Wigs</h3>
+                        <h3>Jenjen&#39;s Luxury Wigs</h3>
                         <div className='bread-crumb'>
                             <p>
                                 Shopping Cart <span className='mx-1'>&gt;</span>{' '}

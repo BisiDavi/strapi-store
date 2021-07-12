@@ -1,19 +1,19 @@
-import React from "react";
-import Link from "next/link";
-import { useScrollbarState } from "../../hooks";
+import React from 'react';
+import Link from 'next/link';
+import { useScrollbarState } from '@hooks/.';
 
-const CatalogTab = () => {
+export default function CatalogTab() {
     const scrolled = useScrollbarState();
     const tabPosition = scrolled
-        ? { position: "fixed", top: 0 }
-        : { position: "relative", top: "unset" };
+        ? { position: 'fixed', top: 0 }
+        : { position: 'relative', top: 'unset' };
     const tabLinks = [
-        { name: "Home", link: "/" },
-        { name: "Catalog", link: "/collection/all" },
+        { name: 'Home', link: '/' },
+        { name: 'Catalog', link: '/collection/all' },
     ];
-    const displayLink = () =>
-        tabLinks.map((tablink, index) => (
-            <span className="mx-2" key={index}>
+    function displayLink() {
+        return tabLinks.map((tablink, index) => (
+            <span className='mx-2' key={index}>
                 <Link href={tablink.link} passHref>
                     <a>{tablink.name}</a>
                 </Link>
@@ -21,20 +21,21 @@ const CatalogTab = () => {
                     {`
                         a {
                             color: white;
-                            font: 700 normal 20px/22px "Karla";
+                            font: 700 normal 20px/22px 'Karla';
                         }
                         @media (max-width: 768px) {
                             a {
-                                font: 700 normal 16px/20px "Karla";
+                                font: 700 normal 16px/20px 'Karla';
                             }
                         }
                     `}
                 </style>
             </span>
         ));
+    }
 
     return (
-        <div className="catalogTab">
+        <div className='catalogTab'>
             {displayLink()}
             <style jsx>
                 {`
@@ -49,11 +50,10 @@ const CatalogTab = () => {
                         align-items: center;
                         margin: auto;
                         justify-content: center;
+												bold normal 25px/25px 'Montserrat', sans-serif;
                     }
                 `}
             </style>
         </div>
     );
-};
-
-export default CatalogTab;
+}

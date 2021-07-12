@@ -1,12 +1,14 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import styles from "./collection.module.css";
-import { CollectionViewProps } from "../../types";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './collection.module.css';
+import { CollectionViewProps } from '../../types';
 
-const CollectionView = ({ collection }: CollectionViewProps): JSX.Element => {
+export default function CollectionView({
+    collection,
+}: CollectionViewProps): JSX.Element {
     return (
-        <div className="collectionView">
+        <div className='collectionView'>
             <span>
                 <Link href={collection.link} passHref>
                     <a>
@@ -16,7 +18,7 @@ const CollectionView = ({ collection }: CollectionViewProps): JSX.Element => {
                             height={400}
                             width={400}
                             className={styles.collectionImg}
-                            layout="responsive"
+                            layout='responsive'
                         />
                         <div className={styles.backside}>
                             <h4>{collection.text}</h4>
@@ -24,9 +26,9 @@ const CollectionView = ({ collection }: CollectionViewProps): JSX.Element => {
                     </a>
                 </Link>
             </span>
-            <div className="title">
+            <div className='title'>
                 <h4>{collection.name}</h4>
-                <i className="fas fa-long-arrow-alt-right"></i>
+                <i className='fas fa-long-arrow-alt-right'></i>
             </div>
             <style jsx>{`
                 .collectionView {
@@ -62,6 +64,4 @@ const CollectionView = ({ collection }: CollectionViewProps): JSX.Element => {
             `}</style>
         </div>
     );
-};
-
-export default CollectionView;
+}

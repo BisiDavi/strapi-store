@@ -1,39 +1,41 @@
-import React, { FC } from "react";
-import { Pagelayout } from "../../containers";
-import { v4 as uuidv4 } from "uuid";
-import policy from "../../json/deliveryPolicy.json";
+import React from 'react';
+import { Pagelayout } from '@containers/.';
+import { v4 as uuidv4 } from 'uuid';
+import policy from '@json/deliveryPolicy.json';
 
-export const displayList = (deliveryArr) => (
-    <ul>
-        {deliveryArr.map((link) => (
-            <li key={uuidv4()}>{link}</li>
-        ))}
-    </ul>
-);
-
-const DeliveryPolicy: FC = () => {
+export function displayList(deliveryArr) {
     return (
-        <Pagelayout title="Delivery Policy">
+        <ul>
+            {deliveryArr.map((link) => (
+                <li key={uuidv4()}>{link}</li>
+            ))}
+        </ul>
+    );
+}
+
+export default function DeliveryPolicy() {
+    return (
+        <Pagelayout title='Delivery Policy'>
             <>
-                <h1 className="text-center">Our Delivery Policies</h1>
-                <div className="content my-3 my-lg-5 px-lg-5 px-3">
-                    <div className="standard-delivery">
+                <h1 className='text-center'>Our Delivery Policies</h1>
+                <div className='content my-3 my-lg-5 px-lg-5 px-3'>
+                    <div className='standard-delivery'>
                         <h1>US Standard Delivery</h1>
                         {displayList(policy.ukStandardDelivery)}
                     </div>
-                    <div className="us-express-delivery">
+                    <div className='us-express-delivery'>
                         <h1>US Express Delivery</h1>
                         {displayList(policy.ukExpressDelivery)}
                     </div>
-                    <div className="international-delivery">
+                    <div className='international-delivery'>
                         <h1>International Delivery</h1>
                         {displayList(policy.internationalDelivery)}
                     </div>
-                    <div className="dhl-delivery">
+                    <div className='dhl-delivery'>
                         <h1>International/DHL Delivery</h1>
                         {displayList(policy.dhlExpress)}
                     </div>
-                    <div className="undelivered-order">
+                    <div className='undelivered-order'>
                         <h1>Undelivered Order </h1>
                         {displayList(policy.undeliveredOrder)}
                     </div>
@@ -54,6 +56,4 @@ const DeliveryPolicy: FC = () => {
             </>
         </Pagelayout>
     );
-};
-
-export default DeliveryPolicy;
+}

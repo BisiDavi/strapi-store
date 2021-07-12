@@ -1,18 +1,21 @@
-import React from "react";
-import Slider from "react-slick";
-import { Image } from "react-datocms";
-import { v4 as uuidv4 } from "uuid";
-import Link from "next/link";
-import { useCurrency } from "@hooks/.";
-import style from "@styles/ProductSlider.module.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+/* eslint-disable jsx-a11y/alt-text */
+import React from 'react';
+import Slider from 'react-slick';
+import { Image } from 'react-datocms';
+import { v4 as uuidv4 } from 'uuid';
+import Link from 'next/link';
+import { useCurrency } from '@hooks/.';
+import style from '@styles/ProductSlider.module.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 interface ProductSliderProps {
     products: any;
 }
 
-export default function ProductSlider ({ products }:ProductSliderProps): JSX.Element {
+export default function ProductSlider({
+    products,
+}: ProductSliderProps): JSX.Element {
     const { priceExchange, symbol } = useCurrency();
     const settings = {
         dots: false,
@@ -67,7 +70,7 @@ export default function ProductSlider ({ products }:ProductSliderProps): JSX.Ele
                                 className={style.productImage}
                                 data={slider.image.responsiveImage}
                             />
-                            <div className="product-info">
+                            <div className='product-info'>
                                 <div className={`${style.info} title`}>
                                     <h4>{slider.title}</h4>
                                     <h6>
@@ -155,5 +158,4 @@ export default function ProductSlider ({ products }:ProductSliderProps): JSX.Ele
             `}</style>
         </div>
     );
-};
-
+}

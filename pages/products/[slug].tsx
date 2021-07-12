@@ -1,23 +1,22 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { NextPage } from 'next';
+import ErrorPage from 'next/error';
 import { ProductpageProps } from '../../types';
-import { Pagelayout } from '../../containers';
-import { Loading, ProductDetail } from '../../components';
+import { Pagelayout } from '@containers/.';
+import { Loading, ProductDetail } from '@components/.';
 import {
     PRODUCTPAGE_QUERY,
     PRODUCT_SEO_QUERY,
     request,
     HOMEPAGE_QUERY,
-} from '../../lib';
-import ErrorPage from 'next/error';
-import ProductSlider from '../../components/Slider/ProductSlider';
+} from '@lib/.';
+import ProductSlider from '@components/Slider/ProductSlider';
 
-const ProductPage: NextPage<ProductpageProps> = ({
+export default function ProductPage({
     seoData,
     product,
     otherProducts,
-}): JSX.Element => {
+}: ProductpageProps): JSX.Element {
     const router = useRouter();
 
     if (!router.isFallback && !product?.slug) {
@@ -38,7 +37,7 @@ const ProductPage: NextPage<ProductpageProps> = ({
             <ProductSlider products={other_Products} />
         </Pagelayout>
     );
-};
+}
 
 export async function getStaticProps({ params }) {
     const getproduct = await request({
@@ -80,5 +79,3 @@ export async function getStaticPaths() {
         fallback: true,
     };
 }
-
-export default ProductPage;

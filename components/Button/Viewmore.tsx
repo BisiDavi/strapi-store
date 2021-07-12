@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const Viewmore = () => {
+export default function Viewmore() {
     return (
         <div>
             <Link href='/collection/all' passHref>
@@ -45,6 +45,4 @@ const Viewmore = () => {
             </style>
         </div>
     );
-};
-
-export default Viewmore;
+}

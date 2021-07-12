@@ -2,7 +2,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CollectionView from './CollectionView';
 
-const Collections = () => {
+export default function Collections() {
     const collections = [
         {
             img: '/customwig.webp',
@@ -65,6 +65,4 @@ const Collections = () => {
             </style>
         </div>
     );
-};
-
-export default Collections;
+}

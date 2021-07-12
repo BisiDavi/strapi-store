@@ -39,7 +39,7 @@ export default function Checkout({ data }) {
                                 lineHeight='25px'
                                 fontFamily='helvetica'
                             >
-                                Hello Jenjen's Luxury Wigs, a customer,{' '}
+                                Hello Jenjen&#39;s Luxury Wigs, a customer,{' '}
                                 {data.name} just checked out some wigs &#128512;
                             </MjmlText>
                         </MjmlColumn>
@@ -146,6 +146,7 @@ export default function Checkout({ data }) {
                                 <a
                                     style={{ color: 'blue' }}
                                     target='_blank'
+                                    rel='noreferrer'
                                     href='https://www.jenjensluxury.com/'
                                 >
                                     Jenjensluxury.com

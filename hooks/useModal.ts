@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-const useModal = () => {
+export default function useModal() {
     const [modal, setModal] = useState(false);
     const displayModal = (modalState) => setModal(modalState);
 
@@ -8,6 +8,4 @@ const useModal = () => {
         modal,
         displayModal,
     };
-};
-
-export default useModal;
+}

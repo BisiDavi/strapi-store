@@ -1,25 +1,25 @@
-import React, { FC, useState } from "react";
-import Head from "next/head";
-import { PagecontainerProps } from "../types";
-import { Header, Footer } from ".";
+import React, { FC, useState } from 'react';
+import Head from 'next/head';
+import { PagecontainerProps } from '../types';
+import { Header, Footer } from '.';
 
-const Pagelayout: FC<PagecontainerProps> = ({
+export default function Pagelayout({
     title,
     children,
-}): JSX.Element => {
+}: PagecontainerProps): JSX.Element {
     const [promoDisplay, setPromoDisplay] = useState(true);
-    const promoHandler = () => setPromoDisplay(false);
+    function promoHandler() {
+        return setPromoDisplay(false);
+    }
 
     return (
         <div>
             <Head>
-                <title>Jenjen's Luxury hair & beauty | {title}</title>
+                <title>Jenjen&#39;s Luxury hair & beauty | {title}</title>
             </Head>
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
             {children}
             <Footer />
         </div>
     );
-};
-
-export default Pagelayout;
+}

@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
-import { HomepageSlider } from '../../components';
-import { SelectWigs, WigCheckbox } from '../../components/Form';
-import { CustomWigButtonGrp } from '../../components/Form/ButtonGrp';
-import { Pagelayout } from '../../containers';
-import customWigs from '../../json/customWigs.json';
-import styles from '../../styles/customWig.module.css';
-import { sumTotal } from '../../utils';
+import { HomepageSlider } from '@components/.';
+import { SelectWigs, WigCheckbox } from '@components/Form';
+import { CustomWigButtonGrp } from '@components/Form/ButtonGrp';
+import { Pagelayout } from '@containers/.';
+import customWigs from '@json/customWigs.json';
+import { sumTotal } from '@utils/.';
+import styles from '@styles/customWig.module.css';
 
-const CustomWig = () => {
+export default function CustomWig() {
     const [formState, setFormState] = useState({
         elasticBand: '',
         babyHair: '',
     });
 
-    useEffect(() => btnStyle(), [formState.elasticBand]);
+    useEffect(() => {
+        function btnStyle() {
+            formState.elasticBand === 'No' && styleBtn('Yes (+$2.50)', 'No');
+
+            formState.elasticBand === 'Yes (+$2.50)' &&
+                styleBtn('No', 'Yes (+$2.50)');
+        }
+    }, [formState.elasticBand]);
 
     const selectHandler = (e) => {
         setFormState({
@@ -40,13 +47,6 @@ const CustomWig = () => {
         (document.getElementById(id1).style.color = 'black'),
         (document.getElementById(id2).style.backgroundColor = 'blue')),
             (document.getElementById(id2).style.color = 'white');
-    };
-
-    const btnStyle = () => {
-        formState.elasticBand === 'No' && styleBtn('Yes (+$2.50)', 'No');
-
-        formState.elasticBand === 'Yes (+$2.50)' &&
-            styleBtn('No', 'Yes (+$2.50)');
     };
 
     const radioHandler = (e) => {
@@ -165,6 +165,4 @@ const CustomWig = () => {
             </Container>
         </Pagelayout>
     );
-};
-
-export default CustomWig;
+}

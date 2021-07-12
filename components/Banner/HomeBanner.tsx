@@ -1,27 +1,28 @@
-import React from "react";
-import Image from "next/image";
-import { Button } from "..";
+import React from 'react';
+import Image from 'next/image';
+import { Button } from '..';
 
-const HomeBanner = () => {
+export default function HomeBanner() {
     return (
-        <div className="Homebanner">
-            <div className="overlay">
-                <h3>WELCOME TO JENJEN'S LUXURY WIG</h3>
-                <div className="welcometext">
+        <div className='Homebanner'>
+            <div className='overlay'>
+                <h3>WELCOME TO JENJEN&#39;S LUXURY WIG</h3>
+                <div className='welcometext'>
                     <Image
-                        src="/shopArrivalText.webp"
+                        src='/shopArrivalText.webp'
                         height={60}
                         width={1000}
-                        layout="responsive"
+                        layout='responsive'
+                        alt='shop new arrivals'
                     />
                 </div>
-                <span className="button">
+                <span className='button'>
                     <Button
-                        text="SHOP NOW"
-                        linkTo="#shop"
-                        bgColor="linear-gradient(90deg, #a43c59 0%, #cb4a6e 49%, #a43c59 100%)"
-                        width="250px"
-                        height="50px"
+                        text='SHOP NOW'
+                        linkTo='#shop'
+                        bgColor='linear-gradient(90deg, #a43c59 0%, #cb4a6e 49%, #a43c59 100%)'
+                        width='250px'
+                        height='50px'
                     />
                 </span>
             </div>
@@ -41,7 +42,7 @@ const HomeBanner = () => {
                         text-align: center;
                     }
                     .Homebanner {
-                        background-image: url("./mainBg.webp");
+                        background-image: url('./mainBg.webp');
                         height: 500px;
                         background-size: cover;
                         width: 100%;
@@ -50,7 +51,7 @@ const HomeBanner = () => {
                         flex-direction: column;
                         margin: auto;
                         justify-content: center;
-                        font-family: "raleway";
+                        font-family: 'raleway';
                         align-items: center;
                     }
                     .welcometext {
@@ -65,7 +66,7 @@ const HomeBanner = () => {
                         color: white;
                         text-align: center;
                         justify-content: center;
-                        font-family: "raleway";
+                        font-family: 'raleway';
                         border: none;
                         margin: auto;
                     }
@@ -92,6 +93,4 @@ const HomeBanner = () => {
             </style>
         </div>
     );
-};
-
-export default HomeBanner;
+}

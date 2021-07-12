@@ -1,8 +1,8 @@
-import React from "react";
-import { Form } from "react-bootstrap";
-import styles from "../../styles/customWig.module.css";
+import React from 'react';
+import { Form } from 'react-bootstrap';
+import styles from '@styles/customWig.module.css';
 
-const WigCheckbox = ({ form, radioHandler }) => {
+export default function WigCheckbox({ form, radioHandler }) {
     return (
         <Form.Group className={styles.checkbox} controlId={form.name}>
             <Form.Label>{form.name} :</Form.Label>
@@ -13,12 +13,10 @@ const WigCheckbox = ({ form, radioHandler }) => {
                     value={item}
                     id={`${item} ${form.name}`}
                     onChange={radioHandler}
-                    type="radio"
+                    type='radio'
                     label={item}
                 />
             ))}
         </Form.Group>
     );
-};
-
-export default WigCheckbox;
+}

@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import styles from '../../styles/SelectCurrency.module.css';
 
-const CountryDropdownbutton: FC = (): JSX.Element => {
+export default function CountryDropdownbutton(): JSX.Element {
     const [countryState, setCountryState] = useState({
         country: '',
         region: '',
@@ -10,19 +10,19 @@ const CountryDropdownbutton: FC = (): JSX.Element => {
 
     console.log('countryState', countryState);
 
-    const selectCountry = (val) => {
+    function selectCountry(val) {
         setCountryState({
             ...countryState,
             country: val,
         });
-    };
+    }
 
-    const selectRegion = (val) => {
+    function selectRegion(val) {
         setCountryState({
             ...countryState,
             region: val,
         });
-    };
+    }
 
     const { country, region } = countryState;
 
@@ -40,6 +40,4 @@ const CountryDropdownbutton: FC = (): JSX.Element => {
             />
         </div>
     );
-};
-
-export default CountryDropdownbutton;
+}

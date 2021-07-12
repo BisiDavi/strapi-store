@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
-import styles from '../../styles/checkout.module.css';
-import { AdditionalInformationAction } from '../../store/actions/AdditionalInformationAction';
+import { AdditionalInformationAction } from '@store/actions/AdditionalInformationAction';
+import styles from '@styles/checkout.module.css';
 
-const AdditionalInformation = () => {
+export default function AdditionalInformation() {
     const [value, setValue] = useState('');
     const dispatch = useDispatch();
 
@@ -14,7 +14,7 @@ const AdditionalInformation = () => {
 
     useEffect(() => {
         dispatch(AdditionalInformationAction(value));
-    }, [value]);
+    }, [value, dispatch]);
 
     return (
         <div className={styles.form}>
@@ -34,6 +34,4 @@ const AdditionalInformation = () => {
             </Form>
         </div>
     );
-};
-
-export default AdditionalInformation;
+}

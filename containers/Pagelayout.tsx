@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { renderMetaTags } from 'react-datocms';
 import { useCart } from '@hooks/.';
@@ -20,7 +20,7 @@ export default function Pagelayout({
 
     useEffect(() => {
         persistCart();
-    }, []);
+    }, [persistCart]);
 
     const pageTitle = product
         ? title

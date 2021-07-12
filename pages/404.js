@@ -1,13 +1,13 @@
-import React from "react";
-import Link from "next/link";
-import { FiWifiOff } from "react-icons/fi";
-import { IoIosRefreshCircle } from "react-icons/io";
-import Logo from "../components/Icons/Logo";
-import styles from "../styles/errorpage.module.css";
+import React from 'react';
+import Link from 'next/link';
+import { FiWifiOff } from 'react-icons/fi';
+import { IoIosRefreshCircle } from 'react-icons/io';
+import Logo from '@components/Icons/Logo';
+import styles from '@styles/errorpage.module.css';
 
-const ErrorPage = () => {
+export default function ErrorPage() {
     return (
-        <div className="network-error">
+        <div className='network-error'>
             <Logo />
             <span className={styles.wifi}>
                 <FiWifiOff />
@@ -15,7 +15,7 @@ const ErrorPage = () => {
             <h3>Oops, Network Issues</h3>
             <p>Hello customer, please try reconnecting again</p>
             <span className={styles.retry}>
-                <Link href="/" passHref>
+                <Link href='/' passHref>
                     <a>
                         <IoIosRefreshCircle />
                     </a>
@@ -54,6 +54,4 @@ const ErrorPage = () => {
             </style>
         </div>
     );
-};
-
-export default ErrorPage;
+}

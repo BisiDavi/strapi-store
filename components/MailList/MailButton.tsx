@@ -1,17 +1,17 @@
-import React, { FC } from "react";
-import { Button } from "react-bootstrap";
-import styles from "../../styles/Mailbutton.module.css";
+import React, { FC } from 'react';
+import { Button } from 'react-bootstrap';
+import styles from '../../styles/Mailbutton.module.css';
 
 interface MailButtonProps {
     showMail: () => void;
 }
 
-const MailButton: FC<MailButtonProps> = ({ showMail }): JSX.Element => {
+export default function MailButton({ showMail }: MailButtonProps): JSX.Element {
     return (
         <div className={styles.mailButton}>
             <div className={styles.btnStyle}>
                 <Button
-                    variant="dark"
+                    variant='dark'
                     className={styles.button}
                     onClick={showMail}
                 >
@@ -20,6 +20,4 @@ const MailButton: FC<MailButtonProps> = ({ showMail }): JSX.Element => {
             </div>
         </div>
     );
-};
-
-export default MailButton;
+}

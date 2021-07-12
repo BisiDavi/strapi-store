@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useCart, useCurrency } from '../../hooks';
-import styles from '../../styles/checkout.module.css';
-import { getTotalAmount } from '../../utils';
-import { CurrencyAction } from '../../store/actions/currencyAction';
-import { TotalAmountAction } from '../../store/actions/TotalAmountAction';
+import { useCart, useCurrency } from '@hooks/.';
+import { getTotalAmount } from '@utils/.';
+import { CurrencyAction } from '@store/actions/currencyAction';
+import { TotalAmountAction } from '@store/actions/TotalAmountAction';
+import styles from '@styles/checkout.module.css';
 
-const OrderSummary = () => {
+export default function OrderSummary() {
     const { products } = useCart();
     const {
         priceExchange,
@@ -35,7 +35,7 @@ const OrderSummary = () => {
         } else {
             dispatch(CurrencyAction(dropdownValues.dollar));
         }
-    }, [method]);
+    }, [dispatch, dropdownValues.naira, dropdownValues.dollar, method]);
 
     const shippingPrice = () => {
         if (method !== null && method.includes('$20.00')) {
@@ -77,7 +77,7 @@ const OrderSummary = () => {
 
     useEffect(() => {
         dispatch(TotalAmountAction(formatToNumber(itemTotalAmount)));
-    }, [itemTotalAmount]);
+    }, [itemTotalAmount, dispatch, formatToNumber]);
 
     return (
         <div className={styles.form}>
@@ -133,6 +133,4 @@ const OrderSummary = () => {
             </style>
         </div>
     );
-};
-
-export default OrderSummary;
+}

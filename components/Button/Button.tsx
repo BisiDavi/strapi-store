@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import { ButtonProps } from "../../types";
+import React from 'react';
+import Link from 'next/link';
+import { ButtonProps } from '../../types';
 
-const Button = (props: ButtonProps) => {
+export default function Button(props: ButtonProps) {
     return (
         <>
             {props.asLink ? (
@@ -33,11 +33,9 @@ const Button = (props: ButtonProps) => {
                     width: ${props.width};
                     color: ${props.color};
                     text-align: center;
-                    font-family: "raleway";
+                    font-family: 'raleway';
                 `}
             </style>
         </>
     );
-};
-
-export default Button;
+}

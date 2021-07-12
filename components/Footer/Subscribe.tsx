@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-const Subscribe = () => {
+export default function Subscribe() {
     return (
-        <div className="mailinglist ">
+        <div className='mailinglist '>
             <h1>JOIN OUT MAILING LIST!</h1>
             <p>
                 Be among the first to hear abou our discount sales, new arrivals
                 & more!
             </p>
             <form>
-                <input placeholder="Email" type="email" required />
-                <button type="submit">Subscribe</button>
+                <input placeholder='Email' type='email' required />
+                <button type='submit'>Subscribe</button>
                 <p>
                     By completing this form you are signing up to receive our
                     emails and can unsubscribe at any time
@@ -18,6 +18,4 @@ const Subscribe = () => {
             </form>
         </div>
     );
-};
-
-export default Subscribe;
+}

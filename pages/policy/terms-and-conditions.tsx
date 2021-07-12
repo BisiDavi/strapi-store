@@ -1,11 +1,11 @@
-import React from "react";
-import { Pagelayout } from "../../containers";
+import React from 'react';
+import { Pagelayout } from '../../containers';
 
-const TermsAndCondition = () => {
+export default function TermsAndCondition() {
     return (
-        <Pagelayout title="Terms and Condition">
-            <h1 className="text-center">Our Terms and Conditions </h1>
-            <div className="content my-lg-5 px-lg-5 px-3 my-3">
+        <Pagelayout title='Terms and Condition'>
+            <h1 className='text-center'>Our Terms and Conditions </h1>
+            <div className='content my-lg-5 px-lg-5 px-3 my-3'>
                 <h3>General</h3>
                 <p>
                     Access to the website www.Jenjenluxurywigs.com and the
@@ -15,7 +15,7 @@ const TermsAndCondition = () => {
                     you are agreeing to all of the Terms of Service, as may be
                     updated by us from time to time. You should check this page
                     regularly to take notice of any changes we may have made to
-                    the Terms of Service.{" "}
+                    the Terms of Service.{' '}
                 </p>
                 <p>
                     Access to this website is permitted on a temporary basis,
@@ -23,7 +23,7 @@ const TermsAndCondition = () => {
                     without notice. We will not be liable if for any reason this
                     website is unavailable at any time or for any period. From
                     time to time, we may restrict access to some parts or all of
-                    this website.{" "}
+                    this website.{' '}
                 </p>
 
                 <h3>Terms of Sale</h3>
@@ -31,7 +31,7 @@ const TermsAndCondition = () => {
                     By placing an order online with www.Jenjenluxurywigs.com you
                     are offering to purchase a product and subject to these
                     terms and conditions. All orders are subject to availability
-                    and confirmation of the order price.{" "}
+                    and confirmation of the order price.{' '}
                 </p>
                 <p>
                     When placing an order you undertake that you are 18 or over,
@@ -71,7 +71,7 @@ const TermsAndCondition = () => {
                     returned within 72 hours after the recorded receipt of the
                     item. We will not accept any returns or exchanges of any
                     products if the wig has been worn. All shipping, handling
-                    costs and money transfer fees will be at the customer's
+                    costs and money transfer fees will be at the customer&#39;s
                     expense therefore we suggest sending through a courier that
                     provides tracking information and delivery confirmation
                     since we are not responsible for lost packages. We must
@@ -183,6 +183,4 @@ const TermsAndCondition = () => {
             </style>
         </Pagelayout>
     );
-};
-
-export default TermsAndCondition;
+}

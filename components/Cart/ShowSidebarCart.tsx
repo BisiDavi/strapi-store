@@ -1,19 +1,20 @@
-import React, { FC } from "react";
-import styles from "../../styles/CartSidebar.module.css";
-import { Image } from "react-datocms";
-import { useDispatch } from "react-redux";
-import { useCurrency } from "../../hooks";
+/* eslint-disable jsx-a11y/alt-text */
+import React, { FC } from 'react';
+import { Image } from 'react-datocms';
+import { useDispatch } from 'react-redux';
+import { useCurrency } from '@hooks/.';
 import {
     DecrementCounterAction,
     IncrementCounterAction,
-} from "../../store/actions/counterActions";
+} from '@store/actions/counterActions';
+import styles from '@styles/CartSidebar.module.css';
 
 interface ShowSidebarCartProps {
     products: any;
 }
-const ShowSidebarCart: FC<ShowSidebarCartProps> = ({
+export default function ShowSidebarCart({
     products,
-}): JSX.Element => {
+}: ShowSidebarCartProps): JSX.Element {
     const dispatch = useDispatch();
     const { priceExchange, symbol } = useCurrency();
 
@@ -27,23 +28,23 @@ const ShowSidebarCart: FC<ShowSidebarCartProps> = ({
     return (
         <>
             {products.map((product, index) => (
-                <div key={index} className="my-4">
+                <div key={index} className='my-4'>
                     <div className={styles.productProfile}>
                         <Image
                             data={product.image.responsiveImage}
                             className={styles.productImg}
                         />
-                        <div className="product-info">
-                            <div className="text">
+                        <div className='product-info'>
+                            <div className='text'>
                                 <h1>{product.title}</h1>
                             </div>
-                            <div className="calculator">
-                                <div className="controls">
+                            <div className='calculator'>
+                                <div className='controls'>
                                     <button
                                         onClick={() => decreaseCount(index)}
                                     >
-                                        {" "}
-                                        -{" "}
+                                        {' '}
+                                        -{' '}
                                     </button>
                                     <span>{product.count}</span>
                                     <button
@@ -141,6 +142,4 @@ const ShowSidebarCart: FC<ShowSidebarCartProps> = ({
             ))}
         </>
     );
-};
-
-export default ShowSidebarCart;
+}

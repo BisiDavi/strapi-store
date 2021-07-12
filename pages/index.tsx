@@ -1,4 +1,4 @@
-import React from 'react';
+import dynamic from 'next/dynamic';
 import { Pagelayout } from '@containers/.';
 import { useInstagram } from '@hooks/.';
 import {
@@ -6,12 +6,12 @@ import {
     Collections,
     ProductsList,
     Newsletter,
-    InstagramSlider,
 } from '@components/.';
 import { HOMEPAGE_QUERY, HOMEPAGE_SEO_QUERY, request } from '@lib/.';
 import { Viewmore } from '@components/Button';
 import { HomeProps } from '../types';
-import InstaSlider from '@components/Slider/instaSlider';
+
+const InstaSlider = dynamic(() => import('../components/Slider/instaSlider'));
 
 export default function Home({
     productData,
@@ -35,7 +35,6 @@ export default function Home({
                     <Viewmore />
                     <Newsletter />
                     {instagramMedia !== null ? (
-                        //<InstagramSlider InstagramMedia={instagramMedia.data} />
                         <InstaSlider InstagramMedia={instagramMedia.data} />
                     ) : (
                         'loading'

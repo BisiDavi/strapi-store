@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GetInstagramAuthCode } from '@utils/.';
 import { checkExpiryTime } from '@utils/checkExpiryTime';
-import useLocalStorage from './useLocalStorage';
 import { dbSaveInstagramToken, getInstagramToken } from '@middlewares/request';
 
 export default function useInstagram() {
@@ -14,57 +13,12 @@ export default function useInstagram() {
     const [instagramMedia, setInstagramMedia] = useState(null);
     const { setStartTime, checkTime } = checkExpiryTime();
 
-    async function getShortLivedToken() {
-        await axios
-            .post(`/api/get-instagram-token/${authCode}`)
-            .then((response) => {
-                setInstagramToken({
-                    ...instagramToken,
-                    shortTokenDetails: response.data,
-                });
-            })
-            .catch((error) => console.error('error', error));
-    }
-
-    async function getLongLivedToken() {
-        await axios
-            .get(
-                `/api/get-instagram-token/${instagramToken.shortTokenDetails.access_token}`,
-            )
-            .then((response) => {
-                setInstagramToken({
-                    ...instagramToken,
-                    longTokenDetails: response.data,
-                });
-                const instaTokenFromDb = dbSaveInstagramToken(
-                    JSON.stringify(response.data),
-                );
-                console.log('instaTokenFromDb', instaTokenFromDb);
-            })
-            .catch((error) => console.error('error', error));
-    }
-
-    console.log('instagramToken', instagramToken);
 
     async function getInstagramUserMedia(token) {
         await axios
             .get(`/api/get-instagram-media/${token}`)
             .then((response) => {
                 setInstagramMedia(response.data);
-            })
-            .catch((error) => console.error('error', error));
-    }
-
-    async function fetchRefreshToken() {
-        await axios
-            .get(
-                `/api/get-refresh-token/${instagramToken.longTokenDetails.access_token}`,
-            )
-            .then((response) => {
-                setInstagramToken({
-                    ...instagramToken,
-                    longTokenDetails: response.data,
-                });
             })
             .catch((error) => console.error('error', error));
     }
@@ -77,17 +31,42 @@ export default function useInstagram() {
     }, []);
 
     useEffect(() => {
-        if (authCode !== null) {
-            getShortLivedToken();
+        async function getShortToken() {
+            await axios
+                .post(`/api/get-instagram-token/${authCode}`)
+                .then((response) => {
+                    setInstagramToken({
+                        ...instagramToken,
+                        shortTokenDetails: response.data,
+                    });
+                })
+                .catch((error) => console.error('error', error));
         }
-    }, [authCode]);
+        authCode !== null && getShortToken();
+    }, [instagramToken, authCode]);
 
     useEffect(() => {
+        async function getLongTimeCode() {
+            await axios
+                .get(
+                    `/api/get-instagram-token/${instagramToken.shortTokenDetails.access_token}`,
+                )
+                .then((response) => {
+                    setInstagramToken({
+                        ...instagramToken,
+                        longTokenDetails: response.data,
+                    });
+                    const instaTokenFromDb = dbSaveInstagramToken(
+                        JSON.stringify(response.data),
+                    );
+                })
+                .catch((error) => console.error('error', error));
+        }
         if (instagramToken.shortTokenDetails !== null) {
             setStartTime();
-            getLongLivedToken();
+            getLongTimeCode();
         }
-    }, [instagramToken.shortTokenDetails]);
+    }, [instagramToken, setStartTime]);
 
     useEffect(() => {
         if (instagramToken.longTokenDetails !== null) {
@@ -99,29 +78,41 @@ export default function useInstagram() {
 
     useEffect(() => {
         getInstagramToken().then((response) => {
-            console.log('instaTokenFromDB response', response.data.data);
             const responseArray = response.data.data;
             const getLastItem = responseArray[responseArray.length - 1];
-            console.log('getLastItem', getLastItem);
             getInstagramUserMedia(getLastItem.access_token);
         });
     }, []);
 
-    console.log('instagramMedia', instagramMedia);
 
     useEffect(() => {
+        async function refreshToken() {
+            await axios
+                .get(
+                    `/api/get-refresh-token/${instagramToken.longTokenDetails.access_token}`,
+                )
+                .then((response) => {
+                    setInstagramToken({
+                        ...instagramToken,
+                        longTokenDetails: response.data,
+                    });
+                })
+                .catch((error) => console.error('error', error));
+        }
+
         if (instagramToken.longTokenDetails !== null) {
             const expiresIn = Number(
                 instagramToken.longTokenDetails.expires_in,
             );
             const duration = checkTime(expiresIn);
+
             if (duration < 1000) {
-                fetchRefreshToken();
+                refreshToken();
             } else {
                 console.log('long access token still valid');
             }
         }
-    }, []);
+    }, [checkTime, instagramToken]);
 
     return {
         instagramMedia,

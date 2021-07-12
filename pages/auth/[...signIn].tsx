@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Image from 'next/image';
 import {
     getProviders,
     signIn as AuthSignIn,
@@ -18,7 +19,7 @@ export default function Signin({ providers }) {
 
     useEffect(() => {
         session && router.push('/');
-    }, [session]);
+    }, [session, router]);
 
     console.log('session', session);
 
@@ -64,10 +65,11 @@ export default function Signin({ providers }) {
                                                 }
                                                 key={provider.name}
                                             >
-                                                <img
+                                                <Image
                                                     src={displayIcon(
                                                         provider.name,
                                                     )}
+                                                    alt={provider.name}
                                                     width='25'
                                                     height='25'
                                                 />
@@ -88,7 +90,7 @@ export default function Signin({ providers }) {
                 ) : (
                     <div className='row'>
                         <h3 className='text-center'>
-                            Welcome {session.user.name}, to Jenjen's Luxury
+                            Welcome {session.user.name}, to Jenjen&#39;s Luxury
                             Wigs. continue{' '}
                             <Link href='/collection/all'>
                                 <a>shopping</a>

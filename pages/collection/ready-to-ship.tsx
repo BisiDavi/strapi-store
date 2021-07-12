@@ -1,13 +1,13 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { ProductsList } from "../../components";
-import { Pagelayout } from "../../containers";
-import { READY_TO_SHIP_QUERY, request } from "../../lib";
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { ProductsList } from '@components/.';
+import { Pagelayout } from '@containers/.';
+import { READY_TO_SHIP_QUERY, request } from '@lib/.';
 
-const ReadyToShip = ({ shipWigs }) => {
+export default function ReadyToShip({ shipWigs }) {
     const { allProducts } = shipWigs;
     return (
-        <Pagelayout title="Ready To Ship">
+        <Pagelayout title='Ready To Ship'>
             <Container fluid>
                 <Row>
                     <Col lg={12} xs={12}>
@@ -40,7 +40,7 @@ const ReadyToShip = ({ shipWigs }) => {
             </Container>
         </Pagelayout>
     );
-};
+}
 
 export async function getStaticProps() {
     const graphqlRequest = await request({
@@ -53,5 +53,3 @@ export async function getStaticProps() {
         },
     };
 }
-
-export default ReadyToShip;

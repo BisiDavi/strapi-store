@@ -12,7 +12,7 @@ export default function CartNotification(req, res) {
     });
 
     const mailData = {
-        from: "Jenjen's Luxury Wigs",
+        from: 'Jenjen&#39;s Luxury Wigs',
         to: 'readydevfreelancer@gmail.com',
         subject: `Add to Cart Notification, ${req.body.userName} just added to cart!`,
         html: `<div>${req.body.userName} added ${req.body.cart} to cart, the cost is ${req.body.amount}</div>`,

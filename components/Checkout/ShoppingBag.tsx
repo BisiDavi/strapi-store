@@ -1,9 +1,10 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import { useCart, useCurrency } from '../../hooks';
+import { useCart, useCurrency } from '@hooks/.';
 import { Image } from 'react-datocms';
-import styles from '../../styles/checkout.module.css';
+import styles from '@styles/checkout.module.css';
 
-const ShoppingBag = () => {
+export default function ShoppingBag() {
     const { products } = useCart();
     const { priceExchange, symbol } = useCurrency();
 
@@ -102,6 +103,4 @@ const ShoppingBag = () => {
             </style>
         </div>
     );
-};
-
-export default ShoppingBag;
+}

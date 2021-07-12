@@ -1,33 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
-import { useCurrency } from '../../hooks';
-import { RushOrderAction } from '../../store/actions/RushOrderAction';
+import { useCurrency } from '@hooks/.';
+import { RushOrderAction } from '@store/actions/RushOrderAction';
 
-const SelectRushOrder = ({ content }) => {
+export default function SelectRushOrder({ content }) {
     const { priceExchange, symbol } = useCurrency();
     const dispatch = useDispatch();
     const [selectedOption, setSelectedOption] = useState('');
     const { title, options } = content;
 
-    const optionHandler = (e) => {
-        setSelectedOption(e.target.value);
-    };
-    const rushOrder = () => {
-        selectedOption.includes('55') && dispatch(RushOrderAction(55));
-
-        selectedOption.includes('Choose Rush Order') &&
-            dispatch(RushOrderAction(false));
-    };
+    function optionHandler(e) {
+        return setSelectedOption(e.target.value);
+    }
 
     console.log('selectedOption', selectedOption);
 
     useEffect(() => {
-        rushOrder();
-        return () => {
-            rushOrder();
-        };
-    }, [selectedOption]);
+        selectedOption.includes('55') && dispatch(RushOrderAction(55));
+
+        selectedOption.includes('Choose Rush Order') &&
+            dispatch(RushOrderAction(false));
+    }, [dispatch, selectedOption]);
     return (
         <Form>
             <Form.Group controlId='exampleForm.SelectCustom'>
@@ -73,6 +67,4 @@ const SelectRushOrder = ({ content }) => {
             </Form.Group>
         </Form>
     );
-};
-
-export default SelectRushOrder;
+}

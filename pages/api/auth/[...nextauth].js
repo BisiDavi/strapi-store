@@ -33,4 +33,6 @@ const options = {
     debug: true,
 };
 
-export default (req, res) => NextAuth(req, res, options);
+export default function CustomNextAuth(req, res) {
+    return NextAuth(req, res, options);
+}

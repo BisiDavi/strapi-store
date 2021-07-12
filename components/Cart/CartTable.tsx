@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from 'react';
 import { Image } from 'react-datocms';
 import { FcFullTrash } from 'react-icons/fc';
@@ -84,10 +85,6 @@ export default function CartTable(props) {
         setLoading(false);
     }
 
-		useEffect(() => {
-
-		},[])
-
     return (
         <div className={styles.cartTable}>
             {loading && <Loading />}
@@ -108,7 +105,7 @@ export default function CartTable(props) {
                                 />
                             </div>
                             <div className={styles.name}>
-                                <h3> "{product.title}"</h3>
+                                <h3>&#34;{product.title}&#34;</h3>
                                 <FcFullTrash
                                     onClick={() => deleteProduct(index)}
                                 />

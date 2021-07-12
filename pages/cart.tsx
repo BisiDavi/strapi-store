@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { Pagelayout } from '../containers';
-import { useAuthModal, useCart } from '../hooks';
-import { CartTable, EmptyCartTable } from '../components/Cart';
-import { LoginModal } from '../components/Modal';
-import { Loading } from '../components';
+import { Pagelayout } from '@containers/.';
+import { useAuthModal, useCart } from '@hooks/.';
+import { CartTable, EmptyCartTable } from '@components/Cart';
+import { LoginModal } from '@components/Modal';
+import { Loading } from '@components/.';
 
-const Cart = () => {
+export default function Cart() {
     const { productCount, products } = useCart();
     const { modal, loading, displayModal } = useAuthModal();
 
@@ -28,6 +28,4 @@ const Cart = () => {
             </Container>
         </Pagelayout>
     );
-};
-
-export default Cart;
+}

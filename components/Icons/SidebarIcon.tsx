@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { Mailinglist, SelectCurrencyDropdown } from '..';
 
-const SidebarIcon = (): JSX.Element => {
+export default function SidebarIcon(): JSX.Element {
     const currencyState = useSelector((state) => state.currency);
     const currency = currencyState.name;
 
@@ -15,13 +16,29 @@ const SidebarIcon = (): JSX.Element => {
     }, [currency]);
     return (
         <div className='sidebar'>
-            <img src='/email.png' onClick={() => setMailModal(true)} />
+            <Image
+                src='/email.png'
+                alt='email'
+                height={30}
+                width={30}
+                onClick={() => setMailModal(true)}
+            />
             <Mailinglist show={mailModal} onHide={() => setMailModal(false)} />
             <div className='currency' onClick={() => setShowDropdown(true)}>
                 {currency === 'Naira' ? (
-                    <img src='/naira.png' />
+                    <Image
+                        height={30}
+                        width={30}
+                        alt='naira'
+                        src='/naira.png'
+                    />
                 ) : (
-                    <img src='/dollar.png' />
+                    <Image
+                        height={30}
+                        width={30}
+                        alt='dollar'
+                        src='/dollar.png'
+                    />
                 )}
             </div>
             {showDropdown && <SelectCurrencyDropdown />}
@@ -53,6 +70,4 @@ const SidebarIcon = (): JSX.Element => {
             </style>
         </div>
     );
-};
-
-export default SidebarIcon;
+}

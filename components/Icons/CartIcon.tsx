@@ -2,7 +2,7 @@ import React from 'react';
 import { FaStarOfLife } from 'react-icons/fa';
 import styles from '../../styles/cart.module.css';
 
-const CartIcon = ({ count, cartClick }) => {
+export default function CartIcon({ count, cartClick }) {
     return (
         <div onClick={cartClick} className='cartIcon position-relative'>
             {Number(count) > 0 && <FaStarOfLife className={styles.cartSvg} />}
@@ -43,6 +43,4 @@ const CartIcon = ({ count, cartClick }) => {
             </style>
         </div>
     );
-};
-
-export default CartIcon;
+}

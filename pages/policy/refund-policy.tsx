@@ -1,26 +1,26 @@
-import React from "react";
-import { Pagelayout } from "../../containers";
-import { displayList } from "./delivery-policy";
+import React from 'react';
+import { Pagelayout } from '../../containers';
+import { displayList } from './delivery-policy';
 
 const returnConditions = [
-    "All orders must be returned in the original packaging.",
-    "All returns/exchanges must be made within 72 hours of recorded receipt. ",
-    "Exchanges are available for products of an equal value. For exchanges of products with a lesser value, customers will be offered store credit. ",
-    "Returns/exchanges where the seal holding the hair extension in place has been removed will be refused.",
+    'All orders must be returned in the original packaging.',
+    'All returns/exchanges must be made within 72 hours of recorded receipt. ',
+    'Exchanges are available for products of an equal value. For exchanges of products with a lesser value, customers will be offered store credit. ',
+    'Returns/exchanges where the seal holding the hair extension in place has been removed will be refused.',
 ];
-const RefundPolicy = () => {
+export default function RefundPolicy() {
     return (
-        <Pagelayout title="Refund Policy">
-            <h1 className="text-center">Our Refund Policy</h1>
-            <div className="content px-5 my-5">
+        <Pagelayout title='Refund Policy'>
+            <h1 className='text-center'>Our Refund Policy</h1>
+            <div className='content px-5 my-5'>
                 <p>
                     Due to the nature of our products,
                     <b> refunds are prohibited and all sales are final</b>.
                 </p>
-                <div className="conditions">
+                <div className='conditions'>
                     {displayList(returnConditions)}
                 </div>
-                <div className="note">
+                <div className='note'>
                     <b>Note:</b>
                     <p>
                         Customers will be responsible for the shipping and
@@ -34,7 +34,7 @@ const RefundPolicy = () => {
                         any circumstance.
                     </p>
                 </div>
-                <div className="cancellation">
+                <div className='cancellation'>
                     <h4>Cancellations</h4>
                     <p>
                         Orders may be cancelled provided that they have not yet
@@ -47,6 +47,4 @@ const RefundPolicy = () => {
             </div>
         </Pagelayout>
     );
-};
-
-export default RefundPolicy;
+}

@@ -1,11 +1,15 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { BsCheckCircle } from 'react-icons/bs';
 import { PageModal } from '.';
 import Logo from '../Icons/Logo';
-import styles from '../../styles/Pagemodal.module.css';
+import styles from '@styles/Pagemodal.module.css';
 import { SuccessModalProps } from '../../types';
 
-const SuccessModal: FC<SuccessModalProps> = ({ modal, onHide, content }) => {
+export default function SuccessModal({
+    modal,
+    onHide,
+    content,
+}: SuccessModalProps) {
     return (
         <PageModal modalLogo={<Logo />} show={modal} onHide={onHide} icon>
             <div className='modal-content'>
@@ -43,6 +47,4 @@ const SuccessModal: FC<SuccessModalProps> = ({ modal, onHide, content }) => {
             </div>
         </PageModal>
     );
-};
-
-export default SuccessModal;
+}

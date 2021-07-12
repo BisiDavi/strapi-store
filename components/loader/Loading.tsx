@@ -3,11 +3,11 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from './loader.module.css';
 
-const Loading = () => {
+export default function Loading() {
     return (
         <div className={styles.loaderContainer}>
             <Head>
-                <title>loading... | Jenjen's Luxury hair & beauty</title>
+                <title>loading... | Jenjen&#39;s Luxury hair & beauty</title>
             </Head>
             <span className={styles.logoContainer}>
                 <Image
@@ -15,10 +15,9 @@ const Loading = () => {
                     src='/logo.jpg'
                     height={150}
                     width={150}
+                    alt='logo'
                 />
             </span>
         </div>
     );
-};
-
-export default Loading;
+}

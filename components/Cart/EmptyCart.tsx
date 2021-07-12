@@ -1,10 +1,10 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 
-const EmptyCart = () => {
+export default function EmptyCart() {
     return (
-        <div className="cart-empty">
-            <Image height={70} width={70} src="/cartIcon.svg" />
+        <div className='cart-empty'>
+            <Image alt='cart icon' height={70} width={70} src='/cartIcon.svg' />
             <h1>
                 Dear customer, your cart is empty, please add a product to your
                 cart, thank you
@@ -27,6 +27,4 @@ const EmptyCart = () => {
             </style>
         </div>
     );
-};
-
-export default EmptyCart;
+}

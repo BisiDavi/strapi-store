@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Modal } from 'react-bootstrap';
-import styles from '../../styles/Pagemodal.module.css';
+import styles from '@styles/Pagemodal.module.css';
 
 interface PageModalProps {
     show: boolean;
@@ -11,9 +11,12 @@ interface PageModalProps {
     modalLogo?: JSX.Element;
     keyboard?: boolean;
     icon?: boolean;
+    children;
 }
 
-const PageModal: FC<PageModalProps> = (props): JSX.Element => {
+export default function PageModal(
+    props: PropsWithChildren<PageModalProps>,
+): JSX.Element {
     return (
         <Modal
             size='lg'
@@ -40,6 +43,4 @@ const PageModal: FC<PageModalProps> = (props): JSX.Element => {
             `}</style>
         </Modal>
     );
-};
-
-export default PageModal;
+}

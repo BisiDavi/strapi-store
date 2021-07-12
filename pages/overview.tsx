@@ -6,7 +6,7 @@ export default function Overview() {
     return (
         <>
             <Head>
-                <title>Overview | Jenjen's Luxury Wigs</title>
+                <title>Overview | Jenjen&#39;s Luxury Wigs</title>
             </Head>
             <div className='Overview container-fluid vh-100'>
                 <div className='row vh-100'>
@@ -17,7 +17,7 @@ export default function Overview() {
                     </div>
                     <div className='col-lg-10 content'>
                         <h3 className='text-center'>
-                            Hello, Welcome to Jenjen's Luxury Wig
+                            Hello, Welcome to Jenjen&#39;s Luxury Wig
                         </h3>
                         <p>
                             Get to know the number of users on your site, number

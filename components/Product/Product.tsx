@@ -1,24 +1,25 @@
-import React, { FC } from "react";
-import { Image } from "react-datocms";
-import Link from "next/link";
-import { ProductProps } from "../../types";
-import styles from "../../styles/Product.module.css";
-import { useCurrency } from "../../hooks";
+/* eslint-disable jsx-a11y/alt-text */
+import React from 'react';
+import { Image } from 'react-datocms';
+import Link from 'next/link';
+import { useCurrency } from '@hooks/.';
+import { ProductProps } from '../../types';
+import styles from '@styles/Product.module.css';
 
-const Product: FC<ProductProps> = ({ product }): JSX.Element => {
+export default function Product({ product }: ProductProps): JSX.Element {
     const { priceExchange, symbol } = useCurrency();
     return (
         <div className={styles.productView}>
             <Link href={`/products/${product.slug}`} passHref>
                 <a>
-                    <div className="front-view">
+                    <div className='front-view'>
                         <Image
                             className={styles.product}
                             data={product.image.responsiveImage}
                         />
                     </div>
                     <div className={styles.backView}>
-                         <h1>{product.title}</h1>
+                        <h1>{product.title}</h1>
                         <h3>
                             {symbol}
                             {priceExchange(product.price)}
@@ -36,6 +37,4 @@ const Product: FC<ProductProps> = ({ product }): JSX.Element => {
             `}</style>
         </div>
     );
-};
-
-export default Product;
+}

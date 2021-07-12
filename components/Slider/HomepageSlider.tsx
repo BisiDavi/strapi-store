@@ -28,7 +28,8 @@ const HomepageSlider: FC = (): JSX.Element => {
         setSliderState(true);
     };
 
-    const sliderArr = ['/mainBg.webp', '/pinkBg.webp'];
+    //const sliderArr = ['/mainBg.webp', '/pinkBg.webp'];
+    const sliderArr = ['/mainBg.webp'];
 
     return (
         <div className='homepageSlider'>
@@ -44,6 +45,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                             className='sliderImg'
                             width={1000}
                             height={450}
+                            alt={slider}
                             layout='responsive'
                         />
                     </div>
@@ -56,6 +58,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                             className='sliderImg'
                             width={1000}
                             height={450}
+                            alt='banner'
                             layout='responsive'
                         />
                     </div>
@@ -65,6 +68,7 @@ const HomepageSlider: FC = (): JSX.Element => {
                             className='sliderImg'
                             width={400}
                             height={400}
+                            alt='gif'
                             layout='responsive'
                         />
                     </div>

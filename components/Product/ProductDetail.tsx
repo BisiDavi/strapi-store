@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { FC } from 'react';
 import Link from 'next/link';
-import { Image, ResponsiveImageType } from 'react-datocms';
+import { Image } from 'react-datocms';
 import { useDispatch } from 'react-redux';
 import { Button } from '../Button';
 import { AddToCartAction } from '../../store/actions/CartActions';

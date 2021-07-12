@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import styles from '../../styles/loginModal.module.css';
+import styles from '@styles/loginModal.module.css';
 
-const LoginModal = ({ show, onHide }) => {
+export default function LoginModal({ show, onHide }) {
     const router = useRouter();
 
     const userLogin = () => {
@@ -71,6 +71,4 @@ const LoginModal = ({ show, onHide }) => {
             </style>
         </Modal>
     );
-};
-
-export default LoginModal;
+}

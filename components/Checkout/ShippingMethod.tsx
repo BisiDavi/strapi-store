@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { ShippingMethodAction } from '../../store/actions/ShippingMethodAction';
-import styles from '../../styles/checkout.module.css';
+import { ShippingMethodAction } from '@store/actions/ShippingMethodAction';
+import styles from '@styles/checkout.module.css';
 import { shippingMethodArray } from '../../types';
 
-const ShippingMethod: FC = (): JSX.Element => {
+export default function ShippingMethod(): JSX.Element {
     const dispatch = useDispatch();
     const methodArr: shippingMethodArray[] = [
         {
@@ -22,12 +22,12 @@ const ShippingMethod: FC = (): JSX.Element => {
         },
     ];
 
-    const radioBtnHandler = (e) => {
+    function radioBtnHandler(e) {
         dispatch(ShippingMethodAction(e.target.value));
         console.log('selected', e.target.value);
-    };
+    }
 
-    const displayRadioBtn = () => {
+    function displayRadioBtn() {
         return methodArr.map((formInput, index) => (
             <Form.Group key={index} controlId={formInput.name}>
                 <Form.Check
@@ -40,7 +40,7 @@ const ShippingMethod: FC = (): JSX.Element => {
                 />
             </Form.Group>
         ));
-    };
+    }
 
     return (
         <div className={styles.form}>
@@ -54,6 +54,4 @@ const ShippingMethod: FC = (): JSX.Element => {
             <Form className='d-flex flex-column'>{displayRadioBtn()}</Form>
         </div>
     );
-};
-
-export default ShippingMethod;
+}

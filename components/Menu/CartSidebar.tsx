@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
-import { CartSidebarProps } from '../../types';
+import Link from 'next/link';
 import Sidebar from './Sidebar';
 import { Button } from '..';
-import ShowSidebarCart from '../Cart/ShowSidebarCart';
-import Link from 'next/link';
+import ShowSidebarCart from '@components/Cart/ShowSidebarCart';
 import { EmptyCart } from '../Cart';
-import { getTotalAmount } from '../../utils';
-import { useCart, useCurrency } from '../../hooks';
-import styles from '../../styles/CartSidebar.module.css';
+import { getTotalAmount } from '@utils/.';
+import { useCart, useCurrency } from '@hooks/.';
+import styles from '@styles/CartSidebar.module.css';
+import { CartSidebarProps } from '../../types';
 
-const CartSidebar: FC<CartSidebarProps> = ({
+export default function CartSidebar({
     onClose,
     btnClassName,
     pushRight,
-}): JSX.Element => {
+}: CartSidebarProps): JSX.Element {
     const { products } = useCart();
     const { priceExchange, symbol } = useCurrency();
 
@@ -117,6 +117,4 @@ const CartSidebar: FC<CartSidebarProps> = ({
             </Sidebar>
         </div>
     );
-};
-
-export default CartSidebar;
+}

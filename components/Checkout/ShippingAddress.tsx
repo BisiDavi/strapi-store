@@ -1,10 +1,10 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CountryDropdownbutton from '@components/Form/CountryDropdown';
-import styles from '@styles/checkout.module.css';
 import { UserDetailsAction } from '@store/actions/UserDetailsAction';
+import styles from '@styles/checkout.module.css';
 import { useRedux } from '@hooks/.';
 
-const ShippingAddress: FC = (): JSX.Element => {
+export default function ShippingAddress(): JSX.Element {
     const { dispatch } = useRedux();
 
     const [formState, setFormState] = useState({
@@ -22,7 +22,7 @@ const ShippingAddress: FC = (): JSX.Element => {
         if (formStateLength === 5) {
             dispatch(UserDetailsAction(formState));
         }
-    }, [formState]);
+    }, [formState, dispatch, formStateLength]);
 
     const formArr = [
         { name: 'fullName', placeHolder: 'Name*' },
@@ -125,6 +125,4 @@ const ShippingAddress: FC = (): JSX.Element => {
             </style>
         </div>
     );
-};
-
-export default ShippingAddress;
+}

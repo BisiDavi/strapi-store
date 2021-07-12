@@ -42,7 +42,7 @@ export default function Newsletter({ data }) {
                                 lineHeight='25px'
                                 fontFamily='helvetica'
                             >
-                                I'm so happy right now &#128512;{' '}
+                                I&#39;m so happy right now &#128512;{' '}
                             </MjmlText>
                             <MjmlText
                                 fontSize='18px'
@@ -77,7 +77,7 @@ export default function Newsletter({ data }) {
                                 fontFamily='helvetica'
                                 font-style='italic'
                             >
-                                Jenjen's Luxury wigs.
+                                Jenjen&#39;s Luxury wigs.
                             </MjmlText>
                         </MjmlColumn>
                     </MjmlSection>

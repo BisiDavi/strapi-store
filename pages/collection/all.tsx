@@ -1,15 +1,14 @@
-import React from "react";
-import { NextPage } from "next";
-import { ProductsList } from "../../components";
-import { Pagelayout } from "../../containers";
-import { FETCH_ALL_PRODUCT_QUERY, request } from "../../lib";
-import { AllWigsProps } from "../../types";
+import React from 'react';
+import { ProductsList } from '@components/.';
+import { Pagelayout } from '@containers/.';
+import { FETCH_ALL_PRODUCT_QUERY, request } from '@lib/.';
+import { AllWigsProps } from '../../types';
 
-const AllWigs: NextPage<AllWigsProps> = ({ products }): JSX.Element => {
+export default function AllWigs({ products }: AllWigsProps): JSX.Element {
     const { allProducts } = products;
     return (
-        <Pagelayout title="Get awesome wigs at an affordable price">
-            <div className="allproducts">
+        <Pagelayout title='Get awesome wigs at an affordable price'>
+            <div className='allproducts'>
                 <ProductsList products={allProducts} />
                 <style jsx>
                     {`
@@ -21,7 +20,7 @@ const AllWigs: NextPage<AllWigsProps> = ({ products }): JSX.Element => {
             </div>
         </Pagelayout>
     );
-};
+}
 
 export async function getStaticProps() {
     const graphqlRequest = await request({
@@ -39,5 +38,3 @@ export async function getStaticProps() {
         },
     };
 }
-
-export default AllWigs;

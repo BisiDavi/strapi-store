@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function useRedux() {
     const dispatch = useDispatch();
 
-    function selectState(stateNode) {
+    function SelectState(stateNode) {
         const selectedState = useSelector((state) => state[stateNode]);
         return selectedState;
     }
 
     return {
         dispatch,
-        selectState,
+        SelectState,
     };
 }

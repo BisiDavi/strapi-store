@@ -1,17 +1,15 @@
-import React from "react";
-import Link from "next/link";
-import EmptyCart from "./EmptyCart";
-import styles from "../../styles/cart.module.css";
+import React from 'react';
+import Link from 'next/link';
+import EmptyCart from './EmptyCart';
+import styles from '@styles/cart.module.css';
 
-const EmptyCartTable = () => {
+export default function EmptyCartTable() {
     return (
         <span className={styles.emptycart}>
             <EmptyCart />
-            <Link href="/collection/all" passHref>
+            <Link href='/collection/all' passHref>
                 <a>View Wigs</a>
             </Link>
         </span>
     );
-};
-
-export default EmptyCartTable;
+}

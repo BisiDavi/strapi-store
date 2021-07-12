@@ -1,5 +1,5 @@
 import useRedux from '@hooks/useRedux';
 
 export default function getCheckoutDetails() {
-    const { selectState } = useRedux();
+    const { SelectState } = useRedux();
 }
