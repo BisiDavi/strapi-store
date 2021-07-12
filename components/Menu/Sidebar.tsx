@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, CSSProperties, FC } from 'react';
+import  { PropsWithChildren, CSSProperties, FC } from 'react';
 import Link from 'next/link';
 import { v4 as uuidv4 } from 'uuid';
 import { Hamburger } from '../Button';

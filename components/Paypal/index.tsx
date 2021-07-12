@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { PayPalButton } from 'react-paypal-button-v2';
 import { useDispatch } from 'react-redux';
 import { PaypalProps } from '../../types';

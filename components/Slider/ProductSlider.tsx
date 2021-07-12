@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react';
 import Slider from 'react-slick';
 import { Image } from 'react-datocms';
 import { v4 as uuidv4 } from 'uuid';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import { HomepageSlider } from '@components/.';
 import { SelectWigs, WigCheckbox } from '@components/Form';

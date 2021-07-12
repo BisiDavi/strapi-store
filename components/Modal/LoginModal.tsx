@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import React from 'react';
 import { Modal } from 'react-bootstrap';
 import styles from '@styles/loginModal.module.css';
 

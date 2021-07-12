@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react';
 import { useCart, useCurrency } from '@hooks/.';
 import { Image } from 'react-datocms';
 import styles from '@styles/checkout.module.css';

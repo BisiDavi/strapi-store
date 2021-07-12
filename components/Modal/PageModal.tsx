@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import  { PropsWithChildren } from 'react';
 import { Modal } from 'react-bootstrap';
 import styles from '@styles/Pagemodal.module.css';
 

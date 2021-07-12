@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import Link from 'next/link';
 import Sidebar from './Sidebar';
 import { Button } from '..';

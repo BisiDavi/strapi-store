@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsCheckCircle } from 'react-icons/bs';
 import { PageModal } from '.';
 import Logo from '../Icons/Logo';

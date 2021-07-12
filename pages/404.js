@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { FiWifiOff } from 'react-icons/fi';
 import { IoIosRefreshCircle } from 'react-icons/io';

@@ -1,4 +1,4 @@
-import React from 'react';
+import  from 'react';
 import Link from 'next/link';
 import { ButtonProps } from '../../types';
 

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import  { FC, useState } from 'react';
 import Head from 'next/head';
 import { PagecontainerProps } from '../types';
 import { Header, Footer } from '.';

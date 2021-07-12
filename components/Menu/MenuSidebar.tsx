@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import styles from '../../styles/Sidebar.module.css';
 import { sidebarProps } from '../../types';
 import Sidebar, { displayMenu } from './Sidebar';

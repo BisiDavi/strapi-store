@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pagelayout } from '../../containers';
 
 export default function PrivacyPolicy() {

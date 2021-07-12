@@ -1,7 +1,6 @@
-import React from "react";
-import { CartSidebar, MenuSidebar } from "../components/Menu";
+import { CartSidebar, MenuSidebar } from '../components/Menu';
 
-export const sidebarState = (menuState) => (menuState ? "menu opened" : "menu");
+export const sidebarState = (menuState) => (menuState ? 'menu opened' : 'menu');
 
 export const displayMenuSidebar = (menu, menuHandler) =>
     menu && (

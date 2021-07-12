@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaStarOfLife } from 'react-icons/fa';
 import styles from '../../styles/cart.module.css';
 

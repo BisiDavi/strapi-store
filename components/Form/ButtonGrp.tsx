@@ -1,4 +1,3 @@
-import React from 'react';
 import { priceRegex } from '@utils/.';
 
 export function CustomWigButtonGrp({ data, inputHandler }) {

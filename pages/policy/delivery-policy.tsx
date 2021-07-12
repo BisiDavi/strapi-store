@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pagelayout } from '@containers/.';
 import { v4 as uuidv4 } from 'uuid';
 import policy from '@json/deliveryPolicy.json';

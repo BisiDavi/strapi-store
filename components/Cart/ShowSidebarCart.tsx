@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { FC } from 'react';
 import { Image } from 'react-datocms';
 import { useDispatch } from 'react-redux';
 import { useCurrency } from '@hooks/.';

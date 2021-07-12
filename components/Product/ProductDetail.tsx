@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { FC } from 'react';
 import Link from 'next/link';
 import { Image } from 'react-datocms';
 import { useDispatch } from 'react-redux';

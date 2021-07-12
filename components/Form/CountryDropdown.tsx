@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import styles from '../../styles/SelectCurrency.module.css';
 

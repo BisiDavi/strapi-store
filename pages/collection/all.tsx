@@ -1,4 +1,3 @@
-import React from 'react';
 import { ProductsList } from '@components/.';
 import { Pagelayout } from '@containers/.';
 import { FETCH_ALL_PRODUCT_QUERY, request } from '@lib/.';

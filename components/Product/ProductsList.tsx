@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import { IProduct } from "../../types";
 import Product from "./Product";
 
@@ -14,7 +13,7 @@ const ProductsList: FC<productsProps> = ({ products }): JSX.Element => {
                     <Product key={product.id} product={product} />
                 ))}
             </div>
-            
+
             <style jsx>{`
                 .products {
                     display: grid;

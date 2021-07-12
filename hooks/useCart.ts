@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import useLocalStorage from './useLocalStorage';
 import { useSelector, useDispatch } from 'react-redux';
 import { AddCartFromStorage } from '@store/actions/CartActions';

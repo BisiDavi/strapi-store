@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { signIn } from 'next-auth/client';
 import { toast } from 'react-toastify';
 
 export default function EmailSignin() {
     const [userEmail, setUserEmail] = useState('');
 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+    function handleChange(e: ChangeEvent<HTMLInputElement>): void {
         return setUserEmail(e.target.value);
     }
     function submitHandler(e): void {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { toast, ToastContainer } from 'react-toastify';
 import { CartIcon } from '..';

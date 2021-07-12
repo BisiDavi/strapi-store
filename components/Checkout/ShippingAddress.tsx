@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import CountryDropdownbutton from '@components/Form/CountryDropdown';
 import { UserDetailsAction } from '@store/actions/UserDetailsAction';
 import styles from '@styles/checkout.module.css';

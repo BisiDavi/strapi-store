@@ -1,4 +1,3 @@
-import React from 'react';
 import { ProductsList } from '..';
 
 export default function OtherProducts({ products }) {

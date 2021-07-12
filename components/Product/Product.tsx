@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react';
 import { Image } from 'react-datocms';
 import Link from 'next/link';
 import { useCurrency } from '@hooks/.';

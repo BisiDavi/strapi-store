@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import EmptyCart from './EmptyCart';
 import styles from '@styles/cart.module.css';

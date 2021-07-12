@@ -1,4 +1,4 @@
-import React, { useRef, useState, FC } from 'react';
+import { useRef } from 'react';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
@@ -6,8 +6,7 @@ import style from '../../styles/HomepageSlider.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const HomepageSlider: FC = (): JSX.Element => {
-    const [sliderState, setSliderState] = useState(true);
+export default function HomepageSlider(): JSX.Element {
     const sliderRef = useRef(null);
     const settings = {
         dots: true,
@@ -17,15 +16,6 @@ const HomepageSlider: FC = (): JSX.Element => {
         autoplay: true,
         speed: 1500,
         autoplaySpeed: 2500,
-    };
-    const play = () => {
-        sliderRef.current.slickPlay();
-        setSliderState(false);
-    };
-
-    const pause = () => {
-        sliderRef.current.slickPause();
-        setSliderState(true);
     };
 
     //const sliderArr = ['/mainBg.webp', '/pinkBg.webp'];
@@ -216,6 +206,4 @@ const HomepageSlider: FC = (): JSX.Element => {
             `}</style>
         </div>
     );
-};
-
-export default HomepageSlider;
+}

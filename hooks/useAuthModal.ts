@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import { useSession } from 'next-auth/client';
 import { useModal } from '.';
 

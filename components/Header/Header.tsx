@@ -1,4 +1,3 @@
-import React from 'react';
 import { AlertBanner, Nav, PromoBanner } from '..';
 
 export default function Header({ promoDisplay, promoHandler }) {

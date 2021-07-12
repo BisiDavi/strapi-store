@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { Button } from 'react-bootstrap';
 import styles from '../../styles/Mailbutton.module.css';
 
