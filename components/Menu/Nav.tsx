@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { toast, ToastContainer } from 'react-toastify';
 import { CartIcon } from '..';
@@ -49,7 +49,7 @@ export default function Nav() {
                 )}
                 {session && (
                     <>
-                        Signed in as {session.user.name} <br />
+                        Hello {session.user?.name || session.user.email} <br />
                         <button onClick={() => signOut()}>Sign out</button>
                     </>
                 )}
@@ -70,6 +70,7 @@ export default function Nav() {
                         align-items: center;
                         width: 100%;
                         height: 110px;
+                        font-family: 'Montserrat', sans-serif;
                         position: relative;
                     }
                     .signupStatus button {

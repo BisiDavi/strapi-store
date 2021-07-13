@@ -3,7 +3,7 @@ import { Pagelayout } from '../../containers';
 export default function TermsAndCondition() {
     return (
         <Pagelayout title='Terms and Condition'>
-            <h1 className='text-center'>Our Terms and Conditions </h1>
+            <h1 className='text-center mt-2'>Our Terms and Conditions </h1>
             <div className='content my-lg-5 px-lg-5 px-3 my-3'>
                 <h3>General</h3>
                 <p>
@@ -160,6 +160,9 @@ export default function TermsAndCondition() {
             </div>
             <style jsx>
                 {`
+								.content, h1{
+									font-family: 'Montserrat', sans-serif;
+								}
                         h1{
                             font-weight:bold;
                         }

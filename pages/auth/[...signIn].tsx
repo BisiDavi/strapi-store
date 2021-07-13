@@ -1,4 +1,4 @@
-import  { useEffect } from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import {
     getProviders,
@@ -17,11 +17,13 @@ export default function Signin({ providers }) {
     const [session, loading] = useSession();
     const { signIn } = router.query;
 
+    const signInText = signIn[0].includes('-') && signIn[0].replace('-', ' ');
+    console.log('signIn', signIn);
+    console.log('signInText', signInText);
+
     useEffect(() => {
         session && router.push('/');
     }, [session, router]);
-
-    console.log('session', session);
 
     const displayIcon = (icon) => {
         switch (icon) {
@@ -42,7 +44,7 @@ export default function Signin({ providers }) {
                 {!session ? (
                     <div className='row'>
                         <h3 className='text-center'>
-                            Hello Dear Customer, Please {signIn}, we want to
+                            Hello Dear Customer, Please {signInText}, we want to
                             know you.
                         </h3>
 
@@ -75,7 +77,7 @@ export default function Signin({ providers }) {
                                                 />
                                                 <span>
                                                     {' '}
-                                                    {signIn} with{' '}
+                                                    {signInText} with{' '}
                                                     <span className='mx-1'>
                                                         {provider.name}
                                                     </span>
@@ -107,6 +109,7 @@ export default function Signin({ providers }) {
                             justify-content: center;
                             text-align: center;
                             align-items: center;
+                            font-family: 'Montserrat', sans-serif;
                         }
                         h3.text-center a {
                             color: #ffa6ca;
@@ -127,6 +130,7 @@ export default function Signin({ providers }) {
                             color: white;
                             background-color: #ffa6ca;
                             align-items: center;
+                            padding: 10px 15px;
                             justify-content: space-around;
                         }
 
@@ -158,6 +162,9 @@ export default function Signin({ providers }) {
                         @media (max-width: 768px) {
                             .sign-in h3 {
                                 font-size: 18px;
+                            }
+                            button {
+                                font-size: 14px;
                             }
                         }
                     `}

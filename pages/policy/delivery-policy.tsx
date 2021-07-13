@@ -16,7 +16,7 @@ export default function DeliveryPolicy() {
     return (
         <Pagelayout title='Delivery Policy'>
             <>
-                <h1 className='text-center'>Our Delivery Policies</h1>
+                <h1 className='text-center mt-3'>Our Delivery Policies</h1>
                 <div className='content my-3 my-lg-5 px-lg-5 px-3'>
                     <div className='standard-delivery'>
                         <h1>US Standard Delivery</h1>
@@ -40,6 +40,10 @@ export default function DeliveryPolicy() {
                     </div>
                 </div>
                 <style jsx>{`
+                    .content,
+                    h1 {
+                        font-family: 'Montserrat', sans-serif;
+                    }
                     h1 {
                         font-weight: bold;
                     }

@@ -1,9 +1,9 @@
-
 export default function PromoBanner() {
     return (
         <div className='promoBanner'>
             <h4>
-                Shop JenJen&#39;s Luxury Hair | Get virgin Hair at Affordable Price{' '}
+                Shop JenJen&#39;s Luxury Hair | Get virgin Hair at Affordable
+                Price{' '}
             </h4>
             <style jsx>{`
                 .promoBanner {
@@ -12,7 +12,7 @@ export default function PromoBanner() {
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    height: 30px;
+                    height: 50px;
                 }
                 .desktopHide {
                     display: none;
@@ -31,17 +31,18 @@ export default function PromoBanner() {
                     }
                     h4,
                     h6 {
-                        font-size: 12px;
+                        font-size: 15px;
+                        line-height: 18px;
                     }
                 }
                 @media (max-width: 400px) {
                     h4,
                     h6 {
-                        font-size: 10px;
+                        font-size: 14px;
+                        line-height: 15px;
                     }
                 }
             `}</style>
         </div>
     );
-};
-
+}

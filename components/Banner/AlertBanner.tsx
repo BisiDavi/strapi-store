@@ -1,4 +1,3 @@
-
 export default function AlertBanner({ displayHandler }) {
     return (
         <div className='alertBanner'>
@@ -23,7 +22,7 @@ export default function AlertBanner({ displayHandler }) {
                     }
                     h3 {
                         color: white;
-                        font-size: 1vw;
+                        font-size: 20px;
                         text-transform: lowercase;
                         background-color: #ffa6ca;
                         text-align: center;

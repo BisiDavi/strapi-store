@@ -1,9 +1,17 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { signIn } from 'next-auth/client';
 import { toast } from 'react-toastify';
+import useLocalStorage from '@hooks/useLocalStorage';
 
 export default function EmailSignin() {
     const [userEmail, setUserEmail] = useState('');
+    const { setStorage } = useLocalStorage();
+
+    useEffect(() => {
+        const condition = userEmail.length !== 0;
+
+        condition && setStorage('email', userEmail);
+    }, [setStorage, userEmail]);
 
     function handleChange(e: ChangeEvent<HTMLInputElement>): void {
         return setUserEmail(e.target.value);

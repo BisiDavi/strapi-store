@@ -22,6 +22,7 @@ const options = {
     ],
     pages: {
         signIn: '/auth/signin',
+        verifyRequest: '/auth/verify-request',
     },
     database: process.env.DATABASE_URL,
     secret: process.env.NEXT_PUBLIC_SECRET,

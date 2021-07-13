@@ -99,7 +99,6 @@ export default function Footer() {
                     ul.footerLinks.row li a {
                         margin: 0px 10px;
                         color: #5c5c5c;
-                        font-weight: 700;
                         font-size: 18px;
                         font-family: 'Montserrat', sans-serif;
                     }
@@ -178,6 +177,9 @@ export default function Footer() {
                         .payment-gateway li img {
                             height: 50px;
                             width: 200px;
+                        }
+                        .copyright p {
+                            font-size: 16px;
                         }
                     }
                 `}

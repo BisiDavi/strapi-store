@@ -19,9 +19,6 @@ export default function Pagelayout({
     const [promoDisplay, setPromoDisplay] = useState(true);
     const promoHandler = () => setPromoDisplay(false);
     const { persistCart } = useCart();
-    const [session] = useSession();
-
-    console.log('session', session);
 
     useEffect(() => {
         persistCart();

@@ -4,7 +4,7 @@ export default function PrivacyPolicy() {
     return (
         <Pagelayout title='Privacy Policy'>
             <>
-                <h1 className='text-center'>Our Privacy Policies</h1>
+                <h1 className='text-center mt-3'>Our Privacy Policies</h1>
                 <div className='content px-3 my-3 my-lg-5 px-lg-5'>
                     <p>
                         This Policy explains what happens to any personal data
@@ -108,6 +108,10 @@ export default function PrivacyPolicy() {
                     </li>
                 </div>
                 <style jsx>{`
+                    .content,
+                    h1 {
+                        font-family: 'Montserrat', sans-serif;
+                    }
                     h1.text-center {
                         font-weight: bold;
                     }
