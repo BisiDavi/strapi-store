@@ -53,7 +53,7 @@ export default function Footer() {
                     ))}
                 </ul>
                 <div className='copyright'>
-                    <i className='far fa-copyright fa-2x'></i>
+                    <i className='far fa-copyright'></i>
                     <p>2021, Jenjens Luxury Wigs.</p>
                 </div>
 
@@ -83,6 +83,7 @@ export default function Footer() {
                         text-align: center;
                         font-size: 1em;
                         position: static;
+                        font-family: 'Montserrat', sans-serif;
                         bottom: 0px;
                         width: 100%;
                     }
@@ -100,6 +101,7 @@ export default function Footer() {
                         color: #5c5c5c;
                         font-weight: 700;
                         font-size: 18px;
+                        font-family: 'Montserrat', sans-serif;
                     }
                     .copyright i {
                         font-weight: 100;
@@ -112,6 +114,7 @@ export default function Footer() {
                     p {
                         margin-bottom: 0px;
                         font-size: 20px;
+                        font-family: 'Montserrat', sans-serif;
                     }
                     .social {
                         display: flex;

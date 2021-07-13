@@ -20,11 +20,12 @@ export default function CatalogTab() {
                     {`
                         a {
                             color: white;
-                            font: 700 normal 20px/22px 'Karla';
+                            font: 700 normal 20px/22px 'Montserrat', sans-serif;
                         }
                         @media (max-width: 768px) {
                             a {
-                                font: 700 normal 16px/20px 'Karla';
+                                font: 700 normal 16px/20px 'Montserrat',
+                                    sans-serif;
                             }
                         }
                     `}
@@ -49,7 +50,7 @@ export default function CatalogTab() {
                         align-items: center;
                         margin: auto;
                         justify-content: center;
-												bold normal 25px/25px 'Montserrat', sans-serif;
+                        font: bold normal 25px/25px 'Montserrat', sans-serif;
                     }
                 `}
             </style>

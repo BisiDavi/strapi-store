@@ -33,6 +33,10 @@ export default function Product({ product }: ProductProps): JSX.Element {
                     margin: auto;
                     flex-direction: column;
                 }
+                h1 {
+                    font-family: normal normal 25px/28px 'Montserrat',
+                        sans-serif;
+                }
             `}</style>
         </div>
     );

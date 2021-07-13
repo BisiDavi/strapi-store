@@ -15,7 +15,6 @@ export default async function GetInstagramMediaHandler(req, res) {
                 },
             })
             .then((response) => {
-                console.log('response GetInstagramMediaHandler', response.data);
                 res.status(200).json(response.data);
             })
             .catch((error) => {

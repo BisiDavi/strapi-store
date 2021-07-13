@@ -1,4 +1,4 @@
-import  { PropsWithChildren, CSSProperties, FC } from 'react';
+import { PropsWithChildren, CSSProperties, FC } from 'react';
 import Link from 'next/link';
 import { v4 as uuidv4 } from 'uuid';
 import { Hamburger } from '../Button';
@@ -92,6 +92,7 @@ export default function Sidebar({
                     z-index: 1000000;
                     width: 100%;
                     height: 100vh;
+                    font-family: 'Montserrat', sans-serif;
                 }
                 .sidebar-wrapper {
                     height: 100vh;
@@ -108,7 +109,7 @@ export default function Sidebar({
                     background-color: white;
                     color: #ffa6ca;
                     width: 20vw;
-                    font-family: Karla, sans-serif;
+                    font-family: 'Montserrat', sans-serif;
                     font-weight: 700;
                     z-index: 100000;
                     font-style: normal;

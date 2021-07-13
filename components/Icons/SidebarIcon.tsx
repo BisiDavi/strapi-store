@@ -19,23 +19,23 @@ export default function SidebarIcon(): JSX.Element {
             <Image
                 src='/email.png'
                 alt='email'
-                height={60}
-                width={60}
+                height={45}
+                width={45}
                 onClick={() => setMailModal(true)}
             />
             <Mailinglist show={mailModal} onHide={() => setMailModal(false)} />
             <div className='currency' onClick={() => setShowDropdown(true)}>
                 {currency === 'Naira' ? (
                     <Image
-                        height={60}
-                        width={60}
+                        height={45}
+                        width={45}
                         alt='naira'
                         src='/naira.png'
                     />
                 ) : (
                     <Image
-                        height={60}
-                        width={60}
+                        height={45}
+                        width={45}
                         alt='dollar'
                         src='/dollar.png'
                     />

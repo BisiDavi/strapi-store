@@ -69,7 +69,7 @@ export default function InstaSlider({
     };
     return (
         <div className='InstagramSlider'>
-            <h1 className="mb-4">Jenjen&#39;s Luxury Wigs Instagram Feeds</h1>
+            <h1 className='mb-4'>Jenjen&#39;s Luxury Wigs Instagram Feeds</h1>
             <Slider className='instagramSlider' {...settings}>
                 {InstagramMedia.map((media) => {
                     if (media.media_type === 'IMAGE') {
@@ -173,6 +173,7 @@ export default function InstaSlider({
                         font-size: 15px;
                         text-align: center;
                         font-style: italic;
+                        font-family: 'Montserrat', sans-serif;
                     }
                 `}
             </style>
