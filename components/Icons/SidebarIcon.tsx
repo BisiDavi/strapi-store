@@ -19,23 +19,23 @@ export default function SidebarIcon(): JSX.Element {
             <Image
                 src='/email.png'
                 alt='email'
-                height={30}
-                width={30}
+                height={60}
+                width={60}
                 onClick={() => setMailModal(true)}
             />
             <Mailinglist show={mailModal} onHide={() => setMailModal(false)} />
             <div className='currency' onClick={() => setShowDropdown(true)}>
                 {currency === 'Naira' ? (
                     <Image
-                        height={30}
-                        width={30}
+                        height={60}
+                        width={60}
                         alt='naira'
                         src='/naira.png'
                     />
                 ) : (
                     <Image
-                        height={30}
-                        width={30}
+                        height={60}
+                        width={60}
                         alt='dollar'
                         src='/dollar.png'
                     />
@@ -50,6 +50,7 @@ export default function SidebarIcon(): JSX.Element {
                         top: 300px;
                         border: 1px solid black;
                         z-index: 1000;
+                        padding: 10px;
                     }
 
                     .sidebar img {

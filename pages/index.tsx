@@ -21,7 +21,6 @@ export default function Home({
     const { allProducts } = productData;
     const { instagramMedia } = useInstagram();
 
-    console.log('instagramMedia', instagramMedia);
 
     isConnected && console.log('You are connected to mongoDB!');
 

@@ -13,7 +13,6 @@ export default function useInstagram() {
     const [instagramMedia, setInstagramMedia] = useState(null);
     const { setStartTime, checkTime } = checkExpiryTime();
 
-
     async function getInstagramUserMedia(token) {
         await axios
             .get(`/api/get-instagram-media/${token}`)
@@ -56,9 +55,7 @@ export default function useInstagram() {
                         ...instagramToken,
                         longTokenDetails: response.data,
                     });
-                    const instaTokenFromDb = dbSaveInstagramToken(
-                        JSON.stringify(response.data),
-                    );
+                    dbSaveInstagramToken(JSON.stringify(response.data));
                 })
                 .catch((error) => console.error('error', error));
         }
@@ -77,13 +74,15 @@ export default function useInstagram() {
     }, [instagramToken]);
 
     useEffect(() => {
-        getInstagramToken().then((response) => {
-            const responseArray = response.data.data;
-            const getLastItem = responseArray[responseArray.length - 1];
-            getInstagramUserMedia(getLastItem.access_token);
-        });
+        async function getToken() {
+            return await getInstagramToken().then((response) => {
+                const responseArray = response.data.data;
+                const getLastItem = responseArray[responseArray.length - 1];
+                getInstagramUserMedia(getLastItem.access_token);
+            });
+        }
+        getToken();
     }, []);
-
 
     useEffect(() => {
         async function refreshToken() {

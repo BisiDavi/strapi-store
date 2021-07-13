@@ -63,8 +63,8 @@ export default function Footer() {
                             <Image
                                 alt={mthd.name}
                                 src={mthd.icon}
-                                height={30}
-                                width={30}
+                                height={70}
+                                width={200}
                             />
                         </li>
                     ))}
