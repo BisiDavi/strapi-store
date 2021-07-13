@@ -101,6 +101,7 @@ export default function ProductSlider({
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    font: normal normal 20px / 28px Montserrat, sans-serif;
                 }
                 .product-info {
                     color: black;

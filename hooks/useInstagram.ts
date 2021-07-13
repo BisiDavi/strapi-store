@@ -56,22 +56,28 @@ export default function useInstagram() {
         }
     }, [instagramToken, setStartTime]);
 
+    async function getMedia(token) {
+        await axios
+            .get(`/api/get-instagram-media/${token}`)
+            .then((response) => {
+                setInstagramMedia(response.data);
+            })
+            .catch((error) => console.error('error', error));
+    }
+
     useEffect(() => {
-        async function getToken() {
-            return await getInstagramToken().then((response) => {
-                const responseArray = response.data.data;
-                const getLastItem = responseArray[responseArray.length - 1];
-                axios
-                    .get(`/api/get-instagram-media/${getLastItem.access_token}`)
-                    .then((response) => {
-                        console.log('response', response);
-                        setInstagramMedia(response.data);
-                    })
-                    .catch((error) => console.error('error', error));
-            });
+        function getToken() {
+            getInstagramToken()
+                .then((response) => {
+                    const responseArray = response.data.data;
+                    const getLastItem = responseArray[responseArray.length - 1];
+                    getMedia(getLastItem.access_token);
+                })
+                .catch((error) => console.log('error', error));
         }
-        getToken();
-    }, []);
+
+        instagramMedia === null && getToken();
+    }, [instagramMedia]);
 
     useEffect(() => {
         async function refreshToken() {

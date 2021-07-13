@@ -14,11 +14,11 @@ export default async function GetInstagramMediaHandler(req, res) {
                 },
             })
             .then((response) => {
-                res.status(200).json(response.data);
+                return res.status(200).json(response.data);
             })
             .catch((error) => {
                 console.error('error GetInstagramMediaHandler', error);
-                res.status(500).json(error);
+                return res.status(500).json(error);
             });
     }
 }
