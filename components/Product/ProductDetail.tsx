@@ -13,7 +13,9 @@ import { useCurrency } from '../../hooks';
 import { ProductDetailProps } from '../../types';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
+export default function ProductDetail({
+    product,
+}: ProductDetailProps): JSX.Element {
     const { wigImages }: any = product;
     const dispatch = useDispatch();
     const { priceExchange, symbol } = useCurrency();
@@ -126,14 +128,13 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
                     margin-right: 50px;
                 }
                 .product-description p {
-                    font-size: 25px;
+										font:normal normal 25px/28px 'Montserrat',sans-serif;
                 }
                 .product-description h1 {
-                    font-weight: bold;
+										font:bold normal 35px/28px 'Montserrat',sans-serif;
                 }
                 .product-description h4 {
-                    font-size: 35px;
-                    font-weight: bold;
+										font:bold normal 30px/28px 'Montserrat',sans-serif;
                 }
                 @media (min-width: 1400px) {
                     .other-image {
@@ -184,6 +185,5 @@ const ProductDetail: FC<ProductDetailProps> = ({ product }): JSX.Element => {
             `}</style>
         </div>
     );
-};
+}
 
-export default ProductDetail;

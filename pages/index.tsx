@@ -21,7 +21,6 @@ export default function Home({
     const { allProducts } = productData;
     const { instagramMedia } = useInstagram();
 
-
     isConnected && console.log('You are connected to mongoDB!');
 
     return (
@@ -34,7 +33,7 @@ export default function Home({
                     <Viewmore />
                     <Newsletter />
                     {instagramMedia !== null ? (
-                        <InstaSlider InstagramMedia={instagramMedia.data} />
+                        <InstaSlider InstagramMedia={instagramMedia?.data} />
                     ) : (
                         'loading'
                     )}

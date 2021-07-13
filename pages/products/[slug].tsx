@@ -29,7 +29,6 @@ export default function ProductPage({
         );
     }
     const other_Products = otherProducts.allProducts;
-    console.log('product', product);
     return (
         <Pagelayout productMetaTags={seoData} title={product.title} product>
             <ProductDetail product={product} />

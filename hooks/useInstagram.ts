@@ -13,105 +13,115 @@ export default function useInstagram() {
     const [instagramMedia, setInstagramMedia] = useState(null);
     const { setStartTime, checkTime } = checkExpiryTime();
 
-    async function getInstagramUserMedia(token) {
-        await axios
-            .get(`/api/get-instagram-media/${token}`)
-            .then((response) => {
-                setInstagramMedia(response.data);
-            })
-            .catch((error) => console.error('error', error));
-    }
+    console.log('instagramMedia', instagramMedia);
 
-    useEffect(() => {
-        if (window.location.search.includes('code')) {
-            const authCode = GetInstagramAuthCode();
-            setAuthCode(authCode);
-        }
-    }, []);
+    //async function getInstagramUserMedia(token) {
+    //    await axios
+    //        .get(`/api/get-instagram-media/${token}`)
+    //        .then((response) => {
+    //            console.log('response', response);
+    //            instagramImages = [response.data];
+    //            return instagramImages;
+    //        })
+    //        .catch((error) => console.error('error', error));
+    //}
 
-    useEffect(() => {
-        async function getShortToken() {
-            await axios
-                .post(`/api/get-instagram-token/${authCode}`)
-                .then((response) => {
-                    setInstagramToken({
-                        ...instagramToken,
-                        shortTokenDetails: response.data,
-                    });
-                })
-                .catch((error) => console.error('error', error));
-        }
-        authCode !== null && getShortToken();
-    }, [instagramToken, authCode]);
+    //useEffect(() => {
+    //    if (window.location.search.includes('code')) {
+    //        const authCode = GetInstagramAuthCode();
+    //        setAuthCode(authCode);
+    //    }
+    //}, []);
 
-    useEffect(() => {
-        async function getLongTimeCode() {
-            await axios
-                .get(
-                    `/api/get-instagram-token/${instagramToken.shortTokenDetails.access_token}`,
-                )
-                .then((response) => {
-                    setInstagramToken({
-                        ...instagramToken,
-                        longTokenDetails: response.data,
-                    });
-                    dbSaveInstagramToken(JSON.stringify(response.data));
-                })
-                .catch((error) => console.error('error', error));
-        }
-        if (instagramToken.shortTokenDetails !== null) {
-            setStartTime();
-            getLongTimeCode();
-        }
-    }, [instagramToken, setStartTime]);
+    //useEffect(() => {
+    //    async function getShortToken() {
+    //        await axios
+    //            .post(`/api/get-instagram-token/${authCode}`)
+    //            .then((response) => {
+    //                setInstagramToken({
+    //                    ...instagramToken,
+    //                    shortTokenDetails: response.data,
+    //                });
+    //            })
+    //            .catch((error) => console.error('error', error));
+    //    }
+    //    authCode !== null && getShortToken();
+    //}, [instagramToken, authCode]);
 
-    useEffect(() => {
-        if (instagramToken.longTokenDetails !== null) {
-            getInstagramUserMedia(
-                instagramToken.longTokenDetails?.access_token,
-            );
-        }
-    }, [instagramToken]);
+    //useEffect(() => {
+    //    async function getLongTimeCode() {
+    //        await axios
+    //            .get(
+    //                `/api/get-instagram-token/${instagramToken.shortTokenDetails.access_token}`,
+    //            )
+    //            .then((response) => {
+    //                setInstagramToken({
+    //                    ...instagramToken,
+    //                    longTokenDetails: response.data,
+    //                });
+    //                dbSaveInstagramToken(JSON.stringify(response.data));
+    //            })
+    //            .catch((error) => console.error('error', error));
+    //    }
+    //    if (instagramToken.shortTokenDetails !== null) {
+    //        setStartTime();
+    //        getLongTimeCode();
+    //    }
+    //}, [instagramToken, setStartTime]);
+
+    //useEffect(() => {
+    //    if (instagramToken.longTokenDetails !== null) {
+    //        getInstagramUserMedia(
+    //            instagramToken.longTokenDetails?.access_token,
+    //        );
+    //    }
+    //}, [getInstagramUserMedia, instagramToken.longTokenDetails]);
 
     useEffect(() => {
         async function getToken() {
             return await getInstagramToken().then((response) => {
                 const responseArray = response.data.data;
                 const getLastItem = responseArray[responseArray.length - 1];
-                getInstagramUserMedia(getLastItem.access_token);
+                axios
+                    .get(`/api/get-instagram-media/${getLastItem.access_token}`)
+                    .then((response) => {
+                        console.log('response', response);
+                        setInstagramMedia(response.data);
+                    })
+                    .catch((error) => console.error('error', error));
             });
         }
         getToken();
     }, []);
 
-    useEffect(() => {
-        async function refreshToken() {
-            await axios
-                .get(
-                    `/api/get-refresh-token/${instagramToken.longTokenDetails.access_token}`,
-                )
-                .then((response) => {
-                    setInstagramToken({
-                        ...instagramToken,
-                        longTokenDetails: response.data,
-                    });
-                })
-                .catch((error) => console.error('error', error));
-        }
+    //useEffect(() => {
+    //    async function refreshToken() {
+    //        await axios
+    //            .get(
+    //                `/api/get-refresh-token/${instagramToken.longTokenDetails.access_token}`,
+    //            )
+    //            .then((response) => {
+    //                setInstagramToken({
+    //                    ...instagramToken,
+    //                    longTokenDetails: response.data,
+    //                });
+    //            })
+    //            .catch((error) => console.error('error', error));
+    //    }
 
-        if (instagramToken.longTokenDetails !== null) {
-            const expiresIn = Number(
-                instagramToken.longTokenDetails.expires_in,
-            );
-            const duration = checkTime(expiresIn);
+    //    if (instagramToken.longTokenDetails !== null) {
+    //        const expiresIn = Number(
+    //            instagramToken.longTokenDetails.expires_in,
+    //        );
+    //        const duration = checkTime(expiresIn);
 
-            if (duration < 1000) {
-                refreshToken();
-            } else {
-                console.log('long access token still valid');
-            }
-        }
-    }, [checkTime, instagramToken]);
+    //        if (duration < 1000) {
+    //            refreshToken();
+    //        } else {
+    //            console.log('long access token still valid');
+    //        }
+    //    }
+    //}, [checkTime, instagramToken]);
 
     return {
         instagramMedia,

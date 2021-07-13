@@ -1,14 +1,14 @@
-import { IProduct } from "../../types";
-import Product from "./Product";
+import { IProduct } from '../../types';
+import Product from './Product';
 
 interface productsProps {
     products: IProduct[];
 }
 
-const ProductsList: FC<productsProps> = ({ products }): JSX.Element => {
+export default function ProductsList({ products }: productsProps): JSX.Element {
     return (
-        <div className="storeProducts">
-            <div className="products">
+        <div className='storeProducts'>
+            <div className='products'>
                 {products.map((product) => (
                     <Product key={product.id} product={product} />
                 ))}
@@ -30,6 +30,4 @@ const ProductsList: FC<productsProps> = ({ products }): JSX.Element => {
             `}</style>
         </div>
     );
-};
-
-export default ProductsList;
+}
