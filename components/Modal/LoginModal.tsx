@@ -35,8 +35,7 @@ export default function LoginModal({ show, onHide }) {
                 {`
                     h1.header {
                         color: rgb(255, 166, 202);
-                        font-family: Anton, Helvetica, Arial, 'Sans Serif',
-                            serif;
+                        font-family: 'Montserrat', sans-serif;
                         display: flex;
                         justify-content: center;
                         text-align: center;
@@ -49,6 +48,7 @@ export default function LoginModal({ show, onHide }) {
                     }
                     h3 {
                         text-align: center;
+                        font-family: 'Montserrat', sans-serif;
                     }
                     span {
                         text-align: center;
@@ -59,6 +59,7 @@ export default function LoginModal({ show, onHide }) {
                         font-size: 25px;
                         font-weight: bold;
                         margin: 10px auto;
+                        font-family: 'Montserrat', sans-serif;
                     }
                     @media (max-width: 500px) {
                         h3,

@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export default async function GetInstagramMediaHandler(req, res) {
     const { accessToken } = req.query;
-    console.log('accessToken', accessToken);
     const url = 'https://graph.instagram.com/me/media';
 
     if (req.method === 'GET') {

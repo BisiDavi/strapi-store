@@ -1,4 +1,4 @@
-import  { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { Modal } from 'react-bootstrap';
 import styles from '@styles/Pagemodal.module.css';
 
@@ -33,7 +33,7 @@ export default function PageModal(
             <style jsx>{`
                 h1.header {
                     color: rgb(255, 166, 202);
-                    font-family: Anton, Helvetica, Arial, 'Sans Serif', serif;
+                    font-family: 'Montserrat', sans-serif;
                     display: flex;
                     justify-content: center;
                     text-align: center;

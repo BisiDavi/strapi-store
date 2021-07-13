@@ -89,7 +89,7 @@ export default function ProductSlider({
                     text-align: center;
                     color: #ffa6ca;
                     font-weight: 1000;
-                    font-size: 2.5vw;
+                    font: normal normal 30px/28px 'Montserrat', sans-serif;
                 }
                 .title {
                     display: flex;
@@ -110,6 +110,7 @@ export default function ProductSlider({
                 .title h6 {
                     display: flex;
                     align-items: center;
+                    font: normal normal 20px/28px 'Montserrat', sans-serif;
                 }
                 .title h6 img {
                     height: 20px;
@@ -117,11 +118,10 @@ export default function ProductSlider({
                     margin: 0px 2px;
                 }
                 .product-info h4 {
-                    font-size: 25px;
+                    font: normal normal 25px/28px 'Montserrat', sans-serif;
                 }
                 .product-info h6 {
-                    font-size: 20px;
-                    font-weight: bold;
+                    font: bold normal 20px/28px 'Montserrat', sans-serif;
                 }
 
                 @media (max-width: 768px) {

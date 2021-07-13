@@ -48,11 +48,15 @@ export default function CartSidebar({
                             asLink
                         />
                         <style jsx>{`
+                            .content {
+                                font-family: 'Montserrat', sans-serif;
+                            }
                             .subtotal {
                                 text-align: center;
                                 display: flex;
                                 align-items: center;
                                 margin: 15px 0px;
+                                font-family: 'Montserrat', sans-serif;
                                 justify-content: space-evenly;
                             }
                             .subtotal h3 {

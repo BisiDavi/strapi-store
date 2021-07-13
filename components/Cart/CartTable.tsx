@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Image } from 'react-datocms';
 import { FcFullTrash } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
@@ -184,8 +184,13 @@ export default function CartTable(props) {
                     .subtotal {
                         flex-direction: row;
                     }
+                    .priceList,
+                    p,
+                    h2 {
+                        font-family: 'Montserrat', sans-serif;
+                    }
                     .subtotal h3 {
-                        font-weight: bold;
+                        font: bold normal 20px/28px 'Montserrat', sans-serif;
                     }
 
                     .subtotal {

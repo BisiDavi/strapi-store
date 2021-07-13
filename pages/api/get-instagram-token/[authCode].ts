@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export default async function AccessInstagramHandler(req, res) {
     const { authCode } = req.query;
-    console.log('authCode', authCode);
     const shortTokenURL = `${process.env.NEXT_PUBLIC_TOKEN_BASE_URL}/oauth/access_token`;
     const longTokenURL = 'https://graph.instagram.com/access_token';
 
@@ -23,7 +22,6 @@ export default async function AccessInstagramHandler(req, res) {
                 },
             })
             .then((response) => {
-                console.log('response AccessInstagramHandler', response.data);
                 res.status(200).json(response.data);
             })
             .catch((error) => console.log('error', error));
@@ -38,7 +36,6 @@ export default async function AccessInstagramHandler(req, res) {
                 },
             })
             .then((response) => {
-                console.log('response longToken ', response.data);
                 res.status(200).json(response.data);
             })
             .catch((error) => console.error('error longToken', error));
