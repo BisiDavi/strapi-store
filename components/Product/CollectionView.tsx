@@ -37,6 +37,7 @@ export default function CollectionView({
                 }
                 .title h4 {
                     margin-right: 15px;
+                    font-family: 25px/28px 'Montserrat';
                 }
                 .title {
                     display: flex;
