@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { renderMetaTags } from 'react-datocms';
 import { useCart } from '@hooks/.';
+import { useSession } from 'next-auth/client';
 import { PagecontainerProps } from '../types';
 import { Header, Footer, CatalogTab, SidebarIcon } from '@components/.';
 import Whatsappchat from '@components/ChatWidget/Whatsappchat';
@@ -18,6 +19,9 @@ export default function Pagelayout({
     const [promoDisplay, setPromoDisplay] = useState(true);
     const promoHandler = () => setPromoDisplay(false);
     const { persistCart } = useCart();
+    const [session] = useSession();
+
+    console.log('session', session);
 
     useEffect(() => {
         persistCart();
