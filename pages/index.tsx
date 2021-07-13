@@ -13,15 +13,9 @@ import { HomeProps } from '../types';
 
 const InstaSlider = dynamic(() => import('../components/Slider/instaSlider'));
 
-export default function Home({
-    productData,
-    seoData,
-    isConnected,
-}: HomeProps): JSX.Element {
+export default function Home({ productData, seoData }: HomeProps): JSX.Element {
     const { allProducts } = productData;
     const { instagramMedia } = useInstagram();
-
-    isConnected && console.log('You are connected to mongoDB!');
 
     return (
         <>
