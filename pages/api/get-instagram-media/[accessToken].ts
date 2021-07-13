@@ -5,7 +5,7 @@ export default async function GetInstagramMediaHandler(req, res) {
     const url = 'https://graph.instagram.com/me/media';
 
     if (req.method === 'GET') {
-        axios
+        return axios
             .get(url, {
                 params: {
                     fields:
