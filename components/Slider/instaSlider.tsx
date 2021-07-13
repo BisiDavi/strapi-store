@@ -9,6 +9,7 @@ type InstagramSliderType = {
     media_url: string;
     media_type?: string;
     caption?: string;
+    thumbnail_url: string;
 };
 
 interface InstagramSliderProps {
@@ -25,6 +26,7 @@ export default function InstaSlider({
         adaptiveHeight: true,
         slidesToScroll: 1,
         autoplay: true,
+        pauseOnHover: true,
         speed: 3000,
         autoplaySpeed: 3000,
         responsive: [
@@ -69,26 +71,82 @@ export default function InstaSlider({
         <div className='InstagramSlider'>
             <h1>Jenjen&#39;s Luxury Wigs Instagram Feeds</h1>
             <Slider className='instagramSlider' {...settings}>
-                {InstagramMedia.map((media) => (
-                    <a
-                        target='_blank'
-                        key={media.id}
-                        rel='noreferrer'
-                        className='mx-1'
-                        href={media.permalink}
-                    >
-                        <span key={media.id}>
-                            <Image
-                                src={media.media_url}
-                                height={300}
-                                width={300}
-                                alt={media.caption}
-                                className='instagramImage'
-                            />
-                        </span>
-                        <p className='caption'>{media.caption}</p>
-                    </a>
-                ))}
+                {InstagramMedia.map((media) => {
+                    if (media.media_type === 'IMAGE') {
+                        return (
+                            <a
+                                target='_blank'
+                                key={media.id}
+                                rel='noreferrer'
+                                className='mx-1'
+                                href={media.permalink}
+                            >
+                                <span key={media.id}>
+                                    <Image
+                                        src={media.media_url}
+                                        height={300}
+                                        width={300}
+                                        alt={media.caption}
+                                        className='instagramImage'
+                                    />
+                                </span>
+                                <p className='caption'>{media.caption}</p>
+                            </a>
+                        );
+                    } else if (media.media_type === 'VIDEO') {
+                        return (
+                            <a
+                                target='_blank'
+                                key={media.id}
+                                rel='noreferrer'
+                                className='mx-2'
+                                href={media.permalink}
+                            >
+                                <span>
+                                    <video
+                                        width='300'
+                                        height='300'
+                                        controls
+                                        poster={media.thumbnail_url}
+                                    >
+                                        <source
+                                            src={media.media_url}
+                                            type='video/mp4'
+                                        />
+                                        <source
+                                            src={media.media_url}
+                                            type='video/ogg'
+                                        />
+                                        Your browser does not support the video
+                                        tag.
+                                    </video>
+                                    <p className='caption'>{media.caption}</p>
+                                </span>
+                            </a>
+                        );
+                    } else if (media.media_type === 'CAROUSEL_ALBUM') {
+                        return (
+                            <a
+                                target='_blank'
+                                key={media.id}
+                                rel='noreferrer'
+                                className='mx-1'
+                                href={media.permalink}
+                            >
+                                <span key={media.id}>
+                                    <Image
+                                        src={media.media_url}
+                                        height={300}
+                                        width={300}
+                                        alt={media.caption}
+                                        className='instagramImage'
+                                    />
+                                </span>
+                                <p className='caption'>{media.caption}</p>
+                            </a>
+                        );
+                    }
+                })}
             </Slider>
 
             <style jsx>
