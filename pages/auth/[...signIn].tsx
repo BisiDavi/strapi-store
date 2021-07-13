@@ -21,10 +21,6 @@ export default function Signin({ providers }) {
     console.log('signIn', signIn);
     console.log('signInText', signInText);
 
-    useEffect(() => {
-        session && router.push('/');
-    }, [session, router]);
-
     const displayIcon = (icon) => {
         switch (icon) {
             case 'Google':
