@@ -14,8 +14,8 @@ export default function CollectionView({
                         <Image
                             src={collection.img}
                             alt={collection.name}
-                            height={400}
-                            width={400}
+                            height={300}
+                            width={300}
                             className={styles.collectionImg}
                             layout='responsive'
                         />

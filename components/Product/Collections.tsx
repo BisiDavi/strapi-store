@@ -4,20 +4,20 @@ import CollectionView from './CollectionView';
 export default function Collections() {
     const collections = [
         {
-            img: '/customwig.webp',
+            img: '/collection.webp',
             name: 'Customize Your Own Unit!',
             link: '/collection/buy-your-custom-wig',
             text: 'Buy your custom wig, at an affordable rate',
         },
         {
-            img: '/stylewig.webp',
+            img: '/collection2.webp',
             name: 'Signature Style Wigs',
             link: '/collection/signature-style-wigs',
             text: 'Get awesome signature wigs.',
         },
 
         {
-            img: '/shipWig.webp',
+            img: '/collection3.webp',
             name: 'Ready to Ship wigs',
             link: '/collection/ready-to-ship',
             text: 'Oh yes, All wigs are available for shipping.',
