@@ -1,6 +1,6 @@
 .pageslider {
     height: 100%;
-    width: 100;
+    width: 100%;
 }
 .pageslider button {
     background: black;
@@ -21,6 +21,10 @@
     display: flex;
     border-radius: 50px;
     left: 43%;
+}
+
+img.sliderImg {
+    height: 500px !important;
 }
 
 @media (max-width: 768px) {

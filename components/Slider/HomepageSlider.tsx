@@ -2,12 +2,11 @@ import { useRef } from 'react';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
-import style from '../../styles/HomepageSlider.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import style from '@styles/HomepageSlider.module.css';
 
 export default function HomepageSlider(): JSX.Element {
-    const sliderRef = useRef(null);
     const settings = {
         dots: true,
         infinite: true,
@@ -23,18 +22,14 @@ export default function HomepageSlider(): JSX.Element {
 
     return (
         <div className='homepageSlider'>
-            <Slider
-                className={`${style.pageslider} pageslider`}
-                {...settings}
-                ref={sliderRef}
-            >
+            <Slider className={`${style.pageslider} pageslider`} {...settings}>
                 {sliderArr.map((slider) => (
                     <div key={uuidv4()} className='content'>
                         <Image
                             src={slider}
-                            className='sliderImg'
-                            width={1000}
-                            height={450}
+                            className={style.sliderImg}
+                            width={700}
+                            height={300}
                             alt={slider}
                             layout='responsive'
                         />
@@ -44,10 +39,10 @@ export default function HomepageSlider(): JSX.Element {
                 <div className='content slider'>
                     <div className='slider-img'>
                         <Image
-                            src='/slider3.webp'
-                            className='sliderImg'
-                            width={1000}
-                            height={450}
+                            src='/slider5.webp'
+                            className={style.sliderImg}
+                            width={700}
+                            height={300}
                             alt='banner'
                             layout='responsive'
                         />
@@ -56,8 +51,8 @@ export default function HomepageSlider(): JSX.Element {
                         <Image
                             src='/bannerGif.gif'
                             className='sliderImg'
-                            width={400}
-                            height={400}
+                            width={600}
+                            height={600}
                             alt='gif'
                             layout='responsive'
                         />
