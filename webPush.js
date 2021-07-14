@@ -2,7 +2,7 @@ import 'firebase/messaging';
 import firebase from 'firebase/app';
 import localforage from 'localforage';
 
-const firebaseCloudMessage = {
+const firebaseCloudMessaging = {
     tokenInlocalforage: async () => {
         return localforage.getItem('fcm_token');
     },
@@ -33,4 +33,4 @@ const firebaseCloudMessage = {
         }
     },
 };
-export { firebaseCloudMessage };
+export { firebaseCloudMessaging };

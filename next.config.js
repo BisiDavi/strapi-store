@@ -1,4 +1,6 @@
-module.exports = {
+const withPWA = require('next-pwa');
+
+module.exports = withPWA({
     images: {
         domains: [
             'localhost',
@@ -8,4 +10,7 @@ module.exports = {
             'scontent.cdninstagram.com',
         ],
     },
-};
+    pwa: {
+        dest: 'public',
+    },
+});

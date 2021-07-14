@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 importScripts('https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js');
@@ -26,6 +26,7 @@ firebase.messaging().onBackgroundMessage(async (message) => {
                     if (req) {
                         await reg.showNotification(message.notification.title, {
                             body: message.notification.body,
+														icon: message.notification.icon
                         });
                     }
                 });
