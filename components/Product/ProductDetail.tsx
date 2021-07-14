@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { Button } from '../Button';
 import { AddToCartAction } from '@store/actions/CartActions';
 import { useCart, useCurrency } from '@hooks/.';
+import * as ga from '@lib/ga';
 import { displayCartSidebar } from '@utils/menu';
 import styles from '@styles/ProductDetail.module.css';
 import { ProductDetailProps } from '../../types';
@@ -23,6 +24,14 @@ export default function ProductDetail({
     const addToCartHandler = () => {
         const { image, title, price } = product;
         showCart();
+        ga.event({
+            action: 'add_to_cart',
+            params: {
+                event_category: 'ecommerce',
+                event_label: title,
+                value: price,
+            },
+        });
         toast.success('Product added to Cart');
         dispatch(AddToCartAction({ image, title, price }));
     };

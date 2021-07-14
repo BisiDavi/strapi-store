@@ -24,6 +24,7 @@ export const CartReducer = (
     action,
 ) => {
     const { type, payload } = action;
+    const { GetLocalStorageProducts, clearLocalStorage } = useLocalStorage();
 
     const updateProduct = (count, amount) => {
         state.products[payload.index] = {
@@ -101,7 +102,6 @@ export const CartReducer = (
             };
 
         case ADD_CART_FROM_STORAGE:
-            const { GetLocalStorageProducts } = useLocalStorage();
             const cart = GetLocalStorageProducts();
             state.products = cart;
             return { ...state, products: [...state.products] };
@@ -123,7 +123,6 @@ export const CartReducer = (
             };
 
         case CLEAR_CART_FROM_STORAGE:
-            const { clearLocalStorage } = useLocalStorage();
             clearLocalStorage();
             return { ...state, products: [] };
 
