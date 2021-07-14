@@ -21,7 +21,8 @@ const MyApp = ({ Component, pageProps }) => {
 
     useEffect(() => {
         const handleRouteChange = (url) => {
-            ga.pageview(url);
+						let title = window.document.title;
+            ga.pageview(url,title);
         };
         Router.events.on('routeChangeComplete', handleRouteChange);
 
