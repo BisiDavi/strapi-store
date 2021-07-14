@@ -9,12 +9,16 @@ export default function ShippingMethod(): JSX.Element {
     const methodArr: shippingMethodArray[] = [
         {
             name: 'localMethod',
-            label: 'EXPRESS SHIPPING (US only) $20.00,',
+            label: 'EXPRESS SHIPPING (US only) $15.00,',
         },
         {
-            name: 'foreignMethod',
-            label: 'SHIP TO NIGERIA (Lagos only) ₦5,000',
+            name: 'airFreight',
+            label: 'SHIP TO NIGERIA (Lagos only, 14 working days) ₦3,000',
         },
+				{
+					name: 'dhl',
+					label: 'DHL Esxpress (Nigeria, 5 working days) ₦18,000',
+			},
         {
             name: 'OthersMethod',
             label: 'SHIP TO MY ADDRESS (other countries) $50.00',

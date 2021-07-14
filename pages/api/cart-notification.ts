@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 export default function CartNotification(req, res) {
     const transporter = nodemailer.createTransport({
         port: 465,
-        host: 'smtp.zoho.com',
+        host: 'smtppro.zoho.com',
         auth: {
             user: 'info@jenjensluxury.com',
             pass: '$Olubisi5256',
