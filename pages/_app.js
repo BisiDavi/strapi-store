@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -5,6 +6,7 @@ import { Provider } from 'react-redux';
 import { Provider as AuthProvider } from 'next-auth/client';
 import NProgress from 'nprogress';
 import store from '@store/store';
+import * as ga from '@lib/ga';
 import { Loading } from '@components/.';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'nprogress/nprogress.css';
@@ -17,6 +19,16 @@ Router.events.on('routeChangeError', () => NProgress.done());
 const MyApp = ({ Component, pageProps }) => {
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        const handleRouteChange = (url) => {
+            ga.pageview(url);
+        };
+        Router.events.on('routeChangeComplete', handleRouteChange);
+
+        return () => {
+            Router.events.off('routeChangeComplete', handleRouteChange);
+        };
+    }, [Router.events]);
 
     useEffect(() => {
         const start = () => {
@@ -47,7 +59,6 @@ const MyApp = ({ Component, pageProps }) => {
                     integrity='sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=='
                     crossOrigin='anonymous'
                 />
-								 
             </Head>
             {loading && <Loading />}
 
