@@ -16,11 +16,11 @@ export default function Pagelayout({
 }: PagecontainerProps): JSX.Element {
     const [promoDisplay, setPromoDisplay] = useState(true);
     const promoHandler = () => setPromoDisplay(false);
-    const { persistCart } = useCart();
+    //const { persistCart } = useCart();
 
-    useEffect(() => {
-        persistCart();
-    }, []);
+    //useEffect(() => {
+    //    persistCart();
+    //}, []);
 
     const pageTitle = product
         ? `${title} | Jenjen's Luxury hair & beauty`

@@ -1,6 +1,6 @@
-import  { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useCart, useCurrency } from '@hooks/.';
+import { useCart, useCurrency, useRedux } from '@hooks/.';
 import { getTotalAmount } from '@utils/.';
 import { CurrencyAction } from '@store/actions/currencyAction';
 import { TotalAmountAction } from '@store/actions/TotalAmountAction';
@@ -8,34 +8,30 @@ import styles from '@styles/checkout.module.css';
 
 export default function OrderSummary() {
     const { products } = useCart();
+    const { dispatch, SelectState } = useRedux();
     const {
         priceExchange,
         symbol,
         formatPrice,
         formatToNumber,
+        currencyRate,
     } = useCurrency();
-    const dispatch = useDispatch();
-    const { rushOrder } = useSelector((state) => state.rushOrder);
-    const { name } = useSelector((state) => state.currency);
-    const { method } = useSelector((state) => state.shipping);
-
-    const dropdownValues = {
-        dollar: { name: 'Dollar', value: 1 },
-        naira: { name: 'Naira', value: 460 },
-    };
+    const { rushOrder } = SelectState('rushOrder');
+    const { name } = SelectState('currency');
+    const { method } = SelectState('shipping');
 
     let nairaPrice =
         name === 'Naira'
             ? formatPrice(5000)
-            : formatPrice(Math.floor(5000 / 460));
+            : formatPrice(Math.floor(5000 / currencyRate.naira.value));
 
     useEffect(() => {
         if (method !== null && method.includes('₦5,000')) {
-            dispatch(CurrencyAction(dropdownValues.naira));
+            dispatch(CurrencyAction(currencyRate.naira));
         } else {
-            dispatch(CurrencyAction(dropdownValues.dollar));
+            dispatch(CurrencyAction(currencyRate.dollar));
         }
-    }, [dispatch, dropdownValues.naira, dropdownValues.dollar, method]);
+    }, []);
 
     const shippingPrice = () => {
         if (method !== null && method.includes('$20.00')) {
@@ -53,10 +49,9 @@ export default function OrderSummary() {
     const rushOrderAmount = priceExchange(rushOrder);
     const shippingAmount = shippingPrice();
 
-    const calculateTotal = () => {
+    function calculateTotal() {
         let total;
         if (rushOrder && method) {
-            console.log('me');
             total =
                 formatToNumber(totalAmount) +
                 formatToNumber(rushOrderAmount) +
@@ -71,13 +66,13 @@ export default function OrderSummary() {
                 formatToNumber(totalAmount) + formatToNumber(shippingAmount);
             return formatPrice(total);
         }
-    };
+    }
 
     const itemTotalAmount = calculateTotal();
 
-    useEffect(() => {
-        dispatch(TotalAmountAction(formatToNumber(itemTotalAmount)));
-    }, [itemTotalAmount, dispatch, formatToNumber]);
+    //useEffect(() => {
+    //    dispatch(TotalAmountAction(formatToNumber(calculateTotal())));
+    //}, []);
 
     return (
         <div className={styles.form}>

@@ -27,15 +27,15 @@ export default function Checkout() {
             zip: '',
             telephone: '',
         },
-				shippingMethod:{
-					method: ''
-				},
-				shoppingBag:{
-					products: []
-				},
-				additionalInformation:{
-					information:''
-				}
+        shippingMethod: {
+            method: '',
+        },
+        shoppingBag: {
+            products: [],
+        },
+        additionalInformation: {
+            information: '',
+        },
     });
 
     const dispatch = useDispatch();
@@ -69,7 +69,11 @@ export default function Checkout() {
         }
     }, [paymentConfirmed, dispatch]);
 
-    useEffect(() => setPaypalLoaded(true), []);
+    useEffect(() => {
+        if (formCondition !== null) {
+            setPaypalLoaded(true);
+        }
+    }, [formCondition]);
 
     return (
         <Pagelayout title='Checkout |'>

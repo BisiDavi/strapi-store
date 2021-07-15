@@ -1,22 +1,16 @@
-import { useRedux } from '@hooks/.';
 import { Form } from 'react-bootstrap';
-import { CurrencyAction } from '../../store/actions/currencyAction';
-import styles from '../../styles/SelectCurrency.module.css';
+import { useCurrency, useRedux } from '@hooks/.';
+import { CurrencyAction } from '@store/actions/currencyAction';
+import styles from '@styles/SelectCurrency.module.css';
 
 export default function SelectCurrencyDropdown(): JSX.Element {
-    const { dispatch, SelectState } = useRedux();
-    const currency = SelectState('currency');
+    const { dispatch } = useRedux();
+    const { currencyRate, currency } = useCurrency();
 
-    console.log('currency naira', currency.naira.value);
-
-    const dropdownValues = {
-        dollar: { name: 'Dollar', value: 1 },
-        naira: { name: 'Naira', value: currency.naira.value },
-    };
     function selectHandler(e) {
         return e.target.value === 'Dollar'
-            ? dispatch(CurrencyAction(dropdownValues.dollar))
-            : dispatch(CurrencyAction(dropdownValues.naira));
+            ? dispatch(CurrencyAction(currencyRate.dollar))
+            : dispatch(CurrencyAction(currencyRate.naira));
     }
     return (
         <Form className={styles.selectCurrency}>
