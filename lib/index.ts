@@ -1,4 +1,4 @@
-export { request } from "./datocms";
+export { request } from './datocms';
 export {
     HOMEPAGE_QUERY,
     PRODUCTPAGE_QUERY,
@@ -6,5 +6,6 @@ export {
     FETCH_ALL_PRODUCT_QUERY,
     READY_TO_SHIP_QUERY,
     SIGNATURE_WIGS,
-    HOMEPAGE_SEO_QUERY
-} from "./api";
+    HOMEPAGE_SEO_QUERY,
+    DOLLAR_TO_NAIRA_RATE_QUERY,
+} from './api';

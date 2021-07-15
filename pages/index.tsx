@@ -1,21 +1,40 @@
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Pagelayout } from '@containers/.';
-import { useInstagram } from '@hooks/.';
+import { useInstagram, useRedux } from '@hooks/.';
 import {
     HomepageSlider,
     Collections,
     ProductsList,
     Newsletter,
 } from '@components/.';
-import { HOMEPAGE_QUERY, HOMEPAGE_SEO_QUERY, request } from '@lib/.';
+import {
+    HOMEPAGE_QUERY,
+    HOMEPAGE_SEO_QUERY,
+    request,
+    DOLLAR_TO_NAIRA_RATE_QUERY,
+} from '@lib/.';
 import { Viewmore } from '@components/Button';
 import { HomeProps } from '../types';
+import { setNairaRateAction } from '@store/actions/currencyAction';
 
 const InstaSlider = dynamic(() => import('../components/Slider/instaSlider'));
 
-export default function Home({ productData, seoData }: HomeProps): JSX.Element {
+export default function Home({
+    productData,
+    seoData,
+    currencyExchangeRate,
+}: HomeProps): JSX.Element {
     const { allProducts } = productData;
     const { instagramMedia } = useInstagram();
+    const { dispatch } = useRedux();
+
+    const nairaRate = currencyExchangeRate.dollarToNairaRate.rate;
+    console.log('currencyExchangeRate', nairaRate);
+
+    useEffect(() => {
+        dispatch(setNairaRateAction(nairaRate));
+    }, [nairaRate, dispatch]);
 
     return (
         <>
@@ -46,6 +65,10 @@ export async function getServerSideProps() {
         query: HOMEPAGE_SEO_QUERY,
     });
 
+    const dollarToNairaRateRequest = await request({
+        query: DOLLAR_TO_NAIRA_RATE_QUERY,
+    });
+
     if (!graphqlRequest) {
         return {
             notFound: true,
@@ -55,6 +78,7 @@ export async function getServerSideProps() {
         props: {
             productData: graphqlRequest,
             seoData: seoRequest,
+            currencyExchangeRate: dollarToNairaRateRequest,
         },
     };
 }

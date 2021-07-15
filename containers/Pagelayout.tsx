@@ -10,7 +10,6 @@ import Whatsappchat from '@components/ChatWidget/Whatsappchat';
 export default function Pagelayout({
     title,
     children,
-    metaTags,
     productMetaTags,
     product,
     className,

@@ -1,9 +1,16 @@
-import { SELECT_CURRENCY, SELECT_CURRENCY_ERROR } from '../constants';
+import {
+    SELECT_CURRENCY,
+    SET_CURRENCY,
+    SELECT_CURRENCY_ERROR,
+} from '../constants';
 
 export const CurrencyReducer = (
     state = {
         name: 'Dollar',
         value: 1,
+        naira: {
+            value: null,
+        },
     },
     action,
 ) => {
@@ -15,6 +22,13 @@ export const CurrencyReducer = (
                 ...state,
                 name: payload.name,
                 value: payload.value,
+            };
+        case SET_CURRENCY:
+            return {
+                ...state,
+                naira: {
+                    value: payload,
+                },
             };
         case SELECT_CURRENCY_ERROR:
             return {

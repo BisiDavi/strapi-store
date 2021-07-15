@@ -86,6 +86,7 @@ export interface HomeProps {
     seoData: {};
     query: any;
     isConnected: any;
+    currencyExchangeRate?: any;
 }
 
 export interface shippingAddressProps {

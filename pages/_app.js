@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { PersistGate } from 'redux-persist/integration/react';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 import { Provider } from 'react-redux';
 import { Provider as AuthProvider } from 'next-auth/client';
 import NProgress from 'nprogress';
-import store from '@store/store';
+import store, { persistor } from '@store/store';
 import * as ga from '@lib/ga';
 import { Loading } from '@components/.';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,8 +22,8 @@ const MyApp = ({ Component, pageProps }) => {
 
     useEffect(() => {
         const handleRouteChange = (url) => {
-						let title = window.document.title;
-            ga.pageview(url,title);
+            let title = window.document.title;
+            ga.pageview(url, title);
         };
         Router.events.on('routeChangeComplete', handleRouteChange);
 
@@ -64,7 +65,9 @@ const MyApp = ({ Component, pageProps }) => {
             {loading && <Loading />}
 
             <Provider store={store}>
-                <Component {...pageProps} />
+                <PersistGate loading={<Loading />} persistor={persistor}>
+                    <Component {...pageProps} />
+                </PersistGate>
             </Provider>
         </AuthProvider>
     );

@@ -230,3 +230,9 @@ export const PRODUCT_SEO_QUERY = `query productSeo($slug:String!) {
   }
 }
 `;
+
+export const DOLLAR_TO_NAIRA_RATE_QUERY = `query DOLLAR_TO_NAIRA_RATE_QUERY {
+  dollarToNairaRate{
+    rate
+  }
+}`;
