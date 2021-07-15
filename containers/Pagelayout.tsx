@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { renderMetaTags } from 'react-datocms';
 import { useCart } from '@hooks/.';
-import { useSession } from 'next-auth/client';
 import { PagecontainerProps } from '../types';
 import { Header, Footer, CatalogTab, SidebarIcon } from '@components/.';
 import Whatsappchat from '@components/ChatWidget/Whatsappchat';
@@ -34,7 +33,7 @@ export default function Pagelayout({
                 <title>{pageTitle}</title>
                 {metaTags && (
                     <>
-                        {/* <meta
+                        <meta
                             name='description'
                             content={metaTags.fallbackSeo.description}
                         />
@@ -42,7 +41,7 @@ export default function Pagelayout({
                             property='og:image'
                             content={metaTags.fallbackSeo.image.url}
                             key='ogimage'
-                        /> */}
+                        />
                         <meta
                             property='og:site_name'
                             content={metaTags.siteName}
@@ -53,11 +52,11 @@ export default function Pagelayout({
                             content={metaTags.titleSuffix}
                             key='ogtitle'
                         />
-                        {/* <meta
+                        <meta
                             property='og:description'
                             content={metaTags.fallbackSeo.description}
                             key='ogdesc'
-                        /> */}
+                        />
                     </>
                 )}
                 {productMetaTags && renderMetaTags(productMetaTags.product.seo)}

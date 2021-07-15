@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {
@@ -19,6 +19,24 @@ export default function Checkout() {
     const [paymentConfirmed, setPaymentConfirmed] = useState(false);
     const [paypalLoaded, setPaypalLoaded] = useState(false);
     const [showModal, setShowModal] = useState(true);
+    const [checkoutForm, setCheckoutForm] = useState({
+        shippingAddress: {
+            fullName: '',
+            email: '',
+            address: '',
+            zip: '',
+            telephone: '',
+        },
+				shippingMethod:{
+					method: ''
+				},
+				shoppingBag:{
+					products: []
+				},
+				additionalInformation:{
+					information:''
+				}
+    });
 
     const dispatch = useDispatch();
     const router = useRouter();

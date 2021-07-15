@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import { ProductpageProps } from '../../types';
@@ -16,6 +17,10 @@ export default function ProductPage({
     product,
     otherProducts,
 }: ProductpageProps): JSX.Element {
+    useEffect(() => {
+        window.document.title = `${product?.title} | Jenjen's Luxury hair & beauty`;
+    }, [product?.title]);
+
     const router = useRouter();
 
     if (!router.isFallback && !product?.slug) {
