@@ -24,42 +24,19 @@ export default function Pagelayout({
     }, []);
 
     const pageTitle = product
-        ? title
+        ? `${title} | Jenjen's Luxury hair & beauty`
         : `Jenjen's Luxury hair & beauty | ${title}`;
 
     return (
         <div className={`pageLayout ${className}`}>
             <Head>
                 <title>{pageTitle}</title>
-                {metaTags && (
-                    <>
-                        <meta
-                            name='description'
-                            content={metaTags.fallbackSeo.description}
-                        />
-                        <meta
-                            property='og:image'
-                            content={metaTags.fallbackSeo.image.url}
-                            key='ogimage'
-                        />
-                        <meta
-                            property='og:site_name'
-                            content={metaTags.siteName}
-                            key='ogsitename'
-                        />
-                        <meta
-                            property='og:title'
-                            content={metaTags.titleSuffix}
-                            key='ogtitle'
-                        />
-                        <meta
-                            property='og:description'
-                            content={metaTags.fallbackSeo.description}
-                            key='ogdesc'
-                        />
-                    </>
-                )}
-                {productMetaTags && renderMetaTags(productMetaTags.product.seo)}
+                {productMetaTags &&
+                    renderMetaTags(
+                        productMetaTags.product.seo.concat(
+                            productMetaTags.site.favicon,
+                        ),
+                    )}
             </Head>
 
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />

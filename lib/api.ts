@@ -30,6 +30,7 @@ export const PRODUCTPAGE_QUERY = `query Productpage($slug: String) {
     title
     price
     slug
+    formerPrice
     id
     image {
       responsiveImage(imgixParams: {auto: format, q: 60, h: 800, w: 800, fit: crop}) {
@@ -47,7 +48,7 @@ export const PRODUCTPAGE_QUERY = `query Productpage($slug: String) {
       }
     }
     wigImages {
-      responsiveImage (imgixParams: {auto: format, q: 60, h: 300, w: 300, fit: crop}) {
+      responsiveImage(imgixParams: {auto: format, q: 60, h: 300, w: 300, fit: crop}) {
         srcSet
         webpSrcSet
         sizes
@@ -61,11 +62,37 @@ export const PRODUCTPAGE_QUERY = `query Productpage($slug: String) {
         bgColor
       }
     }
+    _seoMetaTags {
+      attributes
+      content
+      tag
+    }
+    productMetaTag {
+      description
+      twitterCard
+      title
+      image {
+        responsiveImage {
+          bgColor
+          base64
+          aspectRatio
+          alt
+          height
+          sizes
+          src
+          srcSet
+          title
+          width
+          webpSrcSet
+        }
+      }
+    }
+    productQuantity
   }
 }
 `;
 
-export const PRODUCT_SEO_QUERY = `
+export const SITE_SEO_QUERY = `
   {
     site: _site {
       favicon: faviconMetaTags {
@@ -181,6 +208,24 @@ export const SIGNATURE_WIGS = `query SignatureWigs {
         base64
         bgColor
       }
+    }
+  }
+}
+`;
+
+export const PRODUCT_SEO_QUERY = `query productSeo($slug:String!) {
+  site: _site {
+		favicon: faviconMetaTags {
+			attributes
+			content
+			tag
+		}
+	}
+	product(filter: {title: {matches: {pattern: $slug}}}) {
+    seo:_seoMetaTags(locale: en) {
+      content
+      attributes
+      tag
     }
   }
 }

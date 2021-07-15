@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import { ProductpageProps } from '../../types';
@@ -17,11 +16,8 @@ export default function ProductPage({
     product,
     otherProducts,
 }: ProductpageProps): JSX.Element {
-    useEffect(() => {
-        window.document.title = `${product?.title} | Jenjen's Luxury hair & beauty`;
-    }, [product?.title]);
-
     const router = useRouter();
+    const { slug } = router.query;
 
     if (!router.isFallback && !product?.slug) {
         return <ErrorPage statusCode={404} />;
@@ -35,7 +31,7 @@ export default function ProductPage({
     }
     const other_Products = otherProducts.allProducts;
     return (
-        <Pagelayout productMetaTags={seoData} title={product.title} product>
+        <Pagelayout productMetaTags={seoData} title={slug} product>
             <ProductDetail product={product} />
             <ProductSlider products={other_Products} />
         </Pagelayout>
@@ -43,6 +39,8 @@ export default function ProductPage({
 }
 
 export async function getStaticProps({ params }) {
+    console.log('params', params);
+
     const getproduct = await request({
         query: PRODUCTPAGE_QUERY,
         variables: { slug: params.slug },
@@ -53,9 +51,14 @@ export async function getStaticProps({ params }) {
     });
     const seoData = await request({
         query: PRODUCT_SEO_QUERY,
+        variables: { slug: params.slug },
     });
 
     const { allProducts } = getproduct;
+
+    console.log(' allProducts[0]', allProducts[0]);
+
+    console.log('allProducts slug', allProducts);
 
     if (!getproduct) {
         return {
