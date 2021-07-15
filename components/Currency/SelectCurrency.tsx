@@ -8,7 +8,7 @@ export default function SelectCurrencyDropdown(): JSX.Element {
     const currency = useSelector((state) => state.currency);
     const dropdownValues = {
         dollar: { name: 'Dollar', value: 1 },
-        naira: { name: 'Naira', value: 460 },
+        naira: { name: 'Naira', value: 490 },
     };
     function selectHandler(e) {
         return e.target.value === 'Dollar'
