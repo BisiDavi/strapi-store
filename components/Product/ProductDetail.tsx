@@ -18,7 +18,7 @@ import getDiscount from '@utils/getDiscount';
 export default function ProductDetail({
     product,
 }: ProductDetailProps): JSX.Element {
-    const { wigImages }: any = product;
+    const { wigImages, image, title, price }: any = product;
     const dispatch = useDispatch();
     const { priceExchange, symbol } = useCurrency();
     const router = useRouter();
@@ -36,11 +36,10 @@ export default function ProductDetail({
                 value: price,
             },
         });
-        toast.success('Product added to Cart');
+        toast.success(`${title} added to Cart`);
         dispatch(AddToCartAction({ image, title, price }));
     };
     const buyProductHandler = () => {
-        const { image, title, price } = product;
         toast.success(
             `Thanks, for your interest in ${title}, now redirecting you to checkout`,
         );

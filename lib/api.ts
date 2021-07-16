@@ -139,6 +139,7 @@ export const FETCH_ALL_PRODUCT_QUERY = `query FetchAllProduct{
     description
     title
     price
+		formerPrice
     slug
     id
     image {
