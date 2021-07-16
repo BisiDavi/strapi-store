@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
@@ -16,6 +17,7 @@ import { SuccessModal } from '@components/Modal';
 export default function Checkout() {
     const { modal, loading, displayModal } = useAuthModal();
     const { dispatch, SelectState } = useRedux();
+    const [checkoutDetails, setCheckoutDetails] = useState(null);
     const [paymentConfirmed, setPaymentConfirmed] = useState(false);
     const [paypalLoaded, setPaypalLoaded] = useState(false);
     const [showModal, setShowModal] = useState(true);
@@ -24,8 +26,25 @@ export default function Checkout() {
 
     const { details } = SelectState('userDetails');
     const { method } = SelectState('shipping');
+    const { additionalInformation } = SelectState('information');
     const { totalAmount } = SelectState('totalAmount');
     const { payment, paymentDetails } = SelectState('payment');
+
+    useEffect(() => {
+        if (
+            details !== null &&
+            method !== null &&
+            additionalInformation !== null
+        )
+            setCheckoutDetails({
+                ...checkoutDetails,
+                method,
+                details,
+                additionalInformation,
+            });
+    }, [details, method, additionalInformation]);
+
+    console.log('checkoutDetails', checkoutDetails);
 
     console.log('payment', payment);
     const formCondition = details && method;

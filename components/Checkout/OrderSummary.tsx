@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useCart, useCurrency, useRedux } from '@hooks/.';
 import { getTotalAmount } from '@utils/.';
 import { TotalAmountAction } from '@store/actions/TotalAmountAction';

@@ -62,7 +62,7 @@ export default function ShippingMethod(): JSX.Element {
                 <span>2</span>
                 <div className='text d-flex w-100 justify-content-between'>
                     SHIPPING METHOD
-                    <p className='mb-0'>4-10 working days</p>
+                    <p className='mb-0'>5-14 working days</p>
                 </div>
             </div>
             <Form className='d-flex flex-column'>{displayRadioBtn()}</Form>

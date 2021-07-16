@@ -1,7 +1,7 @@
 import { USER_DETAILS_ADDED, USER_DETAILS_ERROR } from '../constants';
 
 export const UserDetailsReducer = (
-    state = { details: null, location: null },
+    state = { details: null},
     action,
 ) => {
     const { type, payload } = action;
