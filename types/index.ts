@@ -43,11 +43,13 @@ export interface IProduct {
     id: string;
     title: string;
     price: number;
+    formerPrice?: number;
     image: {
         url: string;
         responsiveImage: ResponsiveImageType;
     };
     slug?: string;
+    description?: string;
 }
 
 export interface ProductProps {
@@ -138,4 +140,8 @@ export interface SuccessModalProps {
             };
         };
     };
+}
+
+export interface DiscountProps {
+	discount: string;
 }

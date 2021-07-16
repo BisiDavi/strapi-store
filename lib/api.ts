@@ -1,8 +1,8 @@
 export const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
   allProducts(first:$limit) {
-    description
     title
     price
+		formerPrice
     slug
     id
     image {
