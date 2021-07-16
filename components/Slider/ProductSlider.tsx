@@ -4,6 +4,8 @@ import { Image } from 'react-datocms';
 import { v4 as uuidv4 } from 'uuid';
 import Link from 'next/link';
 import { useCurrency } from '@hooks/.';
+import DiscountTag from '@components/Icons/DiscountTag';
+import getDiscount from '@utils/getDiscount';
 import style from '@styles/ProductSlider.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -58,30 +60,38 @@ export default function ProductSlider({
         <div className={style.slider}>
             <h1>You may also like</h1>
             <Slider className={style.productslider} {...settings}>
-                {products.map((slider) => (
-                    <Link
-                        key={uuidv4()}
-                        href={`/products/${slider.slug}`}
-                        passHref
-                    >
-                        <div className={style.product}>
-                            <Image
-                                className={style.productImage}
-                                data={slider.image.responsiveImage}
-                            />
-                            <div className='product-info'>
-                                <div className={`${style.info} title`}>
-                                    <h4>{slider.title}</h4>
-                                    <h6>
-                                        {symbol}
-                                        {priceExchange(slider.price)}
-                                    </h6>
+                {products.map((slider) => {
+                    const discountRate =
+                        slider.formerPrice &&
+                        getDiscount(slider.formerPrice, slider.price);
+                    return (
+                        <Link
+                            key={uuidv4()}
+                            href={`/products/${slider.slug}`}
+                            passHref
+                        >
+                            <div className={style.product}>
+                                <Image
+                                    className={style.productImage}
+                                    data={slider.image.responsiveImage}
+                                />
+                                {slider.formerPrice && (
+                                    <DiscountTag discount={discountRate} />
+                                )}
+                                <div className='product-info'>
+                                    <div className={`${style.info} title`}>
+                                        <h4>{slider.title}</h4>
+                                        <h6>
+                                            {symbol}
+                                            {priceExchange(slider.price)}
+                                        </h6>
+                                    </div>
+                                    <p>{slider.description}</p>
                                 </div>
-                                <p>{slider.description}</p>
                             </div>
-                        </div>
-                    </Link>
-                ))}
+                        </Link>
+                    );
+                })}
             </Slider>
 
             <style jsx>{`

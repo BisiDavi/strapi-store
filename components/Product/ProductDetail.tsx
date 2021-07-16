@@ -116,7 +116,7 @@ export default function ProductDetail({
                     .product-description {
                         display: flex;
                         width: 100%;
-                        margin: 20px 80px;
+                        padding: 20px 80px;
                     }
                     .product-text {
                         width: 50%;
