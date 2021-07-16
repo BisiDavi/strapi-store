@@ -155,6 +155,7 @@ export default function ProductDetail({
                             display: flex;
                             flex-direction: column;
                             margin: 0px auto;
+                            padding: 0px 20px;
                         }
                         .product-text {
                             padding: 5px 20px;
