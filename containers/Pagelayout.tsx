@@ -2,9 +2,8 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { renderMetaTags } from 'react-datocms';
-import { useCart } from '@hooks/.';
 import { PagecontainerProps } from '../types';
-import { Header, Footer, CatalogTab, SidebarIcon } from '@components/.';
+import { Header, Footer, CatalogTab } from '@components/.';
 import Whatsappchat from '@components/ChatWidget/Whatsappchat';
 
 export default function Pagelayout({
@@ -16,11 +15,6 @@ export default function Pagelayout({
 }: PagecontainerProps): JSX.Element {
     const [promoDisplay, setPromoDisplay] = useState(true);
     const promoHandler = () => setPromoDisplay(false);
-    //const { persistCart } = useCart();
-
-    //useEffect(() => {
-    //    persistCart();
-    //}, []);
 
     const pageTitle = product
         ? `${title} | Jenjen's Luxury hair & beauty`
@@ -40,7 +34,6 @@ export default function Pagelayout({
 
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
             <CatalogTab />
-            {/*<SidebarIcon />*/}
             {children}
             <Whatsappchat />
             <Footer />

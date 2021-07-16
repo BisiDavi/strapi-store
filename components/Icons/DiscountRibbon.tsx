@@ -4,28 +4,20 @@ import { DiscountProps } from '../../types';
 export default function DiscountRibbon({ discount }: DiscountProps) {
     return (
         <>
-            <a href='#'>
-                <div className='badges'>
+            <div className='badges'>
+                <br />
+                <p>
+                    <span className='firstLine'></span>
                     <br />
-                    <p>
-                        <span className='firstLine'></span>
-                        <br />
-                        <span className='secondLine'>{discount}</span>
-                        <br />
-                        <span className='thirdLine'>discount</span>
-                        <br />
-                        <span className='fourthLine'></span>
-                    </p>
-                </div>
-            </a>
+                    <span className='secondLine'>{discount}</span>
+                    <br />
+                    <span className='thirdLine'>discount</span>
+                    <br />
+                    <span className='fourthLine'>Buy Now!</span>
+                </p>
+            </div>
             <style jsx>
                 {`
-                    body {
-                        background: rgb(255, 166, 202);
-                    }
-                    a {
-                        text-decoration: none;
-                    }
                     .firstLine {
                         font-size: 24px;
                         font-weight: 300;
@@ -34,30 +26,30 @@ export default function DiscountRibbon({ discount }: DiscountProps) {
                         font-size: 36px;
                         line-height: 36px;
                         font-weight: 600;
+                        font-family: 'Montserrat', 'Lato', sans-serif;
                     }
                     .thirdLine {
                         font-size: 26px;
                         line-height: 32px;
                         font-weight: 300;
+                        font-family: 'Dancing Script', 'Lato';
                     }
                     .fourthLine {
-                        font-size: 12px;
-                        font-weight: 300;
                         position: relative;
                         top: -10px;
+                        font: bold normal 20px/40px 'Dancing Script', 'Lato';
                     }
 
                     .badges {
                         position: relative;
-                        margin: 140px auto;
+                        margin: 40px auto;
                         width: 200px;
                         height: 200px;
-                        background: #552f87;
+                        background: #e277a2;
                         border-radius: 100%;
                         color: #fff;
                         line-height: 25px;
                         text-align: center;
-                        text-transform: uppercase;
                         font-family: 'Open Sans', sans-serif;
                         -webkit-animation: 3s ease-in-out 0s normal none
                             infinite running swing;
@@ -82,79 +74,79 @@ export default function DiscountRibbon({ discount }: DiscountProps) {
                         height: 20px;
                         border-radius: 100%;
                         -webkit-box-shadow: 0px -82px 0px -2px #fff,
-                            0px -100px #552f87, 20px -98px #552f87,
-                            39px -94px #552f87, 56px -85px #552f87,
-                            71px -72px #552f87, 83px -57px #552f87,
-                            93px -40px #552f87, 98px -20px #552f87,
-                            100px 0px #552f87, -20px -98px #552f87,
-                            -39px -94px #552f87, -71px -72px #552f87,
-                            -56px -85px #552f87, -83px -57px #552f87,
-                            -93px -40px #552f87, -98px -20px #552f87,
-                            -100px 0px #552f87, 0px 100px #552f87,
-                            -20px 98px #552f87, -39px 94px #552f87,
-                            -56px 85px #552f87, -71px 72px #552f87,
-                            -83px 57px #552f87, -93px -40px #552f87,
-                            -98px 20px #552f87, -93px 40px #552f87,
-                            20px 98px #552f87, 39px 94px #552f87,
-                            56px 85px #552f87, 71px 72px #552f87,
-                            83px 57px #552f87, 93px 40px #552f87,
-                            98px 20px #552f87;
+                            0px -100px #ffa6ca, 20px -98px #ffa6ca,
+                            39px -94px #ffa6ca, 56px -85px #ffa6ca,
+                            71px -72px #ffa6ca, 83px -57px #ffa6ca,
+                            93px -40px #ffa6ca, 98px -20px #ffa6ca,
+                            100px 0px #ffa6ca, -20px -98px #ffa6ca,
+                            -39px -94px #ffa6ca, -71px -72px #ffa6ca,
+                            -56px -85px #ffa6ca, -83px -57px #ffa6ca,
+                            -93px -40px #ffa6ca, -98px -20px #ffa6ca,
+                            -100px 0px #ffa6ca, 0px 100px #ffa6ca,
+                            -20px 98px #ffa6ca, -39px 94px #ffa6ca,
+                            -56px 85px #ffa6ca, -71px 72px #ffa6ca,
+                            -83px 57px #ffa6ca, -93px -40px #ffa6ca,
+                            -98px 20px #ffa6ca, -93px 40px #ffa6ca,
+                            20px 98px #ffa6ca, 39px 94px #ffa6ca,
+                            56px 85px #ffa6ca, 71px 72px #ffa6ca,
+                            83px 57px #ffa6ca, 93px 40px #ffa6ca,
+                            98px 20px #ffa6ca;
 
                         -moz-box-shadow: 0px -82px 0px -2px #fff,
-                            0px -100px #552f87, 20px -98px #552f87,
-                            39px -94px #552f87, 56px -85px #552f87,
-                            71px -72px #552f87, 83px -57px #552f87,
-                            93px -40px #552f87, 98px -20px #552f87,
-                            100px 0px #552f87, -20px -98px #552f87,
-                            -39px -94px #552f87, -71px -72px #552f87,
-                            -56px -85px #552f87, -83px -57px #552f87,
-                            -93px -40px #552f87, -98px -20px #552f87,
-                            -100px 0px #552f87, 0px 100px #552f87,
-                            -20px 98px #552f87, -39px 94px #552f87,
-                            -56px 85px #552f87, -71px 72px #552f87,
-                            -83px 57px #552f87, -93px -40px #552f87,
-                            -98px 20px #552f87, -93px 40px #552f87,
-                            20px 98px #552f87, 39px 94px #552f87,
-                            56px 85px #552f87, 71px 72px #552f87,
-                            83px 57px #552f87, 93px 40px #552f87,
-                            98px 20px #552f87;
+                            0px -100px #ffa6ca, 20px -98px #ffa6ca,
+                            39px -94px #ffa6ca, 56px -85px #ffa6ca,
+                            71px -72px #ffa6ca, 83px -57px #ffa6ca,
+                            93px -40px #ffa6ca, 98px -20px #ffa6ca,
+                            100px 0px #ffa6ca, -20px -98px #ffa6ca,
+                            -39px -94px #ffa6ca, -71px -72px #ffa6ca,
+                            -56px -85px #ffa6ca, -83px -57px #ffa6ca,
+                            -93px -40px #ffa6ca, -98px -20px #ffa6ca,
+                            -100px 0px #ffa6ca, 0px 100px #ffa6ca,
+                            -20px 98px #ffa6ca, -39px 94px #ffa6ca,
+                            -56px 85px #ffa6ca, -71px 72px #ffa6ca,
+                            -83px 57px #ffa6ca, -93px -40px #ffa6ca,
+                            -98px 20px #ffa6ca, -93px 40px #ffa6ca,
+                            20px 98px #ffa6ca, 39px 94px #ffa6ca,
+                            56px 85px #ffa6ca, 71px 72px #ffa6ca,
+                            83px 57px #ffa6ca, 93px 40px #ffa6ca,
+                            98px 20px #ffa6ca;
 
                         -o-box-shadow: 0px -82px 0px -2px #fff,
-                            0px -100px #552f87, 20px -98px #552f87,
-                            39px -94px #552f87, 56px -85px #552f87,
-                            71px -72px #552f87, 83px -57px #552f87,
-                            93px -40px #552f87, 98px -20px #552f87,
-                            100px 0px #552f87, -20px -98px #552f87,
-                            -39px -94px #552f87, -71px -72px #552f87,
-                            -56px -85px #552f87, -83px -57px #552f87,
-                            -93px -40px #552f87, -98px -20px #552f87,
-                            -100px 0px #552f87, 0px 100px #552f87,
-                            -20px 98px #552f87, -39px 94px #552f87,
-                            -56px 85px #552f87, -71px 72px #552f87,
-                            -83px 57px #552f87, -93px -40px #552f87,
-                            -98px 20px #552f87, -93px 40px #552f87,
-                            20px 98px #552f87, 39px 94px #552f87,
-                            56px 85px #552f87, 71px 72px #552f87,
-                            83px 57px #552f87, 93px 40px #552f87,
-                            98px 20px #552f87;
+                            0px -100px #ffa6ca, 20px -98px #ffa6ca,
+                            39px -94px #ffa6ca, 56px -85px #ffa6ca,
+                            71px -72px #ffa6ca, 83px -57px #ffa6ca,
+                            93px -40px #ffa6ca, 98px -20px #ffa6ca,
+                            100px 0px #ffa6ca, -20px -98px #ffa6ca,
+                            -39px -94px #ffa6ca, -71px -72px #ffa6ca,
+                            -56px -85px #ffa6ca, -83px -57px #ffa6ca,
+                            -93px -40px #ffa6ca, -98px -20px #ffa6ca,
+                            -100px 0px #ffa6ca, 0px 100px #ffa6ca,
+                            -20px 98px #ffa6ca, -39px 94px #ffa6ca,
+                            -56px 85px #ffa6ca, -71px 72px #ffa6ca,
+                            -83px 57px #ffa6ca, -93px -40px #ffa6ca,
+                            -98px 20px #ffa6ca, -93px 40px #ffa6ca,
+                            20px 98px #ffa6ca, 39px 94px #ffa6ca,
+                            56px 85px #ffa6ca, 71px 72px #ffa6ca,
+                            83px 57px #ffa6ca, 93px 40px #ffa6ca,
+                            98px 20px #ffa6ca;
 
-                        box-shadow: 0px -82px 0px -2px #fff, 0px -100px #552f87,
-                            20px -98px #552f87, 39px -94px #552f87,
-                            56px -85px #552f87, 71px -72px #552f87,
-                            83px -57px #552f87, 93px -40px #552f87,
-                            98px -20px #552f87, 100px 0px #552f87,
-                            -20px -98px #552f87, -39px -94px #552f87,
-                            -71px -72px #552f87, -56px -85px #552f87,
-                            -83px -57px #552f87, -93px -40px #552f87,
-                            -98px -20px #552f87, -100px 0px #552f87,
-                            0px 100px #552f87, -20px 98px #552f87,
-                            -39px 94px #552f87, -56px 85px #552f87,
-                            -71px 72px #552f87, -83px 57px #552f87,
-                            -93px -40px #552f87, -98px 20px #552f87,
-                            -93px 40px #552f87, 20px 98px #552f87,
-                            39px 94px #552f87, 56px 85px #552f87,
-                            71px 72px #552f87, 83px 57px #552f87,
-                            93px 40px #552f87, 98px 20px #552f87;
+                        box-shadow: 0px -82px 0px -2px #fff, 0px -100px #ffa6ca,
+                            20px -98px #ffa6ca, 39px -94px #ffa6ca,
+                            56px -85px #ffa6ca, 71px -72px #ffa6ca,
+                            83px -57px #ffa6ca, 93px -40px #ffa6ca,
+                            98px -20px #ffa6ca, 100px 0px #ffa6ca,
+                            -20px -98px #ffa6ca, -39px -94px #ffa6ca,
+                            -71px -72px #ffa6ca, -56px -85px #ffa6ca,
+                            -83px -57px #ffa6ca, -93px -40px #ffa6ca,
+                            -98px -20px #ffa6ca, -100px 0px #ffa6ca,
+                            0px 100px #ffa6ca, -20px 98px #ffa6ca,
+                            -39px 94px #ffa6ca, -56px 85px #ffa6ca,
+                            -71px 72px #ffa6ca, -83px 57px #ffa6ca,
+                            -93px -40px #ffa6ca, -98px 20px #ffa6ca,
+                            -93px 40px #ffa6ca, 20px 98px #ffa6ca,
+                            39px 94px #ffa6ca, 56px 85px #ffa6ca,
+                            71px 72px #ffa6ca, 83px 57px #ffa6ca,
+                            93px 40px #ffa6ca, 98px 20px #ffa6ca;
                     }
                     .badges:after {
                         content: '';

@@ -39,8 +39,6 @@ export default function ProductPage({
 }
 
 export async function getStaticProps({ params }) {
-    console.log('params', params);
-
     const getproduct = await request({
         query: PRODUCTPAGE_QUERY,
         variables: { slug: params.slug },
@@ -55,10 +53,6 @@ export async function getStaticProps({ params }) {
     });
 
     const { allProducts } = getproduct;
-
-    console.log(' allProducts[0]', allProducts[0]);
-
-    console.log('allProducts slug', allProducts);
 
     if (!getproduct) {
         return {

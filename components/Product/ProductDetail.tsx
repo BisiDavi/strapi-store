@@ -12,6 +12,8 @@ import { displayCartSidebar } from '@utils/menu';
 import styles from '@styles/ProductDetail.module.css';
 import { ProductDetailProps } from '../../types';
 import 'react-toastify/dist/ReactToastify.css';
+import DiscountRibbon from '@components/Icons/DiscountRibbon';
+import getDiscount from '@utils/getDiscount';
 
 export default function ProductDetail({
     product,
@@ -21,6 +23,8 @@ export default function ProductDetail({
     const { priceExchange, symbol } = useCurrency();
     const router = useRouter();
     const { cart, showCart, hideCart } = useCart();
+    const discountRate =
+        product.formerPrice && getDiscount(product.formerPrice, product.price);
     const addToCartHandler = () => {
         const { image, title, price } = product;
         showCart();
@@ -89,11 +93,14 @@ export default function ProductDetail({
                             color='white'
                         />
                     </span>
+                    {product.formerPrice && (
+                        <DiscountRibbon discount={discountRate} />
+                    )}
                 </div>
                 <style jsx>{`
                     .product-description {
                         display: flex;
-                        width: 80%;
+                        width: 100%;
                         margin: 20px 80px;
                     }
                     .product-text {
@@ -154,21 +161,22 @@ export default function ProductDetail({
                         data={product.image.responsiveImage}
                     />
                 </div>
-                {moreWigImages
-                    ? wigImages.map((wig, index) => (
-                          <div
-                              key={index}
-                              className={`wigImage column-${index}`}
-                          >
-                              <Image
-                                  className={styles.otherImages}
-                                  data={wig.responsiveImage}
-                              />
-                          </div>
-                      ))
-                    : productDescription()}
+                <>
+                    {moreWigImages
+                        ? wigImages.map((wig, index) => (
+                              <div
+                                  key={index}
+                                  className={`wigImage column-${index}`}
+                              >
+                                  <Image
+                                      className={styles.otherImages}
+                                      data={wig.responsiveImage}
+                                  />
+                              </div>
+                          ))
+                        : productDescription()}
+                </>
             </div>
-
             <ToastContainer
                 position='top-left'
                 closeOnClick

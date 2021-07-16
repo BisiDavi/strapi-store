@@ -33,7 +33,6 @@ export default function Home({
     const userIP = SelectState('IP');
 
     const nairaRate = Number(currencyExchangeRate.dollarToNairaRate.rate);
-    console.log('currencyExchangeRate', nairaRate);
 
     useEffect(() => {
         if (userIP.country === null) {

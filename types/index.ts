@@ -108,6 +108,7 @@ export interface ProductDetailProps {
             responsiveImage: ResponsiveImageType;
         };
         description: string;
+        formerPrice: string;
     };
 }
 
@@ -143,5 +144,5 @@ export interface SuccessModalProps {
 }
 
 export interface DiscountProps {
-	discount: string;
+    discount: string;
 }
