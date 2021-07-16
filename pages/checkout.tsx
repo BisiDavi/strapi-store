@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {
     AdditionalInformation,
@@ -7,44 +6,26 @@ import {
     ShippingMethod,
     ShoppingBag,
     OrderSummary,
-} from '../components/Checkout';
-import { ClearCartAction } from '../store/actions/CartActions';
-import { Pagelayout } from '../containers';
-import { useAuthModal } from '../hooks';
-import { Notify, Paypal, LoginModal, Loading } from '../components';
-import { SuccessModal } from '../components/Modal';
+} from '@components/Checkout';
+import { ClearCartAction } from '@store/actions/CartActions';
+import { Pagelayout } from '@containers/.';
+import { useAuthModal, useRedux } from '@hooks/.';
+import { Notify, Paypal, LoginModal, Loading } from '@components/.';
+import { SuccessModal } from '@components/Modal';
 
 export default function Checkout() {
     const { modal, loading, displayModal } = useAuthModal();
+    const { dispatch, SelectState } = useRedux();
     const [paymentConfirmed, setPaymentConfirmed] = useState(false);
     const [paypalLoaded, setPaypalLoaded] = useState(false);
     const [showModal, setShowModal] = useState(true);
-    const [checkoutForm, setCheckoutForm] = useState({
-        shippingAddress: {
-            fullName: '',
-            email: '',
-            address: '',
-            zip: '',
-            telephone: '',
-        },
-        shippingMethod: {
-            method: '',
-        },
-        shoppingBag: {
-            products: [],
-        },
-        additionalInformation: {
-            information: '',
-        },
-    });
 
-    const dispatch = useDispatch();
     const router = useRouter();
 
-    const { details } = useSelector((state) => state.userDetails);
-    const { method } = useSelector((state) => state.shipping);
-    const { totalAmount } = useSelector((state) => state.totalAmount);
-    const { payment, paymentDetails } = useSelector((state) => state.payment);
+    const { details } = SelectState('userDetails');
+    const { method } = SelectState('shipping');
+    const { totalAmount } = SelectState('totalAmount');
+    const { payment, paymentDetails } = SelectState('payment');
 
     console.log('payment', payment);
     const formCondition = details && method;
@@ -79,11 +60,11 @@ export default function Checkout() {
         <Pagelayout title='Checkout |'>
             <div className='container-fluid'>
                 <div className='row w-100 m-0'>
-                    {loading && <Loading />}
+                    `{loading && <Loading />}
                     <LoginModal
                         show={modal}
                         onHide={() => displayModal(false)}
-                    />
+                    />`
                     <div className='col-lg-12 info mt-2'>
                         <h3>Jenjen&#39;s Luxury Wigs</h3>
                         <div className='bread-crumb'>

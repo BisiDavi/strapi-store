@@ -1,6 +1,9 @@
 import { USER_DETAILS_ADDED, USER_DETAILS_ERROR } from '../constants';
 
-export const UserDetailsReducer = (state = { details: null }, action) => {
+export const UserDetailsReducer = (
+    state = { details: null, location: null },
+    action,
+) => {
     const { type, payload } = action;
     switch (type) {
         case USER_DETAILS_ADDED:

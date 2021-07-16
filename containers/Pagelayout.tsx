@@ -40,7 +40,7 @@ export default function Pagelayout({
 
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
             <CatalogTab />
-            <SidebarIcon />
+            {/*<SidebarIcon />*/}
             {children}
             <Whatsappchat />
             <Footer />

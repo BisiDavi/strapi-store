@@ -16,7 +16,9 @@ import {
 } from '@lib/.';
 import { Viewmore } from '@components/Button';
 import { HomeProps } from '../types';
-import { setNairaRateAction } from '@store/actions/currencyAction';
+import { setCurrencyAction } from '@store/actions/currencyAction';
+import getUserIP from '@utils/getUserIP';
+import { IPAction } from '@store/actions/IPActions';
 
 const InstaSlider = dynamic(() => import('../components/Slider/instaSlider'));
 
@@ -27,14 +29,29 @@ export default function Home({
 }: HomeProps): JSX.Element {
     const { allProducts } = productData;
     const { instagramMedia } = useInstagram();
-    const { dispatch } = useRedux();
+    const { dispatch, SelectState } = useRedux();
+    const userIP = SelectState('IP');
 
-    const nairaRate = currencyExchangeRate.dollarToNairaRate.rate;
+    const nairaRate = Number(currencyExchangeRate.dollarToNairaRate.rate);
     console.log('currencyExchangeRate', nairaRate);
 
     useEffect(() => {
-        dispatch(setNairaRateAction(nairaRate));
-    }, [nairaRate, dispatch]);
+        if (userIP.country === null) {
+            getUserIP().then((response) => {
+                dispatch(IPAction(response.country));
+                if (response.country === 'NG') {
+                    dispatch(
+                        setCurrencyAction({
+                            name: 'Naira',
+                            value: nairaRate,
+                        }),
+                    );
+                } else {
+                    dispatch(setCurrencyAction({ name: 'Dollar', value: 1 }));
+                }
+            });
+        }
+    }, [dispatch, userIP.country, nairaRate]);
 
     return (
         <>

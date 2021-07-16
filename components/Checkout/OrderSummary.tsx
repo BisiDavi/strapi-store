@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useCart, useCurrency, useRedux } from '@hooks/.';
 import { getTotalAmount } from '@utils/.';
-import { CurrencyAction } from '@store/actions/currencyAction';
 import { TotalAmountAction } from '@store/actions/TotalAmountAction';
 import styles from '@styles/checkout.module.css';
 
@@ -23,15 +22,7 @@ export default function OrderSummary() {
     let nairaPrice =
         name === 'Naira'
             ? formatPrice(5000)
-            : formatPrice(Math.floor(5000 / currencyRate.naira.value));
-
-    useEffect(() => {
-        if (method !== null && method.includes('₦5,000')) {
-            dispatch(CurrencyAction(currencyRate.naira));
-        } else {
-            dispatch(CurrencyAction(currencyRate.dollar));
-        }
-    }, []);
+            : formatPrice(Math.floor(5000 / currencyRate.value));
 
     const shippingPrice = () => {
         if (method !== null && method.includes('$20.00')) {

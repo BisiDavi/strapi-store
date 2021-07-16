@@ -109,9 +109,13 @@ export interface ProductDetailProps {
     };
 }
 
-export interface shippingMethodArray {
+type shippingMethodType = {
     name: string;
     label: string;
+};
+export interface shippingMethodArray {
+    others: shippingMethodType[];
+    nigeria: shippingMethodType[];
 }
 
 export interface NotifyProps {

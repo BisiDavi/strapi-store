@@ -3,46 +3,57 @@ import { useDispatch } from 'react-redux';
 import { ShippingMethodAction } from '@store/actions/ShippingMethodAction';
 import styles from '@styles/checkout.module.css';
 import { shippingMethodArray } from '../../types';
+import { useCurrency, useRedux } from '@hooks/.';
 
 export default function ShippingMethod(): JSX.Element {
-    const dispatch = useDispatch();
-    const methodArr: shippingMethodArray[] = [
-        {
-            name: 'localMethod',
-            label: 'EXPRESS SHIPPING (US only) $15.00,',
-        },
-        {
-            name: 'airFreight',
-            label: 'SHIP TO NIGERIA (Lagos only, 14 working days) ₦3,000',
-        },
-				{
-					name: 'dhl',
-					label: 'DHL Esxpress (Nigeria, 5 working days) ₦18,000',
-			},
-        {
-            name: 'OthersMethod',
-            label: 'SHIP TO MY ADDRESS (other countries) $50.00',
-        },
-    ];
+    const { dispatch } = useRedux();
+    const { currency } = useCurrency();
+    const methodArr: shippingMethodArray = {
+        others: [
+            {
+                name: 'localMethod',
+                label: 'EXPRESS SHIPPING (US only) $15.00,',
+            },
+            {
+                name: 'OthersMethod',
+                label: 'SHIP TO MY ADDRESS (other countries) $50.00',
+            },
+        ],
+        nigeria: [
+            {
+                name: 'airFreight',
+                label: 'SHIP TO NIGERIA (Lagos only, 14 working days) ₦3,000',
+            },
+            {
+                name: 'dhl',
+                label: 'DHL Esxpress (Nigeria, 5 working days) ₦18,000',
+            },
+        ],
+    };
 
     function radioBtnHandler(e) {
         dispatch(ShippingMethodAction(e.target.value));
         console.log('selected', e.target.value);
     }
 
+		function displayRadios(key){
+			return methodArr[key].map((formInput, index) => (
+				<Form.Group key={index} controlId={formInput.name}>
+						<Form.Check
+								className='d-flex align-items-center'
+								type='radio'
+								name='shipping'
+								onChange={radioBtnHandler}
+								value={formInput.label}
+								label={formInput.label}
+						/>
+				</Form.Group>
+		));
+
+		}
+
     function displayRadioBtn() {
-        return methodArr.map((formInput, index) => (
-            <Form.Group key={index} controlId={formInput.name}>
-                <Form.Check
-                    className='d-flex align-items-center'
-                    type='radio'
-                    name='shipping'
-                    onChange={radioBtnHandler}
-                    value={formInput.label}
-                    label={formInput.label}
-                />
-            </Form.Group>
-        ));
+        return currency.name === 'Naira' ?  displayRadios('nigeria') : displayRadios('nigeria')
     }
 
     return (
