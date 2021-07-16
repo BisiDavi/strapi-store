@@ -59,10 +59,19 @@ export default function ProductDetail({
                     <div className='product-text'>
                         <span className={`${styles.info} info`}>
                             <h1>{product.title}</h1>
-                            <h4>
-                                {symbol}
-                                {priceExchange(product.price)}
-                            </h4>
+                            <div className='price-group'>
+                                <h4>
+                                    Price:{'  '}
+                                    {symbol}
+                                    {priceExchange(product.price)}
+                                </h4>
+                                {product.formerPrice && (
+                                    <h6>
+                                        former Price: {symbol}
+                                        {priceExchange(product.formerPrice)}
+                                    </h6>
+                                )}
+                            </div>
                         </span>
                         <p className='description'>{product.description}</p>
                         <p className='tax'>
@@ -107,13 +116,21 @@ export default function ProductDetail({
                         width: 50%;
                         margin-right: 40px;
                     }
+                    .price-group {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    .price-group h6 {
+                        text-decoration: line-through;
+                        font: normal normal 20px/30px 'Montserrat', sans-serif;
+                    }
                     .info {
                         display: flex;
                         justify-content: space-between;
                         margin-right: 50px;
                     }
                     .product-description p {
-                        font: normal normal 25px/28px 'Montserrat', sans-serif;
+                        font: normal normal 25px/30px 'Montserrat', sans-serif;
                     }
                     .product-description h1 {
                         font: bold normal 35px/28px 'Montserrat', sans-serif;
@@ -203,6 +220,7 @@ export default function ProductDetail({
                     .productFlex {
                         display: flex;
                         align-items: center;
+                        padding: 20px;
                     }
                 }
             `}</style>
