@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
-import { Mailinglist, SelectCurrencyDropdown } from '..';
+import { Mailinglist } from '..';
 
 export default function SidebarIcon(): JSX.Element {
     const currencyState = useSelector((state) => state.currency);
@@ -41,7 +41,6 @@ export default function SidebarIcon(): JSX.Element {
                     />
                 )}
             </div>
-            {showDropdown && <SelectCurrencyDropdown />}
             <style jsx>
                 {`
                     .sidebar {
