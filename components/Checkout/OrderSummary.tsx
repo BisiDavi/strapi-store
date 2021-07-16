@@ -19,16 +19,18 @@ export default function OrderSummary() {
     const { name } = SelectState('currency');
     const { method } = SelectState('shipping');
 
-    let nairaPrice =
-        name === 'Naira'
-            ? formatPrice(5000)
-            : formatPrice(Math.floor(5000 / currencyRate.value));
-
+    function nairaPrice(price) {
+        return name === 'Naira'
+            ? formatPrice(price)
+            : formatPrice(Math.floor(price / currencyRate.value));
+    }
     const shippingPrice = () => {
-        if (method !== null && method.includes('$20.00')) {
-            return priceExchange(20);
-        } else if (method !== null && method.includes('₦5,000')) {
-            return nairaPrice;
+        if (method !== null && method.includes('$15.00')) {
+            return priceExchange(15);
+        } else if (method !== null && method.includes('₦3,000')) {
+            return nairaPrice(3000);
+        } else if (method !== null && method.includes('₦18,000')) {
+            return nairaPrice(18000);
         } else if (method !== null && method.includes('other countries')) {
             return priceExchange(50);
         } else {

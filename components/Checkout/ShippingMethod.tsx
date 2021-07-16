@@ -1,5 +1,4 @@
 import { Form } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
 import { ShippingMethodAction } from '@store/actions/ShippingMethodAction';
 import styles from '@styles/checkout.module.css';
 import { shippingMethodArray } from '../../types';
@@ -26,7 +25,7 @@ export default function ShippingMethod(): JSX.Element {
             },
             {
                 name: 'dhl',
-                label: 'DHL Esxpress (Nigeria, 5 working days) ₦18,000',
+                label: 'DHL Express (Nigeria, 5 working days) ₦18,000',
             },
         ],
     };
@@ -36,24 +35,25 @@ export default function ShippingMethod(): JSX.Element {
         console.log('selected', e.target.value);
     }
 
-		function displayRadios(key){
-			return methodArr[key].map((formInput, index) => (
-				<Form.Group key={index} controlId={formInput.name}>
-						<Form.Check
-								className='d-flex align-items-center'
-								type='radio'
-								name='shipping'
-								onChange={radioBtnHandler}
-								value={formInput.label}
-								label={formInput.label}
-						/>
-				</Form.Group>
-		));
-
-		}
+    function displayRadios(key) {
+        return methodArr[key].map((formInput, index) => (
+            <Form.Group key={index} controlId={formInput.name}>
+                <Form.Check
+                    className='d-flex align-items-center'
+                    type='radio'
+                    name='shipping'
+                    onChange={radioBtnHandler}
+                    value={formInput.label}
+                    label={formInput.label}
+                />
+            </Form.Group>
+        ));
+    }
 
     function displayRadioBtn() {
-        return currency.name === 'Naira' ?  displayRadios('nigeria') : displayRadios('nigeria')
+        return currency.name === 'Naira'
+            ? displayRadios('nigeria')
+            : displayRadios('nigeria');
     }
 
     return (
