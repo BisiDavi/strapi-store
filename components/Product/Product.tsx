@@ -5,14 +5,12 @@ import { useCurrency } from '@hooks/.';
 import { ProductProps } from '../../types';
 import styles from '@styles/Product.module.css';
 import getDiscount from '@utils/getDiscount';
-import DiscountRibbon from '@components/Icons/DiscountRibbon';
 import DiscountTag from '@components/Icons/DiscountTag';
 
 export default function Product({ product }: ProductProps): JSX.Element {
     const { priceExchange, symbol } = useCurrency();
     const discountRate =
         product.formerPrice && getDiscount(product.formerPrice, product.price);
-    console.log('product', product);
     return (
         <div className={styles.productView}>
             <Link href={`/products/${product.slug}`} passHref>
@@ -27,10 +25,6 @@ export default function Product({ product }: ProductProps): JSX.Element {
                         )}
                     </div>
                     <div className={styles.backView}>
-                        {/*{discountRate}*/}
-                        {/*{product.formerPrice && (
-                            <DiscountRibbon discount={discountRate} />
-                        )}*/}
                         <h1>{product.title}</h1>
                         <h3>
                             {symbol}

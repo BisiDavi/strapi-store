@@ -39,6 +39,7 @@ export default function Home({
         if (userIP.country === null) {
             getUserIP().then((response) => {
                 dispatch(IPAction(response.country));
+                console.log('response', response);
                 if (response.country === 'NG') {
                     dispatch(
                         setCurrencyAction({
