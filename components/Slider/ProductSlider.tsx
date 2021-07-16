@@ -139,9 +139,10 @@ export default function ProductSlider({
                 }
                 @media (max-width: 450px) {
                     h1 {
-                        font-size: 16px;
+                        font-size: 22px;
                         margin-bottom: 0px;
                         margin-top: 5px;
+                        font-weight: bold;
                     }
                     .product-info p {
                         font-size: 16px;

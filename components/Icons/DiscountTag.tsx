@@ -47,6 +47,15 @@ export default function DiscountTag({ discount }: DiscountProps) {
                         background-color: rgb(255, 166, 202);
                         z-index: -1;
                     }
+                    @media (max-width: 768px) {
+                        .ribbon::after {
+                            height: 6em;
+                        }
+                        .content {
+                            margin-top: 15px;
+                            margin-right: 0px;
+                        }
+                    }
                 `}
             </style>
         </>

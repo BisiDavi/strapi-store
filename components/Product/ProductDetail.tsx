@@ -51,6 +51,15 @@ export default function ProductDetail({
 
     const productClass = moreWigImages ? 'productGrid' : 'productFlex';
 
+    function displayPrice(price) {
+        return (
+            <span className='ml-2'>
+                {symbol}
+                {priceExchange(price)}
+            </span>
+        );
+    }
+
     function productDescription() {
         return (
             <>
@@ -59,15 +68,13 @@ export default function ProductDetail({
                         <span className={`${styles.info} info`}>
                             <h1>{product.title}</h1>
                             <div className='price-group'>
-                                <h4>
-                                    Price:{'  '}
-                                    {symbol}
-                                    {priceExchange(product.price)}
-                                </h4>
+                                <h4>Price : {displayPrice(product.price)}</h4>
                                 {product.formerPrice && (
                                     <h6>
-                                        former Price: {symbol}
-                                        {priceExchange(product.formerPrice)}
+                                        Old price:
+                                        <span>
+                                            {displayPrice(product.formerPrice)}
+                                        </span>
                                     </h6>
                                 )}
                             </div>
@@ -120,9 +127,13 @@ export default function ProductDetail({
                         flex-direction: column;
                     }
                     .price-group h6 {
-                        text-decoration: line-through;
                         font: normal normal 20px/30px 'Montserrat', sans-serif;
                     }
+
+                    .price-group h6 span {
+                        text-decoration: line-through;
+                    }
+
                     .info {
                         display: flex;
                         justify-content: space-between;
@@ -150,7 +161,9 @@ export default function ProductDetail({
                             width: 100%;
                             margin: 0px;
                         }
-
+                        .info {
+                            margin-right: 0px;
+                        }
                         .product-description p {
                             font-size: 16px;
                         }

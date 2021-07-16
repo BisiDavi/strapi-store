@@ -203,6 +203,12 @@ export default function DiscountRibbon({ discount }: DiscountProps) {
                             transform: rotate(5deg);
                         }
                     }
+
+                    @media (max-width: 500px) {
+                        .badges {
+                            margin-top: 80px;
+                        }
+                    }
                 `}
             </style>
         </>

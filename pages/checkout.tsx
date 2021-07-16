@@ -60,11 +60,11 @@ export default function Checkout() {
         <Pagelayout title='Checkout |'>
             <div className='container-fluid'>
                 <div className='row w-100 m-0'>
-                    `{loading && <Loading />}
+                    {loading && <Loading />}
                     <LoginModal
                         show={modal}
                         onHide={() => displayModal(false)}
-                    />`
+                    />
                     <div className='col-lg-12 info mt-2'>
                         <h3>Jenjen&#39;s Luxury Wigs</h3>
                         <div className='bread-crumb'>
