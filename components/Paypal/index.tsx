@@ -47,7 +47,7 @@ export default function Paypal({
                     orderId: data.orderID,
                 });
 
-                axiosInstance
+                return axiosInstance
                     .post('/send-order-to-db', checkoutDetails)
                     .then((response) => {
                         console.log('response', response.data);
@@ -55,8 +55,8 @@ export default function Paypal({
                     .catch((error) => console.error('error', error));
             }}
             options={{
-                clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
                 currency: currencyCode,
+                clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
             }}
         />
     );
