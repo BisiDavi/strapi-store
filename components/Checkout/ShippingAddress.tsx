@@ -1,17 +1,19 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CountryDropdownbutton from '@components/Form/CountryDropdown';
 import { UserDetailsAction } from '@store/actions/UserDetailsAction';
 import styles from '@styles/checkout.module.css';
 import { useRedux } from '@hooks/.';
 
 export default function ShippingAddress(): JSX.Element {
-    const { dispatch } = useRedux();
-
+    const { dispatch, SelectState } = useRedux();
+    const { details } = SelectState('userDetails');
     const [formState, setFormState] = useState({
         fullName: '',
         email: '',
         address: '',
         zip: '',
+        country: '',
+        region: '',
         telephone: '',
     });
 
@@ -19,7 +21,7 @@ export default function ShippingAddress(): JSX.Element {
         .length;
 
     useEffect(() => {
-        if (formStateLength === 5) {
+        if (formStateLength === 7) {
             dispatch(UserDetailsAction(formState));
         }
     }, [formState, dispatch, formStateLength]);
@@ -39,8 +41,6 @@ export default function ShippingAddress(): JSX.Element {
         });
     };
 
-    console.log('formState', formState);
-
     return (
         <div className={`${styles.form} shippingAddress`}>
             <div className={styles.title}>
@@ -48,14 +48,23 @@ export default function ShippingAddress(): JSX.Element {
             </div>
             <div className='addressForm'>
                 {formArr.map((formInput, index) => {
+                    const inputValues =
+                        details !== null
+                            ? details[formInput.name]
+                            : formState[formInput.name];
                     return formInput.name === 'country' ? (
-                        <CountryDropdownbutton key={index} />
+                        <CountryDropdownbutton
+                            formState={formState}
+                            setFormState={setFormState}
+														details={details}
+                            key={index}
+                        />
                     ) : (
                         <input
                             key={index}
                             className={`input-${index}`}
                             name={formInput.name}
-                            value={formState[formInput.name]}
+                            value={inputValues}
                             onChange={inputHandler}
                             placeholder={formInput.placeHolder}
                             required

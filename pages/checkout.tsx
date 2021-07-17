@@ -16,6 +16,7 @@ import { SuccessModal } from '@components/Modal';
 
 export default function Checkout() {
     const { modal, loading, displayModal } = useAuthModal();
+    const [totalPrice, setTotalPrice] = useState(null);
     const { dispatch, SelectState } = useRedux();
     const [checkoutDetails, setCheckoutDetails] = useState(null);
     const [paymentConfirmed, setPaymentConfirmed] = useState(false);
@@ -28,21 +29,25 @@ export default function Checkout() {
     const { method } = SelectState('shipping');
     const { additionalInformation } = SelectState('information');
     const { totalAmount } = SelectState('totalAmount');
+    const { products } = SelectState('cart');
     const { payment, paymentDetails } = SelectState('payment');
 
     useEffect(() => {
         if (
             details !== null &&
             method !== null &&
-            additionalInformation !== null
+            additionalInformation !== null &&
+            totalPrice !== null
         )
             setCheckoutDetails({
                 ...checkoutDetails,
                 method,
                 details,
                 additionalInformation,
+                products,
+                totalPrice,
             });
-    }, [details, method, additionalInformation]);
+    }, [details, method, additionalInformation, totalPrice]);
 
     console.log('checkoutDetails', checkoutDetails);
 
@@ -108,15 +113,19 @@ export default function Checkout() {
                     <ShippingMethod />
                     <ShoppingBag />
                     <AdditionalInformation />
-                    <OrderSummary />
+                    <OrderSummary setTotalPrice={setTotalPrice} />
                     <div className='express-checkout'>
                         {console.log('paypalLoaded', paypalLoaded)}
                         {formCondition && paypalLoaded && (
                             <Paypal
                                 amount={totalAmount}
-                                hasPaid={(payment) =>
-                                    setPaymentConfirmed(payment)
-                                }
+																setCheckoutDetails={setCheckoutDetails}
+																checkoutDetails={checkoutDetails}
+                                hasPaid={(payment) => {
+
+                                    setPaymentConfirmed(payment);
+
+                                }}
                             />
                         )}
                     </div>

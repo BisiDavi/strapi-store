@@ -1,41 +1,44 @@
-import { FC, useState } from 'react';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import styles from '../../styles/SelectCurrency.module.css';
+import styles from '@styles/SelectCurrency.module.css';
 
-export default function CountryDropdownbutton(): JSX.Element {
-    const [countryState, setCountryState] = useState({
-        country: '',
-        region: '',
-    });
-
-    console.log('countryState', countryState);
+export default function CountryDropdownbutton({
+    setFormState,
+    formState,
+    details,
+}): JSX.Element {
+    console.log('countryState', formState);
 
     function selectCountry(val) {
-        setCountryState({
-            ...countryState,
+        setFormState({
+            ...formState,
             country: val,
         });
     }
 
     function selectRegion(val) {
-        setCountryState({
-            ...countryState,
+        setFormState({
+            ...formState,
             region: val,
         });
     }
-
-    const { country, region } = countryState;
+    //const { country, region } = formState;
+    function getInputValue(name) {
+        const inputValue = details !== null ? details[name] : formState[name];
+        return inputValue;
+    }
+    const countryValue = getInputValue('country');
+    const regionValue = getInputValue('region');
 
     return (
         <div className={styles.countryDropdown}>
             <CountryDropdown
-                value={country}
+                value={countryValue}
                 onChange={(val) => selectCountry(val)}
                 priorityOptions={['US', 'NG']}
             />
             <RegionDropdown
-                country={country}
-                value={region}
+                country={countryValue}
+                value={regionValue}
                 onChange={(val) => selectRegion(val)}
             />
         </div>

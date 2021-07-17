@@ -129,6 +129,8 @@ export interface NotifyProps {
 export interface PaypalProps {
     amount: string;
     hasPaid: (payment: boolean) => void;
+    checkoutDetails?: any;
+		setCheckoutDetails:any
 }
 
 export interface SuccessModalProps {

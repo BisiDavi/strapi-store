@@ -1,4 +1,4 @@
-import { useLocalStorage } from '../../hooks';
+import { useLocalStorage } from '@hooks/.';
 import {
     ADD_CART_FROM_STORAGE,
     ADD_TO_CART_ERROR,

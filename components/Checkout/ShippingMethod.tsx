@@ -1,11 +1,12 @@
 import { Form } from 'react-bootstrap';
 import { ShippingMethodAction } from '@store/actions/ShippingMethodAction';
-import styles from '@styles/checkout.module.css';
 import { shippingMethodArray } from '../../types';
 import { useCurrency, useRedux } from '@hooks/.';
+import styles from '@styles/checkout.module.css';
 
 export default function ShippingMethod(): JSX.Element {
-    const { dispatch } = useRedux();
+    const { dispatch, SelectState } = useRedux();
+    const { method } = SelectState('shipping');
     const { currency } = useCurrency();
     const methodArr: shippingMethodArray = {
         others: [
@@ -41,6 +42,7 @@ export default function ShippingMethod(): JSX.Element {
                 <Form.Check
                     className='d-flex align-items-center'
                     type='radio'
+                    checked={method === formInput.label}
                     name='shipping'
                     onChange={radioBtnHandler}
                     value={formInput.label}

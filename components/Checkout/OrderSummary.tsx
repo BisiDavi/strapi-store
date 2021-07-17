@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import { useCart, useCurrency, useRedux } from '@hooks/.';
 import { getTotalAmount } from '@utils/.';
-import { TotalAmountAction } from '@store/actions/TotalAmountAction';
 import styles from '@styles/checkout.module.css';
 
-export default function OrderSummary() {
+export default function OrderSummary({  setTotalPrice }) {
     const { products } = useCart();
-    const { dispatch, SelectState } = useRedux();
+    const { SelectState } = useRedux();
     const {
         priceExchange,
         symbol,
@@ -48,23 +47,22 @@ export default function OrderSummary() {
                 formatToNumber(totalAmount) +
                 formatToNumber(rushOrderAmount) +
                 formatToNumber(shippingAmount);
+            setTotalPrice(formatPrice(total));
             return formatPrice(total);
         } else if (rushOrder) {
             total =
                 formatToNumber(totalAmount) + formatToNumber(rushOrderAmount);
+            setTotalPrice(formatPrice(total));
             return formatPrice(total);
         } else {
             total =
                 formatToNumber(totalAmount) + formatToNumber(shippingAmount);
+            setTotalPrice(formatPrice(total));
             return formatPrice(total);
         }
     }
 
     const itemTotalAmount = calculateTotal();
-
-    //useEffect(() => {
-    //    dispatch(TotalAmountAction(formatToNumber(calculateTotal())));
-    //}, []);
 
     return (
         <div className={styles.form}>

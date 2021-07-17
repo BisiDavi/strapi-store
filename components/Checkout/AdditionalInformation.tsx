@@ -1,20 +1,18 @@
-import  { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useRedux } from '@hooks/.';
 import { Form } from 'react-bootstrap';
 import { AdditionalInformationAction } from '@store/actions/AdditionalInformationAction';
 import styles from '@styles/checkout.module.css';
 
 export default function AdditionalInformation() {
-    const [value, setValue] = useState('');
-    const dispatch = useDispatch();
+    const { dispatch, SelectState } = useRedux();
+    const { additionalInformation } = SelectState('information');
+
+    const textAreaValue =
+        additionalInformation !== null ? additionalInformation : '';
 
     const textAreaHandler = (e) => {
-        setValue(e.target.value);
+        dispatch(AdditionalInformationAction(e.target.value));
     };
-
-    useEffect(() => {
-        dispatch(AdditionalInformationAction(value));
-    }, [value, dispatch]);
 
     return (
         <div className={styles.form}>
@@ -26,7 +24,7 @@ export default function AdditionalInformation() {
                     <Form.Label>If you want to say something to us</Form.Label>
                     <Form.Control
                         onChange={textAreaHandler}
-                        value={value}
+                        value={textAreaValue}
                         as='textarea'
                         rows={3}
                     />
