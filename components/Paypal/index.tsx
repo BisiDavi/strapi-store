@@ -26,12 +26,11 @@ export default function Paypal({
         return router.push('/checkout');
     }
 
-    const currencyCode = country === 'NG' ? 'NGN' : 'USD';
+    //const currencyCode = country === 'NG' ? 'NGN' : 'USD';
 
     return (
         <PayPalButton
             amount={amount}
-            currency={currencyCode}
             onError={() => toast.error('An error just occurred')}
             catchError={onCancelHandler}
             onSuccess={(details, data) => {
@@ -43,7 +42,7 @@ export default function Paypal({
                 );
 
                 setCheckoutDetails({
-                    ...checkoutDetails,
+                   ...checkoutDetails,
                     orderId: data.orderID,
                 });
 
@@ -55,7 +54,6 @@ export default function Paypal({
                     .catch((error) => console.error('error', error));
             }}
             options={{
-                currency: currencyCode,
                 clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
             }}
         />
