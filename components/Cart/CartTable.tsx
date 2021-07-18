@@ -11,7 +11,6 @@ import { DeleteProductAction } from '@store/actions/counterActions';
 import { Button } from '../.';
 import { getTotalAmount } from '@utils/.';
 import { SelectRushOrder } from '@components/Form/.';
-import Loading from '@components/loader/Loading';
 import styles from '@styles/cart.module.css';
 import { axiosInstance } from '@axios/axiosInstance';
 
@@ -71,25 +70,35 @@ export default function CartTable({ products }) {
     }
 
     const subtotalAmount = calculateSubtotal();
-    const amount = `${symbol} ${subtotalAmount}`;
+
+    let productArray = [];
+
+    products.map(
+        (product) =>
+            (productArray = [
+                ...productArray,
+                {
+                    amount: priceExchange(product.amount),
+                    count: product.count,
+                    image: product.image.responsiveImage.src,
+                    title: product.title,
+                },
+            ]),
+    );
+
+    console.log('productArray', productArray);
 
     useEffect(() => {
-        if (session !== null && products !== null) {
+        if (session !== null && productArray.length !== 0) {
             setNotificationData({
                 ...notificationData,
                 email: userEmail,
-                products,
+                products:productArray,
                 totalPrice: subtotalAmount,
                 symbol: currencySymbol,
             });
         }
-    }, [
-        products,
-        userEmail,
-        subtotalAmount,
-        session,
-        currencySymbol,
-    ]);
+    }, [userEmail, products, subtotalAmount, session, currencySymbol]);
 
     console.log('notificationData', notificationData);
 
@@ -175,7 +184,9 @@ export default function CartTable({ products }) {
                             )}
                             <div className='subtotal'>
                                 <h3>Subtotal</h3>
-                                <h3>{amount}</h3>
+                                <h3>
+                                    {symbol} {subtotalAmount}
+                                </h3>
                             </div>
                             <p>
                                 Tax included. Shipping calculated at checkout.
