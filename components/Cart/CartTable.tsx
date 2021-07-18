@@ -21,7 +21,7 @@ export default function CartTable(props) {
         email: null,
         products: null,
         totalPrice: null,
-				currency:null,
+        currency: null,
     });
     const dispatch = useDispatch();
     const [session] = useSession();
@@ -68,8 +68,6 @@ export default function CartTable(props) {
 
     const subtotalAmount = calculateSubtotal();
 
-
-    console.log('notificationData', notificationData);
     function cartNotification() {
         const userEmail = session.user.email;
         const amount = `${symbol} ${subtotalAmount}`;

@@ -8,6 +8,7 @@ import {
     ProductsList,
     Newsletter,
 } from '@components/.';
+import { InstagramLoader } from '@components/loader';
 import {
     HOMEPAGE_QUERY,
     HOMEPAGE_SEO_QUERY,
@@ -64,7 +65,7 @@ export default function Home({
                     {instagramMedia !== null ? (
                         <InstaSlider InstagramMedia={instagramMedia?.data} />
                     ) : (
-                        'loading'
+                        <InstagramLoader />
                     )}
                 </div>
             </Pagelayout>

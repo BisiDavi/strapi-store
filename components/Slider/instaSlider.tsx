@@ -153,6 +153,8 @@ export default function InstaSlider({
                 {`
                     .InstagramSlider {
                         margin: 30px auto;
+                        min-height: 420px;
+												width:100%;
                     }
                     h1 {
                         text-align: center;

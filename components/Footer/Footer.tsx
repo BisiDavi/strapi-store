@@ -53,8 +53,11 @@ export default function Footer() {
                     ))}
                 </ul>
                 <div className='copyright'>
-                    <i className='far fa-copyright'></i>
-                    <p>2021, Jenjens Luxury Wigs.</p>
+                    <span>
+                        <i className='far fa-copyright'></i>
+                        <p>2021, Jenjens Luxury Wigs.</p>
+                    </span>
+                    <p>Philadelphia, Pennsylvania</p>
                 </div>
 
                 <ul className='payment-gateway'>
@@ -125,6 +128,12 @@ export default function Footer() {
                     .copyright {
                         display: flex;
                         align-items: center;
+                        flex-direction: column;
+                    }
+
+                    .copyright span {
+                        display: flex;
+                        align-items: center;
                     }
                     .footer-section i {
                         margin: 0px 10px;
@@ -160,6 +169,7 @@ export default function Footer() {
                         .copyright {
                             margin-top: 50px;
                         }
+
                         .payment-gateway {
                             position: absolute;
                             right: 0;
