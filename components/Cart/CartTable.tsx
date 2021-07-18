@@ -26,7 +26,7 @@ export default function CartTable({ products }) {
     const [session] = useSession();
     const router = useRouter();
     const { rushOrder } = useSelector((state) => state.rushOrder);
-    const userEmail = session?.user?.email;
+    const userEmail = session?.user?.email || session.user?.name;
     console.log('session', session);
     const {
         priceExchange,
@@ -93,7 +93,7 @@ export default function CartTable({ products }) {
             setNotificationData({
                 ...notificationData,
                 email: userEmail,
-                products:productArray,
+                products: productArray,
                 totalPrice: subtotalAmount,
                 symbol: currencySymbol,
             });
