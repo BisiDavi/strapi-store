@@ -21,7 +21,7 @@ export default function CartTable(props) {
         email: null,
         products: null,
         totalPrice: null,
-        currency: null,
+        symbol: null,
     });
     const dispatch = useDispatch();
     const [session] = useSession();
@@ -77,7 +77,7 @@ export default function CartTable(props) {
             email: userEmail,
             products: props.products,
             totalPrice: amount,
-            currency: currencySymbol,
+            symbol: currencySymbol,
         });
         console.log('notificationData', notificationData);
         setLoading(true);
