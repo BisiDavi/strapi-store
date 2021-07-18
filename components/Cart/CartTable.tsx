@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Image } from 'react-datocms';
 import { FcFullTrash } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,10 +8,11 @@ import { useSession } from 'next-auth/client';
 import { useCurrency } from '@hooks/.';
 import { DeleteProductAction } from '@store/actions/counterActions';
 import { Button } from '../.';
-import { getTotalAmount, SendData } from '@utils/.';
+import { getTotalAmount, sendDataWithRouter } from '@utils/.';
 import { SelectRushOrder } from '@components/Form/.';
 import Loading from '@components/loader/Loading';
 import styles from '@styles/cart.module.css';
+import { axiosInstance } from '@axios/axiosInstance';
 
 export default function CartTable(props) {
     const { products } = props;
@@ -35,6 +36,20 @@ export default function CartTable(props) {
     } = useCurrency();
 
     const tableTitle = ['Product', 'Name', 'Price', 'Quantity', 'Total'];
+
+    useEffect(() => {
+        async function postRequest() {
+            await axiosInstance
+                .post('/checkout-notification', notificationData)
+                .then((response) => {
+                    console.log('response', response);
+                })
+                .catch((error) => console.error('error', error));
+        }
+        if (!Object.values(notificationData).includes(null)) {
+            postRequest();
+        }
+    }, [notificationData]);
 
     function deleteProduct(index) {
         return dispatch(DeleteProductAction({ products, index }));
@@ -80,14 +95,13 @@ export default function CartTable(props) {
             symbol: currencySymbol,
         });
         console.log('notificationData', notificationData);
-        setLoading(true);
-        SendData(
+        router.push('/checkout');
+        sendDataWithRouter(
             '/checkout-notification',
             notificationData,
             router,
             '/checkout',
         );
-        setLoading(false);
     }
 
     return (

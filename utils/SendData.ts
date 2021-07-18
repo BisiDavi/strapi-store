@@ -1,6 +1,6 @@
 import { axiosInstance } from '../axios/axiosInstance';
 
-const SendData = async (link, data, router, route) => {
+const sendDataWithRouter = async (link, data, router, route) => {
     await axiosInstance
         .post(link, { body: JSON.stringify(data) })
         .then((res) => {
@@ -12,4 +12,6 @@ const SendData = async (link, data, router, route) => {
         .catch((err) => console.error(err));
 };
 
-export default SendData;
+
+
+export default sendDataWithRouter;
