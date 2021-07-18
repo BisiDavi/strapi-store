@@ -8,7 +8,6 @@ import {
     ProductsList,
     Newsletter,
 } from '@components/.';
-import { InstagramLoader } from '@components/loader';
 import {
     HOMEPAGE_QUERY,
     HOMEPAGE_SEO_QUERY,
@@ -62,11 +61,8 @@ export default function Home({
                     <ProductsList products={allProducts} />
                     <Viewmore />
                     <Newsletter />
-                    {instagramMedia !== null ? (
-                        <InstaSlider InstagramMedia={instagramMedia?.data} />
-                    ) : (
-                        <InstagramLoader />
-                    )}
+
+                    <InstaSlider InstagramMedia={instagramMedia?.data} />
                 </div>
             </Pagelayout>
         </>

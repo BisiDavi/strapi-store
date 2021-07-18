@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { axiosInstance } from '@axios/axiosInstance';
 import useLoading from '@hooks/useLoading';
@@ -134,9 +134,10 @@ export default function Newsletter() {
                         }
 
                         .newsletter p {
-                            font-size: 12px;
+                            font-size: 14px;
                             text-align: center;
                             font-style: italic;
+                            line-height: 18px;
                             font-family: inherit;
                         }
 

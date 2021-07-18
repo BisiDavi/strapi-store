@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Slider from 'react-slick';
+import { InstagramLoader } from '@components/loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -67,94 +68,106 @@ export default function InstaSlider({
             },
         ],
     };
+    const instaPlaceholder = '/imgPlaceholder.svg';
     return (
         <div className='InstagramSlider'>
             <h1 className='mb-4'>Jenjen&#39;s Luxury Wigs Instagram Feeds</h1>
-            <Slider className='instagramSlider' {...settings}>
-                {InstagramMedia.map((media) => {
-                    if (media.media_type === 'IMAGE') {
-                        return (
-                            <a
-                                target='_blank'
-                                key={media.id}
-                                rel='noreferrer'
-                                className='mx-1'
-                                href={media.permalink}
-                            >
-                                <span key={media.id}>
-                                    <Image
-                                        src={media.media_url}
-                                        height={300}
-                                        width={300}
-                                        alt={media.caption}
-                                        className='instagramImage'
-                                    />
-                                </span>
-                                <p className='caption'>{media.caption}</p>
-                            </a>
-                        );
-                    } else if (media.media_type === 'VIDEO') {
-                        return (
-                            <a
-                                target='_blank'
-                                key={media.id}
-                                rel='noreferrer'
-                                className='mx-2'
-                                href={media.permalink}
-                            >
-                                <span>
-                                    <video
-                                        width='300'
-                                        height='300'
-                                        controls
-                                        poster={media.thumbnail_url}
-                                    >
-                                        <source
-                                            src={media.media_url}
-                                            type='video/mp4'
+            {InstagramMedia !== null && InstagramMedia !== undefined ? (
+                <Slider className='instagramSlider' {...settings}>
+                    {InstagramMedia.map((media) => {
+                        if (media.media_type === 'IMAGE') {
+                            return (
+                                <a
+                                    target='_blank'
+                                    key={media.id}
+                                    rel='noreferrer'
+                                    className='mx-1 sliderWrapper'
+                                    href={media.permalink}
+                                >
+                                    <span key={media.id}>
+                                        <Image
+                                            quality='85'
+                                            src={
+                                                media.media_url ||
+                                                instaPlaceholder
+                                            }
+                                            height={300}
+                                            width={300}
+                                            alt={media.caption}
                                         />
-                                        <source
-                                            src={media.media_url}
-                                            type='video/ogg'
-                                        />
-                                        Your browser does not support the video
-                                        tag.
-                                    </video>
+                                    </span>
                                     <p className='caption'>{media.caption}</p>
-                                </span>
-                            </a>
-                        );
-                    } else if (media.media_type === 'CAROUSEL_ALBUM') {
-                        return (
-                            <a
-                                target='_blank'
-                                key={media.id}
-                                rel='noreferrer'
-                                className='mx-1'
-                                href={media.permalink}
-                            >
-                                <span key={media.id}>
-                                    <Image
-                                        src={media.media_url}
-                                        height={300}
-                                        width={300}
-                                        alt={media.caption}
-                                        className='instagramImage'
-                                    />
-                                </span>
-                                <p className='caption'>{media.caption}</p>
-                            </a>
-                        );
-                    }
-                })}
-            </Slider>
-
+                                </a>
+                            );
+                        } else if (media.media_type === 'VIDEO') {
+                            return (
+                                <a
+                                    target='_blank'
+                                    key={media.id}
+                                    rel='noreferrer'
+                                    className='mx-2 sliderWrapper'
+                                    href={media.permalink}
+                                >
+                                    <span>
+                                        <video
+                                            width='300'
+                                            height='300'
+                                            controls
+                                            poster={media.thumbnail_url}
+                                        >
+                                            <source
+                                                src={media.media_url}
+                                                type='video/mp4'
+                                            />
+                                            <source
+                                                src={media.media_url}
+                                                type='video/ogg'
+                                            />
+                                            Your browser does not support the
+                                            video tag.
+                                        </video>
+                                    </span>
+                                    <p className='caption'>{media.caption}</p>
+                                </a>
+                            );
+                        } else if (media.media_type === 'CAROUSEL_ALBUM') {
+                            return (
+                                <a
+                                    target='_blank'
+                                    key={media.id}
+                                    rel='noreferrer'
+                                    className='mx-1 sliderWrapper'
+                                    href={media.permalink}
+                                >
+                                    <span key={media.id}>
+                                        <Image
+                                            quality='85'
+                                            src={
+                                                media.media_url ||
+                                                instaPlaceholder
+                                            }
+                                            height={300}
+                                            width={300}
+                                            alt={media.caption}
+                                        />
+                                    </span>
+                                    <p className='caption'>{media.caption}</p>
+                                </a>
+                            );
+                        }
+                    })}
+                </Slider>
+            ) : (
+                <InstagramLoader />
+            )}
             <style jsx>
                 {`
                     .InstagramSlider {
                         margin: 30px auto;
                         min-height: 420px;
-												width:100%;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
                     }
                     h1 {
                         text-align: center;
@@ -175,7 +188,21 @@ export default function InstaSlider({
                         font-size: 15px;
                         text-align: center;
                         font-style: italic;
+                        margin: 10px auto;
                         font-family: 'Montserrat', sans-serif;
+                    }
+                    .sliderWrapper {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .sliderWrapper span {
+                        width: 100%;
+                        height: fit-content;
+                        display: flex;
+                        margin: auto;
+                        justify-content: center;
                     }
                 `}
             </style>
