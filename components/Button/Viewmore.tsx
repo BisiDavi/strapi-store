@@ -1,24 +1,40 @@
 import Link from 'next/link';
+import AnimatingArrow from '@components/Icons/AnimatingArrow';
 
 export default function Viewmore() {
     return (
         <div>
             <Link href='/collection/all' passHref>
-                <button className='mx-auto'>View More</button>
+                <div className='viewmore'>
+                    <button className='mx-auto'>
+                        <span>View More</span>
+                    </button>
+                    {/*<AnimatingArrow />*/}
+                </div>
             </Link>
             <style jsx>
                 {`
+                    .viewmore {
+                        display: flex;
+                        align-items: center;
+                    }
                     button {
                         color: white;
-                        background-color: black;
+                        background-color: #ffa6ca;
                         width: 150px;
                         height: 60px;
+                        font-weight: bold;
                         display: flex;
+                        border-radius: 30px;
                         border: none;
                         font-weight: bold;
                         font-size: 18px;
                         justify-content: center;
                         align-items: center;
+                    }
+
+                    button span {
+                        margin: 0px 10px;
                     }
 
                     button:hover {
