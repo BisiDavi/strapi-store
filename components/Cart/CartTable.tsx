@@ -17,7 +17,6 @@ import { axiosInstance } from '@axios/axiosInstance';
 export default function CartTable(props) {
     const { products } = props;
     const [productQty, setProductQty] = useState(0);
-    const [loading, setLoading] = useState(false);
     const [notificationData, setNotificationData] = useState({
         email: null,
         products: null,
@@ -28,6 +27,7 @@ export default function CartTable(props) {
     const [session] = useSession();
     const router = useRouter();
     const { rushOrder } = useSelector((state) => state.rushOrder);
+    const userEmail = session?.user?.email;
     const {
         priceExchange,
         symbol,
@@ -37,19 +37,7 @@ export default function CartTable(props) {
 
     const tableTitle = ['Product', 'Name', 'Price', 'Quantity', 'Total'];
 
-    useEffect(() => {
-        async function postRequest() {
-            await axiosInstance
-                .post('/checkout-notification', notificationData)
-                .then((response) => {
-                    console.log('response', response);
-                })
-                .catch((error) => console.error('error', error));
-        }
-        if (!Object.values(notificationData).includes(null)) {
-            postRequest();
-        }
-    }, [notificationData]);
+    const currencySymbol = symbol !== '$' ? '\u20A6' : '$';
 
     function deleteProduct(index) {
         return dispatch(DeleteProductAction({ products, index }));
@@ -82,19 +70,9 @@ export default function CartTable(props) {
     }
 
     const subtotalAmount = calculateSubtotal();
+    const amount = `${symbol} ${subtotalAmount}`;
 
     function cartNotification() {
-        const userEmail = session.user.email;
-        const amount = `${symbol} ${subtotalAmount}`;
-        const currencySymbol = symbol !== '$' ? '\u20A6' : '$';
-        setNotificationData({
-            ...notificationData,
-            email: userEmail,
-            products: props.products,
-            totalPrice: amount,
-            symbol: currencySymbol,
-        });
-        console.log('notificationData', notificationData);
         router.push('/checkout');
         sendDataWithRouter(
             '/checkout-notification',
@@ -104,9 +82,36 @@ export default function CartTable(props) {
         );
     }
 
+    useEffect(() => {
+        if (session !== null) {
+            setNotificationData({
+                ...notificationData,
+                email: userEmail,
+                products,
+                totalPrice: amount,
+                symbol: currencySymbol,
+            });
+        }
+    }, []);
+
+		console.log('notificationData', notificationData);
+
+    useEffect(() => {
+        async function postRequest() {
+            await axiosInstance
+                .post('/checkout-notification', notificationData)
+                .then((response) => {
+                    console.log('response', response);
+                })
+                .catch((error) => console.error('error', error));
+        }
+        if (!Object.values(notificationData).includes(null)) {
+            postRequest();
+        }
+    }, [notificationData]);
+		
     return (
         <div className={styles.cartTable}>
-            {loading && <Loading />}
             <div className={styles.title}>
                 {tableTitle.map((title, index) => (
                     <h3 key={index}>{title}</h3>
