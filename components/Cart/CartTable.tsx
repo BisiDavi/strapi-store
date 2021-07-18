@@ -89,7 +89,7 @@ export default function CartTable({ products }) {
     console.log('productArray', productArray);
 
     useEffect(() => {
-        if (session !== null && productArray.length !== 0) {
+        if (session !== null) {
             setNotificationData({
                 ...notificationData,
                 email: userEmail,
@@ -98,7 +98,7 @@ export default function CartTable({ products }) {
                 symbol: currencySymbol,
             });
         }
-    }, [userEmail, products, subtotalAmount, session, currencySymbol]);
+    }, [products, session]);
 
     console.log('notificationData', notificationData);
 
