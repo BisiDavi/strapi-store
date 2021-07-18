@@ -104,7 +104,7 @@ export default function CartTable({ products }) {
 
     async function postRequest() {
         await axiosInstance
-            .post('/checkout-notification', JSON.stringify(notificationData))
+            .post('/checkout-notification', notificationData)
             .then((response) => {
                 console.log('response', response);
             })
