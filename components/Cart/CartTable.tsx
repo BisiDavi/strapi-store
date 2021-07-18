@@ -71,12 +71,13 @@ export default function CartTable(props) {
     function cartNotification() {
         const userEmail = session.user.email;
         const amount = `${symbol} ${subtotalAmount}`;
+        const currencySymbol = symbol !== '$' ? '\u20A6' : '$';
         setNotificationData({
             ...notificationData,
             email: userEmail,
             products: props.products,
             totalPrice: amount,
-            currency: symbol,
+            currency: currencySymbol,
         });
         console.log('notificationData', notificationData);
         setLoading(true);

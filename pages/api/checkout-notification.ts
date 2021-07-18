@@ -9,6 +9,7 @@ export default async function CheckoutNotificationHandler(
 ) {
     const { method } = req;
     const { products, email, totalPrice, symbol } = req.body;
+    console.log('req.body', products, email, totalPrice, symbol);
     const msg = {
         to: 'oludavidconnect@gmail.com',
         from: {
