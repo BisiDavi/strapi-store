@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
 import { useState, useEffect } from 'react';
 import { Image } from 'react-datocms';
@@ -8,14 +9,13 @@ import { useSession } from 'next-auth/client';
 import { useCurrency } from '@hooks/.';
 import { DeleteProductAction } from '@store/actions/counterActions';
 import { Button } from '../.';
-import { getTotalAmount, sendDataWithRouter } from '@utils/.';
+import { getTotalAmount } from '@utils/.';
 import { SelectRushOrder } from '@components/Form/.';
 import Loading from '@components/loader/Loading';
 import styles from '@styles/cart.module.css';
 import { axiosInstance } from '@axios/axiosInstance';
 
-export default function CartTable(props) {
-    const { products } = props;
+export default function CartTable({ products }) {
     const [productQty, setProductQty] = useState(0);
     const [notificationData, setNotificationData] = useState({
         email: null,
@@ -28,6 +28,7 @@ export default function CartTable(props) {
     const router = useRouter();
     const { rushOrder } = useSelector((state) => state.rushOrder);
     const userEmail = session?.user?.email;
+    console.log('session', session);
     const {
         priceExchange,
         symbol,
@@ -72,44 +73,40 @@ export default function CartTable(props) {
     const subtotalAmount = calculateSubtotal();
     const amount = `${symbol} ${subtotalAmount}`;
 
-    function cartNotification() {
-        router.push('/checkout');
-        sendDataWithRouter(
-            '/checkout-notification',
-            notificationData,
-            router,
-            '/checkout',
-        );
-    }
-
     useEffect(() => {
-        if (session !== null) {
+        if (session !== null && products !== null) {
             setNotificationData({
                 ...notificationData,
                 email: userEmail,
                 products,
-                totalPrice: amount,
+                totalPrice: subtotalAmount,
                 symbol: currencySymbol,
             });
         }
-    }, []);
+    }, [
+        products,
+        userEmail,
+        subtotalAmount,
+        session,
+        currencySymbol,
+    ]);
 
-		console.log('notificationData', notificationData);
+    console.log('notificationData', notificationData);
 
-    useEffect(() => {
-        async function postRequest() {
-            await axiosInstance
-                .post('/checkout-notification', notificationData)
-                .then((response) => {
-                    console.log('response', response);
-                })
-                .catch((error) => console.error('error', error));
-        }
-        if (!Object.values(notificationData).includes(null)) {
-            postRequest();
-        }
-    }, [notificationData]);
-		
+    async function postRequest() {
+        await axiosInstance
+            .post('/checkout-notification', JSON.stringify(notificationData))
+            .then((response) => {
+                console.log('response', response);
+            })
+            .catch((error) => console.error('error', error));
+    }
+
+    function cartNotification() {
+        postRequest();
+        router.push('/checkout');
+    }
+
     return (
         <div className={styles.cartTable}>
             <div className={styles.title}>
@@ -118,7 +115,7 @@ export default function CartTable(props) {
                 ))}
             </div>
             <div className={styles.cartProduct}>
-                {props.products &&
+                {products &&
                     products.length > 0 &&
                     products.map((product, index) => (
                         <div className={styles.cartItem} key={index}>
@@ -178,10 +175,7 @@ export default function CartTable(props) {
                             )}
                             <div className='subtotal'>
                                 <h3>Subtotal</h3>
-                                <h3>
-                                    {symbol}
-                                    {subtotalAmount}
-                                </h3>
+                                <h3>{amount}</h3>
                             </div>
                             <p>
                                 Tax included. Shipping calculated at checkout.
