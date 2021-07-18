@@ -61,7 +61,6 @@ export default function Home({
                     <ProductsList products={allProducts} />
                     <Viewmore />
                     <Newsletter />
-
                     <InstaSlider InstagramMedia={instagramMedia?.data} />
                 </div>
             </Pagelayout>

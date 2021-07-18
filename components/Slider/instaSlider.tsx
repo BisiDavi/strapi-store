@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import { InstagramLoader } from '@components/loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import styles from '@styles/instagramSlider.module.css';
 
 type InstagramSliderType = {
     permalink: string;
@@ -73,7 +74,10 @@ export default function InstaSlider({
         <div className='InstagramSlider'>
             <h1 className='mb-4'>Jenjen&#39;s Luxury Wigs Instagram Feeds</h1>
             {InstagramMedia !== null && InstagramMedia !== undefined ? (
-                <Slider className='instagramSlider' {...settings}>
+                <Slider
+                    className={`${styles.Slider} instagramSlider`}
+                    {...settings}
+                >
                     {InstagramMedia.map((media) => {
                         if (media.media_type === 'IMAGE') {
                             return (
