@@ -18,10 +18,10 @@ export default function CartTable(props) {
     const [productQty, setProductQty] = useState(0);
     const [loading, setLoading] = useState(false);
     const [notificationData, setNotificationData] = useState({
-        userName: null,
-        userEmail: null,
-        cart: null,
-        amount: null,
+        email: null,
+        products: null,
+        totalPrice: null,
+				currency:null,
     });
     const dispatch = useDispatch();
     const [session] = useSession();
@@ -68,20 +68,26 @@ export default function CartTable(props) {
 
     const subtotalAmount = calculateSubtotal();
 
+
+    console.log('notificationData', notificationData);
     function cartNotification() {
-        const userName = session.user.name;
         const userEmail = session.user.email;
         const amount = `${symbol} ${subtotalAmount}`;
         setNotificationData({
             ...notificationData,
-            userName,
-            userEmail,
-            cart: props.products,
-            amount,
+            email: userEmail,
+            products: props.products,
+            totalPrice: amount,
+            currency: symbol,
         });
         console.log('notificationData', notificationData);
         setLoading(true);
-        SendData('/cart-notification', notificationData, router, '/checkout');
+        SendData(
+            '/checkout-notification',
+            notificationData,
+            router,
+            '/checkout',
+        );
         setLoading(false);
     }
 

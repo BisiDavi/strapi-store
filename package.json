@@ -13,6 +13,7 @@
         "lint:fix": "eslint . --fix"
     },
     "dependencies": {
+        "@sendgrid/mail": "^7.4.5",
         "@types/react": "^17.0.3",
         "axios": "^0.21.1",
         "bootstrap": "^4.6.0",

@@ -15,7 +15,7 @@ export default async function handler(req, res) {
                     data: newsletterSubscribe,
                 });
             } catch (error) {
-                res.status(400).json({ sucess: false, error });
+                res.status(400).json({ success: false, error });
             }
             break;
         default:
