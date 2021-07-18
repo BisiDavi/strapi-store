@@ -43,7 +43,7 @@ export default function DiscountRibbon({ discount }: DiscountProps) {
                     .badges {
                         position: relative;
                         margin: 40px auto;
-                        width: 200px;
+                        width: 220px;
                         height: 200px;
                         background: #e277a2;
                         border-radius: 100%;
