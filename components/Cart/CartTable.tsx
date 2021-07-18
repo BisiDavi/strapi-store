@@ -26,7 +26,7 @@ export default function CartTable({ products }) {
     const [session] = useSession();
     const router = useRouter();
     const { rushOrder } = useSelector((state) => state.rushOrder);
-    const userEmail = session?.user?.email || session.user?.name;
+    const userEmail = session?.user?.email || session?.user?.name;
     console.log('session', session);
     const {
         priceExchange,
