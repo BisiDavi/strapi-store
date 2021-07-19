@@ -18,10 +18,10 @@ export default function Signin({ providers }) {
     const { setStorage } = useLocalStorage();
     const [apiResponse, setApiResponse] = useState(null);
     const [session, loading] = useSession();
-    const { signIn ,error } = router.query;
+    const { signIn, error } = router.query;
 
-		console.log('error',error)
-		console.log('rouer',router)
+    console.log('error', error);
+    console.log('rouer', router);
 
     function authText() {
         if (signIn.includes('login')) {
@@ -59,9 +59,7 @@ export default function Signin({ providers }) {
     return (
         <Pagelayout title='Sign in'>
             <div className='container-fluid sign-in'>
-                {signIn.includes('error') && (
-                    <DisplayError signinError={signIn} />
-                )}
+                {error && <DisplayError signinError={error} />}
                 {!session ? (
                     <div className='row'>
                         <h3 className='text-center my-2'>
@@ -70,9 +68,8 @@ export default function Signin({ providers }) {
                         </h3>
 
                         <h3 className='text-center my-2'>
-                            In case you have issues {signInText} with google,
-                            facebook or instagram, {signInText} with with your
-                            email
+                            In case you have issues with google, facebook or
+                            instagram, {signInText} with with your email
                         </h3>
 
                         <div className='signinButtons'>
