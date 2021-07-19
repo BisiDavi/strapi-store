@@ -10,7 +10,6 @@ import Link from 'next/link';
 import { Pagelayout } from '@containers/.';
 import { Loading } from '@components/.';
 import EmailSignin from '@components/Form/EmailSignin';
-import styles from '@styles/auth.module.css';
 import useLocalStorage from '@hooks/useLocalStorage';
 import DisplayError from '@utils/checkAuthError';
 
@@ -19,7 +18,10 @@ export default function Signin({ providers }) {
     const { setStorage } = useLocalStorage();
     const [apiResponse, setApiResponse] = useState(null);
     const [session, loading] = useSession();
-    const { signIn } = router.query;
+    const { signIn ,error } = router.query;
+
+		console.log('error',error)
+		console.log('rouer',router)
 
     function authText() {
         if (signIn.includes('login')) {
@@ -55,7 +57,7 @@ export default function Signin({ providers }) {
     };
     loading && <Loading />;
     return (
-        <Pagelayout title='Sign in' className={styles.authPage}>
+        <Pagelayout title='Sign in'>
             <div className='container-fluid sign-in'>
                 {signIn.includes('error') && (
                     <DisplayError signinError={signIn} />
@@ -68,7 +70,7 @@ export default function Signin({ providers }) {
                         </h3>
 
                         <h3 className='text-center my-2'>
-                            Incase you have issues {signInText} with google,
+                            In case you have issues {signInText} with google,
                             facebook or instagram, {signInText} with with your
                             email
                         </h3>
