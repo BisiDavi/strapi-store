@@ -53,7 +53,6 @@ export default function Home({
     }, [dispatch, userIP.country, nairaRate]);
 
     return (
-        <>
             <Pagelayout metaTags={seoData} title='Welcome'>
                 <div className='homepage position-relative'>
                     <HomepageSlider />
@@ -64,7 +63,6 @@ export default function Home({
                     <InstaSlider InstagramMedia={instagramMedia?.data} />
                 </div>
             </Pagelayout>
-        </>
     );
 }
 

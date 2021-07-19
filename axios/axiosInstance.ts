@@ -20,3 +20,11 @@ export const axiosInstagramAPIInstance = axios.create({
         'content-type': 'application/json',
     },
 });
+
+export const axiosInstanceFlutterwave = axios.create({
+    baseURL: 'https://api.flutterwave.com/v3/',
+    headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_FLUTTERWAVE_SECRET_KEY}`,
+        'content-type': 'application/json',
+    },
+});
