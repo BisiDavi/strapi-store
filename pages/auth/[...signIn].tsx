@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import {
     getProviders,
@@ -11,11 +11,20 @@ import { Pagelayout } from '@containers/.';
 import { Loading } from '@components/.';
 import EmailSignin from '@components/Form/EmailSignin';
 import styles from '@styles/auth.module.css';
+import useLocalStorage from '@hooks/useLocalStorage';
 
 export default function Signin({ providers }) {
     const router = useRouter();
+    const { setStorage } = useLocalStorage();
+    const [apiResponse, setApiResponse] = useState(null);
     const [session, loading] = useSession();
     const { signIn } = router.query;
+
+    useEffect(() => {
+        if (apiResponse !== null) {
+            setStorage('apiResponse', apiResponse);
+        }
+    }, [apiResponse, setStorage]);
 
     const signInText = signIn[0].includes('-') && signIn[0].replace('-', ' ');
     console.log('signIn', signIn);
@@ -60,12 +69,15 @@ export default function Signin({ providers }) {
                                             <button
                                                 onClick={() =>
                                                     AuthSignIn(provider.id)
-                                                        .then((response) =>
+                                                        .then((response) => {
                                                             console.log(
                                                                 'response auth',
                                                                 response,
-                                                            ),
-                                                        )
+                                                            );
+                                                            setApiResponse(
+                                                                response,
+                                                            );
+                                                        })
                                                         .catch((error) =>
                                                             console.error(
                                                                 'error',
