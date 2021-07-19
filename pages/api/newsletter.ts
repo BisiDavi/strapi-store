@@ -1,3 +1,4 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import sgMail from '@sendgrid/mail';
 import connectToDatabase from '../../middlewares/database';
 import Newsletter from '../../models/newsletter';
@@ -5,7 +6,10 @@ import { sendEmail } from '../../utils';
 
 sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API);
 
-export default async function handler(req, res) {
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse,
+) {
     const { method } = req;
     const { email } = req.body;
 

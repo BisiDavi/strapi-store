@@ -21,10 +21,5 @@ export default async function sendEmail(
         dynamic_template_data: data,
     };
 
-    await _sgMail
-        .send(msg)
-        .then((response) => {
-            console.log('response sendEmail', response);
-        })
-        .catch((error) => console.error('error sendEmail', error));
+    await _sgMail.send(msg);
 }
