@@ -19,6 +19,7 @@ import { HomeProps } from '../types';
 import { setCurrencyAction } from '@store/actions/currencyAction';
 import getUserIP from '@utils/getUserIP';
 import { IPAction } from '@store/actions/IPActions';
+import makeNairaPayment from '@utils/makeNairaPayment';
 
 const InstaSlider = dynamic(() => import('../components/Slider/instaSlider'));
 
@@ -33,6 +34,10 @@ export default function Home({
     const userIP = SelectState('IP');
 
     const nairaRate = Number(currencyExchangeRate.dollarToNairaRate.rate);
+
+    useEffect(() => {
+        makeNairaPayment();
+    }, []);
 
     useEffect(() => {
         if (userIP.country === null) {
@@ -53,16 +58,16 @@ export default function Home({
     }, [dispatch, userIP.country, nairaRate]);
 
     return (
-            <Pagelayout metaTags={seoData} title='Welcome'>
-                <div className='homepage position-relative'>
-                    <HomepageSlider />
-                    <Collections />
-                    <ProductsList products={allProducts} />
-                    <Viewmore />
-                    <Newsletter />
-                    <InstaSlider InstagramMedia={instagramMedia?.data} />
-                </div>
-            </Pagelayout>
+        <Pagelayout metaTags={seoData} title='Welcome'>
+            <div className='homepage position-relative'>
+                <HomepageSlider />
+                <Collections />
+                <ProductsList products={allProducts} />
+                <Viewmore />
+                <Newsletter />
+                <InstaSlider InstagramMedia={instagramMedia?.data} />
+            </div>
+        </Pagelayout>
     );
 }
 
