@@ -2,6 +2,8 @@ import sgMail from '@sendgrid/mail';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sendEmail } from '../../utils';
 
+sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API);
+
 export default async function CheckoutNotificationHandler(
     req: NextApiRequest,
     res: NextApiResponse,
