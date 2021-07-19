@@ -24,6 +24,11 @@ const options = {
         signIn: '/auth/signin',
         verifyRequest: '/auth/verify-request',
     },
+    callbacks: {
+        async signIn(user, account, profile) {
+            console.log('signIn callback', user, account, profile);
+        },
+    },
     database: process.env.DATABASE_URL,
     secret: process.env.NEXT_PUBLIC_SECRET,
     session: {

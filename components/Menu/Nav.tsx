@@ -27,6 +27,9 @@ export default function Nav() {
     const loginNotification = () => {
         toast.success(`${session.user.name}, you're logged in`);
     };
+    const logoutNotification = () => {
+        toast.error(`${session.user.name}, you're logged out`);
+    };
     return (
         <nav className='nav-menu'>
             <span className='hamburger'>
@@ -50,7 +53,14 @@ export default function Nav() {
                 {session && (
                     <>
                         Hello {session.user?.name || session.user.email} <br />
-                        <button onClick={() => signOut()}>Sign out</button>
+                        <button
+                            onClick={() => {
+                                signOut();
+                                logoutNotification();
+                            }}
+                        >
+                            Sign out
+                        </button>
                     </>
                 )}
             </div>

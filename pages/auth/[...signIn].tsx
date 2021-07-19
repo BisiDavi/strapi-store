@@ -20,15 +20,25 @@ export default function Signin({ providers }) {
     const [session, loading] = useSession();
     const { signIn } = router.query;
 
+    function authText() {
+        if (signIn.includes('login')) {
+            return 'log in';
+        } else if (signIn.includes('create-account')) {
+            return 'create account';
+        } else if (signIn.includes('signin')) {
+            return 'sign in';
+        }
+    }
+
+    const signInText = authText();
+
     useEffect(() => {
         if (apiResponse !== null) {
             setStorage('apiResponse', apiResponse);
         }
     }, [apiResponse, setStorage]);
 
-    const signInText = signIn[0].includes('-') && signIn[0].replace('-', ' ');
     console.log('signIn', signIn);
-    console.log('signInText', signInText);
 
     const displayIcon = (icon) => {
         switch (icon) {
