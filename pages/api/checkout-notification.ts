@@ -1,6 +1,5 @@
 import sgMail from '@sendgrid/mail';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { sendEmail } from '../../utils';
 
 sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API);
 
@@ -20,10 +19,7 @@ export default async function CheckoutNotificationHandler(
     const adminEmailAddress = [
         process.env.NEXT_PUBLIC_ADMIN_EMAIL_ADDRESS,
         process.env.NEXT_PUBLIC_DEVELOPER_EMAIL_ADDRESS,
-        'readydevfreelancer@gmail.com',
     ];
-    //const email = isAdmin ? adminEmailAddress : userEmail;
-
     const msg = {
         to: adminEmailAddress,
         from: {
@@ -38,11 +34,7 @@ export default async function CheckoutNotificationHandler(
         case 'POST':
             try {
                 await sgMail.send(msg);
-                //sendEmail(sgMail, '', checkoutNotificationID, data, true)
-                //    .then((response) => {
-                //        console.log('response sendEmail', response);
-                //    })
-                //    .catch((error) => console.error('error sendEmail', error));
+								
                 res.status(200).json({
                     success: true,
                     message: 'checkout email notification sent',
