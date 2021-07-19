@@ -60,6 +60,18 @@ export default function Signin({ providers }) {
                                             <button
                                                 onClick={() =>
                                                     AuthSignIn(provider.id)
+                                                        .then((response) =>
+                                                            console.log(
+                                                                'response auth',
+                                                                response,
+                                                            ),
+                                                        )
+                                                        .catch((error) =>
+                                                            console.error(
+                                                                'error',
+                                                                error,
+                                                            ),
+                                                        )
                                                 }
                                                 key={provider.name}
                                             >
