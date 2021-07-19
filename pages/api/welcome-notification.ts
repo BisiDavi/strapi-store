@@ -15,6 +15,10 @@ export default async function handler(
     const { email } = req.body;
     const data = { email };
 
+    console.log('email', email);
+
+    console.log('req.body', req.body);
+
     switch (method) {
         case 'POST':
             try {

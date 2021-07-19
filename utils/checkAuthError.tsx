@@ -25,5 +25,13 @@ function checkError(error) {
 }
 
 export default function DisplayError({ signinError }) {
-    return <Alert variant='danger'>{checkError(signinError)}</Alert>;
+    return (
+        <Alert
+            style={{ fontSize: '18px' }}
+            className='font-weight-bold my-3 text-center'
+            variant='danger'
+        >
+            {checkError(signinError)}
+        </Alert>
+    );
 }

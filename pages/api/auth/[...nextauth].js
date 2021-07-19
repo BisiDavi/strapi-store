@@ -31,7 +31,12 @@ const options = {
         jwt: true,
         maxAge: 30 * 24 * 60 * 60,
     },
-    events: {},
+    events: {
+        async signIn(user, account, isNewUser) {
+            console.log('events, signIN', user, account, isNewUser);
+            axiosInstance.post('/welcome-notification', user?.email);
+        },
+    },
     debug: false,
 };
 
