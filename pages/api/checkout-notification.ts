@@ -16,13 +16,7 @@ export default async function CheckoutNotificationHandler(
     switch (method) {
         case 'POST':
             try {
-                sendEmail('', checkoutNotificationID, data, true)
-                    .then((response) => {
-                        console.log('response sendToAdmin', response);
-                    })
-                    .catch((error) =>
-                        console.error('error sendToAdmin', error),
-                    );
+                sendEmail(sgMail, '', checkoutNotificationID, data, true);
                 res.status(200).json({
                     success: true,
                     message: 'checkout email notification sent',

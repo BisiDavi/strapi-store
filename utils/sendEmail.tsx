@@ -1,8 +1,10 @@
-import sgMail from '@sendgrid/mail';
-
-sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API);
-
-export default async function sendEmail(userEmail, templateId, data, isAdmin) {
+export default async function sendEmail(
+    _sgMail,
+    userEmail,
+    templateId,
+    data,
+    isAdmin,
+) {
     const adminEmailAddress = [
         process.env.NEXT_PUBLIC_ADMIN_EMAIL_ADDRESS,
         process.env.NEXT_PUBLIC_DEVELOPER_EMAIL_ADDRESS,
@@ -19,5 +21,10 @@ export default async function sendEmail(userEmail, templateId, data, isAdmin) {
         dynamic_template_data: data,
     };
 
-    await sgMail.send(msg);
+    await _sgMail
+        .send(msg)
+        .then((response) => {
+            console.log('response sendEmail', response);
+        })
+        .catch((error) => console.error('error sendEmail', error));
 }
