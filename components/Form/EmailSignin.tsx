@@ -50,7 +50,9 @@ export default function EmailSignin() {
                         placeholder='Enter your email'
                         required
                     />
-                    <button type='submit'>Submit</button>
+                    <button type='submit' className='mb-5'>
+                        Submit
+                    </button>
                 </form>
                 <style jsx>
                     {`

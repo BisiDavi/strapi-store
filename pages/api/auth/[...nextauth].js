@@ -25,13 +25,6 @@ const options = {
         signIn: '/auth/signin',
         verifyRequest: '/auth/verify-request',
     },
-    callbacks: {
-        async signIn(user, account, profile) {
-            axiosInstance.post('welcome-notification', user?.email);
-            console.log('signIn callback', user, account, profile);
-            return true;
-        },
-    },
     database: process.env.DATABASE_URL,
     secret: process.env.NEXT_PUBLIC_SECRET,
     session: {

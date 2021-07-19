@@ -85,9 +85,7 @@ export default function Footer() {
                         color: white;
                         text-align: center;
                         font-size: 1em;
-                        position: static;
                         font-family: 'Montserrat', sans-serif;
-                        bottom: 0px;
                         width: 100%;
                     }
                     ul.footerLinks.row li {
