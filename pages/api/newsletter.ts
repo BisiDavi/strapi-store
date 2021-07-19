@@ -13,13 +13,15 @@ export default async function handler(
     const { method } = req;
     const { email } = req.body;
 
+		await connectToDatabase();
+
     const adminNewsletterId =
         process.env.NEXT_PUBLIC_ADMIN_NEWSLETTER_NOTIFICATION_ID;
 
     const userNewsletterId =
         process.env.NEXT_PUBLIC_USER_NEWSLETTER_NOTIFICATION_ID;
 
-    await connectToDatabase();
+    console.log('req.body', email);
 
     switch (method) {
         case 'POST':
@@ -47,6 +49,7 @@ export default async function handler(
                     data: newsletterSubscribe,
                 });
             } catch (error) {
+                console.log('error', error);
                 res.status(400).json({ success: false, error });
             }
             break;

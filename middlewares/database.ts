@@ -31,17 +31,14 @@ export default async function connectToDatabase() {
         const options = {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            bufferCommands: false,
+						bufferCommands: false,
+            autoCreate: false,
             bufferMaxEntries: 0,
             useFindAndModify: false,
             useCreateIndex: true,
         };
 
-        cached.promise = mongoose
-            .connect(NEXT_MONGODB_URI, options)
-            .then((client) => {
-                return mongoose;
-            });
+        cached.promise = await mongoose.connect(NEXT_MONGODB_URI, options);
     }
     cached.conn = await cached.promise;
     return cached.conn;
