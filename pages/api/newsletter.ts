@@ -13,7 +13,7 @@ export default async function handler(
     const { method } = req;
     const { email } = req.body;
 
-		await connectToDatabase();
+    await connectToDatabase();
 
     const adminNewsletterId =
         process.env.NEXT_PUBLIC_ADMIN_NEWSLETTER_NOTIFICATION_ID;
@@ -21,7 +21,7 @@ export default async function handler(
     const userNewsletterId =
         process.env.NEXT_PUBLIC_USER_NEWSLETTER_NOTIFICATION_ID;
 
-    console.log('req.body', email);
+    const userEmail = { email };
 
     switch (method) {
         case 'POST':
@@ -30,7 +30,7 @@ export default async function handler(
                 const sendToAdmin = sendEmail(
                     '',
                     adminNewsletterId,
-                    email,
+                    userEmail,
                     true,
                 );
                 await sgMail.send(sendToAdmin);
@@ -38,7 +38,7 @@ export default async function handler(
                 const sendToUser = sendEmail(
                     email,
                     userNewsletterId,
-                    email,
+                    userEmail,
                     false,
                 );
 
