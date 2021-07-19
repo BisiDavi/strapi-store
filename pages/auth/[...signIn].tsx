@@ -58,9 +58,15 @@ export default function Signin({ providers }) {
             <div className='container-fluid sign-in'>
                 {!session ? (
                     <div className='row'>
-                        <h3 className='text-center'>
+                        <h3 className='text-center my-2'>
                             Hello Dear Customer, Please {signInText}, we want to
                             know you.
+                        </h3>
+
+                        <h3 className='text-center my-2'>
+                            Incase you have issues {signInText} with google,
+                            facebook or instagram, {signInText} with with your
+                            email
                         </h3>
 
                         <div className='signinButtons'>

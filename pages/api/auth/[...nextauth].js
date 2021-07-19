@@ -1,3 +1,4 @@
+import { axiosInstance } from '@axios/axiosInstance';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 
@@ -26,6 +27,9 @@ const options = {
     },
     callbacks: {
         async signIn(user, account, profile) {
+            window.localStorage.setItem('callbackSignin user', user);
+            window.localStorage.setItem('callbackSignin account', account);
+            axiosInstance.post('welcome-notification', user?.email);
             console.log('signIn callback', user, account, profile);
         },
     },

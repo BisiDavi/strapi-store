@@ -12,14 +12,16 @@ export default async function handler(
     res: NextApiResponse,
 ) {
     const { method } = req;
+    const { email } = req.body;
+    const data = { email };
 
     switch (method) {
         case 'POST':
             try {
                 const sendToUser = sendEmail(
-                    '',
+                    email,
                     welcomeNotificationId,
-                    '',
+                    data,
                     false,
                 );
                 await sgMail.send(sendToUser);
