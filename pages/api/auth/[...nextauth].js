@@ -38,7 +38,7 @@ const options = {
         maxAge: 30 * 24 * 60 * 60,
     },
     events: {},
-    debug: true,
+    debug: false,
 };
 
 export default function CustomNextAuth(req, res) {
