@@ -29,6 +29,7 @@ const options = {
         async signIn(user, account, profile) {
             axiosInstance.post('welcome-notification', user?.email);
             console.log('signIn callback', user, account, profile);
+            return true;
         },
     },
     database: process.env.DATABASE_URL,
