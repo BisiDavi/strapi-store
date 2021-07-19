@@ -12,6 +12,7 @@ import { Loading } from '@components/.';
 import EmailSignin from '@components/Form/EmailSignin';
 import styles from '@styles/auth.module.css';
 import useLocalStorage from '@hooks/useLocalStorage';
+import DisplayError from '@utils/checkAuthError';
 
 export default function Signin({ providers }) {
     const router = useRouter();
@@ -56,6 +57,9 @@ export default function Signin({ providers }) {
     return (
         <Pagelayout title='Sign in' className={styles.authPage}>
             <div className='container-fluid sign-in'>
+                {signIn.includes('error') && (
+                    <DisplayError signinError={signIn} />
+                )}
                 {!session ? (
                     <div className='row'>
                         <h3 className='text-center my-2'>
