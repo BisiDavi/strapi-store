@@ -56,10 +56,11 @@ export default function Checkout() {
     function nairaPayment() {
         if (checkoutDetails !== null) {
             const { details, totalPrice } = checkoutDetails;
+
             axiosInstance
                 .post('/make-payments', {
                     paymentDetails: details,
-                    amount: totalPrice,
+                    amount: totalPrice.replace(',', ''),
                 })
                 .then((response) => {
                     console.log('response', response);

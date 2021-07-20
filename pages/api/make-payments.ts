@@ -32,11 +32,11 @@ export default function hander(req: NextApiRequest, res: NextApiResponse) {
                 .post('/payments', JSON.stringify(data))
                 .then((response) => {
                     console.log('response', JSON.stringify(response));
-                    res.status(200).json({ success: true, message: response });
+                    res.status(200).json({ success: true, response });
                 })
                 .catch((error) => {
                     console.error('error', error);
-                    res.status(400).json({ success: false, message: error });
+                    res.status(400).json({ success: false, error });
                 });
         }
     }
