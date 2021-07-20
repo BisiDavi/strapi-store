@@ -36,10 +36,6 @@ export default function Home({
     const nairaRate = Number(currencyExchangeRate.dollarToNairaRate.rate);
 
     useEffect(() => {
-        makeNairaPayment();
-    }, []);
-
-    useEffect(() => {
         if (userIP.country === null) {
             getUserIP().then((response) => {
                 dispatch(IPAction(response.country));
