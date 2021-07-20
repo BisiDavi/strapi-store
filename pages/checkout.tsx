@@ -13,6 +13,7 @@ import { Pagelayout } from '@containers/.';
 import { useAuthModal, useRedux } from '@hooks/.';
 import { Notify, Paypal, LoginModal, Loading } from '@components/.';
 import { SuccessModal } from '@components/Modal';
+import makeNairaPayment from '@utils/makeNairaPayment';
 
 export default function Checkout() {
     const { modal, loading, displayModal } = useAuthModal();
@@ -48,6 +49,15 @@ export default function Checkout() {
                 totalPrice,
             });
     }, [details, method, additionalInformation, totalPrice]);
+
+    console.log('totalPrice', totalPrice);
+
+    function nairaPayment() {
+        if (checkoutDetails !== null) {
+            const { details } = checkoutDetails;
+            makeNairaPayment(details, totalPrice);
+        }
+    }
 
     console.log('checkoutDetails', checkoutDetails);
 
@@ -115,25 +125,37 @@ export default function Checkout() {
                     <AdditionalInformation />
                     <OrderSummary setTotalPrice={setTotalPrice} />
                     <div className='express-checkout'>
-                        {console.log('paypalLoaded', paypalLoaded)}
+                        {formCondition && (
+                            <button
+                                className='nairaPayment'
+                                onClick={nairaPayment}
+                            >
+                                Make Payment
+                            </button>
+                        )}
+                        {/*{console.log('paypalLoaded', paypalLoaded)}
                         {formCondition && paypalLoaded && (
                             <Paypal
                                 amount={totalAmount}
-																setCheckoutDetails={setCheckoutDetails}
-																checkoutDetails={checkoutDetails}
+                                setCheckoutDetails={setCheckoutDetails}
+                                checkoutDetails={checkoutDetails}
                                 hasPaid={(payment) => {
-
                                     setPaymentConfirmed(payment);
-
                                 }}
                             />
-                        )}
+                        )}*/}
                     </div>
                 </div>
                 <style jsx>
                     {`
                         .container-fluid {
                             padding: 0px 100px;
+                        }
+                        .nairaPayment {
+                            background-color: green;
+                            color: white;
+                            font-weight: bold;
+                            font-size: 20px;
                         }
                         .alert,
                         .express-checkout {

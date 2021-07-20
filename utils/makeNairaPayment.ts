@@ -1,17 +1,20 @@
 import { axiosInstanceFlutterwave } from '@axios/axiosInstance';
 import { v4 as uuidv4 } from 'uuid';
 
-export default async function makeNairaPayment(paymentDetails) {
+export default async function makeNairaPayment(
+    paymentDetails: paymentDetailsType,
+    amount: string,
+) {
     const data = {
         tx_ref: uuidv4(),
-        amount: paymentDetails.amount,
+        amount: amount,
         currency: 'NGN',
         redirect_url: 'https://jenjensluxury.com/payment-successful',
         payment_options: ['card', 'account', 'banktransfer', 'barter'],
         customer: {
             email: paymentDetails.email,
-            phonenumber: paymentDetails.phonenumber,
-            name: paymentDetails.username,
+            phonenumber: paymentDetails.telephone,
+            name: paymentDetails.fullName,
         },
         customizations: {
             title: "Jenjen's Luxury Wigs",
@@ -27,3 +30,9 @@ export default async function makeNairaPayment(paymentDetails) {
         })
         .catch((error) => console.error('error', error));
 }
+
+type paymentDetailsType = {
+    email: string;
+    telephone: string;
+    fullName: string;
+};
