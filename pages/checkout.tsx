@@ -14,6 +14,7 @@ import { useAuthModal, useRedux } from '@hooks/.';
 import { Notify, Paypal, LoginModal, Loading } from '@components/.';
 import { SuccessModal } from '@components/Modal';
 import makeNairaPayment from '@utils/makeNairaPayment';
+import { axiosInstance } from '@axios/axiosInstance';
 
 export default function Checkout() {
     const { modal, loading, displayModal } = useAuthModal();
@@ -54,8 +55,18 @@ export default function Checkout() {
 
     function nairaPayment() {
         if (checkoutDetails !== null) {
-            const { details } = checkoutDetails;
-            makeNairaPayment(details, totalPrice);
+            const { details, totalPrice } = checkoutDetails;
+            axiosInstance
+                .post('/make-payments', {
+                    paymentDetails: details,
+                    amount: totalPrice,
+                })
+                .then((response) => {
+                    console.log('response', response);
+                })
+                .catch((error) => {
+                    console.error('error', error);
+                });
         }
     }
 
@@ -151,11 +162,25 @@ export default function Checkout() {
                         .container-fluid {
                             padding: 0px 100px;
                         }
-                        .nairaPayment {
+                        button.nairaPayment {
                             background-color: green;
                             color: white;
                             font-weight: bold;
                             font-size: 20px;
+                            border-radius: 10px;
+                            border: none;
+                            padding: 15px 25px;
+                            background: #642b73; /* fallback for old browsers */
+                            background: -webkit-linear-gradient(
+                                to right,
+                                #c6426e,
+                                #642b73
+                            ); /* Chrome 10-25, Safari 5.1-6 */
+                            background: linear-gradient(
+                                to right,
+                                #c6426e,
+                                #642b73
+                            ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
                         }
                         .alert,
                         .express-checkout {
