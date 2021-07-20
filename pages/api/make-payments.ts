@@ -10,8 +10,6 @@ export default async function hander(
 
     const { paymentDetails, amount } = req.body;
 
-    console.log('req.body', req.body);
-
     const data = {
         tx_ref: uuidv4(),
         amount: amount,
@@ -30,8 +28,6 @@ export default async function hander(
                 'https://drive.google.com/uc?export=view&id=1P0oVjPA9dfO3Yq7SSukPOCfXidAracpQ',
         },
     };
-
-    console.log('data', data);
 
     switch (method) {
         case 'POST': {
