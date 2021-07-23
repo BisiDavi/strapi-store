@@ -35,16 +35,15 @@ export default async function hander(
                 await axiosInstanceFlutterwave
                     .post('/payments', JSON.stringify(data))
                     .then((response) => {
-                        console.log('response', JSON.stringify(response));
-                        res.status(200).json({ success: true, response });
+                        res.status(200).send({
+                            message: response?.data,
+                        });
                     })
                     .catch((error) => {
-                        console.error('error', error);
-                        res.status(400).json({ success: false, error });
+                        res.status(400).send({ success: false, error });
                     });
             } catch (error) {
-                console.log('error', error);
-                res.status(400).json({ success: false, error });
+                res.status(400).send({ success: false, error });
             }
             break;
         }

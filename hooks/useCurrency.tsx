@@ -26,6 +26,8 @@ export default function useCurrency() {
         value: currency.value,
     };
 
+    const currencySymbol = symbol !== '$' ? '\u20A6' : '$';
+
     return {
         priceExchange,
         symbol,
@@ -33,5 +35,6 @@ export default function useCurrency() {
         formatToNumber,
         currencyRate,
         currency,
+        currencySymbol,
     };
 }

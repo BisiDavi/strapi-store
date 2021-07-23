@@ -6,7 +6,7 @@ import { FcFullTrash } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/client';
-import { useCurrency } from '@hooks/.';
+import { useCurrency, useFormatProduct } from '@hooks/.';
 import { DeleteProductAction } from '@store/actions/counterActions';
 import { Button } from '../.';
 import { getTotalAmount } from '@utils/.';
@@ -28,16 +28,16 @@ export default function CartTable({ products }) {
     const { rushOrder } = useSelector((state) => state.rushOrder);
     const userEmail = session?.user?.email || session?.user?.name;
     console.log('session', session);
+    const { formatProduct }: any = useFormatProduct();
     const {
         priceExchange,
         symbol,
         formatPrice,
         formatToNumber,
+        currencySymbol,
     } = useCurrency();
 
     const tableTitle = ['Product', 'Name', 'Price', 'Quantity', 'Total'];
-
-    const currencySymbol = symbol !== '$' ? '\u20A6' : '$';
 
     function deleteProduct(index) {
         return dispatch(DeleteProductAction({ products, index }));
@@ -71,21 +71,21 @@ export default function CartTable({ products }) {
 
     const subtotalAmount = calculateSubtotal();
 
-    let productArray = [];
+    //let productArray = [];
 
-    products.map(
-        (product) =>
-            (productArray = [
-                ...productArray,
-                {
-                    amount: priceExchange(product.amount),
-                    count: product.count,
-                    image: product.image.responsiveImage.src,
-                    title: product.title,
-                },
-            ]),
-    );
-
+    //products.map(
+    //    (product) =>
+    //        (productArray = [
+    //            ...productArray,
+    //            {
+    //                amount: priceExchange(product.amount),
+    //                count: product.count,
+    //                image: product.image.responsiveImage.src,
+    //                title: product.title,
+    //            },
+    //        ]),
+    //);
+    const productArray = formatProduct(products);
     console.log('productArray', productArray);
 
     useEffect(() => {

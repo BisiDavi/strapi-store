@@ -10,36 +10,39 @@ import {
 } from '@components/Checkout';
 import { ClearCartAction } from '@store/actions/CartActions';
 import { Pagelayout } from '@containers/.';
-import { useAuthModal, useRedux } from '@hooks/.';
+import { useAuthModal, useLoading, useRedux, useUserDetails } from '@hooks/.';
 import { Notify, Paypal, LoginModal, Loading } from '@components/.';
 import { SuccessModal } from '@components/Modal';
-import makeNairaPayment from '@utils/makeNairaPayment';
 import { axiosInstance } from '@axios/axiosInstance';
 
 export default function Checkout() {
     const { modal, loading, displayModal } = useAuthModal();
-    const [totalPrice, setTotalPrice] = useState(null);
-    const { dispatch, SelectState } = useRedux();
+    const [paymentLink, setPaymentLink] = useState(null);
+    const { startLoading, stopLoading, loading: isLoading } = useLoading();
+    const { dispatch } = useRedux();
     const [checkoutDetails, setCheckoutDetails] = useState(null);
     const [paymentConfirmed, setPaymentConfirmed] = useState(false);
     const [paypalLoaded, setPaypalLoaded] = useState(false);
     const [showModal, setShowModal] = useState(true);
 
     const router = useRouter();
-
-    const { details } = SelectState('userDetails');
-    const { method } = SelectState('shipping');
-    const { additionalInformation } = SelectState('information');
-    const { totalAmount } = SelectState('totalAmount');
-    const { products } = SelectState('cart');
-    const { payment, paymentDetails } = SelectState('payment');
+    const {
+        details,
+        method,
+        additionalInformation,
+        totalAmount,
+        products,
+        payment,
+        paymentDetails,
+        country,
+    } = useUserDetails();
 
     useEffect(() => {
         if (
             details !== null &&
             method !== null &&
             additionalInformation !== null &&
-            totalPrice !== null
+            totalAmount !== null
         )
             setCheckoutDetails({
                 ...checkoutDetails,
@@ -47,29 +50,39 @@ export default function Checkout() {
                 details,
                 additionalInformation,
                 products,
-                totalPrice,
+                totalAmount,
             });
-    }, [details, method, additionalInformation, totalPrice]);
+    }, [details, method, additionalInformation, totalAmount]);
 
-    console.log('totalPrice', totalPrice);
+    useEffect(() => {
+        if (paymentLink !== null) {
+            window.location.assign(paymentLink);
+        }
+    }, [paymentLink]);
+
+    console.log('paymentLink', paymentLink);
 
     function nairaPayment() {
         if (checkoutDetails !== null) {
-            const { details, totalPrice } = checkoutDetails;
-
+            const { details, totalAmount } = checkoutDetails;
+            startLoading();
             axiosInstance
                 .post('/make-payments', {
                     paymentDetails: details,
-                    amount: totalPrice.replace(',', ''),
+                    amount: totalAmount.replace(',', ''),
                 })
                 .then((response) => {
                     console.log('response', response);
+                    setPaymentLink(response?.data?.message.data.link);
+                    stopLoading();
                 })
                 .catch((error) => {
                     console.error('error', error);
+                    stopLoading();
                 });
         }
     }
+    console.log('totalAmount', totalAmount);
 
     console.log('checkoutDetails', checkoutDetails);
 
@@ -106,11 +119,11 @@ export default function Checkout() {
         <Pagelayout title='Checkout |'>
             <div className='container-fluid'>
                 <div className='row w-100 m-0'>
-                    {/*{loading && <Loading />}
+                    {(isLoading || loading) && <Loading />}
                     <LoginModal
                         show={modal}
                         onHide={() => displayModal(false)}
-                    />*/}
+                    />
                     <div className='col-lg-12 info mt-2'>
                         <h3>Jenjen&#39;s Luxury Wigs</h3>
                         <div className='bread-crumb'>
@@ -135,27 +148,29 @@ export default function Checkout() {
                     <ShippingMethod />
                     <ShoppingBag />
                     <AdditionalInformation />
-                    <OrderSummary setTotalPrice={setTotalPrice} />
+                    <OrderSummary />
+                    {console.log('paypalLoaded', paypalLoaded)}
                     <div className='express-checkout'>
-                        {formCondition && (
-                            <button
-                                className='nairaPayment'
-                                onClick={nairaPayment}
-                            >
-                                Make Payment
-                            </button>
-                        )}
-                        {/*{console.log('paypalLoaded', paypalLoaded)}
-                        {formCondition && paypalLoaded && (
-                            <Paypal
-                                amount={totalAmount}
-                                setCheckoutDetails={setCheckoutDetails}
-                                checkoutDetails={checkoutDetails}
-                                hasPaid={(payment) => {
-                                    setPaymentConfirmed(payment);
-                                }}
-                            />
-                        )}*/}
+                        {country === 'NG'
+                            ? formCondition && (
+                                  <button
+                                      className='nairaPayment'
+                                      onClick={nairaPayment}
+                                  >
+                                      Make Payment
+                                  </button>
+                              )
+                            : formCondition &&
+                              paypalLoaded && (
+                                  <Paypal
+                                      amount={totalAmount}
+                                      setCheckoutDetails={setCheckoutDetails}
+                                      checkoutDetails={checkoutDetails}
+                                      hasPaid={(payment) => {
+                                          setPaymentConfirmed(payment);
+                                      }}
+                                  />
+                              )}
                     </div>
                 </div>
                 <style jsx>

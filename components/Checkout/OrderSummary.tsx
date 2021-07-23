@@ -1,11 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useCart, useCurrency, useRedux } from '@hooks/.';
 import { getTotalAmount } from '@utils/.';
 import styles from '@styles/checkout.module.css';
+import { TotalAmountAction } from '@store/actions/TotalAmountAction';
 
-export default function OrderSummary({  setTotalPrice }) {
+export default function OrderSummary() {
     const { products } = useCart();
-    const { SelectState } = useRedux();
+
+    const { SelectState, dispatch } = useRedux();
     const {
         priceExchange,
         symbol,
@@ -16,6 +19,7 @@ export default function OrderSummary({  setTotalPrice }) {
     const { rushOrder } = SelectState('rushOrder');
     const { name } = SelectState('currency');
     const { method } = SelectState('shipping');
+    const { totalAmount: itemTotalAmount } = SelectState('totalAmount');
 
     function nairaPrice(price) {
         return name === 'Naira'
@@ -40,29 +44,34 @@ export default function OrderSummary({  setTotalPrice }) {
     const rushOrderAmount = priceExchange(rushOrder);
     const shippingAmount = shippingPrice();
 
-    function calculateTotal() {
-        let total;
-        if (rushOrder && method) {
-            total =
-                formatToNumber(totalAmount) +
-                formatToNumber(rushOrderAmount) +
-                formatToNumber(shippingAmount);
-            setTotalPrice(formatPrice(total));
-            return formatPrice(total);
-        } else if (rushOrder) {
-            total =
-                formatToNumber(totalAmount) + formatToNumber(rushOrderAmount);
-            setTotalPrice(formatPrice(total));
-            return formatPrice(total);
-        } else {
-            total =
-                formatToNumber(totalAmount) + formatToNumber(shippingAmount);
-            setTotalPrice(formatPrice(total));
-            return formatPrice(total);
+    useEffect(() => {
+        function calculateTotal() {
+            let total;
+            if (rushOrder && method) {
+                total =
+                    formatToNumber(totalAmount) +
+                    formatToNumber(rushOrderAmount) +
+                    formatToNumber(shippingAmount);
+                dispatch(TotalAmountAction(formatPrice(total)));
+                return formatPrice(total);
+            } else if (rushOrder) {
+                total =
+                    formatToNumber(totalAmount) +
+                    formatToNumber(rushOrderAmount);
+                dispatch(TotalAmountAction(formatPrice(total)));
+                return formatPrice(total);
+            } else {
+                total =
+                    formatToNumber(totalAmount) +
+                    formatToNumber(shippingAmount);
+                dispatch(TotalAmountAction(formatPrice(total)));
+                return formatPrice(total);
+            }
         }
-    }
+        calculateTotal();
+    }, [rushOrder, method]);
 
-    const itemTotalAmount = calculateTotal();
+    //const itemTotalAmount = calculateTotal();
 
     return (
         <div className={styles.form}>

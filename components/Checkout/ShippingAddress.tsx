@@ -21,10 +21,10 @@ export default function ShippingAddress(): JSX.Element {
         .length;
 
     useEffect(() => {
-        if (formStateLength === 7) {
+        if (formStateLength > 0 || details === null) {
             dispatch(UserDetailsAction(formState));
         }
-    }, [formState, dispatch, formStateLength]);
+    }, [formState, dispatch, formStateLength, details]);
 
     const formArr = [
         { name: 'fullName', placeHolder: 'Name*' },
@@ -56,7 +56,7 @@ export default function ShippingAddress(): JSX.Element {
                         <CountryDropdownbutton
                             formState={formState}
                             setFormState={setFormState}
-														details={details}
+                            details={details}
                             key={index}
                         />
                     ) : (

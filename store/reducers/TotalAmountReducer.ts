@@ -1,6 +1,6 @@
 import { TOTAL_AMOUNT, TOTAL_AMOUNT_ERROR } from '../constants';
 
-export const TotalAmountReducer = (state = { totalAmount: null }, action) => {
+export const TotalAmountReducer = (state = { totalAmount: 0 }, action) => {
     const { type, payload } = action;
     switch (type) {
         case TOTAL_AMOUNT:
