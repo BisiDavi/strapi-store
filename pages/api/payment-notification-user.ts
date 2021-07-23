@@ -11,8 +11,8 @@ export default async function UserPaymentNotificationHandler(
     const { products, email, shippingDays, totalPrice, symbol } = req.body;
 
     const data = { products, email, shippingDays, totalPrice, symbol };
-    const checkoutNotificationID =
-        process.env.NEXT_PUBLIC_CHECKOUT_NOTIFICATION_ID;
+    const userNotificationID =
+        process.env.NEXT_PUBLIC_PAYMENT_NOTIFICATION_USER_ID;
 
     console.log('req.body', data);
 
@@ -26,7 +26,7 @@ export default async function UserPaymentNotificationHandler(
             email: process.env.NEXT_PUBLIC_SITE_EMAIL_ADDRESS,
             name: "Jenjen's Luxury Wigs",
         },
-        templateId: checkoutNotificationID,
+        templateId: userNotificationID,
         dynamic_template_data: data,
     };
 

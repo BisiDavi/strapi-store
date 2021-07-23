@@ -27,8 +27,8 @@ export default async function AdminPaymentNotificationHandler(
         symbol,
         additionalInformation,
     };
-    const checkoutNotificationID =
-        process.env.NEXT_PUBLIC_CHECKOUT_NOTIFICATION_ID;
+    const adminNotificationID =
+        process.env.NEXT_PUBLIC_PAYMENT_NOTIFICATION_ADMIN_ID;
 
     console.log('req.body', data);
 
@@ -42,7 +42,7 @@ export default async function AdminPaymentNotificationHandler(
             email: process.env.NEXT_PUBLIC_SITE_EMAIL_ADDRESS,
             name: "Jenjen's Luxury Wigs",
         },
-        templateId: checkoutNotificationID,
+        templateId: adminNotificationID,
         dynamic_template_data: data,
     };
 
