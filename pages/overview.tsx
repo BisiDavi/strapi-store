@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import Head from 'next/head';
+import { toast } from 'react-toastify';
 import Image from 'next/image';
-import { FaCartPlus } from 'react-icons/fa';
 import { ComponentLoader } from '@components/loader';
 import Logo from '@components/Icons/Logo';
 import { axiosInstance } from '@axios/axiosInstance';
-import { toast } from 'react-toastify';
 import styles from '@styles/overview.module.css';
 import OverviewCard from '@components/Card/OverviewCard';
+import { snCounter } from '@utils/.';
 
 export default function Overview() {
     const [orders, setOrders] = useState(null);
@@ -16,11 +16,6 @@ export default function Overview() {
     const [newsletterSubscribers, setNewsletterSubscribers] = useState(null);
 
     const [orderProducts, setOrderProducts] = useState(null);
-    let count = 0;
-    function getSN() {
-        count += 1;
-        return count;
-    }
 
     function getRequest(route, setState) {
         axiosInstance
@@ -93,9 +88,9 @@ export default function Overview() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {users.map((user) => (
+                                            {users.map((user, index) => (
                                                 <tr key={user._id}>
-                                                    <td>{getSN()}</td>
+                                                    <td>{snCounter(index)}</td>
                                                     <td>{user?.name}</td>
                                                     <td>{user?.email}</td>
                                                 </tr>
@@ -116,13 +111,18 @@ export default function Overview() {
                                         </thead>
                                         <tbody>
                                             {newsletterSubscribers.map(
-                                                (newsletterSubscriber) => (
+                                                (
+                                                    newsletterSubscriber,
+                                                    index,
+                                                ) => (
                                                     <tr
                                                         key={
                                                             newsletterSubscriber._id
                                                         }
                                                     >
-                                                        <td>{getSN()}</td>
+                                                        <td>
+                                                            {snCounter(index)}
+                                                        </td>
                                                         <td>
                                                             {
                                                                 newsletterSubscriber?.email
@@ -163,9 +163,9 @@ export default function Overview() {
                                             </tr>
                                         </thead>
                                         <tbody style={{ fontSize: '13px' }}>
-                                            {orders.map((order) => (
+                                            {orders.map((order, index) => (
                                                 <tr key={order._id}>
-                                                    <td>{getSN()}</td>
+                                                    <td>{snCounter(index)}</td>
                                                     <td>
                                                         {orderProducts?.title}
                                                     </td>
