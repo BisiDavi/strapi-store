@@ -3,12 +3,7 @@ import { useEffect, useState } from 'react';
 import { axiosInstance } from '@axios/axiosInstance';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-    useCurrency,
-    useLoading,
-    useFormatProduct,
-    useUserDetails,
-} from '@hooks/.';
+import { useCurrency, useFormatProduct, useUserDetails } from '@hooks/.';
 import { Pagelayout } from '@containers/.';
 import { request, HOMEPAGE_QUERY } from '@lib/.';
 import ProductSlider from '@components/Slider/ProductSlider';
@@ -56,7 +51,25 @@ export default function Paymentsuccessful({ otherProducts }) {
         symbol: currencySymbol,
     };
 
+    const saveOrderToDB = {
+        fullName: details.fullName,
+        email: details.email,
+        address: details.address,
+        zip: details.zip,
+        telephone: details.telephone,
+        country: details.country,
+        region: details.region,
+        shippingMethod: method,
+        products,
+        totalPrice: totalAmount,
+        additionalInformation,
+        symbol: currencySymbol,
+    };
+
     console.log('paymentStatus', paymentStatus);
+    console.log('saveOrderToDB', saveOrderToDB);
+    console.log('adminNotificationData', adminNotificationData);
+    console.log('userNotificationData', userNotificationData);
 
     async function postPaymentNotification(route, data) {
         await axiosInstance
@@ -77,6 +90,14 @@ export default function Paymentsuccessful({ otherProducts }) {
                 '/payment-notification-user',
                 userNotificationData,
             );
+            axiosInstance
+                .post('/save-order', JSON.stringify(saveOrderToDB))
+                .then((response) => {
+                    console.log('response from db', response);
+                })
+                .catch((error) => {
+                    console.log('error from db', error);
+                });
         }
     }, [paymentStatus]);
 
