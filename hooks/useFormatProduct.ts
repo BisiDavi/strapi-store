@@ -21,5 +21,5 @@ export default function useFormatProduct() {
         return productArray;
     }
 
-    return formatProduct;
+    return { formatProduct };
 }
