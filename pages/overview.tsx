@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Table, Card } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import Head from 'next/head';
 import Image from 'next/image';
 import { FaCartPlus } from 'react-icons/fa';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { ComponentLoader } from '@components/loader';
 import Logo from '@components/Icons/Logo';
 import { axiosInstance } from '@axios/axiosInstance';
 import { toast } from 'react-toastify';
+import styles from '@styles/overview.module.css';
 
 export default function Overview() {
     const [orders, setOrders] = useState(null);
-    const [showSidebar, setShowSidebar] = useState(false);
     const [orderProducts, setOrderProducts] = useState(null);
     let count = 0;
     function getSN() {
@@ -54,12 +53,14 @@ export default function Overview() {
             <Head>
                 <title>Overview | Jenjen&#39;s Luxury Wigs</title>
             </Head>
-            <div className='Overview container-fluid vh-100'>
-                <div className='row vh-100'>
-                    <nav className='nav w-100' col-12>
-                        <GiHamburgerMenu size={50} />
+            <div className='Overview container-fluid'>
+                <div className='row'>
+                    <nav className={styles.nav} col-12>
+                        <div className='logo'>
+                            <Logo />
+                        </div>
                     </nav>
-                    <div className='col-lg-2 col-3 d-none sidebar'>
+                    <div className='col-lg-2 col-3 sidebar  vh-100'>
                         <div className='logo'>
                             <Logo />
                         </div>
@@ -94,7 +95,7 @@ export default function Overview() {
                         </div>
                         <h3 className='text-center'>Orders Table</h3>
                         {orders !== null ? (
-                            <Table responsive>
+                            <Table responsive striped>
                                 <thead
                                     className='thead'
                                     style={{ fontSize: '14px' }}
@@ -179,6 +180,8 @@ export default function Overview() {
 
                         .content {
                             font-family: 'Montserrat', sans-serif;
+                            background-color: rgb(249 249 249);
+                            height: 100vh;
                         }
 
                         .sidebar {
@@ -214,7 +217,34 @@ export default function Overview() {
                             font-family: 'Roboto';
                             font-size: 22px;
                         }
+                        nav {
+                            border-bottom: 1px solid gray;
+                            height: 100px;
+                            background: linear-gradient(
+                                to top,
+                                #ec6ead,
+                                #3494e6
+                            );
+                        }
+                        .menuIcon {
+                            color: red;
+                        }
+                        @media (min-width: 768px) {
+                            nav {
+                                display: none;
+                            }
+                        }
                         @media (max-width: 768px) {
+                            .sidebar {
+                                display: none;
+                            }
+                            nav .logo {
+                                height: 70px;
+                                width: 70px;
+                                display: flex;
+                                margin: auto;
+                            }
+
                             .content h3 {
                                 font-size: 18px;
                                 line-height: 18px;
