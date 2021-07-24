@@ -66,6 +66,10 @@ export default function ShowSidebarCart({
                                         Amount: {symbol}
                                         {priceExchange(product.amount)}
                                     </div>
+                                    <p className='font-weight-bold'>
+                                        We only have {product.productQuantity}{' '}
+                                        of {product.title} in Stock
+                                    </p>
                                 </div>
                             </div>
                         </div>

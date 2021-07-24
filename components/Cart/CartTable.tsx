@@ -10,7 +10,7 @@ import { useCurrency, useFormatProduct } from '@hooks/.';
 import { DeleteProductAction } from '@store/actions/counterActions';
 import { Button } from '../.';
 import { getTotalAmount } from '@utils/.';
-import { SelectRushOrder } from '@components/Form/.';
+//import { SelectRushOrder } from '@components/Form/.';
 import styles from '@styles/cart.module.css';
 import { axiosInstance } from '@axios/axiosInstance';
 
@@ -147,9 +147,9 @@ export default function CartTable({ products }) {
                         </div>
                     ))}
                 <div className={styles.calculator}>
-                    <div className='rushMyOrder'>
+                    {/*<div className='rushMyOrder'>
                         <SelectRushOrder content={rushOrderDropdown} />
-                    </div>
+                    </div>*/}
                     <div className={styles.subtotal}>
                         <div className='priceList'>
                             <div className='amount'>
@@ -159,7 +159,7 @@ export default function CartTable({ products }) {
                                     {productsAmount}
                                 </h2>
                             </div>
-                            {rushOrder !== false && (
+                            {/*{rushOrder !== false && (
                                 <div className='rushOrder'>
                                     <h2>Rush Order</h2>
                                     <h2>
@@ -167,7 +167,7 @@ export default function CartTable({ products }) {
                                         {rushOrderPrice}
                                     </h2>
                                 </div>
-                            )}
+                            )}*/}
                             <div className='subtotal'>
                                 <h3>Subtotal</h3>
                                 <h3>

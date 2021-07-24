@@ -18,6 +18,7 @@ export default function Overview() {
     const [orderProducts, setOrderProducts] = useState(null);
 
     console.log('orders', orders);
+    console.log('orderProducts', orderProducts);
 
     function getRequest(route, setState) {
         axiosInstance
@@ -44,11 +45,7 @@ export default function Overview() {
 
     useEffect(() => {
         if (orders !== null) {
-            orders.map((order) =>
-                order.products.map((orderProduct) =>
-                    setOrderProducts(orderProduct),
-                ),
-            );
+            orders.map((order) => setOrderProducts(order.products));
         }
     }, [orders]);
 
@@ -74,7 +71,7 @@ export default function Overview() {
                             Hello, Welcome to Jenjen&#39;s Luxury Wig
                         </h3>
                         <p>Get to view list of wigs orders from your site.</p>
-                        <div className='card-group my-5 d-flex mx-auto col-12 justify-content-around'>
+                        <div className='card-group my-5 d-flex mx-auto row justify-content-around'>
                             <OverviewCard data={orders} icon='wig' />
                             <OverviewCard data={users} icon='profile' />
                             <OverviewCard
@@ -83,7 +80,7 @@ export default function Overview() {
                             />
                         </div>
                         <div className='table-group row'>
-                            <div className='users-table col-6'>
+                            <div className='users-table col-lg-6 col-12'>
                                 <h3>List of Registered Users</h3>
                                 {users !== null && (
                                     <Table responsive striped bordered hover>
@@ -106,7 +103,7 @@ export default function Overview() {
                                     </Table>
                                 )}
                             </div>
-                            <div className='newsletter-table col-6'>
+                            <div className='newsletter-table col-lg-6 col-12'>
                                 <h3>List of Newsletter Subscribers</h3>
                                 {newsletterSubscribers !== null && (
                                     <Table responsive striped bordered hover>
@@ -143,7 +140,7 @@ export default function Overview() {
                                 )}
                             </div>
                         </div>
-                        <div className='orders-table'>
+                        <div className='orders-table col-12 col-lg-12'>
                             {orders?.length > 0 ? (
                                 <>
                                     <h3 className='text-center'>
@@ -168,7 +165,7 @@ export default function Overview() {
                                                 <th>Date</th>
                                             </tr>
                                         </thead>
-                                        <tbody style={{ fontSize: '13px' }}>
+                                        <tbody>
                                             {orders.map((order, index) => (
                                                 <tr key={order._id}>
                                                     <td>{snCounter(index)}</td>
@@ -178,7 +175,9 @@ export default function Overview() {
                                                                 orderProduct,
                                                                 index,
                                                             ) => (
-                                                                <>
+                                                                <div
+                                                                    key={index}
+                                                                >
                                                                     <Image
                                                                         height={
                                                                             100
@@ -199,12 +198,12 @@ export default function Overview() {
                                                                             orderProduct.alt
                                                                         }
                                                                     />
-                                                                    <h3>
+                                                                    <p>
                                                                         {
                                                                             orderProduct.title
                                                                         }
-                                                                    </h3>
-                                                                </>
+                                                                    </p>
+                                                                </div>
                                                             ),
                                                         )}
                                                     </td>
