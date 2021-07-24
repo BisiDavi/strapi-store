@@ -17,6 +17,8 @@ export default function Overview() {
 
     const [orderProducts, setOrderProducts] = useState(null);
 
+    console.log('orders', orders);
+
     function getRequest(route, setState) {
         axiosInstance
             .get(route)
@@ -27,6 +29,11 @@ export default function Overview() {
                 console.error('error', error);
                 toast.error('unable to fetch request, check your network');
             });
+    }
+
+    function getDate(createdAt) {
+        let dateCreated = new Date(createdAt);
+        return dateCreated.toLocaleDateString();
     }
 
     useEffect(() => {
@@ -149,8 +156,7 @@ export default function Overview() {
                                         >
                                             <tr>
                                                 <th>S/N</th>
-                                                <th>Wig Name</th>
-                                                <th>Image</th>
+                                                <th>Wig</th>
                                                 <th>Price</th>
                                                 <th>Quantity</th>
                                                 <th>Customer Name</th>
@@ -167,28 +173,38 @@ export default function Overview() {
                                                 <tr key={order._id}>
                                                     <td>{snCounter(index)}</td>
                                                     <td>
-                                                        {orderProducts?.title}
-                                                    </td>
-                                                    <td>
                                                         {order.products.map(
                                                             (
                                                                 orderProduct,
                                                                 index,
                                                             ) => (
-                                                                <Image
-                                                                    height={200}
-                                                                    width={200}
-                                                                    key={index}
-                                                                    src={
-                                                                        orderProduct
-                                                                            .image
-                                                                            .responsiveImage
-                                                                            .src
-                                                                    }
-                                                                    alt={
-                                                                        orderProduct.alt
-                                                                    }
-                                                                />
+                                                                <>
+                                                                    <Image
+                                                                        height={
+                                                                            100
+                                                                        }
+                                                                        width={
+                                                                            100
+                                                                        }
+                                                                        key={
+                                                                            index
+                                                                        }
+                                                                        src={
+                                                                            orderProduct
+                                                                                .image
+                                                                                .responsiveImage
+                                                                                .src
+                                                                        }
+                                                                        alt={
+                                                                            orderProduct.alt
+                                                                        }
+                                                                    />
+                                                                    <h3>
+                                                                        {
+                                                                            orderProduct.title
+                                                                        }
+                                                                    </h3>
+                                                                </>
                                                             ),
                                                         )}
                                                     </td>
@@ -210,6 +226,11 @@ export default function Overview() {
                                                         {
                                                             order.additionalInformation
                                                         }
+                                                    </td>
+                                                    <td>
+                                                        {getDate(
+                                                            order.createdAt,
+                                                        )}
                                                     </td>
                                                 </tr>
                                             ))}
