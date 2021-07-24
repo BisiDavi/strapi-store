@@ -14,14 +14,18 @@ export default function Newsletter() {
 
     function onSubmitHandler(e) {
         e.preventDefault();
-        console.log('subscriberEmail', subscriberEmail);
         startLoading();
         axiosInstance
             .post('/newsletter', JSON.stringify({ email: subscriberEmail }))
             .then((response) => {
-                console.log('response newsletter', response.data);
+                console.log('response newsletter', response);
                 stopLoading();
-                toast.success('Thanks for subscribing to my newsletter');
+                if (response.data.success) {
+                    toast.success('Thanks for subscribing to my newsletter');
+                }
+                if (!response.data.success) {
+                    toast.error(response.data?.message);
+                }
                 setSubscriberEmail('');
             })
             .catch((error) => {

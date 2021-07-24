@@ -245,7 +245,6 @@ export default function Overview() {
                         }
 
                         .sidebar {
-                            height: 100%;
                             display: -webkit-box;
                             display: -webkit-flex;
                             display: -ms-flexbox;

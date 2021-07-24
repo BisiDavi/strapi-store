@@ -26,28 +26,41 @@ export default async function handler(
     switch (method) {
         case 'POST': {
             try {
-                const newsletterSubscribe = await Newsletter.create(req.body);
-                const sendToAdmin = sendEmail(
-                    '',
-                    adminNewsletterId,
-                    userEmail,
-                    true,
-                );
-                await sgMail.send(sendToAdmin);
-
-                const sendToUser = sendEmail(
-                    email,
-                    userNewsletterId,
-                    userEmail,
-                    false,
-                );
-
-                await sgMail.send(sendToUser);
-
-                res.status(201).json({
-                    success: true,
-                    data: newsletterSubscribe,
+                const checkSubscriber = await Newsletter.find({
+                    email: req.body.email,
                 });
+                console.log('checkSubscriber', checkSubscriber);
+                if (!(checkSubscriber.length > 0)) {
+                    const newsletterSubscribe = await Newsletter.create(
+                        req.body,
+                    );
+                    const sendToAdmin = sendEmail(
+                        '',
+                        adminNewsletterId,
+                        userEmail,
+                        true,
+                    );
+                    await sgMail.send(sendToAdmin);
+
+                    const sendToUser = sendEmail(
+                        email,
+                        userNewsletterId,
+                        userEmail,
+                        false,
+                    );
+
+                    await sgMail.send(sendToUser);
+
+                    return res.status(200).json({
+                        success: true,
+                        data: newsletterSubscribe,
+                    });
+                } else {
+                    return res.status(201).json({
+                        success: false,
+                        message: 'A subscriber with that email exist',
+                    });
+                }
             } catch (error) {
                 console.log('error', error);
                 res.status(400).json({ success: false, error });
