@@ -18,9 +18,10 @@ const persistedReducer = persistReducer(persistConfig, RootReducer);
 
 const store = createStore(
     persistedReducer,
-    process.env.NEXT_PUBLIC_ENVIRONMENT === 'dev'
-        ? composeWithDevTools(applyMiddleware(...middleware))
-        : applyMiddleware(...middleware),
+    //process.env.NEXT_PUBLIC_ENVIRONMENT === 'dev'
+    //?
+    composeWithDevTools(applyMiddleware(...middleware)),
+    //: applyMiddleware(...middleware),
 );
 
 export const persistor = persistStore(store);
