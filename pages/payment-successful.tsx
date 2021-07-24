@@ -3,13 +3,20 @@ import { useEffect, useState } from 'react';
 import { axiosInstance } from '@axios/axiosInstance';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCurrency, useFormatProduct, useUserDetails } from '@hooks/.';
+import {
+    useCurrency,
+    useFormatProduct,
+    useUserDetails,
+    useRedux,
+} from '@hooks/.';
 import { Pagelayout } from '@containers/.';
 import { request, HOMEPAGE_QUERY } from '@lib/.';
 import ProductSlider from '@components/Slider/ProductSlider';
+import { ClearCartAction } from '@store/actions/CartActions';
 
 export default function Paymentsuccessful({ otherProducts }) {
     const [paymentStatus, setPaymentStatus] = useState(null);
+    const { dispatch } = useRedux();
     const {
         details,
         method,
@@ -37,7 +44,7 @@ export default function Paymentsuccessful({ otherProducts }) {
     const adminNotificationData = {
         products: productsArray,
         email: details?.email,
-        phonenumber: details?.phonenumber,
+        phonenumber: details?.telephone,
         shippingMethod: method,
         totalPrice: totalAmount,
         additionalInformation,
@@ -98,6 +105,8 @@ export default function Paymentsuccessful({ otherProducts }) {
                 .catch((error) => {
                     console.log('error from db', error);
                 });
+
+            dispatch(ClearCartAction());
         }
     }, [paymentStatus]);
 

@@ -16,12 +16,9 @@ export default async function UserPaymentNotificationHandler(
 
     console.log('req.body', data);
 
-    const adminEmailAddress = [
-        process.env.NEXT_PUBLIC_ADMIN_EMAIL_ADDRESS,
-        process.env.NEXT_PUBLIC_DEVELOPER_EMAIL_ADDRESS,
-    ];
+
     const msg = {
-        to: adminEmailAddress,
+        to: email,
         from: {
             email: process.env.NEXT_PUBLIC_SITE_EMAIL_ADDRESS,
             name: "Jenjen's Luxury Wigs",
