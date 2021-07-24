@@ -7,7 +7,7 @@ export default async function SaveOrderHandler(req, res) {
     await connectToDatabase();
 
     switch (method) {
-        case 'POST':
+        case 'POST': {
             try {
                 const newOrder = await Orders.create(req.body);
                 res.status(201).json({
@@ -22,7 +22,8 @@ export default async function SaveOrderHandler(req, res) {
                 });
             }
             break;
-        case 'GET':
+        }
+        case 'GET': {
             try {
                 const getOrders = await Orders.find();
                 res.status(201).json({
@@ -36,6 +37,8 @@ export default async function SaveOrderHandler(req, res) {
                     error,
                 });
             }
+            break;
+        }
         default:
             res.status(400).json({ success: false });
             break;

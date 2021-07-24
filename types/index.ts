@@ -25,6 +25,7 @@ export interface ButtonProps {
     height?: string;
     styles?: {};
     color?: string;
+		disabled?: boolean;
     asLink?: boolean;
     btnClassName?: string;
 }
@@ -102,6 +103,8 @@ export interface shippingAddressProps {
 
 export interface ProductDetailProps {
     product: {
+        id: string;
+        productQuantity: string;
         title: string;
         price: number;
         image: {
@@ -130,7 +133,7 @@ export interface PaypalProps {
     amount: string;
     hasPaid: (payment: boolean) => void;
     checkoutDetails?: any;
-		setCheckoutDetails:any
+    setCheckoutDetails: any;
 }
 
 export interface SuccessModalProps {

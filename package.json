@@ -44,6 +44,7 @@
         "react-redux": "^7.2.2",
         "react-slick": "^0.28.1",
         "react-toastify": "^7.0.3",
+        "react-use-analytics-api": "^1.4.16",
         "react-whatsapp-widget": "^1.3.0",
         "redux": "^4.0.5",
         "redux-devtools-extension": "^2.13.9",

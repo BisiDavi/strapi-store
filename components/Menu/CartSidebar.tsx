@@ -15,7 +15,7 @@ export default function CartSidebar({
 }: CartSidebarProps): JSX.Element {
     const { products } = useCart();
     const { priceExchange, symbol } = useCurrency();
-
+    console.log('products', products);
     const cartStyles = pushRight && { marginRight: '0px !important' };
     return (
         <div style={cartStyles} className='div'>
@@ -25,7 +25,7 @@ export default function CartSidebar({
                         <ShowSidebarCart products={products} />
                         <div className='subtotal'>
                             <h3>Subtotal</h3>
-                            <p className={styles.price}>
+															<p className={styles.price}>
                                 {symbol}
                                 {priceExchange(getTotalAmount(products))}
                             </p>

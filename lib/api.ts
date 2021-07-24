@@ -26,12 +26,13 @@ export const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
 
 export const PRODUCTPAGE_QUERY = `query Productpage($slug: String) {
   allProducts(filter: {slug: {eq: $slug}}) {
+    id
     description
     title
     price
     slug
+		productQuantity
     formerPrice
-    id
     image {
       responsiveImage(imgixParams: {auto: format, q: 60, h: 800, w: 800, fit: crop}) {
         srcSet
@@ -140,6 +141,7 @@ export const FETCH_ALL_PRODUCT_QUERY = `query FetchAllProduct{
     title
     price
 		formerPrice
+		productQuantity
     slug
     id
     image {
@@ -167,6 +169,7 @@ export const READY_TO_SHIP_QUERY = `query ReadytoShip{
     title
     price
     slug
+		productQuantity
     id
     image {
       url
@@ -191,6 +194,7 @@ export const SIGNATURE_WIGS = `query SignatureWigs {
   allProducts(filter: {signatureWigs: {eq: "true"}}) {
     description
     title
+		productQuantity
     price
     slug
     id

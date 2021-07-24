@@ -13,20 +13,28 @@ import styles from '@styles/ProductDetail.module.css';
 import { ProductDetailProps } from '../../types';
 import 'react-toastify/dist/ReactToastify.css';
 import DiscountRibbon from '@components/Icons/DiscountRibbon';
-import getDiscount from '@utils/getDiscount';
+import { checkProductCount, getDiscount } from '@utils/.';
 
 export default function ProductDetail({
     product,
 }: ProductDetailProps): JSX.Element {
-    const { wigImages, image, title, price }: any = product;
+    const {
+        wigImages,
+        image,
+        title,
+        price,
+        id,
+        productQuantity,
+    }: any = product;
+    console.log('productDetails', product);
     const dispatch = useDispatch();
     const { priceExchange, symbol } = useCurrency();
     const router = useRouter();
-    const { cart, showCart, hideCart } = useCart();
+    const { cart, showCart, hideCart, products } = useCart();
     const discountRate =
         product.formerPrice && getDiscount(product.formerPrice, product.price);
     const addToCartHandler = () => {
-        const { image, title, price } = product;
+        const { image, title, price, id, productQuantity } = product;
         showCart();
         ga.event({
             action: 'add_to_cart',
@@ -37,7 +45,7 @@ export default function ProductDetail({
             },
         });
         toast.success(`${title} added to Cart`);
-        dispatch(AddToCartAction({ image, title, price }));
+        dispatch(AddToCartAction({ image, title, price, id, productQuantity }));
     };
     const buyProductHandler = () => {
         toast.success(
@@ -46,6 +54,13 @@ export default function ProductDetail({
         dispatch(AddToCartAction({ image, title, price }));
         router.push('/checkout');
     };
+    console.log('prd from rdx', products);
+    const selectedProduct = products.filter((p) => p.title === product.title);
+    console.log('selectedProduct from rdx', selectedProduct);
+
+    const btnState = checkProductCount(selectedProduct[0]);
+
+    console.log('btnState', btnState);
 
     const moreWigImages = wigImages.length > 1;
 
@@ -87,6 +102,10 @@ export default function ProductDetail({
                             </Link>{' '}
                             calculated at checkout.
                         </p>
+                        <h5 className='text-danger'>
+                            Note: {productQuantity} of {title} (wig) available
+                            in stock.
+                        </h5>
                     </div>
                     <span className={styles.btnGrp}>
                         <Button
@@ -95,6 +114,7 @@ export default function ProductDetail({
                             height='40px'
                             bgColor='transparent'
                             color='black'
+                            disabled={btnState}
                             btnClick={addToCartHandler}
                             text='Add to cart'
                         />

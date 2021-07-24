@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Slider from 'react-slick';
-import { InstagramLoader } from '@components/loader';
+import { ComponentLoader } from '@components/loader';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from '@styles/instagramSlider.module.css';
@@ -162,7 +162,7 @@ export default function InstaSlider({
                     })}
                 </Slider>
             ) : (
-                <InstagramLoader />
+                <ComponentLoader />
             )}
             <style jsx>
                 {`

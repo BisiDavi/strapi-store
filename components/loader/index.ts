@@ -1,1 +1,1 @@
-export { default as InstagramLoader } from './InstagramLoader';
+export { default as ComponentLoader } from './ComponentLoader';
