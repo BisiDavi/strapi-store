@@ -24,7 +24,7 @@ export default async function handler(
     const userEmail = { email };
 
     switch (method) {
-        case 'POST':
+        case 'POST': {
             try {
                 const newsletterSubscribe = await Newsletter.create(req.body);
                 const sendToAdmin = sendEmail(
@@ -53,6 +53,20 @@ export default async function handler(
                 res.status(400).json({ success: false, error });
             }
             break;
+        }
+        case 'GET': {
+            try {
+                const getNewsletterSubscribers = await Newsletter.find();
+                res.status(201).json({
+                    success: true,
+                    data: getNewsletterSubscribers,
+                });
+            } catch (error) {
+                console.log('error', error);
+                res.status(400).json({ success: false, error });
+            }
+            break;
+        }
         default:
             res.status(400).json({ success: false });
             break;

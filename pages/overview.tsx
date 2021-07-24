@@ -8,30 +8,36 @@ import Logo from '@components/Icons/Logo';
 import { axiosInstance } from '@axios/axiosInstance';
 import { toast } from 'react-toastify';
 import styles from '@styles/overview.module.css';
+import OverviewCard from '@components/Card/OverviewCard';
 
 export default function Overview() {
     const [orders, setOrders] = useState(null);
+    const [users, setUsers] = useState(null);
+    const [newsletterSubscribers, setNewsletterSubscribers] = useState(null);
+
     const [orderProducts, setOrderProducts] = useState(null);
     let count = 0;
     function getSN() {
         count += 1;
         return count;
     }
-    function getAllOrders() {
+
+    function getRequest(route, setState) {
         axiosInstance
-            .get('/save-order')
+            .get(route)
             .then((response) => {
-                console.log('response from db', response.data.data);
-                setOrders(response?.data.data);
+                setState(response.data.data);
             })
             .catch((error) => {
                 console.error('error', error);
-                toast.error('unable to fetch orders, check your network');
+                toast.error('unable to fetch request, check your network');
             });
     }
 
     useEffect(() => {
-        getAllOrders();
+        getRequest('/get-users', setUsers);
+        getRequest('/save-order', setOrders);
+        getRequest('/newsletter', setNewsletterSubscribers);
     }, []);
 
     useEffect(() => {
@@ -44,10 +50,6 @@ export default function Overview() {
         }
     }, [orders]);
 
-    console.log('orders', orders);
-
-    console.log('orderProducts', orderProducts);
-
     return (
         <>
             <Head>
@@ -55,12 +57,12 @@ export default function Overview() {
             </Head>
             <div className='Overview container-fluid'>
                 <div className='row'>
-                    <nav className={styles.nav} col-12>
+                    <nav className={styles.nav}>
                         <div className='logo'>
                             <Logo />
                         </div>
                     </nav>
-                    <div className='col-lg-2 col-3 sidebar  vh-100'>
+                    <div className='col-lg-2 col-3 sidebar'>
                         <div className='logo'>
                             <Logo />
                         </div>
@@ -69,100 +71,159 @@ export default function Overview() {
                         <h3 className='text-center welcome-note'>
                             Hello, Welcome to Jenjen&#39;s Luxury Wig
                         </h3>
-                        <p>
-                            Get to know the number of users on your site, number
-                            of visit, wigs sold and much more.
-                        </p>
-                        <div className='card-group d-flex my-3 mx-auto col-12'>
-                            <div className='card w-25 col-lg-3 col-12 d-flex flex-row align-items-center justify-content-around py-5 px-1'>
-                                <p className='card-text'>
-                                    <FaCartPlus
-                                        className='text-success'
-                                        size={50}
-                                    />
-                                </p>
-                                <p
-                                    className='card-text font-weight-bold'
-                                    style={{ fontSize: '20px' }}
-                                >
-                                    Total Number of Wigs Sold:{' '}
-                                    <span className='text-success'>
-                                        {' '}
-                                        {orders?.length}
-                                    </span>
-                                </p>
+                        <p>Get to view list of wigs orders from your site.</p>
+                        <div className='card-group my-5 d-flex mx-auto col-12 justify-content-around'>
+                            <OverviewCard data={orders} icon='wig' />
+                            <OverviewCard data={users} icon='profile' />
+                            <OverviewCard
+                                data={newsletterSubscribers}
+                                icon='newsletter'
+                            />
+                        </div>
+                        <div className='table-group row'>
+                            <div className='users-table col-6'>
+                                <h3>List of Registered Users</h3>
+                                {users !== null && (
+                                    <Table responsive striped bordered hover>
+                                        <thead>
+                                            <tr className='table-primary'>
+                                                <th>S/N</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {users.map((user) => (
+                                                <tr key={user._id}>
+                                                    <td>{getSN()}</td>
+                                                    <td>{user?.name}</td>
+                                                    <td>{user?.email}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </Table>
+                                )}
+                            </div>
+                            <div className='newsletter-table col-6'>
+                                <h3>List of Newsletter Subscribers</h3>
+                                {newsletterSubscribers !== null && (
+                                    <Table responsive striped bordered hover>
+                                        <thead>
+                                            <tr className='table-primary'>
+                                                <th>S/N</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {newsletterSubscribers.map(
+                                                (newsletterSubscriber) => (
+                                                    <tr
+                                                        key={
+                                                            newsletterSubscriber._id
+                                                        }
+                                                    >
+                                                        <td>{getSN()}</td>
+                                                        <td>
+                                                            {
+                                                                newsletterSubscriber?.email
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                ),
+                                            )}
+                                        </tbody>
+                                    </Table>
+                                )}
                             </div>
                         </div>
-                        <h3 className='text-center'>Orders Table</h3>
-                        {orders !== null ? (
-                            <Table responsive striped>
-                                <thead
-                                    className='thead'
-                                    style={{ fontSize: '14px' }}
-                                >
-                                    <tr>
-                                        <th>S/N</th>
-                                        <th>Wig Name</th>
-                                        <th>Image</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Customer Name</th>
-                                        <th>Customer Email</th>
-                                        <th>Customer Phonenumber</th>
-                                        <th>Customer Address</th>
-                                        <th>Shipping Method</th>
-                                        <th>Additional Information</th>
-                                        <th>Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody style={{ fontSize: '13px' }}>
-                                    {orders.map((order) => (
-                                        <tr key={order._id}>
-                                            <td>{getSN()}</td>
-                                            <td>{orderProducts?.title}</td>
-                                            <td>
-                                                {order.products.map(
-                                                    (orderProduct, index) => (
-                                                        <Image
-                                                            height={200}
-                                                            width={200}
-                                                            key={index}
-                                                            src={
-                                                                orderProduct
-                                                                    .image
-                                                                    .responsiveImage
-                                                                    .src
-                                                            }
-                                                            alt={
-                                                                orderProduct.alt
-                                                            }
-                                                        />
-                                                    ),
-                                                )}
-                                            </td>
-                                            <td>
-                                                {order.symbol}
-                                                {order.totalPrice}
-                                            </td>
-                                            <td>{orderProducts?.count}</td>
-                                            <td>{order.fullName}</td>
-                                            <td>{order.email}</td>
-                                            <td>{order.telephone}</td>
-                                            <td>{order.address}</td>
-                                            <td>{order.shippingMethod}</td>
-                                            <td>
-                                                {order.additionalInformation}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </Table>
-                        ) : (
-                            <ComponentLoader />
-                        )}
-                        {orders?.length === 0 && (
-                            <span className='text-danger'>No order yet.</span>
-                        )}
+                        <div className='orders-table'>
+                            {orders?.length > 0 ? (
+                                <>
+                                    <h3 className='text-center'>
+                                        Orders Table
+                                    </h3>
+                                    <Table responsive striped>
+                                        <thead
+                                            className='thead'
+                                            style={{ fontSize: '14px' }}
+                                        >
+                                            <tr>
+                                                <th>S/N</th>
+                                                <th>Wig Name</th>
+                                                <th>Image</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Customer Name</th>
+                                                <th>Customer Email</th>
+                                                <th>Customer Phonenumber</th>
+                                                <th>Customer Address</th>
+                                                <th>Shipping Method</th>
+                                                <th>Additional Information</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style={{ fontSize: '13px' }}>
+                                            {orders.map((order) => (
+                                                <tr key={order._id}>
+                                                    <td>{getSN()}</td>
+                                                    <td>
+                                                        {orderProducts?.title}
+                                                    </td>
+                                                    <td>
+                                                        {order.products.map(
+                                                            (
+                                                                orderProduct,
+                                                                index,
+                                                            ) => (
+                                                                <Image
+                                                                    height={200}
+                                                                    width={200}
+                                                                    key={index}
+                                                                    src={
+                                                                        orderProduct
+                                                                            .image
+                                                                            .responsiveImage
+                                                                            .src
+                                                                    }
+                                                                    alt={
+                                                                        orderProduct.alt
+                                                                    }
+                                                                />
+                                                            ),
+                                                        )}
+                                                    </td>
+                                                    <td>
+                                                        {order.symbol}
+                                                        {order.totalPrice}
+                                                    </td>
+                                                    <td>
+                                                        {orderProducts?.count}
+                                                    </td>
+                                                    <td>{order.fullName}</td>
+                                                    <td>{order.email}</td>
+                                                    <td>{order.telephone}</td>
+                                                    <td>{order.address}</td>
+                                                    <td>
+                                                        {order.shippingMethod}
+                                                    </td>
+                                                    <td>
+                                                        {
+                                                            order.additionalInformation
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </Table>
+                                </>
+                            ) : orders === null ? (
+                                <ComponentLoader />
+                            ) : (
+                                <span className='alert-danger justify-content-center d-flex mx-auto p-3 text-center align-items-center text-danger'>
+                                    No order yet.
+                                </span>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <style jsx>
@@ -181,7 +242,6 @@ export default function Overview() {
                         .content {
                             font-family: 'Montserrat', sans-serif;
                             background-color: rgb(249 249 249);
-                            height: 100vh;
                         }
 
                         .sidebar {
