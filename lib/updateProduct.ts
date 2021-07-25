@@ -5,6 +5,12 @@ export default function updateProductAfterSales(product) {
     const client = new SiteClient(
         process.env.NEXT_PUBLIC_DATOCMS_FULL_ACCESS_API_TOKEN,
     );
+    console.log(
+        'updateProducts productData',
+        productId,
+        wigQuantity,
+        wigStatus,
+    );
     client.items
         .update(productId, {
             productQuantity: wigQuantity,

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRedux, usePaymentData } from '@hooks/.';
 import { Pagelayout } from '@containers/.';
-import { request, HOMEPAGE_QUERY } from '@lib/.';
+import { request, HOMEPAGE_QUERY, updateProductAfterSales } from '@lib/.';
 import ProductSlider from '@components/Slider/ProductSlider';
 import { ClearCartAction } from '@store/actions/CartActions';
 
@@ -57,6 +57,8 @@ export default function Paymentsuccessful({ otherProducts }) {
                 .catch((error) => {
                     console.log('error from db', error);
                 });
+
+            updateProductAfterSales(productsData);
 
             dispatch(ClearCartAction());
         }
