@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { renderMetaTags } from 'react-datocms';
-import { ToastContainer } from 'react-toastify';
 import { PagecontainerProps } from '../types';
 import { Header, Footer, CatalogTab } from '@components/.';
 import Whatsappchat from '@components/ChatWidget/Whatsappchat';
@@ -37,12 +36,7 @@ export default function Pagelayout({
             <Header promoHandler={promoHandler} promoDisplay={promoDisplay} />
             <CatalogTab />
             {children}
-            <ToastContainer
-                position='top-left'
-                closeOnClick
-                draggable
-                pauseOnHover
-            />
+
             <Whatsappchat />
             <Footer />
 

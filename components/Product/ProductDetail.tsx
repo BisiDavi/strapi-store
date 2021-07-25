@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 import Link from 'next/link';
 import { Image } from 'react-datocms';
 import { useDispatch } from 'react-redux';
@@ -11,10 +13,10 @@ import { AddToCartAction } from '@store/actions/CartActions';
 import { useCart, useCurrency } from '@hooks/.';
 import * as ga from '@lib/ga';
 import { displayCartSidebar } from '@utils/menu';
-import styles from '@styles/ProductDetail.module.css';
 import { ProductDetailProps } from '../../types';
 import DiscountRibbon from '@components/Icons/DiscountRibbon';
-import { checkProductCount, getDiscount } from '@utils/.';
+import { getDiscount } from '@utils/.';
+import styles from '@styles/ProductDetail.module.css';
 
 export default function ProductDetail({
     product,
@@ -24,20 +26,39 @@ export default function ProductDetail({
         image,
         title,
         price,
-        id,
         wigStatus,
         productQuantity,
     }: any = product;
+
     console.log('productDetails', product);
+
     const dispatch = useDispatch();
-    const { priceExchange, formatToNumber, symbol } = useCurrency();
     const router = useRouter();
-    const [maxQuantity, setMaxQuantity] = useState(false);
+    const [addToCartCounter, setAddToCartCounter] = useState(0);
+    const { priceExchange, formatToNumber, symbol } = useCurrency();
     const { cart, showCart, hideCart, products } = useCart();
     const discountRate =
         product.formerPrice && getDiscount(product.formerPrice, product.price);
+    useEffect(() => {
+        if (products.filter((p) => p.title === title).length === 0) {
+            setAddToCartCounter(0);
+        }
+    }, [products, title]);
+
+    const disableBtnWhenSold = wigStatus === 'sold';
+    const disableBtnWhenMax =
+        Number(addToCartCounter) >= Number(productQuantity);
+
+    useEffect(() => {
+        if (disableBtnWhenMax) {
+            toast.error(
+                `We only have ${product?.productQuantity} of ${product?.title} in Stock, you can't add more than ${product.productQuantity}`,
+            );
+        }
+    }, [disableBtnWhenMax, addToCartCounter, productQuantity]);
+
     const addToCartHandler = () => {
-        checkProductCount(selectedProduct[0], setMaxQuantity);
+        setAddToCartCounter(addToCartCounter + 1);
         const { image, title, price, id, productQuantity } = product;
         showCart();
         ga.event({
@@ -60,7 +81,7 @@ export default function ProductDetail({
             }),
         );
     };
-    const disableBtnWigSold = wigStatus === 'sold';
+
     const buyProductHandler = () => {
         toast.success(
             `Thanks, for your interest in ${title}, now redirecting you to checkout`,
@@ -68,7 +89,6 @@ export default function ProductDetail({
         dispatch(AddToCartAction({ image, title, price }));
         router.push('/checkout');
     };
-    const selectedProduct = products.filter((p) => p.title === product.title);
 
     const moreWigImages = wigImages.length > 1;
 
@@ -88,10 +108,12 @@ export default function ProductDetail({
         const soldStyle = checkWigStatus ? 'isSold' : 'isAvailable';
         return (
             <>
-                {maxQuantity &&
-                    toast.error(
-                        `We only have ${product?.productQuantity} of ${product?.title} in Stock`,
-                    )}
+                <ToastContainer
+                    position='top-left'
+                    closeOnClick
+                    draggable
+                    pauseOnHover
+                />
                 <div className='product-description'>
                     <div className='product-text'>
                         <span className={`${styles.info} info`}>
@@ -113,6 +135,10 @@ export default function ProductDetail({
                                 )}
                             </div>
                         </span>
+                        <p className='font-weight-bold mt-3'>
+                            <span className='mr-2'>In Stock:</span>
+                            {productQuantity}
+                        </p>
                         <p className='description'>{product.description}</p>
                         <p className='tax'>
                             Tax included.{' '}
@@ -123,9 +149,11 @@ export default function ProductDetail({
                         </p>
                         <h5 className='text-danger'>
                             Note: {productQuantity} of {title} (wig) available
-                            in stock.
+                            in stock, you can&#39;t add more than{' '}
+                            {productQuantity}
                         </h5>
                     </div>
+
                     <span className={styles.btnGrp}>
                         <Button
                             width='200px'
@@ -133,7 +161,7 @@ export default function ProductDetail({
                             height='40px'
                             bgColor='transparent'
                             color='black'
-                            disabled={maxQuantity || disableBtnWigSold}
+                            disabled={disableBtnWhenMax || disableBtnWhenSold}
                             btnClick={addToCartHandler}
                             text='Add to cart'
                         />
@@ -142,7 +170,7 @@ export default function ProductDetail({
                             btnClassName={styles.buyNow}
                             width='200px'
                             height='40px'
-                            disabled={disableBtnWigSold}
+                            disabled={disableBtnWhenSold}
                             btnClick={buyProductHandler}
                             bgColor='black'
                             color='white'

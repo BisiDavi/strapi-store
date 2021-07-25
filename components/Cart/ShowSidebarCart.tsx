@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Image } from 'react-datocms';
 import { useDispatch } from 'react-redux';
 import { useCurrency } from '@hooks/.';
@@ -7,7 +7,6 @@ import {
     DecrementCounterAction,
     IncrementCounterAction,
 } from '@store/actions/counterActions';
-import { checkProductCount } from '@utils/.';
 import styles from '@styles/CartSidebar.module.css';
 
 interface ShowSidebarCartProps {
@@ -17,7 +16,6 @@ export default function ShowSidebarCart({
     products,
 }: ShowSidebarCartProps): JSX.Element {
     const dispatch = useDispatch();
-    const [disabeleBtn, setDisabeleBtn] = useState(false);
 
     const { priceExchange, symbol } = useCurrency();
 
@@ -27,10 +25,21 @@ export default function ShowSidebarCart({
     const decreaseCount = (index) => {
         dispatch(DecrementCounterAction({ products, index }));
     };
+    function disableBtnWhenMax(product) {
+        const disableCondition =
+            Number(product.count) >= Number(product.productQuantity);
+        if (disableCondition) {
+            toast.error(
+                `We only have ${product?.productQuantity} of ${product?.title} in Stock, you can't add more than ${product.productQuantity}`,
+            );
+        }
+    }
 
     return (
         <>
             {products.map((product, index) => {
+                const disableBtn =
+                    Number(product.count) >= Number(product.productQuantity);
                 return (
                     <div key={index} className='my-4'>
                         <div className={styles.productProfile}>
@@ -52,13 +61,10 @@ export default function ShowSidebarCart({
                                         </button>
                                         <span>{product.count}</span>
                                         <button
-                                            disabled={disabeleBtn}
+                                            disabled={disableBtn}
                                             onClick={() => {
                                                 increaseCount(index);
-                                                checkProductCount(
-                                                    product,
-                                                    setDisabeleBtn,
-                                                );
+                                                disableBtnWhenMax(product);
                                             }}
                                         >
                                             +
