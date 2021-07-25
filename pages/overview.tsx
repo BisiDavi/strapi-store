@@ -19,6 +19,11 @@ export default function Overview() {
     console.log('orders', orders);
     console.log('orderProducts', orderProducts);
 
+    function snCounter(index) {
+        let tempIndex = index + 1;
+        return tempIndex;
+    }
+
     function getRequest(route, setState) {
         axiosInstance
             .get(route)
