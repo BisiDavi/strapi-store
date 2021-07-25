@@ -28,7 +28,6 @@ export default function Paymentsuccessful({ otherProducts }) {
     }, []);
 
     console.log('paymentStatus', paymentStatus);
-    console.log('productsData', productsData);
 
     async function postPaymentNotification(route, data) {
         await axiosInstance

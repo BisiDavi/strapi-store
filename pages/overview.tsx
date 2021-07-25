@@ -8,7 +8,6 @@ import Logo from '@components/Icons/Logo';
 import { axiosInstance } from '@axios/axiosInstance';
 import styles from '@styles/overview.module.css';
 import OverviewCard from '@components/Card/OverviewCard';
-import { snCounter } from '@utils/.';
 
 export default function Overview() {
     const [orders, setOrders] = useState(null);
