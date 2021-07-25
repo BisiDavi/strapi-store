@@ -5,7 +5,7 @@ import { useCurrency } from '@hooks/.';
 import { ProductProps } from '../../types';
 import styles from '@styles/Product.module.css';
 import getDiscount from '@utils/getDiscount';
-import DiscountTag from '@components/Icons/DiscountTag';
+import { DiscountTag, SoldTag } from '@components/Icons/.';
 
 export default function Product({ product }: ProductProps): JSX.Element {
     const { priceExchange, symbol } = useCurrency();
@@ -20,9 +20,11 @@ export default function Product({ product }: ProductProps): JSX.Element {
                             className={styles.product}
                             data={product.image.responsiveImage}
                         />
-                        {product.formerPrice && (
-                            <DiscountTag discount={discountRate} />
-                        )}
+                        {product.formerPrice &&
+                            product.wigStatus !== 'sold' && (
+                                <DiscountTag discount={discountRate} />
+                            )}
+                        {product.wigStatus === 'sold' && <SoldTag />}
                     </div>
                     <div className={styles.backView}>
                         <h1>{product.title}</h1>

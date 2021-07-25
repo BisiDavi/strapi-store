@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
+import { useEffect, useState } from 'react';
 import { Image } from 'react-datocms';
 import { useDispatch } from 'react-redux';
 import { useCurrency } from '@hooks/.';
@@ -16,6 +17,8 @@ export default function ShowSidebarCart({
     products,
 }: ShowSidebarCartProps): JSX.Element {
     const dispatch = useDispatch();
+    const [disabeleBtn, setDisabeleBtn] = useState(false);
+
     const { priceExchange, symbol } = useCurrency();
 
     const increaseCount = (index) => {
@@ -28,7 +31,6 @@ export default function ShowSidebarCart({
     return (
         <>
             {products.map((product, index) => {
-                const btnState = checkProductCount(product);
                 return (
                     <div key={index} className='my-4'>
                         <div className={styles.productProfile}>
@@ -50,8 +52,14 @@ export default function ShowSidebarCart({
                                         </button>
                                         <span>{product.count}</span>
                                         <button
-                                            disabled={btnState}
-                                            onClick={() => increaseCount(index)}
+                                            disabled={disabeleBtn}
+                                            onClick={() => {
+                                                increaseCount(index);
+                                                checkProductCount(
+                                                    product,
+                                                    setDisabeleBtn,
+                                                );
+                                            }}
                                         >
                                             +
                                         </button>

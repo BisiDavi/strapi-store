@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
+import { useState } from 'react';
 import Link from 'next/link';
 import { Image } from 'react-datocms';
 import { useDispatch } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
+import { Alert } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { Button } from '../Button';
 import { AddToCartAction } from '@store/actions/CartActions';
@@ -11,7 +13,6 @@ import * as ga from '@lib/ga';
 import { displayCartSidebar } from '@utils/menu';
 import styles from '@styles/ProductDetail.module.css';
 import { ProductDetailProps } from '../../types';
-import 'react-toastify/dist/ReactToastify.css';
 import DiscountRibbon from '@components/Icons/DiscountRibbon';
 import { checkProductCount, getDiscount } from '@utils/.';
 
@@ -24,16 +25,19 @@ export default function ProductDetail({
         title,
         price,
         id,
+        wigStatus,
         productQuantity,
     }: any = product;
     console.log('productDetails', product);
     const dispatch = useDispatch();
-    const { priceExchange, symbol } = useCurrency();
+    const { priceExchange, formatToNumber, symbol } = useCurrency();
     const router = useRouter();
+    const [maxQuantity, setMaxQuantity] = useState(false);
     const { cart, showCart, hideCart, products } = useCart();
     const discountRate =
         product.formerPrice && getDiscount(product.formerPrice, product.price);
     const addToCartHandler = () => {
+        checkProductCount(selectedProduct[0], setMaxQuantity);
         const { image, title, price, id, productQuantity } = product;
         showCart();
         ga.event({
@@ -45,8 +49,18 @@ export default function ProductDetail({
             },
         });
         toast.success(`${title} added to Cart`);
-        dispatch(AddToCartAction({ image, title, price, id, productQuantity }));
+        dispatch(
+            AddToCartAction({
+                image,
+                title,
+                price,
+                nairaPrice: formatToNumber(priceExchange(price)),
+                id,
+                productQuantity,
+            }),
+        );
     };
+    const disableBtnWigSold = wigStatus === 'sold';
     const buyProductHandler = () => {
         toast.success(
             `Thanks, for your interest in ${title}, now redirecting you to checkout`,
@@ -54,13 +68,7 @@ export default function ProductDetail({
         dispatch(AddToCartAction({ image, title, price }));
         router.push('/checkout');
     };
-    console.log('prd from rdx', products);
     const selectedProduct = products.filter((p) => p.title === product.title);
-    console.log('selectedProduct from rdx', selectedProduct);
-
-    const btnState = checkProductCount(selectedProduct[0]);
-
-    console.log('btnState', btnState);
 
     const moreWigImages = wigImages.length > 1;
 
@@ -74,15 +82,26 @@ export default function ProductDetail({
             </span>
         );
     }
+    const checkWigStatus = wigStatus === 'sold';
 
     function productDescription() {
+        const soldStyle = checkWigStatus ? 'isSold' : 'isAvailable';
         return (
             <>
+                {maxQuantity &&
+                    toast.error(
+                        `We only have ${product?.productQuantity} of ${product?.title} in Stock`,
+                    )}
                 <div className='product-description'>
                     <div className='product-text'>
                         <span className={`${styles.info} info`}>
                             <h1>{product.title}</h1>
-                            <div className='price-group'>
+                            <div className={`price-group ${soldStyle}`}>
+                                {checkWigStatus && (
+                                    <h3 className='text-danger text-center'>
+                                        Sold
+                                    </h3>
+                                )}
                                 <h4>Price : {displayPrice(product.price)}</h4>
                                 {product.formerPrice && (
                                     <h6>
@@ -114,7 +133,7 @@ export default function ProductDetail({
                             height='40px'
                             bgColor='transparent'
                             color='black'
-                            disabled={btnState}
+                            disabled={maxQuantity || disableBtnWigSold}
                             btnClick={addToCartHandler}
                             text='Add to cart'
                         />
@@ -123,6 +142,7 @@ export default function ProductDetail({
                             btnClassName={styles.buyNow}
                             width='200px'
                             height='40px'
+                            disabled={disableBtnWigSold}
                             btnClick={buyProductHandler}
                             bgColor='black'
                             color='white'
@@ -141,6 +161,12 @@ export default function ProductDetail({
                     .product-text {
                         width: 50%;
                         margin-right: 40px;
+                    }
+                    .isSold h4 {
+                        text-decoration: line-through;
+                    }
+                    .isSold h3 {
+                        font-size: 30px;
                     }
                     .price-group {
                         display: flex;
@@ -204,6 +230,17 @@ export default function ProductDetail({
 
     return (
         <div className='product-page'>
+            <div className='wigStatus'>
+                {wigStatus === 'sold' && (
+                    <Alert
+                        variant='danger'
+                        style={{ fontSize: '25px' }}
+                        className='d-flex justify-content-center font-weight-bold'
+                    >
+                        {title} is Sold
+                    </Alert>
+                )}
+            </div>
             <div className={productClass}>
                 <div className='mainWigImage'>
                     <Image
@@ -227,12 +264,6 @@ export default function ProductDetail({
                         : productDescription()}
                 </>
             </div>
-            <ToastContainer
-                position='top-left'
-                closeOnClick
-                draggable
-                pauseOnHover
-            />
 
             {displayCartSidebar(cart, hideCart)}
             {wigImages.length > 1 && productDescription()}

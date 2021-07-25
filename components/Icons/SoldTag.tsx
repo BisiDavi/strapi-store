@@ -1,12 +1,9 @@
-import { DiscountProps } from '../../types';
-
-export default function DiscountTag({ discount }: DiscountProps) {
+export default function SoldTag() {
     return (
         <>
             <div className='ribbon text-center'>
                 <div className='content'>
-                    <h3>{discount}</h3>
-                    <p>discount</p>
+                    <h2>Sold</h2>
                 </div>
             </div>
             <style jsx>
@@ -25,13 +22,8 @@ export default function DiscountTag({ discount }: DiscountProps) {
                         margin-top: 20px;
                         margin-right: 10px;
                     }
-                    .ribbon h3 {
-                        font: bold normal 20px/18px 'Dancing Script', 'Lato',
-                            sans-serif;
-                        margin-bottom: 2px;
-                    }
-                    .ribbon p {
-                        font: normal normal 16px/18px 'Dancing Script', 'Lato',
+                    .ribbon h2 {
+                        font: bold normal 25px/18px 'Dancing Script', 'Lato',
                             sans-serif;
                         margin-bottom: 2px;
                     }
@@ -44,7 +36,7 @@ export default function DiscountTag({ discount }: DiscountProps) {
                         height: 7em;
                         width: 15em;
                         transform: rotate(45deg);
-                        background-color: rgb(255, 166, 202);
+                        background-color: red;
                         z-index: -1;
                     }
                     @media (max-width: 768px) {

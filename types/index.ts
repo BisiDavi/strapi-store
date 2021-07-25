@@ -25,7 +25,7 @@ export interface ButtonProps {
     height?: string;
     styles?: {};
     color?: string;
-		disabled?: boolean;
+    disabled?: boolean;
     asLink?: boolean;
     btnClassName?: string;
 }
@@ -51,6 +51,7 @@ export interface IProduct {
     };
     slug?: string;
     description?: string;
+    wigStatus: string;
 }
 
 export interface ProductProps {

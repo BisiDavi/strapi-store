@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRedux } from '.';
 
 export default function useUserDetails() {

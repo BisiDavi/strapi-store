@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { SiteClient } from 'datocms-client';
 import dynamic from 'next/dynamic';
 import { Pagelayout } from '@containers/.';
 import { useInstagram, useRedux } from '@hooks/.';
@@ -13,13 +14,13 @@ import {
     HOMEPAGE_SEO_QUERY,
     request,
     DOLLAR_TO_NAIRA_RATE_QUERY,
+    updateProductAfterSales,
 } from '@lib/.';
 import { Viewmore } from '@components/Button';
 import { HomeProps } from '../types';
 import { setCurrencyAction } from '@store/actions/currencyAction';
 import getUserIP from '@utils/getUserIP';
 import { IPAction } from '@store/actions/IPActions';
-import makeNairaPayment from '@utils/makeNairaPayment';
 
 const InstaSlider = dynamic(() => import('../components/Slider/instaSlider'));
 
@@ -52,6 +53,10 @@ export default function Home({
             });
         }
     }, [dispatch, userIP.country, nairaRate]);
+
+    //useEffect(() => {
+    //    updateProductAfterSales('48403041', 0, 'sold');
+    //}, []);
 
     return (
         <Pagelayout metaTags={seoData} title='Welcome'>

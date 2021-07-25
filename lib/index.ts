@@ -9,3 +9,4 @@ export {
     HOMEPAGE_SEO_QUERY,
     DOLLAR_TO_NAIRA_RATE_QUERY,
 } from './api';
+export { default as updateProductAfterSales } from './updateProduct';

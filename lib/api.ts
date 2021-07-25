@@ -6,6 +6,7 @@ export const HOMEPAGE_QUERY = `query Homepage($limit:IntType){
     slug
     id
 		productQuantity
+		wigStatus
     image {
       url
       responsiveImage(imgixParams: {auto:format,q:60, h: 700, w:700, fit:crop}) {
@@ -34,6 +35,7 @@ export const PRODUCTPAGE_QUERY = `query Productpage($slug: String) {
     slug
 		productQuantity
     formerPrice
+		wigStatus
     image {
       responsiveImage(imgixParams: {auto: format, q: 60, h: 800, w: 800, fit: crop}) {
         srcSet
@@ -143,6 +145,7 @@ export const FETCH_ALL_PRODUCT_QUERY = `query FetchAllProduct{
     price
 		formerPrice
     id
+		wigStatus
 		productQuantity
     slug
     image {
@@ -171,6 +174,7 @@ export const READY_TO_SHIP_QUERY = `query ReadytoShip{
     price
     slug
     id
+		wigStatus
 		productQuantity
     image {
       url
@@ -197,6 +201,7 @@ export const SIGNATURE_WIGS = `query SignatureWigs {
     title
     id
 		productQuantity
+		wigStatus
     price
     slug
     image {

@@ -10,10 +10,12 @@ export default function useFormatProduct() {
                 (productArray = [
                     ...productArray,
                     {
+                        id: product.id,
                         amount: priceExchange(product.amount),
                         count: product.count,
                         image: product.image.responsiveImage.src,
                         title: product.title,
+                        productQuantity: product.productQuantity,
                     },
                 ]),
         );

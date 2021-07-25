@@ -3,12 +3,7 @@ import { useEffect, useState } from 'react';
 import { axiosInstance } from '@axios/axiosInstance';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-    useCurrency,
-    useFormatProduct,
-    useUserDetails,
-    useRedux,
-} from '@hooks/.';
+import { useRedux, usePaymentData } from '@hooks/.';
 import { Pagelayout } from '@containers/.';
 import { request, HOMEPAGE_QUERY } from '@lib/.';
 import ProductSlider from '@components/Slider/ProductSlider';
@@ -18,65 +13,22 @@ export default function Paymentsuccessful({ otherProducts }) {
     const [paymentStatus, setPaymentStatus] = useState(null);
     const { dispatch } = useRedux();
     const {
-        details,
-        method,
-        products,
-        totalAmount,
-        additionalInformation,
-    } = useUserDetails();
-    const { currencySymbol } = useCurrency();
-    const other_Products = otherProducts?.allProducts;
-    const { formatProduct }: any = useFormatProduct();
+        saveOrderToDB,
+        userNotificationData,
+        adminNotificationData,
+        productsData,
+    } = usePaymentData();
 
-    const productsArray = formatProduct(products);
+    const other_Products = otherProducts?.allProducts;
+
     useEffect(() => {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
         setPaymentStatus(params);
     }, []);
 
-    console.log('productsArray', productsArray);
-
-    const shippingDays = method.includes('14 working days')
-        ? '14 working days'
-        : '5 working days';
-
-    const adminNotificationData = {
-        products: productsArray,
-        email: details?.email,
-        phonenumber: details?.telephone,
-        shippingMethod: method,
-        totalPrice: totalAmount,
-        additionalInformation,
-        symbol: currencySymbol,
-    };
-    const userNotificationData = {
-        products: productsArray,
-        email: details?.email,
-        shippingDays,
-        totalPrice: totalAmount,
-        symbol: currencySymbol,
-    };
-
-    const saveOrderToDB = {
-        fullName: details.fullName,
-        email: details.email,
-        address: details.address,
-        zip: details.zip,
-        telephone: details.telephone,
-        country: details.country,
-        region: details.region,
-        shippingMethod: method,
-        products,
-        totalPrice: totalAmount,
-        additionalInformation,
-        symbol: currencySymbol,
-    };
-
     console.log('paymentStatus', paymentStatus);
-    console.log('saveOrderToDB', saveOrderToDB);
-    console.log('adminNotificationData', adminNotificationData);
-    console.log('userNotificationData', userNotificationData);
+    console.log('productsData', productsData);
 
     async function postPaymentNotification(route, data) {
         await axiosInstance
@@ -112,25 +64,35 @@ export default function Paymentsuccessful({ otherProducts }) {
 
     const paymentCondition = paymentStatus?.status === 'successful';
 
-    const paymentTitle = paymentCondition ? 'cancelled' : 'successful';
+    const paymentTitle = paymentCondition ? 'successful' : 'cancelled';
     return (
         <Pagelayout title={`Payment-${paymentTitle}`}>
             <div className='paymentSuccessful d-flex flex-column container-fluid'>
-                {paymentCondition ? (
-                    <div className='row d-flex mx-auto'>
-                        <Image
-                            src='/paymentMade.gif'
-                            alt='payment successful'
-                            height='250px'
-                            width='300px'
-                        />
-                    </div>
-                ) : (
-                    <h3 className='text-center'>
-                        Payment Cancelled, please try making payment again,
-                        thanks
-                    </h3>
-                )}
+                <>
+                    {paymentCondition ? (
+                        <div className='row d-flex mx-auto'>
+                            <Image
+                                src='/paymentMade.gif'
+                                alt='payment successful'
+                                height='250px'
+                                width='300px'
+                            />
+                        </div>
+                    ) : paymentStatus?.status === 'cancelled' ? (
+                        <h3 className='text-center mt-3'>
+                            Payment Cancelled, please try making payment again,
+                            thanks
+                        </h3>
+                    ) : (
+                        <h3 className='text-center mt-3'>
+                            Payment not made, please make payment{' '}
+                            <Link href='/make-payments' passHref>
+                                <a className='text-danger mr-2'>here</a>
+                            </Link>
+                            thanks.
+                        </h3>
+                    )}
+                </>
                 {paymentCondition && (
                     <div className='row'>
                         <div className='col-12'>
@@ -170,7 +132,7 @@ export default function Paymentsuccessful({ otherProducts }) {
     );
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
     const otherProducts = await request({
         query: HOMEPAGE_QUERY,
         variables: { limit: 20 },

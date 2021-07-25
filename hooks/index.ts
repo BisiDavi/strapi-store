@@ -9,3 +9,4 @@ export { default as useLoading } from './useLoading';
 export { default as useRedux } from './useRedux';
 export { default as useUserDetails } from './useUserDetails';
 export { default as useFormatProduct } from './useFormatProduct';
+export { default as usePaymentData } from './usePaymentData';
