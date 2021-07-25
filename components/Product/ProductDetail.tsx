@@ -190,6 +190,9 @@ export default function ProductDetail({
                         width: 50%;
                         margin-right: 40px;
                     }
+                    .product-text h5 {
+                        font-size: 15px;
+                    }
                     .isSold h4 {
                         text-decoration: line-through;
                     }

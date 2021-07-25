@@ -40,6 +40,12 @@ export default function Paymentsuccessful({ otherProducts }) {
             .catch((error) => console.error('error', error));
     }
 
+    function updateAfterSales() {
+        const productsDataKeyArray = Object.keys(productsData);
+        productsDataKeyArray.map((product) =>
+            updateProductAfterSales(productsData[product]),
+        );
+    }
     useEffect(() => {
         if (paymentStatus?.status === 'successful') {
             postPaymentNotification(
@@ -59,11 +65,7 @@ export default function Paymentsuccessful({ otherProducts }) {
                     console.log('error from db', error);
                 });
 
-            const productsDataKeyArray = Object.keys(productsData);
-            productsDataKeyArray.map((product) =>
-                updateProductAfterSales(productsData[product]),
-            );
-
+            updateAfterSales();
             dispatch(ClearCartAction());
         }
     }, [paymentStatus]);
