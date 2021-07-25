@@ -19,6 +19,8 @@ export default function Paymentsuccessful({ otherProducts }) {
         productsData,
     } = usePaymentData();
 
+    console.log('productsData', productsData);
+
     const other_Products = otherProducts?.allProducts;
 
     useEffect(() => {
@@ -57,7 +59,10 @@ export default function Paymentsuccessful({ otherProducts }) {
                     console.log('error from db', error);
                 });
 
-            updateProductAfterSales(productsData);
+            const productsDataKeyArray = Object.keys(productsData);
+            productsDataKeyArray.map((product) =>
+                updateProductAfterSales(productsData[product]),
+            );
 
             dispatch(ClearCartAction());
         }

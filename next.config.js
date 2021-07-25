@@ -6,7 +6,8 @@ module.exports = {
             'scontent-lga3-1.cdninstagram.com',
             'video.cdninstagram.com',
             'scontent.cdninstagram.com',
-						'www.datocms-assets.com'
+            'www.datocms-assets.com',
+            'scontent-los2-1.cdninstagram.com',
         ],
     },
 };
