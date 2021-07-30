@@ -48,6 +48,7 @@ const MyApp = ({ Component, pageProps }) => {
             Router.events.on('routeChangeError', end);
         };
     }, []);
+		
     return (
         <AuthProvider
             options={{ clientMaxAge: 0, keepAlive: 0 }}
