@@ -1,7 +1,7 @@
 export default function AlertBanner({ displayHandler }) {
     return (
-        <div className='alertBanner'>
-            <h3>
+        <div data-cy="alertBanner" className='alertBanner'>
+            <h3 >
                 DUE TO <b>COVID 19</b> PLEASE BE ADVISED THERE MAY BE DELAY IN
                 SHIPMENT. WE APOLOGISE FOR ANY INCONVENIENCE. FOR FURTHER
                 ASSISTANCE PLEASE CALL{' '}
