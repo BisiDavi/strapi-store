@@ -3,7 +3,7 @@ import 'react-whatsapp-widget/dist/index.css';
 
 export default function Whatsappchat() {
     return (
-        <div className='chat'>
+        <div data-cy="whatsapp-widget" className='chat'>
             <WhatsAppWidget
                 phoneNumber='12674038663'
                 textReplyTime='Typically replies within a day'

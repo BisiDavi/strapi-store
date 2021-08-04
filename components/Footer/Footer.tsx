@@ -30,9 +30,9 @@ export default function Footer() {
 
     return (
         <footer className='footer-section'>
-            <ul className='footerLinks row'>
+            <ul data-cy="footerlink" className='footerLinks row'>
                 {footerLinks.map((link) => (
-                    <li key={uuidv4()}>
+                    <li data-cy={link.name} key={uuidv4()}>
                         <Link href={link.link} passHref>
                             <a>{link.name}</a>
                         </Link>
