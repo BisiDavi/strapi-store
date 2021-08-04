@@ -1,6 +1,6 @@
 export default function PromoBanner() {
     return (
-        <div className='promoBanner'>
+        <div data-cy="promoBanner" className='promoBanner'>
             <h4>
                 Shop JenJen&#39;s Luxury Hair | Get virgin Hair at Affordable
                 Price{' '}

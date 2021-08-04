@@ -34,10 +34,10 @@ export default function MenuSidebar({
     return (
         <Sidebar onClose={onClose} btnClassName={btnClassName}>
             <>
-                <div className={styles.menus}>
+                <div data-cy="menu" className={styles.menus}>
                     {displayMenu(menuArr.menus, 'menu')}
                 </div>
-                <div className={styles.submenu}>
+                <div data-cy="submenu" className={styles.submenu}>
                     {displayMenu(menuArr.submenus, 'submenu')}
                 </div>
             </>

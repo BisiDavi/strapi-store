@@ -8,5 +8,5 @@ context('alertBanner', () => {
       it('alert banner should container alert text', () => {
           cy.get('[data-cy=alertBanner]').contains('h3')
       })
-
+      
 })

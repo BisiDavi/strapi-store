@@ -31,15 +31,16 @@ export default function Nav() {
         toast.error(`${session.user.name}, you're logged out`);
     };
     return (
-        <nav className='nav-menu'>
+        <nav data-cy="nav" className='nav-menu'>
             <span className='hamburger'>
                 <Hamburger
+                    data-cy="hamburger"
                     btnClick={hamburgerHandler}
                     className={sidebarState(btnState)}
                 />
                 {displayMenuSidebar(btnState, onCloseHandler)}
             </span>
-            <Logo />
+            <Logo data-cy="logo" />
             <span className='cart mx-2'>
                 <CartIcon cartClick={showCart} count={productCount} />
             </span>
