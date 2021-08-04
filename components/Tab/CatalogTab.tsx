@@ -14,7 +14,7 @@ export default function CatalogTab() {
         return tabLinks.map((tablink, index) => (
             <span className='mx-2' key={index}>
                 <Link href={tablink.link} passHref>
-                    <a>{tablink.name}</a>
+                    <a data-cy={tablink.name}>{tablink.name}</a>
                 </Link>
                 <style jsx>
                     {`
